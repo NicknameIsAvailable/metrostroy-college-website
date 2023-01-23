@@ -1,15 +1,15 @@
 import Header from "./Components/Header/Header";
 import styles from "./App.css";
 import Slider from "./Components/Slider/Slider";
-import Container from "./Components/Container/Container";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
     <div className={styles.App}>
         <Header/>
-        <Container>
-            <Slider/>
-        </Container>
+        <Slider/>
+
+        <Footer/>
     </div>
   );
 }

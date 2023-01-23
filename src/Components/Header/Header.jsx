@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./Header.css";
+import "./Header.css";
 import {ReactComponent as Logo} from "../../Icons/Logo.svg";
 import {ReactComponent as Person} from "../../Icons/Person.svg";
 import {ReactComponent as Search} from "../../Icons/Search.svg";
@@ -10,7 +10,7 @@ const Header = () => {
         <header>
             <Logo/>
 
-            <div className={styles.links}>
+            <div className="links">
                 <h3>о колледже</h3>
                 <h3>абитуриентам</h3>
                 <h3>обучающимся</h3>
