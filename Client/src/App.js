@@ -1,15 +1,25 @@
 import Header from "./Components/Header/Header";
-import styles from "./App.css";
-import Slider from "./Components/Slider/Slider";
 import Footer from "./Components/Footer/Footer";
+import BurgerMenu from "./Components/BurgerMenu/BurgerMenu";
+import Schedule from "./Pages/Schedule/Schedule";
+import {Route, Routes} from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import React from "react";
 
 function App() {
   return (
-    <div className={styles.App}>
+    <>
+
+
         <Header/>
-        <Slider/>
+        <BurgerMenu/>
+        <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/schedule" element={<Schedule/>}/>
+        </Routes>
         <Footer/>
-    </div>
+
+    </>
   );
 }
 
