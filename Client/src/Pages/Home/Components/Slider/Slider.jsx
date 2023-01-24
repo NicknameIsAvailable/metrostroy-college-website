@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Slider.css";
-import Image from "../Image/Image";
-import img from "../../Images/геопространственные технологии.png"
+import Image from "../../../../Components/Image/Image";
+import img from "../../../../Images/геопространственные технологии.png"
 
 const Slider = () => {
     return (
