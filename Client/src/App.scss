@@ -1,0 +1,54 @@
+body {
+  padding-top: 170px;
+  font-family: "Cal Sans", "Montserrat", sans-serif;
+}
+
+.App {
+  background: white;
+}
+
+.container {
+  margin-left: 15em;
+  margin-right: 15em;
+}
+
+h1 {
+  font-family: 'Cal Sans', sans-serif;
+  font-weight: 900;
+  font-size: 96px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-color: #3D99A8;
+  -webkit-text-stroke-width: 3.00px;
+}
+
+a {
+  color: white;
+
+  &:visited {
+    color: #3D99A8;
+  }
+}
+
+button {
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 700;
+  background: transparent;
+  font-size: 32px;
+  padding: 32px;
+  width: 340px;
+  color: #3D99A8;
+  border: #3D99A8 3px solid;
+  border-radius: 16px;
+  transition-duration: 0.3s;
+
+  &:hover {
+    border: 3px solid #87C2D0;
+  }
+
+  &:active {
+    transition-duration: 0.2s;
+    background: #3D99A8;
+    color: white;
+    border: #3D99A8 3px solid;
+  }
+}

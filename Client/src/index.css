@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Cal Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Cal-Sans"), url("./fonts/Cal-Sans/CalSans-SemiBold.woff2") format("woff2"), url("./fonts/Cal-Sans/CalSans-SemiBold.woff") format("woff");
+}
+
+/*# sourceMappingURL=index.css.map */

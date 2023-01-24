@@ -1,0 +1,36 @@
+header {
+  width: 100%;
+  padding-top: 24px;
+  padding-left: 15em;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 1em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  background: white;
+}
+header .links {
+  margin-left: auto;
+  font-family: Montserrat, sans-serif;
+  font-weight: 300;
+  margin-right: 30em;
+  display: flex;
+  flex-wrap: wrap;
+  vertical-align: middle;
+  gap: 32px;
+}
+header .links h3 {
+  font-size: 32px;
+  font-weight: 500;
+}
+header .links svg {
+  padding: 4px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=Header.css.map */

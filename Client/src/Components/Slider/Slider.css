@@ -1,0 +1,22 @@
+.Slider {
+  margin-top: 64px;
+  width: 90em;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+.Slider h1 {
+  vertical-align: middle;
+}
+.Slider .hero-section {
+  flex: 1;
+}
+.Slider .hero-section button {
+  margin-top: 32px;
+  text-align: center;
+}
+.Slider img {
+  flex: 1;
+}
+
+/*# sourceMappingURL=Slider.css.map */
