@@ -1,7 +1,7 @@
 .BurgerMenu {
   z-index: 1;
   top: 0;
-  right: -1000px;
+  right: 0;
   margin-left: auto;
   width: 50em;
   height: 100%;
@@ -11,7 +11,7 @@
   padding-right: 64px;
   transition-duration: 0.3s;
 
-  .footer {
+  .header {
     margin: 32px 0;
     align-items: center;
     height: 64px;
@@ -23,6 +23,7 @@
       align-items: center;
       height: 64px;
       width: 64px;
+      cursor: pointer;
       transition-duration: 0.3s;
 
       &:hover {
@@ -48,6 +49,10 @@
     flex-direction: column;
     align-items: center;
     color: white;
+
+    .Link {
+      color: white;
+    }
 
     h3 {
       font-weight: 300;

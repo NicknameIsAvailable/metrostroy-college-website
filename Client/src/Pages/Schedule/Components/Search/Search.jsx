@@ -2,6 +2,7 @@ import React from 'react';
 import "./Search.css";
 import {ReactComponent as SearchIcon} from "../../../../Icons/SearchIconWhite.svg";
 import Checkbox from "../../../../Components/Checkbox/Checkbox";
+import DropDownList from "../../../../Components/DropDownList/DropDownList";
 
 const Search = () => {
     return (
@@ -11,6 +12,15 @@ const Search = () => {
                 <SearchIcon/>
             </div>
 
+            <DropDownList
+                title="площадка"
+                variants={[
+                    "УЛ.Демьяна Бедного Д. 21",
+                    "Придорожная аллея Д. 7",
+                    "Ириновский проспект Д. 29",
+                    "УЛ.Учительская Д. 3"
+                ]}
+            />
             <Checkbox content="по группе"/>
             <Checkbox content="по преподавателю"/>
             <Checkbox content="по аудитории"/>

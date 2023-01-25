@@ -1,0 +1,15 @@
+.DropDownList {
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  border: 3px #1f1f1f solid;
+  border-radius: 2em;
+
+  .title {
+    padding-left: 24px;
+    padding-right: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

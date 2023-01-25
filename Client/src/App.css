@@ -1,6 +1,15 @@
 body {
   padding-top: 170px;
-  font-family: "Cal Sans", "Montserrat", sans-serif;
+  color: #1f1f1f;
+  font-family: "Montserrat", "Cal Sans", sans-serif;
+}
+
+.Link {
+  text-decoration: none;
+  color: #1f1f1f;
+}
+.Link:visited {
+  color: #1f1f1f;
 }
 
 .App {
