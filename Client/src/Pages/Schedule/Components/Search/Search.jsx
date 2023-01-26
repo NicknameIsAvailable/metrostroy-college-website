@@ -7,24 +7,29 @@ import DropDownList from "../../../../Components/DropDownList/DropDownList";
 const Search = () => {
     return (
         <div className="Search">
-            <input placeholder="поиск"/>
-            <div className="search-button">
-                <SearchIcon/>
+            <div className="search-block">
+                <input placeholder="поиск"/>
+                <div className="search-button">
+                    <SearchIcon/>
+                </div>
             </div>
 
-            <DropDownList
-                title="площадка"
-                variants={[
-                    "УЛ.Демьяна Бедного Д. 21",
-                    "Придорожная аллея Д. 7",
-                    "Ириновский проспект Д. 29",
-                    "УЛ.Учительская Д. 3"
-                ]}
-            />
+
+            <div className="buttons">
+                <DropDownList
+                    title="площадка"
+                    variants={[
+                        "УЛ.Демьяна Бедного Д. 21",
+                        "Придорожная аллея Д. 7",
+                        "Ириновский проспект Д. 29",
+                        "УЛ.Учительская Д. 3"
+                    ]}
+                />
             <Checkbox content="по группе"/>
             <Checkbox content="по преподавателю"/>
             <Checkbox content="по аудитории"/>
             <Checkbox content="замены"/>
+            </div>
         </div>
     );
 };

@@ -1,15 +1,35 @@
 .DropDownList {
-  height: 48px;
   display: flex;
+  padding: 0 8px;
   flex-direction: column;
   border: 3px #1f1f1f solid;
+  position: relative;
   border-radius: 2em;
+  transition-duration: 0.3s;
 
   .title {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding: 12px 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-overflow: ellipsis;
+  }
+
+  .variant {
+    border-radius: 2em;
+    padding: 16px;
+    background: white;
+    transition-duration: 0.3s;
+    text-overflow: fade;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      transition-duration: 0.2s;
+      background: #1f1f1f;
+      color: white;
+    }
   }
 }

@@ -15,13 +15,17 @@ const DropDownList = (props) => {
                 </h3>
             </div>
 
-            <div className="variants-list">
+            <ul className="variants-list" style={
+                open ? {position: "absolute"} : {display: "none"}}>
                 {variants.map(variant =>
-                    <div className="variant">
+                    <ol className="variant" onClick={() => {
+                        setChosenVariant(variant);
+                        setOpen(!open);
+                    }}>
                         <h4>{variant}</h4>
-                    </div>
+                    </ol>
                 )}
-            </div>
+            </ul>
         </div>
     );
 };
