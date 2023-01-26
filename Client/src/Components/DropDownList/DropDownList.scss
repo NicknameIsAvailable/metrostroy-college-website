@@ -4,6 +4,7 @@
   flex-direction: column;
   border: 3px #1f1f1f solid;
   position: relative;
+  width: 24em;
   border-radius: 2em;
   transition-duration: 0.3s;
 
@@ -15,12 +16,22 @@
     text-overflow: ellipsis;
   }
 
+  .variants-list{
+    left: 0;
+    border: 3px #1f1f1f solid;
+    border-radius: 2em;
+    background: white;
+    width: 100%;
+    transition-duration: 0.3s;
+  }
+
   .variant {
     border-radius: 2em;
     padding: 16px;
     background: white;
     transition-duration: 0.3s;
     text-overflow: fade;
+    cursor: pointer;
 
     &:hover {
       background: rgba(0, 0, 0, 0.1);

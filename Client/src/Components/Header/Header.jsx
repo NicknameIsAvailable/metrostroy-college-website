@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <>
         <header>
-            <Link to="/" className="Link">
+            <Link to="/" className="Link logo">
                 <Logo/>
             </Link>
 
@@ -34,7 +34,9 @@ const Header = () => {
                         расписание
                     </Link>
                 </h3>
-                <Person/>
+                <Link to="/login">
+                    <Person/>
+                </Link>
                 <Search/>
                 <Burger onClick={() => setOpen(!open)}/>
             </div>

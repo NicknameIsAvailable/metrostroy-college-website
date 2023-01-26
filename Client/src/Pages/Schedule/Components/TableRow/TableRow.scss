@@ -1,0 +1,19 @@
+.TableRow {
+  width: 100%;
+  display: flex;
+}
+
+.day-of-week {
+  flex: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  border: 3px #1f1f1f solid;
+  font-weight: 700;
+
+  h3 {
+    width: 100px;
+    text-align: center;
+  }
+}

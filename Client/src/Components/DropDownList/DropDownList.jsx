@@ -16,13 +16,20 @@ const DropDownList = (props) => {
             </div>
 
             <ul className="variants-list" style={
-                open ? {position: "absolute"} : {display: "none"}}>
+                open ? {
+                    position: "absolute",
+                    top: "56px",
+                    opacity: 1
+                } : {
+                    display: "none",
+                    opacity: 0
+                }}>
                 {variants.map(variant =>
                     <ol className="variant" onClick={() => {
                         setChosenVariant(variant);
                         setOpen(!open);
                     }}>
-                        <h4>{variant}</h4>
+                        <h3>{variant}</h3>
                     </ol>
                 )}
             </ul>

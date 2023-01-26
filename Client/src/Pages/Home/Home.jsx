@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from "../../App.css";
+import "./Home.css";
 import Slider from "./Components/Slider/Slider";
 
 const Home = () => {
     return (
-        <div className={styles.App}>
+        <div className="Home">
             <Slider/>
         </div>
     );

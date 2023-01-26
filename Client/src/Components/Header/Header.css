@@ -2,6 +2,7 @@ header {
   width: 100%;
   padding-top: 24px;
   padding-left: 15em;
+  padding-right: 15em;
   display: flex;
   z-index: 1;
   align-items: center;
@@ -11,8 +12,10 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  justify-content: center;
   background: white;
+}
+header .logo {
+  justify-content: flex-start;
 }
 header .links {
   margin-left: auto;
@@ -21,7 +24,7 @@ header .links {
   margin-right: 30em;
   display: flex;
   flex-wrap: wrap;
-  vertical-align: middle;
+  justify-content: flex-end;
   gap: 32px;
 }
 header .links h3 {

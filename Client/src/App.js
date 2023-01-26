@@ -13,6 +13,8 @@ import EducationalWork from "./Pages/EducationalWork/EducationalWork";
 import Profile from "./Pages/Profile/Profile";
 import Teachers from "./Pages/Teachers/Teachers";
 import ForApplicants from "./Pages/ForApplicants/ForApplicants";
+import "./App.css";
+import Login from "./Pages/Login/Login";
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
         <Header/>
         <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="/login" element={<Login/>}/>
             <Route path="/schedule" element={<Schedule/>}/>
             <Route path="/for-applicants" element={<ForApplicants/>}/>
             <Route path="/profile" element={<Profile/>}/>

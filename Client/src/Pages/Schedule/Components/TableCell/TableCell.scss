@@ -1,0 +1,40 @@
+.TableCell {
+  flex: 300px;
+  padding: 8px;
+  border: 3px #1f1f1f solid;
+  transition-duration: 0.3s;
+
+  h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .lesson-title {
+    width: 120px;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+  }
+
+  .lesson-number {
+    font-weight: 700;
+  }
+
+  .extra-info {
+    display: flex;
+
+    .auditory {
+      align-items: flex-end;
+      margin-left: auto;
+      font-weight: 700;
+    }
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
