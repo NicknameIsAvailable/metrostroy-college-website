@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Profile.css";
 import Notification from "./Components/Notification/Notification";
+import userImg from "../../Images/user-img.png";
 
 const Profile = () => {
     const notifications = [
@@ -37,7 +38,47 @@ const Profile = () => {
                         )
                     }
                 </div>
+
+                <div className="info-block">
+                    <div className="user-info">
+                        <div className="image">
+                            <div className="img-border"/>
+                            <img src={userImg} alt="user image" className="user-image"/>
+                        </div>
+
+                        <div className="user-info__text">
+                            <h2>Иванов Иван Иванович</h2>
+                            <h3>29 группа информационные системы и программирование</h3>
+                        </div>
+                    </div>
+
+                    <h2>
+                        Личные данные
+                    </h2>
+                    <h3>
+                        Email: pochta@pochta.ru
+                        <br/>
+                        Номер телефона: +7 (999) 999 99-99
+                        <br/>
+                        Адрес: ул. Пушкина д 1 к 1 кв 119
+                    </h3>
+
+                    <h2>
+                        Документы
+                    </h2>
+                    <h3>
+                        Паспорт: 123-456 от 01.01.01
+                        <br/>
+                        Аттеста о среднем общем образовании: 454545 от 01.01.01
+                        <br/>
+                        <a href="">
+                            Заявление
+                        </a>
+                    </h3>
+                </div>
             </div>
+
+
         </div>
     );
 };
