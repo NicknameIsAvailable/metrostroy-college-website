@@ -3,6 +3,24 @@
   margin-right: 15em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+
+  .profile-block {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .notifications-block {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 720px;
+    width: 525px;
+
+    .notifications-title {
+      text-align: center;
+    }
+  }
 }
