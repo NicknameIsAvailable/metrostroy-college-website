@@ -3,6 +3,17 @@
   padding: 24px 16px;
   border-radius: 2em;
   font-family: "Montserrat", sans-serif;
+  transition-duration: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.3);
+    transition-duration: 0.2s;
+  }
 
   h3 {
     font-weight: 500;

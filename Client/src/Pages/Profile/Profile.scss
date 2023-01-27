@@ -6,6 +6,7 @@
   align-items: center;
 
   .profile-block {
+    margin-top: 64px;
     width: 100%;
     display: flex;
     gap: 24px;
@@ -17,6 +18,7 @@
     flex-direction: column;
     gap: 24px;
     height: 720px;
+    overflow-y: scroll;
     width: 30em;
 
     .notifications-title {
@@ -39,6 +41,20 @@
   .user-image {
     width: 159px;
     height: 159px;
+  }
+
+  .hidden-info {
+    color: #1f1f1f;
+    background: #1f1f1f;
+    transition-duration: 0.3s;
+    border: #1f1f1f 1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+      color: #1f1f1f;
+      background: #ffffff;
+    }
   }
 
   .user-info__text {

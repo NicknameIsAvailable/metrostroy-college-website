@@ -20,6 +20,21 @@ const Profile = () => {
             time: "23:34",
             content: "вавдоаылвоадлова"
         },
+        {
+            date: "1.1.1",
+            time: "23:34",
+            content: "вавдоаылвоадлова"
+        },
+        {
+            date: "1.1.1",
+            time: "23:34",
+            content: "вавдоаылвоадлова"
+        },
+        {
+            date: "1.1.1",
+            time: "23:34",
+            content: "вавдоаылвоадлова"
+        },
     ]
 
     return (
@@ -56,20 +71,20 @@ const Profile = () => {
                         Личные данные
                     </h2>
                     <h3>
-                        Email: pochta@pochta.ru
+                        Email: <span className="hidden-info">pochta@pochta.ru</span>
                         <br/>
-                        Номер телефона: +7 (999) 999 99-99
+                        Номер телефона: <span className="hidden-info">+7 (999) 999 99-99</span>
                         <br/>
-                        Адрес: ул. Пушкина д 1 к 1 кв 119
+                        Адрес: <span className="hidden-info">ул. Пушкина д 1 к 1 кв 119</span>
                     </h3>
 
                     <h2>
                         Документы
                     </h2>
                     <h3>
-                        Паспорт: 123-456 от 01.01.01
+                        Паспорт: <span className="hidden-info">123-456</span> от <span className="hidden-info">01.01.01</span>
                         <br/>
-                        Аттеста о среднем общем образовании: 454545 от 01.01.01
+                        Аттестат о среднем общем образовании: <span className="hidden-info">454545</span> от <span className="hidden-info">01.01.01</span>
                         <br/>
                         <a href="">
                             Заявление
