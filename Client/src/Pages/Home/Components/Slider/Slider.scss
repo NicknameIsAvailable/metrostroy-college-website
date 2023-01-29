@@ -1,24 +1,23 @@
 .Slider {
-  margin-top: 64px;
-  width: 90em;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
-  h1 {
-    vertical-align: middle;
+  img {
+    justify-content: flex-end;
+    margin-left: auto;
   }
 
   .hero-section {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     button {
       margin-top: 32px;
       text-align: center;
     }
-  }
-
-  img {
-    flex: 1;
   }
 }

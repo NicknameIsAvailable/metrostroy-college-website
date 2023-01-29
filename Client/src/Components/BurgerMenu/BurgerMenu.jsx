@@ -7,6 +7,8 @@ const BurgerMenu = (props) => {
     const open = props.open;
     const setOpen = props.setOpen;
 
+
+
     return (
         <div
             className="BurgerMenu"

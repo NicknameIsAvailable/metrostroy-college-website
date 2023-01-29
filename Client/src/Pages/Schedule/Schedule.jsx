@@ -1,9 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Schedule.css";
 import Search from "./Components/Search/Search";
 import Table from "./Components/Table/Table";
+import axios from "axios";
 
 const Schedule = () => {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios.get("http://metrostroy-college/schedule.php");
+            setData(result.data);
+        };
+
+        fetchData().then(response => console.log(response));
+    }, []);
+
+    console.log(data);
+
     const schedule = [
         {
             groupNumber: 29,

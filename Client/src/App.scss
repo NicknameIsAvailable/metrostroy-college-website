@@ -33,14 +33,14 @@ body {
 }
 
 .container {
-  margin-left: 15em;
-  margin-right: 15em;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 h1 {
   font-family: 'Cal Sans', sans-serif;
   font-weight: 900;
-  font-size: 96px;
+  font-size: 72px;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-color: #3D99A8;
   -webkit-text-stroke-width: 3.00px;
@@ -81,4 +81,12 @@ button {
 
 Link {
   text-decoration: none;
+}
+
+::selection {
+  background: #46aebe; /* Safari */
+}
+
+::-moz-selection {
+  background: #46aebe; /* Firefox */
 }

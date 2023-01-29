@@ -15,9 +15,24 @@ import Teachers from "./Pages/Teachers/Teachers";
 import ForApplicants from "./Pages/ForApplicants/ForApplicants";
 import "./App.css";
 import Login from "./Pages/Login/Login";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 
 function App() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios.get("http://metrostroy-college/index.php");
+            setData(result.data);
+        };
+
+        fetchData().then(response => console.log(response));
+    }, []);
+
+    console.log(data);
+
   return (
     <>
         <Header/>

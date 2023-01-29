@@ -1,3 +1,10 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+
+$data = "dfjlsdjkflkdjlkj";
+echo $data;
+?>
+
 <!DOCTYPE html>
 <html>
     <head>

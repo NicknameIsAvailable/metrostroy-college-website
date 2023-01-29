@@ -1,31 +1,21 @@
 header {
-  width: 100%;
   padding-top: 24px;
-  padding-left: 15em;
-  padding-right: 15em;
+  margin-right: 15%;
+  margin-left: 15%;
   display: flex;
   z-index: 1;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 1em;
   position: fixed;
   top: 0;
+  right: 0;
   left: 0;
   background: white;
 
-  .logo {
-    justify-content: flex-start;
-  }
-
   .links {
-    margin-left: auto;
     font-family: Montserrat, sans-serif;
     font-weight: 300;
-    margin-right: 30em;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    margin-left: auto;
     gap: 32px;
 
     h3 {
