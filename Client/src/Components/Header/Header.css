@@ -1,7 +1,7 @@
 header {
   padding-top: 24px;
-  margin-right: 15%;
-  margin-left: 15%;
+  padding-right: 15%;
+  padding-left: 15%;
   display: flex;
   z-index: 1;
   align-items: center;

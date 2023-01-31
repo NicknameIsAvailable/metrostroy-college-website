@@ -1,0 +1,17 @@
+.AdminMenu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: 1080px;
+  padding: 128px 32px;
+
+  .disciplines-list {
+    gap: 16px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

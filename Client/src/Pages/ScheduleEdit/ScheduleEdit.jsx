@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import "./Schedule.css";
+import "./ScheduleEdit.css";
 import Search from "./Components/Search/Search";
 import Table from "./Components/Table/Table";
 import axios from "axios";
+import AdminMenu from "./Components/AdminMenu/AdminMenu";
 
 const ScheduleEdit = () => {
 
-    // const [data, setData] = useState()
+    const [data, setData] = useState()
 
-    // axios.get("/dfsd").then(({data}) => setData(data));
+    axios.get("/dfsd").then(({data}) => setData(data));
 
     const schedule = [
         {
@@ -231,6 +232,8 @@ const ScheduleEdit = () => {
 
     return (
         <div className="Schedule">
+            <AdminMenu/>
+
             <Search/>
             {schedule.map((schedule, index) =>
                 <Table schedule={schedule} index={index}/>
@@ -239,4 +242,4 @@ const ScheduleEdit = () => {
     );
 };
 
-export default Schedule;
+export default ScheduleEdit;

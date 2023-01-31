@@ -17,6 +17,8 @@ import "./App.css";
 import Login from "./Pages/Login/Login";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import AdminPanel from "./Pages/AdminPanel/AdminPanel";
+import ScheduleEdit from "./Pages/ScheduleEdit/ScheduleEdit";
 
 
 function App() {
@@ -24,8 +26,7 @@ function App() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await axios.get("http://metrostroy-college/index.php");
-            setData(result.data);
+            const result = await axios.get("http://metrostroy-college/index.php").then(({data}) => {console.log(data)})
         };
 
         fetchData().then(response => console.log(response));
@@ -38,8 +39,10 @@ function App() {
         <Header/>
         <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="/admin" element={<AdminPanel/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/schedule" element={<Schedule/>}/>
+            <Route path="/schedule/edit" element={<ScheduleEdit/>}/>
             <Route path="/for-applicants" element={<ForApplicants/>}/>
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/teachers" element={<Teachers/>}/>
