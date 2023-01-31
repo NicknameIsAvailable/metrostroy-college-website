@@ -2,8 +2,12 @@ import React from 'react';
 import "./Schedule.css";
 import Search from "./Components/Search/Search";
 import Table from "./Components/Table/Table";
+import axios from "axios";
 
 const Schedule = () => {
+
+    axios.get()
+
     const schedule = [
         {
             groupNumber: 29,

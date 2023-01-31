@@ -2,6 +2,7 @@ import React from 'react';
 import "./TableCell.css";
 
 const TableCell = (props) => {
+
     const day = props.day;
     const lessonNumber = props.lessonNumber;
 
