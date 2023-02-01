@@ -15,33 +15,24 @@ import Teachers from "./Pages/Teachers/Teachers";
 import ForApplicants from "./Pages/ForApplicants/ForApplicants";
 import "./App.css";
 import Login from "./Pages/Login/Login";
-import {useEffect, useState} from "react";
-import axios from "axios";
-import AdminPanel from "./Pages/AdminPanel/AdminPanel";
 import ScheduleEdit from "./Pages/ScheduleEdit/ScheduleEdit";
+import AdminMenu from "./Pages/ScheduleEdit/Components/AdminMenu/AdminMenu";
+import AdminPanel from "./Pages/AdminPanel/AdminPanel";
+import axios from "axios";
 
 
 function App() {
-    const [data, setData] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios.get("http://metrostroy-college/index.php").then(({data}) => {console.log(data)})
-        };
-
-        fetchData().then(response => console.log(response));
-    }, []);
-
-    console.log(data);
+  axios.get("http://10.1.2.25/").then(r => console.log(r))
 
   return (
     <>
         <Header/>
         <Routes>
             <Route path="/" element={<Home/>}/>
-            <Route path="/admin" element={<AdminPanel/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/schedule" element={<Schedule/>}/>
+            <Route path="/admin" element={<AdminPanel/>}/>
             <Route path="/schedule/edit" element={<ScheduleEdit/>}/>
             <Route path="/for-applicants" element={<ForApplicants/>}/>
             <Route path="/profile" element={<Profile/>}/>

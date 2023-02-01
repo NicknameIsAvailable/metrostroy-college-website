@@ -4,7 +4,7 @@ import Search from "./Components/Search/Search";
 import Table from "./Components/Table/Table";
 import axios from "axios";
 
-const ScheduleEdit = () => {
+const Schedule = () => {
 
     // const [data, setData] = useState()
 

@@ -1,4 +1,6 @@
 .TableCell {
+  flex-direction: column;
+  display: flex;
   flex: 1;
   padding: 8px;
   border: 3px #1f1f1f solid;
@@ -8,6 +10,29 @@
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 16px;
+}
+.TableCell textarea {
+  font-family: "Montserrat", sans-serif;
+  resize: none;
+  background: transparent;
+  margin-top: auto;
+  border: transparent;
+  font-size: 20px;
+  font-weight: 500;
+}
+.TableCell textarea:active, .TableCell textarea:hover, .TableCell textarea:focus {
+  outline: 0;
+}
+.TableCell .auditory-input {
+  width: 30px;
+}
+.TableCell .teacher-input {
+  width: 100px;
+}
+.TableCell .lesson-title-input {
+  word-break: break-all;
+  width: 150px;
+  height: 150px;
 }
 .TableCell .lesson-title {
   width: 120px;
