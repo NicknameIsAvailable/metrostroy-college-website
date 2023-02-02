@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "10.1.2.22"
+    baseURL: "http://C://OSPanel//domains//test.ru/"
 })
 
 export default instance;

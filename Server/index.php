@@ -1,17 +1,9 @@
-<?php
-header("Access-Control-Allow-Origin: *");
-
-$data = "dfjlsdjkflkdjlkj";
-echo $data;
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1">
       </head>
-
     <title>Авторизация</title>
 <div class="center-screen">
     <div class="modal modal-signin position-static d-block" tabindex="-1" role="dialog" id="modalSignin">
@@ -20,7 +12,6 @@ echo $data;
       <div class="modal-header p-5 pb-4 border-bottom-0">
         <h1 class="fw-bold mb-0 fs-2"><ya-tr-span data-index="14-0" data-translated="true" data-source-lang="en" data-target-lang="ru" data-value="Sign up for free" data-translation="Авторизация" data-ch="0" data-type="trSpan">Авторизация</ya-tr-span></h1>
       </div>
-
       <form action="aut.php" method="post">
       <div class="modal-body p-5 pt-0">
           <div class="form-floating mb-3">
@@ -38,9 +29,7 @@ echo $data;
   </div>
 </div>
 </div>
-
 </html>
-
 <style type="text/css">
 .center-screen {
   display: flex;

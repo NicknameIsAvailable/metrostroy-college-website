@@ -16,14 +16,16 @@ import ForApplicants from "./Pages/ForApplicants/ForApplicants";
 import "./App.css";
 import Login from "./Pages/Login/Login";
 import ScheduleEdit from "./Pages/ScheduleEdit/ScheduleEdit";
-import AdminMenu from "./Pages/ScheduleEdit/Components/AdminMenu/AdminMenu";
 import AdminPanel from "./Pages/AdminPanel/AdminPanel";
-import axios from "axios";
+import axios from "../src/axios";
 
 
 function App() {
 
-  axios.get("http://10.1.2.25/").then(r => console.log(r))
+   axios.get("/")
+       .then((response) => {
+           console.log("Подключено");
+       });
 
   return (
     <>
