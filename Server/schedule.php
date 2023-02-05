@@ -25,8 +25,6 @@ if($_POST['contact']  == 'audience') $sqlSchedule .= "WHERE p.PlaceName = '$setR
 
 $resultSQL = pg_query($connectSQL, $sqlSchedule);
 
-
-
 //if(pg_num_rows($resultSQL) < 1) exit;
 //
 //for($iterator = 0, $j; $iterator < $j = pg_num_rows($resultSQL); ++$iterator){
@@ -66,6 +64,4 @@ $resultSQL = pg_query($connectSQL, $sqlSchedule);
 //}
 }
 
-$conn = new connectDB();
-echo $conn;
 
