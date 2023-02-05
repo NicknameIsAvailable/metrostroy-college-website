@@ -21,11 +21,16 @@ import axios from "../src/axios";
 
 
 function App() {
-
-   axios.get("/")
+    
+   axios.get("/index.php")
        .then((response) => {
-           console.log("Подключено");
+           console.log(response.data);
        });
+
+    axios.get("/connectDB.php")
+        .then((response) => {
+            console.log(response.data);
+        });
 
   return (
     <>

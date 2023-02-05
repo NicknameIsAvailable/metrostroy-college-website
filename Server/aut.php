@@ -1,6 +1,8 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+
 session_start();
-require_once("connectDB.php");
+include("connectDB.php");
 
 if(!$connectSQL) header("Location:index.php"); // Высвечивать предупреждение о подключении к бд!
 
