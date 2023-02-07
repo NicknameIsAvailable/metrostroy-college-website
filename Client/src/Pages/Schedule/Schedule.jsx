@@ -11,10 +11,15 @@ const Schedule = () => {
     useEffect(() => {
     axios.get("/?action=schedule")
         .then(
-            response => setSchedule(response.data)
+            response => {
+                setSchedule(response.data.map(item => ({
+                    groupNumber: item.group,
+                    groupName: item.groupname,
+                    week: []
+                })))
+            }
         );
     }, [])
-
 
     console.log(schedule);
 

@@ -17,20 +17,13 @@ import "./App.css";
 import Login from "./Pages/Login/Login";
 import ScheduleEdit from "./Pages/ScheduleEdit/ScheduleEdit";
 import AdminPanel from "./Pages/AdminPanel/AdminPanel";
+import "./aboba.js";
+import {aboba} from "./aboba";
 
 
 function App() {
 
-  // const baseUrl = `http://localhost/MetrostroyCollege/`;
-  //
-  // useEffect(() => {
-  //     loadData()
-  // }, [])
-  //
-  // const loadData = () => {
-  //     fetch(`${baseUrl}/`)
-  //     .then(r => console.log(r.data))
-  // }
+
 
   return (
     <>

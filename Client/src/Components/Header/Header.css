@@ -9,23 +9,19 @@ header {
   top: 0;
   right: 0;
   left: 0;
-  background: white;
-}
-header .links {
-  font-family: Montserrat, sans-serif;
-  font-weight: 300;
-  display: flex;
-  margin-left: auto;
-  gap: 32px;
-}
-header .links h3 {
-  font-size: 32px;
-  font-weight: 500;
-}
-header .links svg {
-  padding: 4px;
-  transition-duration: 0.3s;
-  cursor: pointer;
-}
+  background: white; }
+  header .links {
+    font-family: Montserrat, sans-serif;
+    font-weight: 300;
+    display: flex;
+    margin-left: auto;
+    gap: 32px; }
+    header .links h3 {
+      font-size: 32px;
+      font-weight: 500; }
+    header .links svg {
+      padding: 4px;
+      transition-duration: 0.3s;
+      cursor: pointer; }
 
 /*# sourceMappingURL=Header.css.map */

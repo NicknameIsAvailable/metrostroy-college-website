@@ -4,17 +4,6 @@ header("Access-Control-Allow-Headers: *");
 header("Content-Type: application/json");
 require(__DIR__ . "/api.php");
 
-$allowed_methods = array(
-    'groups',
-    'lesson',
-    'locationadress',
-    'place',
-    'schedule',
-    'subjects',
-    'teachers',
-    'weekday'
-);
-
 function JSON ($arr = array()) {
     return @json_encode($arr, 128);
 };
@@ -31,7 +20,7 @@ if(!isset($_GET['action'])) {
     apiError("No method specified");
 };
 
-if(!in_array($_GET['action'], $allowed_methods)) {
+if(!in_array($_GET['action'])) {
     apiError("That method is not allowed");
 };
 
