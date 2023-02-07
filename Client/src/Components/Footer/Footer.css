@@ -4,20 +4,26 @@ footer {
   padding-bottom: 8em;
   margin-top: 8em;
   font-family: Montserrat, sans-serif;
-  color: white; }
-  footer h3 {
-    font-size: 24px;
-    margin-top: 16px;
-    font-weight: bold; }
-  footer p {
-    font-size: 24px;
-    margin-top: 16px; }
-  footer div {
-    flex: 1; }
-  footer button {
-    margin: 32px 0; }
-  footer .container {
-    display: flex;
-    align-items: flex-start; }
+  color: white;
+}
+footer h3 {
+  font-size: 24px;
+  margin-top: 16px;
+  font-weight: bold;
+}
+footer p {
+  font-size: 24px;
+  margin-top: 16px;
+}
+footer div {
+  flex: 1;
+}
+footer button {
+  margin: 32px 0;
+}
+footer .container {
+  display: flex;
+  align-items: flex-start;
+}
 
 /*# sourceMappingURL=Footer.css.map */

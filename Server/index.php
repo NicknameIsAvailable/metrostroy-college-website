@@ -15,13 +15,8 @@ function apiError($msg) {
     ));
 };
 
-
 if(!isset($_GET['action'])) {
     apiError("No method specified");
-};
-
-if(!in_array($_GET['action'])) {
-    apiError("That method is not allowed");
 };
 
 $action = $_GET['action'];

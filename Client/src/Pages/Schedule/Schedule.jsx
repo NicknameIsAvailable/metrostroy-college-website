@@ -6,22 +6,16 @@ import axios from "../../axios";
 
 const Schedule = () => {
 
-    const [schedule, setSchedule] = useState([])
+    // const [schedule, setSchedule] = useState([])
 
     useEffect(() => {
     axios.get("/?action=schedule")
         .then(
             response => {
-                setSchedule(response.data.map(item => ({
-                    groupNumber: item.group,
-                    groupName: item.groupname,
-                    week: []
-                })))
+                console.log(response.data)
             }
         );
     }, [])
-
-    console.log(schedule);
 
     const fakeSchedule = [
         {
