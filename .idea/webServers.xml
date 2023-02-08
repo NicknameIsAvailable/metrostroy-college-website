@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a144d156-1746-4b54-b9c2-ba86ab5aef6a" name="MetrostroyCollege (1)" url="http://localhost:8888">
+        <fileTransfer host="localhost" port="22">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+    <groups>
+      <group>
+        <name>MetrostroyCollege</name>
+        <servers>
+          <name value="MetrostroyCollege (1)" />
+        </servers>
+      </group>
+    </groups>
+  </component>
+</project>
