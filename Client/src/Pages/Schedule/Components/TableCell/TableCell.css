@@ -1,0 +1,27 @@
+.TableCell {
+  flex: 1;
+  padding: 8px;
+  border: 3px #1f1f1f solid;
+  transition-duration: 0.3s; }
+  .TableCell h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 16px; }
+  .TableCell .lesson-title {
+    width: 120px;
+    margin-bottom: 8px;
+    word-wrap: break-word; }
+  .TableCell .lesson-number {
+    font-weight: 700; }
+  .TableCell .extra-info {
+    display: flex; }
+    .TableCell .extra-info .auditory {
+      align-items: flex-end;
+      margin-left: auto;
+      font-weight: 700; }
+  .TableCell:hover {
+    background: rgba(0, 0, 0, 0.1); }
+  .TableCell:active {
+    background: rgba(0, 0, 0, 0.3); }
+
+/*# sourceMappingURL=TableCell.css.map */

@@ -1,0 +1,28 @@
+.Tab {
+  display: flex;
+  flex: 1;
+  border: #1f1f1f 3px solid;
+  border-radius: 2em;
+  gap: 16px;
+  padding: 16px;
+  flex-direction: column; }
+  .Tab span {
+    font-weight: 700; }
+  .Tab h3 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    width: 100%; }
+  .Tab h2 {
+    text-align: center;
+    font-size: 32px; }
+  .Tab p {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: auto; }
+  .Tab button {
+    margin-top: auto;
+    justify-content: flex-end;
+    width: 100%; }
+
+/*# sourceMappingURL=Tab.css.map */
