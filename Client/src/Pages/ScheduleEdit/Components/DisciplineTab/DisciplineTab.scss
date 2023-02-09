@@ -1,0 +1,17 @@
+.DisciplineTab {
+  padding: 8px;
+  border-radius: 1em;
+  border: #1f1f1f 3px solid;
+  flex: 1;
+  transition-duration: 0.3s;
+  cursor: grab;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &:active {
+    background: transparent;
+    cursor: grabbing;
+  }
+}

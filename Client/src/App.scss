@@ -1,0 +1,92 @@
+body {
+  padding-top: 170px;
+  color: #1f1f1f;
+  font-family: "Montserrat", "Cal Sans", sans-serif;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  width: 8px;
+  padding: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 4px;
+  width: 1px;
+  border: #1f1f1f 1px solid;
+}
+
+.Link {
+  text-decoration: none;
+  color: #1f1f1f;
+
+  &:visited {
+    color: #1f1f1f;
+  }
+}
+
+.App {
+  background: white;
+}
+
+.container {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+h1 {
+  font-family: 'Cal Sans', sans-serif;
+  font-weight: 900;
+  font-size: 96px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-color: #3D99A8;
+  -webkit-text-stroke-width: 3.00px;
+}
+
+a {
+  color: white;
+
+  &:visited {
+    color: #3D99A8;
+  }
+}
+
+button {
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 700;
+  background: transparent;
+  font-size: 32px;
+  padding: 32px;
+  width: 340px;
+  color: #3D99A8;
+  border: #3D99A8 3px solid;
+  border-radius: 16px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    border: 3px solid #87C2D0;
+  }
+
+  &:active {
+    transition-duration: 0.2s;
+    background: #3D99A8;
+    color: white;
+    border: #3D99A8 3px solid;
+  }
+}
+
+Link {
+  text-decoration: none;
+}
+
+::selection {
+  background: #46aebe; /* Safari */
+}
+
+::-moz-selection {
+  background: #46aebe; /* Firefox */
+}

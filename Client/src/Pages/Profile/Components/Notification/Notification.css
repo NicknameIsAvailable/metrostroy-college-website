@@ -1,0 +1,23 @@
+.Notification {
+  border: #1f1f1f 3px solid;
+  padding: 24px 16px;
+  border-radius: 2em;
+  font-family: "Montserrat", sans-serif;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+.Notification:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.Notification:active {
+  background: rgba(0, 0, 0, 0.3);
+  transition-duration: 0.2s;
+}
+.Notification h3 {
+  font-weight: 500;
+}
+.Notification h2 {
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=Notification.css.map */

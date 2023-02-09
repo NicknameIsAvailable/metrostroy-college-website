@@ -1,0 +1,37 @@
+.radio-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: #1f1f1f 3px solid;
+  padding: 0 24px;
+  gap: 0;
+  border-radius: 2em;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+p {
+
+}
+
+.radio-button .active {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: #46aebe 3px solid;
+  background: #46aebe;
+  color: white;
+  gap: 0;
+  border-radius: 2em;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked),
+[type="radio"]:checked,
+[type="radio"]:not(:checked){
+  position: absolute;
+  left: -9999px;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}

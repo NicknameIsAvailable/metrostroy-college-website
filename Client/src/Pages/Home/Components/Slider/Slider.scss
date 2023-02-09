@@ -1,0 +1,48 @@
+.Slider {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .image-block {
+    flex: 1;
+
+    .img {
+      justify-content: flex-end;
+      margin-left: auto;
+      width: 30vw;
+      height: 30vw;
+    }
+
+    .moved-out-border {
+      background: transparent;
+      position: absolute;
+      margin-left: 16px;
+      margin-top: 16px;
+      width: 30vw;
+      height: 30vw;
+      z-index: -1;
+      border: #46aebe 3px solid;
+      border-radius: 2em;
+    }
+  }
+
+  .hero-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      font-size: 80px;
+      width: 40vw;
+      word-wrap: break-word;
+    }
+
+    button {
+      margin-top: 32px;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.Profile {
+  border: #3D99A8 3px solid;
+  border-radius: 1em;
+  height: 64px;
+  width: 360px;
+  color: white;
+  align-items: center;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+.Profile .group__number {
+  width: 64px;
+  height: 64px;
+  border-right: 3px solid #3D99A8;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.Profile .group__number p {
+  align-items: center;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 12px;
+  line-height: 0.9;
+}
+.Profile .group__number .number {
+  font-size: 32px;
+}
+.Profile h3 {
+  font-size: 32px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*# sourceMappingURL=Profile.css.map */
