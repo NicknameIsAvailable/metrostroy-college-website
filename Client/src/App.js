@@ -3,7 +3,7 @@ import Footer from "./Components/Footer/Footer";
 import Schedule from "./Pages/Schedule/Schedule";
 import {Route, Routes} from "react-router-dom";
 import Home from "./Pages/Home/Home";
-import React, {useState} from "react";
+import React from "react";
 import ForStudents from "./Pages/ForStudents/ForStudents";
 import AutoSchool from "./Pages/AutoSchool/AutoSchool";
 import Info from "./Pages/Info/Info";
@@ -17,6 +17,7 @@ import "./App.css";
 import Login from "./Pages/Login/Login";
 import ScheduleEdit from "./Pages/ScheduleEdit/ScheduleEdit";
 import AdminPanel from "./Pages/AdminPanel/AdminPanel";
+import axios from "./axios";
 
 
 function App() {

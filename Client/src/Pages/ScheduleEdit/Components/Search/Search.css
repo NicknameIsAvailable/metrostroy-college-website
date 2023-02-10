@@ -4,7 +4,7 @@
   gap: 24px;
   align-items: center;
 }
-.Search input {
+.Search input[type=text] {
   font-weight: 300;
   width: 20em;
   font-size: 24px;
@@ -47,6 +47,27 @@
   display: flex;
   gap: 24px;
   flex-direction: row;
+}
+
+.radio-button {
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  border: #1f1f1f 3px solid;
+  border-radius: 2em;
+  transition-duration: 0.3s;
+}
+.radio-button p {
+  pointer-events: none;
+}
+
+.radio-button .active {
+  color: white;
+  border: #46aebe 3px solid;
+  background: #46aebe;
 }
 
 /*# sourceMappingURL=Search.css.map */
