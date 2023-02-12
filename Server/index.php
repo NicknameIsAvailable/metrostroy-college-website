@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 header("Content-Type: application/json");
-require(__DIR__ . "/api.php");
+require(__DIR__ . "/schedule.php");
 
 function JSON ($arr = array()) {
     return @json_encode($arr, 128);
