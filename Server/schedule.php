@@ -1,6 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
+header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 
 require_once('connectDB.php');
 
@@ -8,18 +10,21 @@ require_once('connectDB.php');
 
 if (!$_SERVER["REQUEST_METHOD"] == "POST") {
     echo "ошибка";
-//    ошибка не тот метод запроса
+//    обработать исключение
 }
 
-$rest_json = file_get_contents("php://input");
-$_POST = json_decode($rest_json, true);
+$rest_json = json_decode(file_get_contents("php://input"), true);
 
-if(!isset($_POST['valueSearch'], $_POST['valueRadioButton'])){
-    header('Location:');// Вывести предупреждение!
+if (isset($rest_json['valueSearch'], $rest_json['valueRadioButton'])) {
+
+    $varValueSearch = pg_escape_string($rest_json['valueSearch']); //Значение поля
+    $varValueRadioButton = $rest_json['valueRadioButton']; // Значение кнопки (какую выбрали)
+
+} else {
+
+    // обработать исключения
+
 }
-
-$varValueSearch = pg_escape_string($_POST['valueSearch']); //Значение поля
-$varValueRadioButton = $_POST['valueRadioButton']; // Значение кнопки (какую выбрали)
 
 $sqlSchedule = "SELECT p.PlaceName as \"Аудитория\", w.WeekDayName as \"День недел\", g.GroupName as \"№ Группы\", sub.SubjectName as \"Предмет\", t.second_name as \"Ф.И.О.\", l.LessonTime as \"Начало занятий\", la.locationname as \"Местро проведения\"
 FROM schedule s
@@ -54,11 +59,8 @@ $pg_sqlRequest = @pg_query($connectSQL, $sqlSchedule);
 
 if(pg_num_rows($pg_sqlRequest) < 1) exit('Запрос не получил ни одного результата!'); // Разные виды ошибок на js!
 
-$arrayJSON = array();
+$arrayJSON = json_encode(pg_fetch_all($pg_sqlRequest));
 
-for($iterator = 0; $iterator < pg_num_rows($pg_sqlRequest); ++$iterator) $arrayJSON[] = pg_fetch_array($pg_sqlRequest, $iterator, PGSQL_ASSOC);
+print_r($arrayJSON);
 
-$olga = json_encode($arrayJSON, true);
-
-print_r($olga);
 ?>

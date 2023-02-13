@@ -8,15 +8,24 @@ const Schedule = () => {
 
     const [schedule, setSchedule] = useState([])
 
-    useEffect(() => {
-    axios.get("/?action=schedule")
-        .then(
-            response => setSchedule(response.data)
-        );
+    useEffect(async () => {
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            valueSearch: "ответ1",
+            valueRadioButton: "ответ2",
+        };
+        await axios.post('/schedule.php',
+            requestOptions
+        )
+            .then(response => {
+                console.log(JSON.stringify(response))
+            })
+            .catch(error => console.log(error))
     }, [])
-
-
-    console.log(schedule);
 
     const fakeSchedule = [
         {

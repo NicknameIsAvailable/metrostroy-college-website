@@ -17,7 +17,6 @@ import "./App.css";
 import Login from "./Pages/Login/Login";
 import ScheduleEdit from "./Pages/ScheduleEdit/ScheduleEdit";
 import AdminPanel from "./Pages/AdminPanel/AdminPanel";
-import axios from "./axios";
 
 
 function App() {
@@ -32,10 +31,6 @@ function App() {
   //     fetch(`${baseUrl}/`)
   //     .then(r => console.log(r.data))
   // }
-
-    axios.get('/index.php').then((response) => {
-        console.log(response.data);
-    });
 
   return (
     <body>

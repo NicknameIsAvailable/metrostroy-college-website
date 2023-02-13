@@ -7,12 +7,18 @@ const Search = () => {
     const [checked1, setChecked1] = useState(false);
     const [checked2, setChecked2] = useState(false);
     const [checked3, setChecked3] = useState(false);
+    const [inputs, setInputs] = useState("");
+
+    const handleClick = async () => {
+
+    }
+
 
     return (
         <div className="Search">
             <div className="search-block">
-                <input placeholder="поиск" type="text"/>
-                <div className="search-button">
+                <input placeholder="поиск" type="text" onChange={(e) => setInputs(e.target.value)}/>
+                <div className="search-button" onClick={handleClick}>
                     <SearchIcon/>
                 </div>
             </div>
