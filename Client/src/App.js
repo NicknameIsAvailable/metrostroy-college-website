@@ -38,8 +38,9 @@ function App() {
     });
 
   return (
-    <>
+    <body>
         <Header/>
+        <div className="container">
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
@@ -57,9 +58,9 @@ function App() {
             <Route path="/mentoring" element={<Mentoring/>}/>
             <Route path="/educational-work" element={<EducationalWork/>}/>
         </Routes>
+        </div>
         <Footer/>
-
-    </>
+    </body>
   );
 }
 

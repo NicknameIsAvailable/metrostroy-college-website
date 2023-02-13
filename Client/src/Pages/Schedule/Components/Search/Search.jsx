@@ -38,7 +38,6 @@ const Search = () => {
                         name="site_name"
                         value="по группе"
                         checked={checked1}
-                        // onChange={this.onSiteChanged}
                     />
                     <p>по группе</p>
                 </div>
@@ -52,7 +51,6 @@ const Search = () => {
                         name="site_name"
                         value="по группе"
                         checked={checked2}
-                        // onChange={this.onSiteChanged}
                     />
                     <p>по преподавателю</p>
                 </div>
@@ -66,7 +64,6 @@ const Search = () => {
                         name="site_name"
                         value="по группе"
                         checked={checked3}
-                        // onChange={this.onSiteChanged}
                     />
                     <p>по аудитории</p>
                 </div>

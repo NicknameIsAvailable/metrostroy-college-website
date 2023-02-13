@@ -28,4 +28,67 @@ header .links svg {
   cursor: pointer;
 }
 
+@media screen and (max-width: 1600px) {
+  header {
+    padding-top: 24px;
+    padding-right: 10%;
+    padding-left: 10%;
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: white;
+  }
+  header .links h3 {
+    display: none;
+  }
+  header svg {
+    padding: 4px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 720px) {
+  header {
+    padding-right: 5%;
+    padding-left: 5%;
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    justify-content: left;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: white;
+  }
+  header .links {
+    margin-left: auto;
+    gap: 12px;
+  }
+  header .links h3 {
+    display: none;
+  }
+  header svg {
+    float: right;
+    justify-content: center;
+    padding: 4px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+  }
+  header .search-button {
+    display: none;
+  }
+  header .profile-button {
+    display: none;
+  }
+  header .Logo {
+    width: 200px;
+  }
+}
+
 /*# sourceMappingURL=Header.css.map */
