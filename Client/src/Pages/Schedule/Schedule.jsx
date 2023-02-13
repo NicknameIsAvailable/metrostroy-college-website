@@ -6,16 +6,17 @@ import axios from "../../axios";
 
 const Schedule = () => {
 
-    // const [schedule, setSchedule] = useState([])
+    const [schedule, setSchedule] = useState([])
 
     useEffect(() => {
     axios.get("/?action=schedule")
         .then(
-            response => {
-                console.log(response.data)
-            }
+            response => setSchedule(response.data)
         );
     }, [])
+
+
+    console.log(schedule);
 
     const fakeSchedule = [
         {

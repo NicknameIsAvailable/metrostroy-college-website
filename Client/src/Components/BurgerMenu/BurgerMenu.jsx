@@ -1,18 +1,22 @@
 import {ReactComponent as BackIconWhite} from "../../Icons/back.svg";
 import "./BurgerMenu.css";
-import Profile from "../Profile/Profile";
 import {Link} from "react-router-dom";
+import React, {useEffect, useState} from "react";
 
 const BurgerMenu = (props) => {
     const open = props.open;
     const setOpen = props.setOpen;
 
-
+    document.addEventListener("keydown", (e) => {
+        if (e.code == "Escape") {
+            setOpen(false);
+        }
+    });
 
     return (
         <div
             className="BurgerMenu"
-            style={open ? {right: 0} : {right: "-1000px"}}
+            style={open ? {right: 0} : {right: "-1800px"}}
         >
             <div className="header">
                     <div
@@ -22,14 +26,31 @@ const BurgerMenu = (props) => {
                            className="back-button__icon"
                         />
                     </div>
-                    <Profile/>
             </div>
 
             <div className="links">
+
+                <h3>
+                    <Link to="/for-applicants"
+                          className="Link hideable"
+                          onClick={() => setOpen(!open)}
+                    >
+                        абитуриентам
+                    </Link>
+                </h3>
+                <h3>
+                    <Link
+                        to="/schedule"
+                        className="Link hideable"
+                        onClick={() => setOpen(!open)}
+                    >
+                        расписание
+                    </Link>
+                </h3>
                 <h3>
                     <Link
                         to="/for-students"
-                        className="Link"
+                        className="Link hideable"
                         onClick={() => setOpen(!open)}
                     >
                         обучающимся

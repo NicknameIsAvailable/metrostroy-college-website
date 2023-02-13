@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAAA,cAAe;EACb,OAAO,EAAE,GAAG;EACZ,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,iBAAiB;EACzB,IAAI,EAAE,CAAC;EACP,mBAAmB,EAAE,IAAI;EACzB,MAAM,EAAE,IAAI;EAEZ,oBAAQ;IACN,UAAU,EAAE,mBAAmB;EAGjC,qBAAS;IACP,UAAU,EAAE,WAAW;IACvB,MAAM,EAAE,QAAQ",
-"sources": ["DisciplineTab.scss"],
-"names": [],
-"file": "DisciplineTab.css"
-}
+{"version":3,"sourceRoot":"","sources":["DisciplineTab.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;EACA;EACA;EACA;;AAEA;EACE;;AAGF;EACE;EACA","file":"DisciplineTab.css"}

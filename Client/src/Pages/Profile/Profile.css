@@ -1,60 +1,71 @@
 .ProfilePage {
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
-  align-items: center; }
-  .ProfilePage .profile-block {
-    margin-top: 64px;
-    width: 100%;
-    display: flex;
-    gap: 24px;
-    justify-content: flex-start; }
-  .ProfilePage .notifications-block {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    height: 720px;
-    overflow-y: scroll;
-    width: 30em; }
-    .ProfilePage .notifications-block .notifications-title {
-      text-align: center; }
-  .ProfilePage .info-block {
-    flex-direction: column;
-    gap: 24px;
-    display: flex; }
-  .ProfilePage .user-info {
-    gap: 24px;
-    display: flex;
-    flex-direction: row; }
-  .ProfilePage .user-image {
-    width: 159px;
-    height: 159px; }
-  .ProfilePage .hidden-info {
-    color: #1f1f1f;
-    background: #1f1f1f;
-    transition-duration: 0.3s;
-    border: #1f1f1f 1px solid;
-    border-radius: 8px;
-    cursor: pointer; }
-    .ProfilePage .hidden-info:hover {
-      color: #1f1f1f;
-      background: #ffffff; }
-  .ProfilePage .user-info__text {
-    margin-top: 24px; }
-  .ProfilePage h2 {
-    font-size: 32px; }
-  .ProfilePage h3 {
-    font-weight: 500;
-    font-size: 24px; }
-  .ProfilePage .img-border {
-    position: absolute;
-    margin-left: 8px;
-    margin-top: 8px;
-    z-index: -1;
-    border: #46aebe 3px solid;
-    border-radius: 2em;
-    width: 156px;
-    height: 156px; }
+  align-items: center;
+}
+.ProfilePage .profile-block {
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  justify-content: flex-start;
+}
+.ProfilePage .notifications-block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 720px;
+  overflow-y: scroll;
+  width: 30em;
+}
+.ProfilePage .notifications-block .notifications-title {
+  text-align: center;
+}
+.ProfilePage .info-block {
+  flex-direction: column;
+  gap: 24px;
+  display: flex;
+}
+.ProfilePage .user-info {
+  gap: 24px;
+  display: flex;
+  flex-direction: row;
+}
+.ProfilePage .user-image {
+  width: 159px;
+  height: 159px;
+}
+.ProfilePage .hidden-info {
+  color: #1f1f1f;
+  background: #1f1f1f;
+  transition-duration: 0.3s;
+  border: #1f1f1f 1px solid;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.ProfilePage .hidden-info:hover {
+  color: #1f1f1f;
+  background: #ffffff;
+}
+.ProfilePage .user-info__text {
+  margin-top: 24px;
+}
+.ProfilePage h2 {
+  font-size: 32px;
+}
+.ProfilePage h3 {
+  font-weight: 500;
+  font-size: 24px;
+}
+.ProfilePage .img-border {
+  position: absolute;
+  margin-left: 8px;
+  margin-top: 8px;
+  z-index: -1;
+  border: #46aebe 3px solid;
+  border-radius: 2em;
+  width: 156px;
+  height: 156px;
+}
 
 /*# sourceMappingURL=Profile.css.map */

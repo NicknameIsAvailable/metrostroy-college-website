@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAAA,aAAc;EACZ,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,GAAG",
-"sources": ["ScheduleEdit.scss"],
-"names": [],
-"file": "ScheduleEdit.css"
-}
+{"version":3,"sourceRoot":"","sources":["ScheduleEdit.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;EACA","file":"ScheduleEdit.css"}

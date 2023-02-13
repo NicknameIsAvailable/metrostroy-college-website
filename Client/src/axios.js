@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "http://localhost/metrostroy-college-website/"
+    baseURL: "http://localhost/MetrostroyCollege/"
 })
 
 export default instance;

@@ -12,10 +12,12 @@
   align-items: center;
   justify-content: center;
   transition-duration: 0.2s;
-  cursor: pointer; }
-  .Checkbox.active {
-    color: white;
-    border: #3D99A8 3px solid;
-    background: #3D99A8; }
+  cursor: pointer;
+}
+.Checkbox.active {
+  color: white;
+  border: #3D99A8 3px solid;
+  background: #3D99A8;
+}
 
 /*# sourceMappingURL=Checkbox.css.map */

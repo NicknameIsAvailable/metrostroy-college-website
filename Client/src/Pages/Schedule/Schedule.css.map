@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAAA,SAAU;EACR,WAAW,EAAE,GAAG;EAChB,YAAY,EAAE,GAAG;EACjB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM",
-"sources": ["Schedule.scss"],
-"names": [],
-"file": "Schedule.css"
-}
+{"version":3,"sourceRoot":"","sources":["Schedule.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA","file":"Schedule.css"}

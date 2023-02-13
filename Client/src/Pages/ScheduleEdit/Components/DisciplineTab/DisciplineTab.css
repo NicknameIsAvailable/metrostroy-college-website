@@ -4,11 +4,14 @@
   border: #1f1f1f 3px solid;
   flex: 1;
   transition-duration: 0.3s;
-  cursor: grab; }
-  .DisciplineTab:hover {
-    background: rgba(0, 0, 0, 0.05); }
-  .DisciplineTab:active {
-    background: transparent;
-    cursor: grabbing; }
+  cursor: grab;
+}
+.DisciplineTab:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.DisciplineTab:active {
+  background: transparent;
+  cursor: grabbing;
+}
 
 /*# sourceMappingURL=DisciplineTab.css.map */
