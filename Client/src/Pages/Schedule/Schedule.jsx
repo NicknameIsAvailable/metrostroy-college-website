@@ -6,7 +6,7 @@ import axios from "../../axios";
 
 const Schedule = () => {
 
-    const [schedule, setSchedule] = useState([])
+    const [schedule, setSchedule] = useState()
 
     useEffect(async () => {
         const requestOptions = {
@@ -22,10 +22,26 @@ const Schedule = () => {
             requestOptions
         )
             .then(response => {
-                console.log(JSON.stringify(response))
+                setSchedule(response.data)
             })
             .catch(error => console.log(error))
     }, [])
+
+    // const arr = schedule.map(obj => ({
+    //         groupNumber: obj.groupNumber,
+    //         groupName: obj.groupName
+    //     })
+    // );
+
+    console.log(schedule ? schedule[0] : "ошибка")
+
+    if (schedule) {
+        setSchedule(schedule.map((obj, index) => ({
+            groupNumber: obj[index].groupNumber,
+        })
+            .catch((error) => console.log(error))
+        ))
+    }
 
     const fakeSchedule = [
         {
