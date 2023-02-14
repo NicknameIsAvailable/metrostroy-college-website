@@ -16,7 +16,7 @@ const Slider = () => {
         },
         {
             text: "\"Молодые профессионалы\" WorldSkills Russia",
-            buttonText: "Учавствовать",
+            buttonText: "Участвовать",
             img: "../../../../Images/геопространственные технологии.png"
         },
     ]
