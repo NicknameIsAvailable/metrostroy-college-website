@@ -5,8 +5,6 @@ import Table from "./Components/Table/Table";
 import axios from "../../axios";
 import TableRow from "./Components/TableRow/TableRow";
 import TableCell from "./Components/TableCell/TableCell";
-import {_, uniq} from "lodash";
-import __ from "lodash/fp/__";
 import ContentLoader from "react-content-loader";
 
 const Schedule = () => {

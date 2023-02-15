@@ -1,5 +1,5 @@
 .Login {
-  width: 20em;
+  width: 30em;
   border: #1f1f1f 3px solid;
   border-radius: 2em;
   padding: 16px;
@@ -11,7 +11,9 @@
   margin: 20em auto 1em;
 }
 .Login button {
-  width: 10em;
+  margin-left: auto;
+  font-size: 24px;
+  padding: 24px 48px;
 }
 .Login input {
   border-radius: 16px 16px 0 0;
@@ -41,6 +43,47 @@
 .Login input:focus {
   outline: 0;
   outline-offset: 0;
+}
+
+.login-header {
+  width: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.login-footer {
+  width: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.login-title {
+  margin-right: auto;
+}
+
+.back-button {
+  cursor: pointer;
+  margin-right: auto;
+  padding: 8px;
+  transition-duration: 0.3s;
+  border-radius: 8px;
+  height: 32px;
+  width: 32px;
+}
+.back-button:hover {
+  background: rgba(31, 31, 31, 0.1);
+}
+
+.reg-stage-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+}
+
+.inputs-block {
+  display: flex;
+  gap: 12px;
 }
 
 .login-page {
