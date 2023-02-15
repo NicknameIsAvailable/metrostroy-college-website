@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import "./Search.css";
 import {ReactComponent as SearchIcon} from "../../../../Icons/SearchIconWhite.svg";
 import DropDownList from "../../../../Components/DropDownList/DropDownList";
+import RadioButton from "../../../../Components/RadioButton/RadioButton";
 
 const Search = () => {
     const [checked1, setChecked1] = useState(false);
@@ -35,44 +36,9 @@ const Search = () => {
                     ]}
                 />
 
-                <div
-                    className={checked1 ? "radio-button" : "radio-button .active"}
-                    onClick={() => setChecked1(!checked1)}
-                >
-                    <input
-                        type="radio"
-                        name="site_name"
-                        value="по группе"
-                        checked={checked1}
-                    />
-                    <p>по группе</p>
-                </div>
-
-                <div
-                    className={checked2 ? "radio-button" : "radio-button .active"}
-                    onClick={() => setChecked2(!checked2)}
-                >
-                    <input
-                        type="radio"
-                        name="site_name"
-                        value="по группе"
-                        checked={checked2}
-                    />
-                    <p>по преподавателю</p>
-                </div>
-
-                <div
-                    className={checked2 ? "radio-button" : "radio-button .active"}
-                    onClick={() => setChecked3(!checked3)}
-                >
-                    <input
-                        type="radio"
-                        name="site_name"
-                        value="по группе"
-                        checked={checked3}
-                    />
-                    <p>по аудитории</p>
-                </div>
+                    <RadioButton value="по группе"/>
+                    <RadioButton value="по преподавателю"/>
+                    <RadioButton value="по аудитории"/>
             </div>
         </div>
     );

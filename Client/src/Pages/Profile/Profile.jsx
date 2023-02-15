@@ -41,19 +41,6 @@ const Profile = () => {
         <div className="ProfilePage">
             <h1>ПРОФИЛЬ</h1>
             <div className="profile-block">
-                <div className="notifications-block">
-                    <h2 className="notifications-title">Уведомления</h2>
-                    {
-                        notifications.map(notification =>
-                            <Notification
-                                date={notification.date}
-                                time={notification.time}
-                                content={notification.content}
-                            />
-                        )
-                    }
-                </div>
-
                 <div className="info-block">
                     <div className="user-info">
                         <div className="image">
