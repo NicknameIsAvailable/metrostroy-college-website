@@ -83,13 +83,12 @@
     display: block;
   }
   .BurgerMenu .header {
-    align-items: center;
+    display: flex;
     justify-content: flex-start;
     height: 64px;
-    display: flex;
   }
   .BurgerMenu .header .back-button {
-    margin-left: auto;
+    border: none;
     border-radius: 1em;
     height: 64px;
     width: 64px;

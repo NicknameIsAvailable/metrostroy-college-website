@@ -10,7 +10,7 @@ import ContentLoader from "react-content-loader";
 const Schedule = () => {
 
     const [schedule, setSchedule] = useState([])
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(async () => {
         const requestOptions = {
@@ -59,6 +59,14 @@ const Schedule = () => {
 
     console.log(groups)
 
+    const duplicates = groups.filter((number, index, numbers) => {
+        console.log(number); // number - элемент массива
+        console.log(index); // index - индекс элемента массива
+        console.log(numbers); // numbers - представление массива values
+        return numbers.indexOf(number) !== index;
+    });
+
+    console.log("дловаыджлоывалджоываджло", groups)
 
     const monday = arraySchedule.filter(item => item.weekDay === "Понедельник")
     const tuesday = arraySchedule.filter(item => item.weekDay === "Вторник")
@@ -89,49 +97,47 @@ const Schedule = () => {
                 <table>
                     <tr>
                         <td>
-                            <div className="cell">
+                            <div className="day-cell">
                                 Понедельник
                             </div>
                         </td>
                         <td>
-                            <div className="cell">
+                            <div className="day-cell">
                                 Вторник
                             </div>
                         </td>
                         <td>
-                            <div className="cell">
+                            <div className="day-cell">
                                 Среда
                             </div>
                         </td>
                         <td>
-                            <div className="cell">
+                            <div className="day-cell">
                                 Четверг
                             </div>
                         </td>
                         <td>
-                            <div className="cell">
+                            <div className="day-cell">
                                 Пятница
                             </div>
                         </td>
                     </tr>
 
-                    <tr>
                         <td>
-                            {monday.map(obj => <tr>{obj.subject} {obj.auditory} {obj.teacher}</tr>)}
+                            {monday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
                         </td>
                         <td>
-                            {tuesday.map(obj => <tr>{obj.subject} {obj.auditory} {obj.teacher}</tr>)}
+                            {tuesday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
                         </td>
                         <td>
-                            {wednesday.map(obj => <tr>{obj.subject} {obj.auditory} {obj.teacher}</tr>)}
+                            {wednesday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
                         </td>
                         <td>
-                            {thursday.map(obj => <tr>{obj.subject} {obj.auditory} {obj.teacher}</tr>)}
+                            {thursday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
                         </td>
                         <td>
-                            {friday.map(obj => <tr>{obj.subject} {obj.auditory} {obj.teacher}</tr>)}
+                            {friday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
                         </td>
-                    </tr>
                 </table>
             }
             {/*    {arraySchedule.map((obj, index) =>*/}

@@ -6,41 +6,64 @@ import {ReactComponent as BackIconBlack} from "../../Icons/backIconBlack.svg";
 const Login = () => {
 
     const [isNewAccount, setIsNewAccount] = useState(true);
-    const [regStage, setRegStage] = useState(1);
+    let [regStage, setRegStage] = useState(1);
+
+    const [userData, setUserData] = useState({
+        email: "",
+        phoneNumber: "",
+        password: "",
+        secondname: "",
+        name: "",
+        surname: "",
+        role: "",
+        passport: "",
+        educationDocument: "",
+        photo: "",
+        snils: "",
+        registrationCertificate: ""
+    });
 
     if (isNewAccount && regStage === 1)
     {
         return (
         <div className="login-page">
-            <div className="Login">
+            <form className="Login">
                 <div className="login-header">
                     <h2 className="login-title"> Регистрация </h2>
-                    <h2 className="reg-stage-counter">1/3</h2>
+                    <h2 className="reg-stage-counter">{regStage}/3</h2>
                 </div>
                 <input
-                    type="login"
-                    name="login"
+                    type="text"
+                    name="text"
                     placeholder="почта"
                 />
                 <input
-                    type="phone-number"
+                    type="text"
                     name="phone-number"
                     placeholder="номер телефона"
                 />
                 <input
-                    type="password"
+                    type="text"
                     name="password"
                     placeholder="пароль"
                 />
                 <div className="login-footer">
-                    <button onClick={() => setRegStage(1)}>
+                    <button className="back-button"
+                            onClick={() => {
+                                setRegStage(regStage - 1)
+                                console.log(regStage)
+                            }}
+                    >
                         <BackIconBlack/>
                     </button>
-                    <button onClick={() => setRegStage(3)}>
+                    <button className="next-button outlined-button" onClick={() => {
+                        setRegStage(regStage + 1)
+                        console.log(regStage)
+                    }}>
                         Далее
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
         )
          }
@@ -48,37 +71,65 @@ const Login = () => {
     {
         return  (
         <div className="login-page">
-            <div className="Login">
+            <form className="Login">
                 <div className="login-header">
                     <h2 className="login-title"> Регистрация </h2>
-                    <h2 className="reg-stage-counter">2/3</h2>
+                    <h2 className="reg-stage-counter">{regStage}/3</h2>
                 </div>
                 <div className="inputs-block">
                 <input
-                    type="secondname"
+                    type="text"
                     name="secondname"
                     placeholder="Фамилия"
                 />
 
                 <input
-                    type="name"
+                    type="text"
                     name="name"
                     placeholder="Имя"
                 />
 
                 <input
-                    type="surname"
+                    type="text"
                     name="surname"
                     placeholder="Отчество"
                 />
                 </div>
+
+                <div className="radio-buttons-block">
+                    <label>
+                        <input type="radio"/>
+                        Я абитуриент
+                    </label>
+
+                    <label>
+                        <input type="radio"/>
+                        Я родитель абитуриента
+                    </label>
+
+                    <label>
+                        <input type="radio"/>
+                        Я родитель студента
+                    </label>
+                </div>
+
                 <div className="login-footer">
-                    <BackIconBlack className="back-button" onClick={() => setRegStage(1)}/>
-                    <button onClick={() => setRegStage(3)}>
+                    <button className="back-button"
+                            onClick={() => {
+                                setRegStage(regStage - 1)
+                                console.log(regStage)
+                            }}
+                    >
+                        <BackIconBlack/>
+                    </button>
+                    <button className="next-button outlined-button" onClick={() => {
+                        setRegStage(regStage + 1)
+                        console.log(regStage)
+                    }}>
                         Далее
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
         )
     }
@@ -86,57 +137,57 @@ const Login = () => {
     {
         return  (
         <div className="login-page">
-            <div className="Login">
+            <form className="Login">
                 <div className="login-header">
-                    <BackIconBlack className="back-button" onClick={() => setRegStage(2)}/>
                     <h2 className="login-title"> Регистрация </h2>
-                    <h2 className="reg-stage-counter">3/3</h2>
+                    <h2 className="reg-stage-counter">{regStage}/3</h2>
                 </div>
-                <input
-                    type="login"
-                    name="login"
-                    placeholder="почта"
-                />
-                <input
-                    type="phone-number"
-                    name="phone-number"
-                    placeholder="номер телефона"
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="пароль"
-                />
+
+                <p>
+                Вставьте сюда копию паспорта, документа об образовании, СНИЛС, ваше фото в формате 3X4 и, если есть,
+                приписное свидетельство
+                </p>
+
                 <div className="login-footer">
-                    <BackIconBlack className="back-button" onClick={() => setRegStage(2)}/>
-                    <button onClick={() => setRegStage(3)}>
+                    <button className="back-button"
+                            onClick={() => {
+                                setRegStage(regStage - 1)
+                                console.log(regStage)
+                            }}
+                    >
+                        <BackIconBlack/>
+                    </button>
+                    <button className="next-button outlined-button" onClick={() => {
+                        setRegStage(regStage + 1)
+                        console.log(regStage)
+                    }}>
                         Далее
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
         )
     } else {
         return (
             <div className="login-page">
-                <div className="Login">
+                <form className="Login">
                     <h2>Логин</h2>
                     <input
-                        type="login"
+                        type="text"
                         name="login"
                         placeholder="логин"
                     />
                     <input
-                        type="password"
+                        type="text"
                         name="password"
                         placeholder="пароль"
                     />
                     <Link to="/profile">
-                        <button>
+                        <button className="login-button outlined-button">
                             Войти
                         </button>
                     </Link>
-                </div>
+                </form>
             </div>
         )
     }

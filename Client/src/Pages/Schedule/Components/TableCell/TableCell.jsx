@@ -4,7 +4,6 @@ import "./TableCell.css";
 const TableCell = (props) => {
 
     const day = props.day;
-    console.log("ПИЗДА", day)
     const lessonNumber = props.lessonNumber;
 
     return (

@@ -18,12 +18,11 @@ const Search = () => {
     return (
         <div className="Search">
             <div className="search-block">
-                <input placeholder="поиск" type="text" onChange={(e) => setInputs(e.target.value)}/>
-                <div className="search-button" onClick={handleClick}>
+                <input placeholder="поиск" className="search" type="text" onChange={(e) => setInputs(e.target.value)}/>
+                <button className="search-button" onClick={handleClick}>
                     <SearchIcon/>
-                </div>
+                </button>
             </div>
-
 
             <div className="buttons">
                 <DropDownList
@@ -35,10 +34,9 @@ const Search = () => {
                         "УЛ.Учительская Д. 3"
                     ]}
                 />
-
-                    <RadioButton value="по группе"/>
-                    <RadioButton value="по преподавателю"/>
-                    <RadioButton value="по аудитории"/>
+            <RadioButton value="по группе"/>
+            <RadioButton value="по преподавателю"/>
+            <RadioButton value="по аудитории"/>
             </div>
         </div>
     );

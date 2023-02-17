@@ -4,9 +4,27 @@
   flex-direction: column;
 }
 
+table {
+  margin-top: 32px;
+}
+
+.cell {
+  min-width: 4em;
+  height: 5em;
+  padding: 8px;
+  border-bottom: #1f1f1f 3px solid;
+}
+
+.day-cell {
+  padding: 8px;
+}
+
 td {
-  display: flex;
-  justify-content: center;
+  border: #1f1f1f 3px solid;
+}
+
+tr {
+  border: #1f1f1f 3px solid;
 }
 
 /*# sourceMappingURL=Schedule.css.map */

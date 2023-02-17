@@ -1,22 +1,17 @@
 .Login {
-  width: 30em;
+  width: 25em;
   border: #1f1f1f 3px solid;
   border-radius: 2em;
   padding: 16px;
   display: flex;
   gap: 24px;
+  margin-left: auto;
+  margin-right: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20em auto 1em;
 
-  button {
-    margin-left: auto;
-    font-size: 24px;
-    padding: 24px 48px;
-  }
-
-  input {
+  input[type="text"] {
     border-radius: 16px 16px 0 0;
     border-bottom: 3px #1f1f1f solid;
     border-right: none;
@@ -48,6 +43,28 @@
       outline-offset: 0;
     }
   }
+
+  .radio-buttons-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  label {
+    width: 100%;
+    gap: 12px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    input[type="radio"]{
+      margin: 0;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 
 .login-header {
@@ -62,22 +79,39 @@
   display: flex;
 }
 
-.login-title {
-  margin-right: auto;
-}
 
 .back-button {
   cursor: pointer;
   margin-right: auto;
-  padding: 8px;
   transition-duration: 0.3s;
+  background: none;
+  border: #1f1f1f 3px solid;
   border-radius: 8px;
-  height: 32px;
-  width: 32px;
+  width: 72px;
+  height: 72px;
 
   &:hover {
     background: rgba(31, 31, 31, 0.1);
   }
+}
+
+.login-button {
+  width: 100%;
+}
+
+.next-button {
+  cursor: pointer;
+  border-radius: 8px;
+  border: #3D99A8 3px solid;
+  font-weight: 700;
+  color: #3D99A8;
+  background: none;
+  font-size: 24px;
+  padding: 24px 48px;
+}
+
+.login-title {
+  margin-right: auto;
 }
 
 .reg-stage-counter {
@@ -95,7 +129,7 @@
 .login-page {
   width: 100%;
   display: flex;
-  height: 100%;
+  height: 70em;
   flex-direction: column;
   justify-content: center;
   align-content: center;

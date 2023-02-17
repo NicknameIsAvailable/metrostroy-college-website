@@ -54,7 +54,7 @@ a:visited {
   color: #3D99A8;
 }
 
-button {
+.outlined-button {
   font-family: "Cal Sans", sans-serif;
   font-weight: 700;
   background: transparent;
@@ -66,10 +66,10 @@ button {
   transition-duration: 0.3s;
   cursor: pointer;
 }
-button:hover {
+.outlined-button:hover {
   border: 3px solid #87C2D0;
 }
-button:active {
+.outlined-button:active {
   transition-duration: 0.2s;
   background: #3D99A8;
   color: white;

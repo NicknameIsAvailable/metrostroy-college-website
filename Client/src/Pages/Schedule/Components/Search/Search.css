@@ -1,58 +1,79 @@
 .Search {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 24px;
   align-items: center;
 }
-.Search input[type=text] {
-  font-weight: 300;
+.Search .search {
   width: 20em;
+  border-radius: 2em 0 0 2em;
+  font-weight: 300;
   font-size: 24px;
   display: flex;
   height: 48px;
   padding: 0 24px;
   color: #1f1f1f;
   border: 3px #1f1f1f solid;
-  border-radius: 32px;
 }
 .Search .search-block {
   display: flex;
-  gap: 24px;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 .Search .search-button {
-  border-radius: 32px;
+  border-radius: 0 2em 2em 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
   background: #3D99A8;
-  border: 3px #3D99A8 solid;
+  border-right: 3px #1f1f1f solid;
+  border-top: 3px #1f1f1f solid;
+  border-bottom: 3px #1f1f1f solid;
+  border-left: none;
   color: white;
   transition-duration: 0.3s;
   cursor: pointer;
 }
 .Search .search-button:hover {
   background: #4E9DA9;
-  border: 3px #4E9DA9 solid;
 }
 .Search .search-button:active {
   background: #75B2BC;
-  border: 3px #75B2BC solid;
   transition-duration: 0.2s;
 }
 
 .buttons {
-  width: 100%;
   display: flex;
-  flex-wrap: wrap;
   gap: 24px;
+  justify-content: left;
+  align-items: center;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .radio-button {
   height: 48px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  border: #1f1f1f 3px solid;
+  border-radius: 2em;
+  transition-duration: 0.3s;
+}
+.radio-button p {
+  pointer-events: none;
+}
+
+.radio-button .active {
+  color: white;
+  border: #46aebe 3px solid;
+  background: #46aebe;
 }
 
 @media screen and (max-width: 720px) {
@@ -62,7 +83,7 @@
     gap: 24px;
     align-items: center;
   }
-  .Search input[type=text] {
+  .Search .search {
     font-weight: 300;
     width: 100%;
     font-size: 24px;
@@ -71,7 +92,6 @@
     padding: 0 24px;
     color: #1f1f1f;
     border: 3px #1f1f1f solid;
-    border-radius: 32px;
   }
   .Search .search-block {
     width: 100%;

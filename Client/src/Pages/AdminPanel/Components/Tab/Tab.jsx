@@ -27,7 +27,7 @@ const Tab = (props) => {
                     </p>
 
                     <Link to={props.link}>
-                        <button>
+                        <button className="outlined-button">
                             {props.buttonContent}
                         </button>
                     </Link>

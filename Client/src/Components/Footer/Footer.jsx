@@ -32,7 +32,7 @@ const Footer = () => {
                         </a>
                     </h3>
 
-                    <button>
+                    <button className="outlined-button">
                         Напишите нам
                     </button>
 

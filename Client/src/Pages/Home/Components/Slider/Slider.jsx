@@ -25,7 +25,7 @@ const Slider = () => {
         <div className="Slider">
             <div className="hero-section">
                 <h1>{sliderPages[2].text.toUpperCase()}</h1>
-                <button>{sliderPages[2].buttonText}</button>
+                <button className="outlined-button">{sliderPages[2].buttonText}</button>
             </div>
             <div className="image-block">
                 <div className="moved-out-border"/>

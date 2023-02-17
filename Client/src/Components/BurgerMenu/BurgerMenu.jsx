@@ -19,13 +19,13 @@ const BurgerMenu = (props) => {
             style={open ? {right: 0} : {right: "-1800px"}}
         >
             <div className="header">
-                    <div
+                    <button
                         className="back-button"
                         onClick={() => setOpen(!open)}>
                         <BackIconWhite
                            className="back-button__icon"
                         />
-                    </div>
+                    </button>
             </div>
 
             <div className="links">
