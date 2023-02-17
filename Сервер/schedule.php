@@ -61,6 +61,8 @@ if(pg_num_rows($pg_sqlRequest) < 1) exit('Запрос не получил ни 
 
 $arrayJSON = json_encode(pg_fetch_all($pg_sqlRequest));
 
+pg_close($connectSQL);
+
 print_r($arrayJSON);
 
 ?>
