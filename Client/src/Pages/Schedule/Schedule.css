@@ -9,8 +9,6 @@ table {
 }
 
 .cell {
-  min-width: 4em;
-  height: 5em;
   padding: 8px;
   border-bottom: #1f1f1f 3px solid;
 }

@@ -1,16 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import "./Schedule.css";
 import Search from "./Components/Search/Search";
-import Table from "./Components/Table/Table";
 import axios from "../../axios";
-import TableRow from "./Components/TableRow/TableRow";
-import TableCell from "./Components/TableCell/TableCell";
 import ContentLoader from "react-content-loader";
 
 const Schedule = () => {
 
     const [schedule, setSchedule] = useState([])
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(async () => {
         const requestOptions = {
@@ -26,24 +23,11 @@ const Schedule = () => {
             requestOptions
         )
             .then(response => {
-                setSchedule(response.data)
+                setSchedule(response.data);
+                setIsLoading(false);
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     }, [])
-
-    // const arr = schedule.map(obj => ({
-    //         groupNumber: obj.groupNumber,
-    //         groupName: obj.groupName
-    //     })
-    // );
-
-
-    console.log(schedule)
-
-    for (let i = 0; i < schedule.length; i++) {
-        console.log(schedule[i]);
-
-    }
 
     const arraySchedule = schedule.map((obj, index) => ({
         groupNumber: obj.groupnumber,
@@ -53,28 +37,18 @@ const Schedule = () => {
         teacher: obj.secondname
     }));
 
-    console.log(arraySchedule);
+    const groups = arraySchedule.map(obj => obj.groupNumber).reduce((a,b) => {
+        if (a.indexOf(b) < 0 ) a.push(b);
+        return a;
+    }, []);
 
-    const groups = arraySchedule.map(obj => [obj.groupNumber])
-
-    console.log(groups)
-
-    const duplicates = groups.filter((number, index, numbers) => {
-        console.log(number); // number - элемент массива
-        console.log(index); // index - индекс элемента массива
-        console.log(numbers); // numbers - представление массива values
-        return numbers.indexOf(number) !== index;
-    });
-
-    console.log("дловаыджлоывалджоываджло", groups)
-
-    const monday = arraySchedule.filter(item => item.weekDay === "Понедельник")
-    const tuesday = arraySchedule.filter(item => item.weekDay === "Вторник")
-    const wednesday = arraySchedule.filter(item => item.weekDay === "Среда")
-    const thursday = arraySchedule.filter(item => item.weekDay === "Четверг")
-    const friday = arraySchedule.filter(item => item.weekDay === "Пятница")
-
-    const [groupNumbers, setGroupNumbers] = useState();
+    const weekdays = [
+        "Понедельник",
+        "Вторник",
+        "Среда",
+        "Четверг",
+        "Пятница"
+    ]
 
     return (
         <div className="Schedule">
@@ -95,49 +69,38 @@ const Schedule = () => {
                 :
 
                 <table>
-                    <tr>
-                        <td>
-                            <div className="day-cell">
-                                Понедельник
-                            </div>
-                        </td>
-                        <td>
-                            <div className="day-cell">
-                                Вторник
-                            </div>
-                        </td>
-                        <td>
-                            <div className="day-cell">
-                                Среда
-                            </div>
-                        </td>
-                        <td>
-                            <div className="day-cell">
-                                Четверг
-                            </div>
-                        </td>
-                        <td>
-                            <div className="day-cell">
-                                Пятница
-                            </div>
-                        </td>
-                    </tr>
+                    {
+                        groups.map((gObj, gIndex) =>
+                        <tr>
+                            <td className="cell">
+                            <h2>
+                                {gObj}
+                            </h2>
+                                {weekdays.map((wObj, wIndex) =>
+                                    <td className="day-cell">
+                                        <tr>
+                                        {wObj}
+                                        </tr>
 
-                        <td>
-                            {monday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
-                        </td>
-                        <td>
-                            {tuesday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
-                        </td>
-                        <td>
-                            {wednesday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
-                        </td>
-                        <td>
-                            {thursday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
-                        </td>
-                        <td>
-                            {friday.map(obj => <div className="cell">{obj.subject} {obj.auditory} {obj.teacher}</div>)}
-                        </td>
+                                        {arraySchedule.filter(item => item.weekDay === weekdays[wIndex]
+                                            && item.groupNumber === groups[gIndex]).map((obj, index) =>
+                                        <tr>
+                                            <div className="cell">
+                                                <h2>{obj.subject}</h2>
+                                                <p>{obj.teacher}</p>
+                                                <p>{obj.auditory}</p>
+                                                <p>{obj.weekDay}</p>
+                                                <p>{obj.groupNumber}</p>
+                                                <h3>{index + 1}</h3>
+                                            </div>
+                                        </tr>
+                                        )}
+                                    </td>
+                                )}
+                            </td>
+                        </tr>
+                        )
+                    }
                 </table>
             }
             {/*    {arraySchedule.map((obj, index) =>*/}
