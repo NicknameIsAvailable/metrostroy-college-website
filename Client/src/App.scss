@@ -94,6 +94,10 @@ Link {
   background: #46aebe; /* Firefox */
 }
 
+abbr {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 1600px) {
   .container {
     margin-left: 10%;

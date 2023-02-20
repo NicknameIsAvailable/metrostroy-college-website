@@ -4,24 +4,58 @@
   flex-direction: column;
 }
 
-table {
-  margin-top: 32px;
+.groups-list {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 24px;
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+}
+
+.group-block {
+  border-radius: 1em;
 }
 
 .cell {
+  width: 15em;
+  min-height: 5em;
+  display: flex;
+  flex-direction: column;
   padding: 8px;
-  border-bottom: #1f1f1f 3px solid;
+  border: #1f1f1f 3px solid;
+  transition-duration: 0.3s;
+
+  &:hover {
+    background: rgba(31, 31, 31, 0.1);
+  }
+}
+
+.extra-info {
+  margin-top: auto;
+  align-items: center;
+  display: flex;
+}
+
+.main-info {
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+
+.teacher {
+  margin-right: auto;
+}
+
+.auditory {
+  margin-left: auto;
 }
 
 .day-cell {
   padding: 8px;
-}
-
-td {
-  border: #1f1f1f 3px solid;
-}
-
-tr {
   border: #1f1f1f 3px solid;
 }
 

@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import "./Schedule.css";
 import Search from "./Components/Search/Search";
+import {ReactComponent as SearchIcon} from "../../Icons/SearchIconWhite.svg";
 import axios from "../../axios";
 import ContentLoader from "react-content-loader";
+import DropDownList from "../../Components/DropDownList/DropDownList";
 
 const Schedule = () => {
 
@@ -16,8 +18,8 @@ const Schedule = () => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            valueSearch: "ответ1",
-            valueRadioButton: "ответ2",
+            valueSearch: "",
+            valueRadioButton: "",
         };
         await axios.post('/schedule.php',
             requestOptions
@@ -50,58 +52,155 @@ const Schedule = () => {
         "Пятница"
     ]
 
+    const [inputs, setInputs] = useState("");
+    const [radioInputs, setRadioInputs] = useState("Group");
+
+    const search = async () => {
+        if (inputs === '') {
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                valueSearch: '',
+                valueRadioButton: '',
+            };
+            await axios.post('/schedule.php',
+                requestOptions
+            )
+                .then(response => {
+                    setSchedule(response.data);
+                    console.log(schedule)
+                })
+                .catch(error => console.log(error));
+        } else {
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                valueSearch: inputs,
+                valueRadioButton: radioInputs,
+            };
+            await axios.post('/schedule.php',
+                requestOptions
+            )
+                .then(response => {
+                    if (response.data === "Запрос не получил ни одного результата!") {
+                        console.log(response.data)
+                    } else {
+                        setSchedule(response.data);
+                    }
+                })
+                .catch(error => console.log(error));
+        }
+    }
+
+    const changeRadioInputs = (event) => {
+        setRadioInputs(event.target.value);
+    }
+
     return (
         <div className="Schedule">
-            <Search/>
+            <div className="Search">
+                <div className="search-block">
+                    <input placeholder="поиск" className="search" type="text" onChange={(e) => setInputs(e.target.value)}/>
+                    <button className="search-button" onClick={search}>
+                        <SearchIcon/>
+                    </button>
+                </div>
+
+                <div className="buttons">
+                    <DropDownList
+                        title="площадка"
+                        variants={[
+                            "УЛ.Демьяна Бедного Д. 21",
+                            "Придорожная аллея Д. 7",
+                            "Ириновский проспект Д. 29",
+                            "УЛ.Учительская Д. 3"
+                        ]}
+                    />
+
+                    <label className="radio-button">
+                        <input
+                            type="radio"
+                            name="radio"
+                            value="Group"
+                            onChange={changeRadioInputs}
+                        />
+                        По группе
+                    </label>
+
+                    <label className="radio-button">
+                        <input
+                            type="radio"
+                            name="radio"
+                            value="Teacher"
+                            onChange={changeRadioInputs}
+                        />
+                        По преподавателю
+                    </label>
+                </div>
+            </div>
 
             {isLoading ?
-                <ContentLoader
-                    speed={2}
-                    width={400}
-                    height={160}
-                    viewBox="0 0 400 160"
-                    backgroundColor="#f3f3f3"
-                    foregroundColor="#ecebeb"
-                    >
-
-                    <rect x="0" y="64" rx="0" ry="0" width="100%" height="100%" />
-                </ContentLoader>
+                <h2>Загрузка</h2>
                 :
 
-                <table>
-                    {
-                        groups.map((gObj, gIndex) =>
-                        <tr>
-                            <td className="cell">
+                <div className="groups-list">
+                    {groups.map((gObj, gIndex) =>
+                        <div className="group-block">
                             <h2>
                                 {gObj}
                             </h2>
-                                {weekdays.map((wObj, wIndex) =>
-                                    <td className="day-cell">
-                                        <tr>
-                                        {wObj}
-                                        </tr>
+                            <table>
+                                <td>
+                                    {weekdays.map((wObj, wIndex) =>
+                                        <td>
+                                            <tr>
+                                                <h3 className="day-cell">{wObj}</h3>
+                                            </tr>
+                                            {arraySchedule.filter(item => item.weekDay === weekdays[wIndex]
+                                                && item.groupNumber === groups[gIndex]).slice(0, 8).map((obj, index) =>
+                                                <tr >
+                                                    <div className="cell">
+                                                        <div className="main-info">
+                                                            <abbr title="Номер урока">
+                                                                <h4>
+                                                                    {index + 1}
+                                                                </h4>
+                                                            </abbr>
 
-                                        {arraySchedule.filter(item => item.weekDay === weekdays[wIndex]
-                                            && item.groupNumber === groups[gIndex]).map((obj, index) =>
-                                        <tr>
-                                            <div className="cell">
-                                                <h2>{obj.subject}</h2>
-                                                <p>{obj.teacher}</p>
-                                                <p>{obj.auditory}</p>
-                                                <p>{obj.weekDay}</p>
-                                                <p>{obj.groupNumber}</p>
-                                                <h3>{index + 1}</h3>
-                                            </div>
-                                        </tr>
-                                        )}
-                                    </td>
-                                )}
-                            </td>
-                        </tr>
-                        )
-                    }
-                </table>
+                                                            <abbr title="Урок">
+                                                                <h2>
+                                                                    {obj.subject}
+                                                                </h2>
+                                                            </abbr>
+                                                        </div>
+                                                        <div className="extra-info">
+                                                            <p className="teacher">
+                                                                <abbr title="Преподаватель">
+                                                                {obj.teacher}
+                                                                </abbr>
+                                                            </p>
+                                                            <p className="auditory">
+                                                                <abbr title="Аудитория">
+                                                                    {obj.auditory}
+                                                                </abbr>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            )}
+                                        </td>
+                                    )}
+                                </td>
+                            </table>
+                        </div>
+                    )}
+                </div>
             }
             {/*    {arraySchedule.map((obj, index) =>*/}
             {/*        <div className="Table">*/}
