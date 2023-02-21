@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import "./Schedule.css";
-import Search from "./Components/Search/Search";
 import {ReactComponent as SearchIcon} from "../../Icons/SearchIconWhite.svg";
 import axios from "../../axios";
-import ContentLoader from "react-content-loader";
-import DropDownList from "../../Components/DropDownList/DropDownList";
 
 const Schedule = () => {
+
+    const [open, setOpen] = useState(false);
+    const [chosenVariant, setChosenVariant] = useState();
 
     const [schedule, setSchedule] = useState([])
     const [isLoading, setIsLoading] = useState(true);
@@ -25,21 +25,33 @@ const Schedule = () => {
             requestOptions
         )
             .then(response => {
-                setSchedule(response.data);
-                setIsLoading(false);
+                if (response.data === "Запрос не получил ни одного результата!") {
+                    console.log(response.data)
+                } else {
+                    setSchedule(response.data);
+                    setIsLoading(false)
+                }
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+            });
     }, [])
 
-    const arraySchedule = schedule.map((obj, index) => ({
+    const arraySchedule = schedule.map(obj => ({
         groupNumber: obj.groupnumber,
         weekDay: obj.weekday,
         subject: obj.subject,
         auditory: obj.auditory,
-        teacher: obj.secondname
+        teacher: obj.secondname,
+        address: obj.locationname
     }));
 
     const groups = arraySchedule.map(obj => obj.groupNumber).reduce((a,b) => {
+        if (a.indexOf(b) < 0 ) a.push(b);
+        return a;
+    }, []);
+
+    const addresses = arraySchedule.map(obj => obj.address).reduce((a,b) => {
         if (a.indexOf(b) < 0 ) a.push(b);
         return a;
     }, []);
@@ -113,20 +125,39 @@ const Schedule = () => {
                 </div>
 
                 <div className="buttons">
-                    <DropDownList
-                        title="площадка"
-                        variants={[
-                            "УЛ.Демьяна Бедного Д. 21",
-                            "Придорожная аллея Д. 7",
-                            "Ириновский проспект Д. 29",
-                            "УЛ.Учительская Д. 3"
-                        ]}
-                    />
+                    <div className="DropDownList">
+                        <div className="title" onClick={() => setOpen(!open)}>
+                            <h3>
+                                {chosenVariant || "Площадка"}
+                            </h3>
+                        </div>
+
+                        <ul className="variants-list" style={
+                            open ? {
+                                position: "absolute",
+                                top: "56px",
+                                opacity: 1
+                            } : {
+                                display: "none",
+                                opacity: 0
+                            }}>
+                            {addresses.map(variant =>
+                                <ol className="variant" onClick={() => {
+                                    setChosenVariant(variant);
+                                    setRadioInputs("Location");
+                                    setOpen(!open);
+                                }}>
+                                    <h3>{variant}</h3>
+                                </ol>
+                            )}
+                        </ul>
+                    </div>
 
                     <label className="radio-button">
                         <input
                             type="radio"
                             name="radio"
+                            checked
                             value="Group"
                             onChange={changeRadioInputs}
                         />
@@ -153,7 +184,7 @@ const Schedule = () => {
                     {groups.map((gObj, gIndex) =>
                         <div className="group-block">
                             <h2>
-                                {gObj}
+                                Группа {gObj}
                             </h2>
                             <table>
                                 <td>
@@ -202,48 +233,6 @@ const Schedule = () => {
                     )}
                 </div>
             }
-            {/*    {arraySchedule.map((obj, index) =>*/}
-            {/*        <div className="Table">*/}
-            {/*            <div className="group-block">*/}
-            {/*                <p>*/}
-            {/*                    <span className="number">{obj.groupNumber}</span>*/}
-            {/*                    <br/>*/}
-            {/*                    группа*/}
-            {/*                </p>*/}
-            {/*                <h2>*/}
-            {/*                </h2>*/}
-            {/*            </div>*/}
-            {/*            <TableRow day={schedule[0]}/>*/}
-
-            {/*            <div className="TableRow">*/}
-            {/*                <div className="day-of-week"><h3>ВТ</h3></div>*/}
-            {/*                /!*{obj.map((day, index) =>*!/*/}
-            {/*                /!*    <TableCell day={day} lessonNumber={index + 1} />*!/*/}
-            {/*                /!*)}*!/*/}
-            {/*            </div>*/}
-
-            {/*            <div className="TableRow">*/}
-            {/*                <div className="day-of-week"><h3>СР</h3></div>*/}
-            {/*                /!*{obj.map((day, index) =>*!/*/}
-            {/*                /!*    <TableCell day={day} lessonNumber={index + 1} />*!/*/}
-            {/*                /!*)}*!/*/}
-            {/*            </div>*/}
-
-            {/*            <div className="TableRow">*/}
-            {/*                <div className="day-of-week"><h3>ЧТ</h3></div>*/}
-            {/*                /!*{obj.map((day, index) =>*!/*/}
-            {/*                /!*    <TableCell day={day} lessonNumber={index + 1} />*!/*/}
-            {/*                /!*)}*!/*/}
-            {/*            </div>*/}
-
-            {/*            <div className="TableRow">*/}
-            {/*                <div className="day-of-week"><h3>ПТ</h3></div>*/}
-            {/*                /!*{obj.map((day, index) =>*!/*/}
-            {/*                /!*    <TableCell day={day} lessonNumber={index + 1} />*!/*/}
-            {/*                /!*)}*!/*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    )} */}
         </div>
     );
 };
