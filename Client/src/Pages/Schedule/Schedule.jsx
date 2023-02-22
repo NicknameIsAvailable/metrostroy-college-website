@@ -20,6 +20,7 @@ const Schedule = () => {
             },
             valueSearch: "",
             valueRadioButton: "",
+            valueLocation: 1,
         };
         await axios.post('/schedule.php',
             requestOptions
@@ -29,6 +30,7 @@ const Schedule = () => {
                     console.log(response.data)
                 } else {
                     setSchedule(response.data);
+                    console.log(response.data)
                     setIsLoading(false)
                 }
             })
@@ -66,6 +68,7 @@ const Schedule = () => {
 
     const [inputs, setInputs] = useState("");
     const [radioInputs, setRadioInputs] = useState("Group");
+    const [locationInputs, setLocationInputs] = useState(1);
 
     const search = async () => {
         if (inputs === '') {
@@ -95,6 +98,7 @@ const Schedule = () => {
                 },
                 valueSearch: inputs,
                 valueRadioButton: radioInputs,
+                valueLocation: locationInputs,
             };
             await axios.post('/schedule.php',
                 requestOptions
@@ -141,10 +145,10 @@ const Schedule = () => {
                                 display: "none",
                                 opacity: 0
                             }}>
-                            {addresses.map(variant =>
+                            {addresses.map((variant, index) =>
                                 <ol className="variant" onClick={() => {
                                     setChosenVariant(variant);
-                                    setRadioInputs("Location");
+                                    setLocationInputs(index + 1)
                                     setOpen(!open);
                                 }}>
                                     <h3>{variant}</h3>
