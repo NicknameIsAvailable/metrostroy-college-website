@@ -19,6 +19,7 @@ if (isset($rest_json['valueSearch'], $rest_json['valueRadioButton'])) {
 
     $varValueSearch = pg_escape_string($rest_json['valueSearch']); //Значение поля
     $varValueRadioButton = $rest_json['valueRadioButton']; // Значение кнопки (какую выбрали)
+    $varlocation = $rest_json['valueLocation'];
 
 } else {
 
@@ -37,8 +38,6 @@ FROM schedule s
     INNER JOIN locationadress la ON s.locationadressid = la.ID
     ";
 
-//TODO: добавить where
-
 switch($varValueRadioButton){
     case 'Group' : {
         $sqlSchedule .= "WHERE g.groupname = '$varValueSearch'";
@@ -48,12 +47,13 @@ switch($varValueRadioButton){
         $sqlSchedule .= "WHERE la.locationname = '$varValueSearch'";
         break;
     }
-    case 'Teacher' :
-    {
+    case 'Teacher' : {
         $sqlSchedule .= "WHERE t.second_name = '$varValueSearch'";
         break;
     }
 }
+
+$sqlSchedule .= " AND la.locationname = '$varlocation'"; // Добавление к запросу адрес
 
 $pg_sqlRequest = @pg_query($connectSQL, $sqlSchedule);
 
