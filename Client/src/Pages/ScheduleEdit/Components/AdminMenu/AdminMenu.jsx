@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import "./AdminMenu.css";
 import {ReactComponent as UploadIcon} from "../../../../Icons/UploadIcon.svg";
+import {ReactComponent as CloseIconBlack} from "../../../../Icons/CloseIconBlack.svg";
 import axios from "../../../../axios";
+
 
 const AdminMenu = () => {
 
     const [drag, setDrag] = useState(false);
     const [uploaderShow, setUploaderShow] = useState(false);
+    const [lessonAdding, setLessonAdding] = useState(false);
 
     const dragStartHandler = (e) => {
         e.preventDefault();
@@ -46,6 +49,22 @@ const AdminMenu = () => {
 
             <h2>Админ-панель</h2>
 
+            <h3>Урок</h3>
+            <div className="lesson">
+                <input type="text" placeholder="Название дисциплины"/>
+                <input type="text" placeholder="ФИО преподавателя (инициалы)"/>
+                <input type="text" placeholder="Номер аудитории"/>
+
+                <button
+                    className="add-lesson__button"
+                    onClick={() => setLessonAdding(!lessonAdding)}
+                >
+                    {lessonAdding ? "Чтобы добавить урок, нажмите на нужную ячейку в таблице"
+                    : "Добавить в расписание"
+                    }
+                </button>
+            </div>
+
             <div
                 className="uploader"
                 style={uploaderShow ? {
@@ -54,19 +73,16 @@ const AdminMenu = () => {
                     display: "none"
                 }}
 
-                style={drag ? {
-                    border: "#46aebe 3px dashed"
-                } : {
-
-                }}
-
                 onDragStart = {e => dragStartHandler(e)}
                 onDragLeave = {e => dragLeaveHandler(e)}
                 onDragOver =  {e => dragStartHandler(e)}
                 onDrop = {e => onDropHandler(e)}
             >
+                <button className="icon" onClick={() => setUploaderShow(false)}>
+                    <CloseIconBlack/>
+                </button>
                 <UploadIcon/>
-                {drag ?
+                {!drag ?
                     <h2>Перетащите файл Excel сюда</h2>
                 :
                     <h2>Отпустите файл Excel тут</h2>
@@ -74,7 +90,7 @@ const AdminMenu = () => {
             </div>
 
             {!uploaderShow ?
-                <button className="outlined-button" onClick={() => setUploaderShow(!uploaderShow)}>
+                <button className="outlined-button" onClick={() => setUploaderShow(true)}>
                     Загрузить файл Excel
                 </button>
                 :

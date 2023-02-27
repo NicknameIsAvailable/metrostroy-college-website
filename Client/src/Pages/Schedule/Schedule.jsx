@@ -34,8 +34,6 @@ const Schedule = () => {
     const [radioInputs, setRadioInputs] = useState("Group");
     const [locationInputs, setLocationInputs] = useState(1);
 
-
-
     const search = async (inputs, radio, location) => {
         const requestOptions = {
             valueSearch: inputs,
