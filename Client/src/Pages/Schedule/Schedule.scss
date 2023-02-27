@@ -25,10 +25,6 @@ table {
   table-layout: fixed;
 }
 
-td {
-  width: 100%;
-}
-
 .cell {
   min-height: 5em;
   display: flex;
@@ -71,13 +67,14 @@ td {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin: 32px;
+  margin-top: 32px;
+  margin-bottom: 32px;
   gap: 24px;
   align-items: center;
 
   .search {
     width: 20em;
-    border-radius: 2em 0 0 2em;
+    border-radius: 1em 0 0 1em;
     font-weight: 300;
     font-size: 24px;
     display: flex;
@@ -94,7 +91,7 @@ td {
   }
 
   .search-button {
-    border-radius: 0 2em 2em 0;
+    border-radius: 0 1em 1em 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,6 +126,26 @@ td {
   flex-wrap: wrap;
 }
 
+.search-burger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+
+  &:hover {
+    background: rgba(31, 31, 31, 0.1);
+  }
+
+  &:active {
+    background: rgba(31, 31, 31, 0.2);
+  }
+}
+
 .radio-button {
   height: 48px;
   cursor: pointer;
@@ -138,7 +155,7 @@ td {
   gap: 12px;
   padding: 0 24px;
   border: #1f1f1f 3px solid;
-  border-radius: 2em;
+  border-radius: 1em;
   transition-duration: 0.3s;
 
   p {
@@ -153,58 +170,44 @@ td {
 }
 
 @media screen and (max-width: 1600px) {
-
+  .Search {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 720px) {
   .Search {
     display: flex;
     flex-direction: column;
-    margin: 32px;
     gap: 24px;
     align-items: center;
 
     .search {
+      flex: 1;
       font-weight: 300;
-      width: 100%;
       font-size: 24px;
       display: flex;
       height: 48px;
+      border-radius: 1em;
       padding: 0 24px;
       color: #1f1f1f;
       border: 3px #1f1f1f solid;
     }
 
+    .search-burger {
+      display: block;
+    }
+
     .search-block {
+      gap: 24px;
       width: 100%;
       display: flex;
-      gap: 24px;
       flex-direction: row;
     }
 
     .search-button {
-      border-radius: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 48px;
-      height: 48px;
-      background: #3D99A8;
-      border: 3px #3D99A8 solid;
-      color: white;
-      transition-duration: 0.3s;
-      cursor: pointer;
-
-      &:hover {
-        background: #4E9DA9;
-        border: 3px #4E9DA9 solid;
-      }
-
-      &:active {
-        background: #75B2BC;
-        border: 3px #75B2BC solid;
-        transition-duration: 0.2s;
-      }
+      border-radius: 100%;
+      border: #1f1f1f 3px solid;
     }
   }
 
@@ -224,13 +227,14 @@ td {
 }
 
 .DropDownList {
+  cursor: pointer;
   display: flex;
   padding: 0 8px;
   flex-direction: column;
   border: 3px #1f1f1f solid;
   position: relative;
-  width: 24em;
-  border-radius: 2em;
+  width: 100%;
+  border-radius: 1em;
   transition-duration: 0.3s;
 
   .title {
@@ -244,14 +248,14 @@ td {
   .variants-list{
     left: 0;
     border: 3px #1f1f1f solid;
-    border-radius: 2em;
+    border-radius: 1em;
     background: white;
     width: 100%;
     transition-duration: 0.3s;
   }
 
   .variant {
-    border-radius: 2em;
+    border-radius: 1em;
     padding: 16px;
     background: white;
     transition-duration: 0.3s;

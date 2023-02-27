@@ -1,9 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import "./Schedule.css";
 import {ReactComponent as SearchIcon} from "../../Icons/SearchIconWhite.svg";
+import {ReactComponent as Burger} from "../../Icons/Burger.svg";
 import axios from "../../axios";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchSchedule} from "../../Redux/Slices/schedule";
 
 const Schedule = () => {
+    const dispatch = useDispatch();
+    const scheduleData = useSelector((state) => state.schedule);
+
+    const isScheduleLoading = scheduleData.schedule.status === "loading";
+
+    console.log(scheduleData.schedule)
+
+    useEffect(() => {
+        dispatch(fetchSchedule);
+    }, []);
+
+    if (isScheduleLoading) {
+        console.log("Загрузка")
+    } else {
+        console.log(scheduleData.schedule)
+    }
 
     const [open, setOpen] = useState(false);
     const [chosenVariant, setChosenVariant] = useState();
@@ -11,32 +30,41 @@ const Schedule = () => {
     const [schedule, setSchedule] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(async () => {
+    const [inputs, setInputs] = useState("");
+    const [radioInputs, setRadioInputs] = useState("Group");
+    const [locationInputs, setLocationInputs] = useState(1);
+
+
+
+    const search = async (inputs, radio, location) => {
         const requestOptions = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            valueSearch: "",
-            valueRadioButton: "",
-            valueLocation: 1,
+            valueSearch: inputs,
+            valueRadioButton: radio,
+            valueLocation: location
         };
-        await axios.post('/schedule.php',
-            requestOptions
-        )
-            .then(response => {
-                if (response.data === "Запрос не получил ни одного результата!") {
-                    console.log(response.data)
-                } else {
-                    setSchedule(response.data);
-                    console.log(response.data)
-                    setIsLoading(false)
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            });
+
+        try {
+            await axios.post('/schedule.php',
+                requestOptions
+            )
+                .then(response => {
+
+                    if(response.data !== "Запроснеполучилниодногорезультата!") {
+                        setSchedule(response.data);
+                        setIsLoading(false);
+                        setInputs(inputs);
+                        setRadioInputs(radio);
+                        setLocationInputs(location);
+                    }
+                })
+        }
+        catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(async () => {
+        await search("", "", 1)
     }, [])
 
     const arraySchedule = schedule.map(obj => ({
@@ -53,10 +81,12 @@ const Schedule = () => {
         return a;
     }, []);
 
-    const addresses = arraySchedule.map(obj => obj.address).reduce((a,b) => {
-        if (a.indexOf(b) < 0 ) a.push(b);
-        return a;
-    }, []);
+    const addresses = [
+        "УЛ. ДЕМЬЯНА БЕДНОГО Д. 21",
+        "ПРИДОРОЖНАЯ АЛЛЕЯ, Д. 7",
+        "ИРИНОВСКИЙ ПР. Д. 29",
+        "УЛ. УЧИТЕЛЬСКАЯ, Д. 3"
+    ]
 
     const weekdays = [
         "Понедельник",
@@ -66,54 +96,6 @@ const Schedule = () => {
         "Пятница"
     ]
 
-    const [inputs, setInputs] = useState("");
-    const [radioInputs, setRadioInputs] = useState("Group");
-    const [locationInputs, setLocationInputs] = useState(1);
-
-    const search = async () => {
-        if (inputs === '') {
-            const requestOptions = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                valueSearch: '',
-                valueRadioButton: '',
-            };
-            await axios.post('/schedule.php',
-                requestOptions
-            )
-                .then(response => {
-                    setSchedule(response.data);
-                    console.log(schedule)
-                })
-                .catch(error => console.log(error));
-        } else {
-            const requestOptions = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                valueSearch: inputs,
-                valueRadioButton: radioInputs,
-                valueLocation: locationInputs,
-            };
-            await axios.post('/schedule.php',
-                requestOptions
-            )
-                .then(response => {
-                    if (response.data === "Запрос не получил ни одного результата!") {
-                        console.log(response.data)
-                    } else {
-                        setSchedule(response.data);
-                    }
-                })
-                .catch(error => console.log(error));
-        }
-    }
-
     const changeRadioInputs = (event) => {
         setRadioInputs(event.target.value);
     }
@@ -122,9 +104,18 @@ const Schedule = () => {
         <div className="Schedule">
             <div className="Search">
                 <div className="search-block">
-                    <input placeholder="поиск" className="search" type="text" onChange={(e) => setInputs(e.target.value)}/>
-                    <button className="search-button" onClick={search}>
+                    <input placeholder="поиск" className="search" type="text" onChange={(e) => {
+                        setInputs(e.target.value)
+                        console.log(inputs);
+                        if (radioInputs === '') {
+                            setRadioInputs("Group")
+                        }
+                    }}/>
+                    <button className="search-button" onClick={async () => await search(locationInputs, radioInputs, locationInputs)}>
                         <SearchIcon/>
+                    </button>
+                    <button className="search-burger">
+                        <Burger/>
                     </button>
                 </div>
 
@@ -146,9 +137,10 @@ const Schedule = () => {
                                 opacity: 0
                             }}>
                             {addresses.map((variant, index) =>
-                                <ol className="variant" onClick={() => {
+                                <ol className="variant" onClick={async () => {
                                     setChosenVariant(variant);
-                                    setLocationInputs(index + 1)
+                                    console.log(locationInputs);
+                                    await search(inputs, radioInputs, index + 1);
                                     setOpen(!open);
                                 }}>
                                     <h3>{variant}</h3>
@@ -185,7 +177,7 @@ const Schedule = () => {
                 :
 
                 <div className="groups-list">
-                    {groups.map((gObj, gIndex) =>
+                    {groups?.map((gObj, gIndex) =>
                         <div className="group-block">
                             <h2>
                                 Группа {gObj}

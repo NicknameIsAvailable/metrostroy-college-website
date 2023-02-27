@@ -1,65 +1,86 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./AdminMenu.css";
-import Checkbox from "../../../../Components/Checkbox/Checkbox";
-import DisciplineTab from "../DisciplineTab/DisciplineTab";
-import Search from "../Search/Search";
+import {ReactComponent as UploadIcon} from "../../../../Icons/UploadIcon.svg";
+import axios from "../../../../axios";
 
 const AdminMenu = () => {
-    const disciplines = [
-        {
-            lesson: "Математика",
-            teacher: "И.И.Бебрик"
-        }
-    ]
+
+    const [drag, setDrag] = useState(false);
+    const [uploaderShow, setUploaderShow] = useState(false);
+
+    const dragStartHandler = (e) => {
+        e.preventDefault();
+        setDrag(true);
+    };
+
+    const dragLeaveHandler = (e) => {
+        e.preventDefault();
+        setDrag(false);
+    };
+
+    const onDropHandler = (e) => {
+        e.preventDefault();
+        let files = [...e.dataTransfer.files];
+        const formData = new FormData();
+        formData.append('file', files[0]);
+        axios.post('url', formData).then(response => console.log(response))
+        console.log(files);
+    }
 
     return (
-        <div className="AdminMenu">
+        <div
+            className="AdminMenu"
+            onDragStart = {() => {
+                setDrag(true);
+                setUploaderShow(true)
+            }}
+            onDragLeave = {() => {
+                setDrag(false);
+                setUploaderShow(false);
+            }}
+            onDragOver =  {() => {
+                setDrag(true);
+                setUploaderShow(true)
+            }}
+        >
 
+            <h2>Админ-панель</h2>
 
-            <h3>Интерфейс</h3>
-            <Checkbox content="Выделить разными цветами разные дисциплины"/>
-            <Checkbox content="Клик для замены дисциплины"/>
+            <div
+                className="uploader"
+                style={uploaderShow ? {
+                    display: "flex"
+                } : {
+                    display: "none"
+                }}
 
-            <h3>Дисциплины</h3>
-            <div className="disciplines-list">
-                <input type="search" placeholder="поиск"/>
-                <DisciplineTab
-                    lesson="Математика"
-                    teacher="И.И.Бебрик"
-                    />
+                style={drag ? {
+                    border: "#46aebe 3px dashed"
+                } : {
 
-                <DisciplineTab
-                    lesson="Математика"
-                    teacher="И.И.Бебрик"
-                />
+                }}
 
-                <DisciplineTab
-                    lesson="Математика"
-                    teacher="И.И.Бебрик"
-                />
-
-                <DisciplineTab
-                    lesson="Математика"
-                    teacher="И.И.Бебрик"
-                />
-
-                <DisciplineTab
-                    lesson="Математика"
-                    teacher="И.И.Бебрик"
-                />
-
-                <DisciplineTab
-                    lesson="Математика"
-                    teacher="И.И.Бебрик"
-                />
-
-
-
+                onDragStart = {e => dragStartHandler(e)}
+                onDragLeave = {e => dragLeaveHandler(e)}
+                onDragOver =  {e => dragStartHandler(e)}
+                onDrop = {e => onDropHandler(e)}
+            >
+                <UploadIcon/>
+                {drag ?
+                    <h2>Перетащите файл Excel сюда</h2>
+                :
+                    <h2>Отпустите файл Excel тут</h2>
+                }
             </div>
 
-            <button>
-                Сохранить
-            </button>
+            {!uploaderShow ?
+                <button className="outlined-button" onClick={() => setUploaderShow(!uploaderShow)}>
+                    Загрузить файл Excel
+                </button>
+                :
+                ""
+            }
+
         </div>
     );
 };

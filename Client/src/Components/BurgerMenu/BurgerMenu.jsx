@@ -1,14 +1,13 @@
 import {ReactComponent as BackIconWhite} from "../../Icons/back.svg";
 import "./BurgerMenu.css";
 import {Link} from "react-router-dom";
-import React, {useEffect, useState} from "react";
 
 const BurgerMenu = (props) => {
     const open = props.open;
     const setOpen = props.setOpen;
 
     document.addEventListener("keydown", (e) => {
-        if (e.code == "Escape") {
+        if (e.code === "Escape") {
             setOpen(false);
         }
     });
@@ -89,7 +88,7 @@ const BurgerMenu = (props) => {
                         className="Link"
                         onClick={() => setOpen(!open)}
                     >
-                        мастерские / федеральный грант
+                        мастерские
                     </Link>
                 </h3>
                 <h3>
