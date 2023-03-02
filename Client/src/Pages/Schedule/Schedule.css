@@ -22,11 +22,18 @@
 }
 
 table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   table-layout: fixed;
 }
 
 .cell {
   min-height: 5em;
+  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 8px;
@@ -46,14 +53,17 @@ table {
 .main-info {
   display: flex;
   align-items: center;
+  flex: 10;
   gap: 8px;
 }
 
 .teacher {
+  flex: 9;
   margin-right: auto;
 }
 
 .auditory {
+  flex: 1;
   margin-left: auto;
 }
 
@@ -73,7 +83,7 @@ table {
 }
 .Search .search {
   width: 20em;
-  border-radius: 1em 0 0 1em;
+  border-radius: 16px 0 0 16px;
   font-weight: 300;
   font-size: 24px;
   display: flex;

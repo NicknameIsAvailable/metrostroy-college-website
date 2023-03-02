@@ -41,11 +41,14 @@ const Schedule = () => {
             valueLocation: location
         };
 
+        console.log(requestOptions)
+
         try {
             await axios.post('/schedule.php',
                 requestOptions
             )
                 .then(response => {
+                    console.log(response.data);
 
                     if(response.data !== "Запроснеполучилниодногорезультата!") {
                         setSchedule(response.data);
@@ -102,14 +105,15 @@ const Schedule = () => {
         <div className="Schedule">
             <div className="Search">
                 <div className="search-block">
-                    <input placeholder="поиск" className="search" type="text" onChange={(e) => {
-                        setInputs(e.target.value)
-                        console.log(inputs);
+                    <input placeholder="поиск" className="search" type="text" onChange={e => {
+                        setInputs(e.target.value);
                         if (radioInputs === '') {
                             setRadioInputs("Group")
                         }
                     }}/>
-                    <button className="search-button" onClick={async () => await search(locationInputs, radioInputs, locationInputs)}>
+                    <button className="search-button" onClick={async () => {
+                        await search(inputs, radioInputs, locationInputs)
+                    }}>
                         <SearchIcon/>
                     </button>
                     <button className="search-burger">
@@ -188,7 +192,7 @@ const Schedule = () => {
                                                 <h3 className="day-cell">{wObj}</h3>
                                             </tr>
                                             {arraySchedule.filter(item => item.weekDay === weekdays[wIndex]
-                                                && item.groupNumber === groups[gIndex]).slice(0, 8).map((obj, index) =>
+                                                && item.groupNumber === groups[gIndex]).map((obj, index) =>
                                                 <tr >
                                                     <div className="cell">
                                                         <div className="main-info">
@@ -207,7 +211,7 @@ const Schedule = () => {
                                                         <div className="extra-info">
                                                             <p className="teacher">
                                                                 <abbr title="Преподаватель">
-                                                                {obj.teacher}
+                                                                    {obj.teacher}
                                                                 </abbr>
                                                             </p>
                                                             <p className="auditory">

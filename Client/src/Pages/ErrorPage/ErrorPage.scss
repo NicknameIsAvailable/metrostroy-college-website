@@ -1,0 +1,35 @@
+.ErrorPage {
+  height: 100vh;
+  display: flex;
+  gap: 24px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+
+  h1 {
+    color: #1f1f1f;
+  }
+
+  button {
+    background: none;
+    border-radius: 8px;
+    border: #3D99A8 3px solid;
+    color: #1f1f1f;
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 24px;
+    padding: 24px 32px;
+    transition-duration: 0.3s;
+
+    &:hover {
+      border: #46aebe 3px solid;
+    }
+
+    &:active {
+      color: white;
+      background: #3D99A8;
+      border: #3D99A8 3px solid;
+    }
+  }
+}

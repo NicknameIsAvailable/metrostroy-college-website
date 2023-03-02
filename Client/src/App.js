@@ -17,6 +17,7 @@ import "./App.css";
 import Login from "./Pages/Login/Login";
 import ScheduleEdit from "./Pages/ScheduleEdit/ScheduleEdit";
 import AdminPanel from "./Pages/AdminPanel/AdminPanel";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <div className="container">
         <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="*" element={<ErrorPage/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/schedule" element={<Schedule/>}/>
             <Route path="/admin" element={<AdminPanel/>}/>

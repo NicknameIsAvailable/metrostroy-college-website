@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import "./AdminMenu.css";
 import {ReactComponent as UploadIcon} from "../../../../Icons/UploadIcon.svg";
 import {ReactComponent as CloseIconBlack} from "../../../../Icons/CloseIconBlack.svg";
+import {ReactComponent as SaveIcon} from "../../../../Icons/SaveIcon.svg";
 import axios from "../../../../axios";
+import Alert from "../../../../Components/Alert/Alert";
 
 
-const AdminMenu = () => {
+const AdminMenu = (props) => {
 
     const [drag, setDrag] = useState(false);
     const [uploaderShow, setUploaderShow] = useState(false);
@@ -21,6 +23,21 @@ const AdminMenu = () => {
         setDrag(false);
     };
 
+    const [discipline, setDiscipline] = useState();
+    const [teacher, setTeacher] = useState();
+    const [auditory, setAuditory] = useState();
+
+    const lesson = {
+        discipline: discipline,
+        teacher: teacher,
+        auditory: auditory
+    };
+
+    const setLesson = () => {
+        setLessonAdding(!lessonAdding);
+        props.updateLesson(lesson);
+    }
+
     const onDropHandler = (e) => {
         e.preventDefault();
         let files = [...e.dataTransfer.files];
@@ -28,6 +45,13 @@ const AdminMenu = () => {
         formData.append('file', files[0]);
         axios.post('url', formData).then(response => console.log(response))
         console.log(files);
+    }
+
+    const [saveNotation, setSaveNotation] = useState(false);
+
+    const saveSchedule = () => {
+        setSaveNotation(true)
+        console.log(saveNotation)
     }
 
     return (
@@ -46,18 +70,34 @@ const AdminMenu = () => {
                 setUploaderShow(true)
             }}
         >
+            <Alert
+                icon={<SaveIcon/>}
+                saveNotation={saveNotation}
+                content="Расписание сохранено"/>
 
             <h2>Админ-панель</h2>
 
             <h3>Урок</h3>
             <div className="lesson">
-                <input type="text" placeholder="Название дисциплины"/>
-                <input type="text" placeholder="ФИО преподавателя (инициалы)"/>
-                <input type="text" placeholder="Номер аудитории"/>
+                <input
+                    type="text"
+                    placeholder="Название дисциплины"
+                    onChange={e => setDiscipline(e.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="ФИО преподавателя (инициалы)"
+                    onChange={e => setTeacher(e.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="Номер аудитории"
+                    onChange={e => setAuditory(e.target.value)}
+                />
 
                 <button
                     className="add-lesson__button"
-                    onClick={() => setLessonAdding(!lessonAdding)}
+                    onClick={setLesson}
                 >
                     {lessonAdding ? "Чтобы добавить урок, нажмите на нужную ячейку в таблице"
                     : "Добавить в расписание"
@@ -97,6 +137,12 @@ const AdminMenu = () => {
                 ""
             }
 
+            <button
+                className="outlined-button"
+                onClick={saveSchedule}
+            >
+                Сохранить
+            </button>
         </div>
     );
 };

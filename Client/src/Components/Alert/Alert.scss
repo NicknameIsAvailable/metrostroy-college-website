@@ -1,0 +1,19 @@
+.Alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  max-width: 320px;
+  border-radius: 8px;
+  padding: 16px;
+  position: fixed;
+  border: rgba(31, 31, 31, 0.1) 3px solid;
+  right: 32px;
+  bottom: 32px;
+  transition-duration: 0.3s;
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
