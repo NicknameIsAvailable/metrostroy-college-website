@@ -45,16 +45,27 @@ table {
 }
 
 .extra-info {
+  flex: 1;
   margin-top: auto;
   align-items: center;
   display: flex;
 }
+.extra-info input {
+  width: 100%;
+}
 
 .main-info {
+  flex: 2;
   display: flex;
   align-items: center;
-  flex: 10;
   gap: 8px;
+}
+.main-info input {
+  width: 100%;
+}
+
+.subject {
+  flex: 10;
 }
 
 .teacher {

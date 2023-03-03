@@ -22,7 +22,10 @@ const ScheduleEdit = () => {
                     isAdmin={isAdmin}
                 />
                 <div className="schedule">
-                    <Schedule/>
+                    <Schedule
+                        isAdmin={isAdmin}
+                        lesson={lesson}
+                    />
                 </div>
             </div>
         );

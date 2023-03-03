@@ -6,7 +6,9 @@ import axios from "../../axios";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSchedule} from "../../Redux/Slices/schedule";
 
-const Schedule = () => {
+const Schedule = (props) => {
+    const isAdmin = props.isAdmin;
+
     const dispatch = useDispatch();
     const scheduleData = useSelector((state) => state.schedule);
 
@@ -185,7 +187,7 @@ const Schedule = () => {
                                 Группа {gObj}
                             </h2>
                             <table>
-                                <td>
+                                <td onClick={() => console.log('fd;klasjfskdlj')}>
                                     {weekdays.map((wObj, wIndex) =>
                                         <td>
                                             <tr>
@@ -203,22 +205,32 @@ const Schedule = () => {
                                                             </abbr>
 
                                                             <abbr title="Урок">
-                                                                <h2>
-                                                                    {obj.subject}
-                                                                </h2>
+                                                                {isAdmin ?
+                                                                    <input
+                                                                        className="subject"
+                                                                        type="text"
+                                                                        defaultValue={obj.subject}
+                                                                    />
+                                                                :
+                                                                    <h2>
+                                                                        {obj.subject}
+                                                                    </h2>
+                                                                }
                                                             </abbr>
                                                         </div>
                                                         <div className="extra-info">
-                                                            <p className="teacher">
-                                                                <abbr title="Преподаватель">
-                                                                    {obj.teacher}
-                                                                </abbr>
-                                                            </p>
-                                                            <p className="auditory">
-                                                                <abbr title="Аудитория">
-                                                                    {obj.auditory}
-                                                                </abbr>
-                                                            </p>
+
+                                                            {isAdmin ?
+                                                                <input className="teacher" type="text" value={obj.teacher}/>
+                                                                :
+                                                                obj.teacher
+                                                            }
+                                                            {isAdmin ?
+                                                                <input className="auditory" type="text" value={obj.auditory}/>
+                                                                :
+                                                                obj.auditory
+                                                            }
+
                                                         </div>
                                                     </div>
                                                 </tr>
