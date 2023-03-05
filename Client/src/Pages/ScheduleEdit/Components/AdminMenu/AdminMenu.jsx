@@ -50,8 +50,15 @@ const AdminMenu = (props) => {
     const [saveNotation, setSaveNotation] = useState(false);
 
     const saveSchedule = () => {
-        setSaveNotation(true)
+        setSaveNotation(!saveNotation)
         console.log(saveNotation)
+
+        return (
+            <Alert
+                icon={<SaveIcon/>}
+                saveNotation={saveNotation}
+                content="Расписание сохранено"/>
+        )
     }
 
     return (
@@ -70,11 +77,6 @@ const AdminMenu = (props) => {
                 setUploaderShow(true)
             }}
         >
-            <Alert
-                icon={<SaveIcon/>}
-                saveNotation={saveNotation}
-                content="Расписание сохранено"/>
-
             <h2>Админ-панель</h2>
 
             <h3>Урок</h3>

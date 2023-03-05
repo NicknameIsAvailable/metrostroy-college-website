@@ -5,6 +5,7 @@ import {ReactComponent as Burger} from "../../Icons/Burger.svg";
 import axios from "../../axios";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSchedule} from "../../Redux/Slices/schedule";
+import GroupsList from "./Components/GroupsList/GroupsList";
 
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
@@ -103,6 +104,11 @@ const Schedule = (props) => {
         setRadioInputs(event.target.value);
     }
 
+    const lesson = props.lesson;
+    if (lesson) {
+        console.log(lesson, 923489023840)
+    }
+
     return (
         <div className="Schedule">
             <div className="Search">
@@ -179,69 +185,13 @@ const Schedule = (props) => {
             {isLoading ?
                 <h2>Загрузка</h2>
                 :
-
-                <div className="groups-list">
-                    {groups?.map((gObj, gIndex) =>
-                        <div className="group-block">
-                            <h2>
-                                Группа {gObj}
-                            </h2>
-                            <table>
-                                <td onClick={() => console.log('fd;klasjfskdlj')}>
-                                    {weekdays.map((wObj, wIndex) =>
-                                        <td>
-                                            <tr>
-                                                <h3 className="day-cell">{wObj}</h3>
-                                            </tr>
-                                            {arraySchedule.filter(item => item.weekDay === weekdays[wIndex]
-                                                && item.groupNumber === groups[gIndex]).map((obj, index) =>
-                                                <tr >
-                                                    <div className="cell">
-                                                        <div className="main-info">
-                                                            <abbr title="Номер урока">
-                                                                <h4>
-                                                                    {index + 1}
-                                                                </h4>
-                                                            </abbr>
-
-                                                            <abbr title="Урок">
-                                                                {isAdmin ?
-                                                                    <input
-                                                                        className="subject"
-                                                                        type="text"
-                                                                        defaultValue={obj.subject}
-                                                                    />
-                                                                :
-                                                                    <h2>
-                                                                        {obj.subject}
-                                                                    </h2>
-                                                                }
-                                                            </abbr>
-                                                        </div>
-                                                        <div className="extra-info">
-
-                                                            {isAdmin ?
-                                                                <input className="teacher" type="text" value={obj.teacher}/>
-                                                                :
-                                                                obj.teacher
-                                                            }
-                                                            {isAdmin ?
-                                                                <input className="auditory" type="text" value={obj.auditory}/>
-                                                                :
-                                                                obj.auditory
-                                                            }
-
-                                                        </div>
-                                                    </div>
-                                                </tr>
-                                            )}
-                                        </td>
-                                    )}
-                                </td>
-                            </table>
-                        </div>
-                    )}
-                </div>
+                <GroupsList
+                    groups={groups}
+                    weekdays={weekdays}
+                    arraySchedule={arraySchedule}
+                    isAdmin={isAdmin}
+                    lesson={lesson}
+                />
             }
         </div>
     );
