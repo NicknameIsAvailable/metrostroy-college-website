@@ -44,16 +44,13 @@ const Schedule = (props) => {
             valueLocation: location
         };
 
-        console.log(requestOptions)
-
         try {
             await axios.post('/schedule.php',
                 requestOptions
             )
                 .then(response => {
-                    console.log(response.data);
 
-                    if(response.data !== "Запроснеполучилниодногорезультата!") {
+                    if(response.data !== "Запрос не получил ни одного результата!") {
                         setSchedule(response.data);
                         setIsLoading(false);
                         setInputs(inputs);
@@ -67,8 +64,8 @@ const Schedule = (props) => {
         }
     };
 
-    useEffect(async () => {
-        await search("", "", 1)
+    useEffect( () => {
+        search("", "", 1)
     }, [])
 
     const arraySchedule = schedule.map(obj => ({
@@ -105,9 +102,6 @@ const Schedule = (props) => {
     }
 
     const lesson = props.lesson;
-    if (lesson) {
-        console.log(lesson, 923489023840)
-    }
 
     return (
         <div className="Schedule">

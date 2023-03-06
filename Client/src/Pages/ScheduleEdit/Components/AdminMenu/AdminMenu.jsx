@@ -23,14 +23,17 @@ const AdminMenu = (props) => {
         setDrag(false);
     };
 
-    const [discipline, setDiscipline] = useState();
+    const [subject, setSubject] = useState();
     const [teacher, setTeacher] = useState();
     const [auditory, setAuditory] = useState();
 
     const lesson = {
-        discipline: discipline,
+        groupNumber: "",
+        weekDay: "",
+        subject: subject,
+        auditory: auditory,
         teacher: teacher,
-        auditory: auditory
+        address: ""
     };
 
     const setLesson = () => {
@@ -84,7 +87,7 @@ const AdminMenu = (props) => {
                 <input
                     type="text"
                     placeholder="Название дисциплины"
-                    onChange={e => setDiscipline(e.target.value)}
+                    onChange={e => setSubject(e.target.value)}
                 />
                 <input
                     type="text"

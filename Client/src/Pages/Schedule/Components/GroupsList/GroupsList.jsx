@@ -6,6 +6,7 @@ const GroupsList = (props) => {
     const weekdays = props.weekdays;
     const arraySchedule = props.arraySchedule;
     const isAdmin = props.isAdmin;
+    const lesson = props.lesson;
 
     return (
         <div className="groups-list">
@@ -23,7 +24,7 @@ const GroupsList = (props) => {
                                     </tr>
                                     {arraySchedule.filter(item => item.weekDay === weekdays[wIndex]
                                         && item.groupNumber === groups[gIndex]).map((obj, index) =>
-                                        <Cell obj={obj} index={index} isAdmin={isAdmin}/>
+                                        <Cell obj={obj} index={index} isAdmin={isAdmin} lesson={lesson}/>
                                     )}
                                 </td>
                             )}

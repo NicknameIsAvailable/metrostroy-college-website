@@ -14,6 +14,9 @@ const Cell = (props) => {
                 onClick={() => {
                     if (lesson) {
                         setObj(lesson)
+                        lesson.groupNumber = obj.groupNumber;
+                        lesson.weekDay = obj.weekDay;
+                        lesson.address = obj.address;
                         console.log(obj, lesson)
                     }
                 }}
@@ -30,7 +33,7 @@ const Cell = (props) => {
                             <input
                                 className="subject"
                                 type="text"
-                                defaultValue={obj.subject}
+                                value={obj.subject}
                             />
                             :
                             <h2>
@@ -42,12 +45,20 @@ const Cell = (props) => {
                 <div className="extra-info">
 
                     {isAdmin ?
-                        <input className="teacher" type="text" value={obj.teacher}/>
+                        <input
+                            className="teacher"
+                            type="text"
+                            value={obj.teacher}
+                        />
                         :
                         obj.teacher
                     }
                     {isAdmin ?
-                        <input className="auditory" type="text" value={obj.auditory}/>
+                        <input
+                            className="auditory"
+                            type="text"
+                            value={obj.auditory}
+                        />
                         :
                         obj.auditory
                     }
