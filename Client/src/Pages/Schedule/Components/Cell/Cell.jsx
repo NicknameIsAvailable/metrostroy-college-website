@@ -31,12 +31,14 @@ const Cell = (props) => {
                     <abbr title="Урок">
                         {isAdmin ?
                             <input
-                                className="subject"
+                                className="subject no-outline"
                                 type="text"
                                 value={obj.subject}
                             />
                             :
-                            <h2>
+                            <h2
+                                className="subject"
+                            >
                                 {obj.subject}
                             </h2>
                         }
@@ -46,21 +48,27 @@ const Cell = (props) => {
 
                     {isAdmin ?
                         <input
-                            className="teacher"
+                            className="teacher no-outline"
                             type="text"
                             value={obj.teacher}
                         />
                         :
-                        obj.teacher
+                        <p
+                            className="teacher"
+                        >
+                            {obj.teacher}
+                        </p>
                     }
                     {isAdmin ?
                         <input
-                            className="auditory"
+                            className="auditory no-outline"
                             type="text"
                             value={obj.auditory}
                         />
                         :
-                        obj.auditory
+                        <p className="auditory">
+                            {obj.auditory}
+                        </p>
                     }
 
                 </div>

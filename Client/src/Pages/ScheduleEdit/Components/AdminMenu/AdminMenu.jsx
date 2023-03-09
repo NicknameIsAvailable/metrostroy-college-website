@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import "./AdminMenu.css";
-import {ReactComponent as UploadIcon} from "../../../../Icons/UploadIcon.svg";
-import {ReactComponent as CloseIconBlack} from "../../../../Icons/CloseIconBlack.svg";
 import {ReactComponent as SaveIcon} from "../../../../Icons/SaveIcon.svg";
 import axios from "../../../../axios";
 import Alert from "../../../../Components/Alert/Alert";
+import UploaderModal from "../UploaderModal/UploaderModal";
 
 
 const AdminMenu = (props) => {
@@ -87,16 +86,19 @@ const AdminMenu = (props) => {
                 <input
                     type="text"
                     placeholder="Название дисциплины"
+                    className="no-outline"
                     onChange={e => setSubject(e.target.value)}
                 />
                 <input
                     type="text"
                     placeholder="ФИО преподавателя (инициалы)"
+                    className="no-outline"
                     onChange={e => setTeacher(e.target.value)}
                 />
                 <input
                     type="text"
                     placeholder="Номер аудитории"
+                    className="no-outline"
                     onChange={e => setAuditory(e.target.value)}
                 />
 
@@ -105,34 +107,19 @@ const AdminMenu = (props) => {
                     onClick={setLesson}
                 >
                     {lessonAdding ? "Чтобы добавить урок, нажмите на нужную ячейку в таблице"
-                    : "Добавить в расписание"
+                        : "Добавить в расписание"
                     }
                 </button>
             </div>
 
-            <div
-                className="uploader"
-                style={uploaderShow ? {
-                    display: "flex"
-                } : {
-                    display: "none"
-                }}
-
-                onDragStart = {e => dragStartHandler(e)}
-                onDragLeave = {e => dragLeaveHandler(e)}
-                onDragOver =  {e => dragStartHandler(e)}
-                onDrop = {e => onDropHandler(e)}
-            >
-                <button className="icon" onClick={() => setUploaderShow(false)}>
-                    <CloseIconBlack/>
-                </button>
-                <UploadIcon/>
-                {!drag ?
-                    <h2>Перетащите файл Excel сюда</h2>
-                :
-                    <h2>Отпустите файл Excel тут</h2>
-                }
-            </div>
+            <UploaderModal
+                dragStartHandler={dragStartHandler}
+                dragLeaveHandler={dragLeaveHandler}
+                onDropHandler={onDropHandler}
+                setUploaderShow={setUploaderShow}
+                drag={drag}
+                uploaderShow={uploaderShow}
+            />
 
             {!uploaderShow ?
                 <button className="outlined-button" onClick={() => setUploaderShow(true)}>

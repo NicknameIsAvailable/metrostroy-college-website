@@ -47,7 +47,7 @@
     border-radius: 1em;
     color: #1f1f1f;
     font-weight: 600;
-    font-family: 'Cal Sans', sans-serif;
+    font-family: "Akrobat", sans-serif;
     cursor: pointer;
     font-size: 16px;
     padding: 8px;
@@ -76,19 +76,6 @@
       padding: 16px 24px;
       margin-right: auto;
     }
-  }
-
-  .uploader {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    padding: 1em;
-    background: white;
-    border: rgba(31, 31, 31, 0.1) 3px dashed;
-    border-radius: 2em;
-    transition-duration: 0.3s;
   }
 }
 

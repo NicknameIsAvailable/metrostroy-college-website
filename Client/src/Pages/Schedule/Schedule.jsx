@@ -6,6 +6,7 @@ import axios from "../../axios";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSchedule} from "../../Redux/Slices/schedule";
 import GroupsList from "./Components/GroupsList/GroupsList";
+import DropDownList from "./Components/DropDownList/DropDownList";
 
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
@@ -26,9 +27,6 @@ const Schedule = (props) => {
     } else {
         console.log(scheduleData.schedule)
     }
-
-    const [open, setOpen] = useState(false);
-    const [chosenVariant, setChosenVariant] = useState();
 
     const [schedule, setSchedule] = useState([])
     const [isLoading, setIsLoading] = useState(true);
@@ -107,7 +105,7 @@ const Schedule = (props) => {
         <div className="Schedule">
             <div className="Search">
                 <div className="search-block">
-                    <input placeholder="поиск" className="search" type="text" onChange={e => {
+                    <input placeholder="поиск" className="search no-outline" type="text" onChange={e => {
                         setInputs(e.target.value);
                         if (radioInputs === '') {
                             setRadioInputs("Group")
@@ -124,34 +122,13 @@ const Schedule = (props) => {
                 </div>
 
                 <div className="buttons">
-                    <div className="DropDownList">
-                        <div className="title" onClick={() => setOpen(!open)}>
-                            <h3>
-                                {chosenVariant || "Площадка"}
-                            </h3>
-                        </div>
-
-                        <ul className="variants-list" style={
-                            open ? {
-                                position: "absolute",
-                                top: "56px",
-                                opacity: 1
-                            } : {
-                                display: "none",
-                                opacity: 0
-                            }}>
-                            {addresses.map((variant, index) =>
-                                <ol className="variant" onClick={async () => {
-                                    setChosenVariant(variant);
-                                    console.log(locationInputs);
-                                    await search(inputs, radioInputs, index + 1);
-                                    setOpen(!open);
-                                }}>
-                                    <h3>{variant}</h3>
-                                </ol>
-                            )}
-                        </ul>
-                    </div>
+                    <DropDownList
+                        addresses={addresses}
+                        search={search}
+                        inputs={inputs}
+                        radioInputs={radioInputs}
+                        locationInputs={locationInputs}
+                    />
 
                     <label className="radio-button">
                         <input

@@ -2,7 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   color: #1f1f1f;
-  font-family: "Montserrat", "Cal Sans", sans-serif;
+  font-family: "Montserrat", "Akrobat", sans-serif;
 }
 
 .container {
@@ -39,7 +39,7 @@ body {
 }
 
 h1 {
-  font-family: "Cal Sans", sans-serif;
+  font-family: "Akrobat", sans-serif;
   font-weight: 900;
   font-size: 96px;
   -webkit-text-fill-color: transparent;
@@ -49,13 +49,14 @@ h1 {
 
 a {
   color: white;
+  text-decoration: none;
 }
 a:visited {
   color: #3D99A8;
 }
 
 .outlined-button {
-  font-family: "Cal Sans", sans-serif;
+  font-family: "Akrobat", sans-serif;
   font-weight: 700;
   background: transparent;
   font-size: 32px;
@@ -78,6 +79,19 @@ a:visited {
 
 Link {
   text-decoration: none;
+}
+
+.no-outline:hover {
+  outline: 0;
+  outline-offset: 0;
+}
+.no-outline:active {
+  outline: 0;
+  outline-offset: 0;
+}
+.no-outline:focus {
+  outline: 0;
+  outline-offset: 0;
 }
 
 ::selection {

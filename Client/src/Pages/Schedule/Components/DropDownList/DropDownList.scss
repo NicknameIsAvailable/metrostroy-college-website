@@ -1,0 +1,48 @@
+.DropDownList {
+  cursor: pointer;
+  display: flex;
+  padding: 0 8px;
+  flex-direction: column;
+  border: 3px #1f1f1f solid;
+  z-index: -1;
+  position: relative;
+  width: 100%;
+  border-radius: 1em;
+  transition-duration: 0.3s;
+
+  .title {
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-overflow: ellipsis;
+  }
+
+  .variants-list{
+    left: 0;
+    border: 3px #1f1f1f solid;
+    border-radius: 1em;
+    background: white;
+    width: 100%;
+    transition-duration: 0.3s;
+  }
+
+  .variant {
+    border-radius: 1em;
+    padding: 16px;
+    background: white;
+    transition-duration: 0.3s;
+    text-overflow: fade;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      transition-duration: 0.2s;
+      background: #1f1f1f;
+      color: white;
+    }
+  }
+}

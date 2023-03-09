@@ -5,10 +5,10 @@
 }
 
 @font-face {
-  font-family: "Cal Sans", sans-serif;
+  font-family: "Akrobat", sans-serif;
   font-style: normal;
   font-weight: 400;
-  src: local("Cal-Sans"), url("./fonts/Cal-Sans/CalSans-SemiBold.woff2") format("woff2"), url("./fonts/Cal-Sans/CalSans-SemiBold.woff") format("woff");
+  src: local("Akrobat"), url("./fonts/Akrobat/Akrobat-Black.otf") format("otf"), url("./fonts/Akrobat/Akrobat-Bold.otf") format("otf"), url("./fonts/Akrobat/Akrobat-ExtraBold.otf") format("otf"), url("./fonts/Akrobat/Akrobat-ExtraLight.otf") format("otf"), url("./fonts/Akrobat/Akrobat-Light.otf") format("otf"), url("./fonts/Akrobat/Akrobat-Regular.otf") format("otf"), url("./fonts/Akrobat/Akrobat-SemiBold.otf") format("otf"), url("./fonts/Akrobat/Akrobat-Thin.otf") format("otf");
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,20 +1,32 @@
 header {
-  padding-top: 24px;
-  padding-right: 15%;
-  padding-left: 15%;
   display: flex;
+  flex-direction: column;
   z-index: 1;
   align-items: center;
+  width: 100vw;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   background: white;
 }
+header .main {
+  width: 100vw;
+  display: flex;
+}
+header .main__section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 header .links {
   font-family: Montserrat, sans-serif;
   font-weight: 300;
-  display: flex;
+  width: 100vw;
+  height: 48px;
+  align-items: center;
+  background: #1f1f1f;
   margin-left: auto;
   gap: 32px;
 }
@@ -27,12 +39,27 @@ header .links svg {
   transition-duration: 0.3s;
   cursor: pointer;
 }
+header .leftBuilding {
+  margin-right: auto;
+}
+header .rightBuilding {
+  margin-left: auto;
+}
+header .links__section {
+  color: white;
+  font-size: 18px;
+  padding-left: 32px;
+  padding-right: 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
 @media screen and (max-width: 1600px) {
   header {
     padding-top: 24px;
-    padding-right: 10%;
-    padding-left: 10%;
     display: flex;
     z-index: 1;
     align-items: center;
@@ -42,6 +69,10 @@ header .links svg {
     right: 0;
     left: 0;
     background: white;
+  }
+  header .main__section {
+    padding-left: 10%;
+    padding-right: 10%;
   }
   header .links h3 {
     display: none;
@@ -54,8 +85,6 @@ header .links svg {
 }
 @media screen and (max-width: 720px) {
   header {
-    padding-right: 5%;
-    padding-left: 5%;
     display: flex;
     z-index: 1;
     align-items: center;
@@ -65,6 +94,10 @@ header .links svg {
     right: 0;
     left: 0;
     background: white;
+  }
+  header .main__section {
+    padding-left: 5%;
+    padding-right: 5%;
   }
   header .links {
     margin-left: auto;
