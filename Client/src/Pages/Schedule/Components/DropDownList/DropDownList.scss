@@ -1,11 +1,9 @@
 .DropDownList {
   cursor: pointer;
   display: flex;
-  padding: 0 8px;
   flex-direction: column;
   border: 3px #1f1f1f solid;
-  z-index: -1;
-  position: relative;
+  background: white;
   width: 100%;
   border-radius: 1em;
   transition-duration: 0.3s;
@@ -19,8 +17,6 @@
   }
 
   .variants-list{
-    left: 0;
-    border: 3px #1f1f1f solid;
     border-radius: 1em;
     background: white;
     width: 100%;

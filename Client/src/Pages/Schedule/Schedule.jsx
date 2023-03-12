@@ -3,30 +3,12 @@ import "./Schedule.css";
 import {ReactComponent as SearchIcon} from "../../Icons/SearchIconWhite.svg";
 import {ReactComponent as Burger} from "../../Icons/Burger.svg";
 import axios from "../../axios";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchSchedule} from "../../Redux/Slices/schedule";
 import GroupsList from "./Components/GroupsList/GroupsList";
 import DropDownList from "./Components/DropDownList/DropDownList";
+import Loader from "../../Components/Loader/Loader";
 
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
-
-    const dispatch = useDispatch();
-    const scheduleData = useSelector((state) => state.schedule);
-
-    const isScheduleLoading = scheduleData.schedule.status === "loading";
-
-    console.log(scheduleData.schedule)
-
-    useEffect(() => {
-        dispatch(fetchSchedule);
-    }, []);
-
-    if (isScheduleLoading) {
-        console.log("Загрузка")
-    } else {
-        console.log(scheduleData.schedule)
-    }
 
     const [schedule, setSchedule] = useState([])
     const [isLoading, setIsLoading] = useState(true);
@@ -47,13 +29,13 @@ const Schedule = (props) => {
                 requestOptions
             )
                 .then(response => {
-
                     if(response.data !== "Запрос не получил ни одного результата!") {
                         setSchedule(response.data);
                         setIsLoading(false);
                         setInputs(inputs);
                         setRadioInputs(radio);
                         setLocationInputs(location);
+                        setIsLoading(false);
                     }
                 })
         }
@@ -61,10 +43,6 @@ const Schedule = (props) => {
             console.log(err);
         }
     };
-
-    useEffect( () => {
-        search("", "", 1)
-    }, [])
 
     const arraySchedule = schedule.map(obj => ({
         groupNumber: obj.groupnumber,
@@ -80,13 +58,6 @@ const Schedule = (props) => {
         return a;
     }, []);
 
-    const addresses = [
-        "УЛ. ДЕМЬЯНА БЕДНОГО Д. 21",
-        "ПРИДОРОЖНАЯ АЛЛЕЯ, Д. 7",
-        "ИРИНОВСКИЙ ПР. Д. 29",
-        "УЛ. УЧИТЕЛЬСКАЯ, Д. 3"
-    ]
-
     const weekdays = [
         "Понедельник",
         "Вторник",
@@ -99,7 +70,13 @@ const Schedule = (props) => {
         setRadioInputs(event.target.value);
     }
 
+    const [modalOpen, setModalOpen] = useState(false);
+
     const lesson = props.lesson;
+
+    useEffect(() => {
+        search("", "", 1)
+    }, [])
 
     return (
         <div className="Schedule">
@@ -123,10 +100,11 @@ const Schedule = (props) => {
 
                 <div className="buttons">
                     <DropDownList
-                        addresses={addresses}
                         search={search}
                         inputs={inputs}
                         radioInputs={radioInputs}
+                        modalOpen={modalOpen}
+                        setModalOpen={setModalOpen}
                         locationInputs={locationInputs}
                     />
 
@@ -153,8 +131,10 @@ const Schedule = (props) => {
                 </div>
             </div>
 
+            <Loader loading={isLoading}/>
+
             {isLoading ?
-                <h2>Загрузка</h2>
+                ""
                 :
                 <GroupsList
                     groups={groups}

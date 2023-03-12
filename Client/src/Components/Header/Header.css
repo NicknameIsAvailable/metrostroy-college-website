@@ -20,6 +20,9 @@ header .main__section {
   justify-content: space-between;
   align-items: center;
 }
+header .burger__btn {
+  display: none;
+}
 header .links {
   font-family: Montserrat, sans-serif;
   font-weight: 300;
@@ -48,8 +51,8 @@ header .rightBuilding {
 header .links__section {
   color: white;
   font-size: 18px;
-  padding-left: 32px;
-  padding-right: 32px;
+  margin-left: 3%;
+  margin-right: 3%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -58,46 +61,28 @@ header .links__section {
 }
 
 @media screen and (max-width: 1600px) {
-  header {
-    padding-top: 24px;
-    display: flex;
-    z-index: 1;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    background: white;
-  }
-  header .main__section {
-    padding-left: 10%;
-    padding-right: 10%;
-  }
-  header .links h3 {
+  .hideable1600 {
     display: none;
   }
-  header svg {
-    padding: 4px;
-    transition-duration: 0.3s;
-    cursor: pointer;
+  .burger__btn {
+    display: block;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .hideable1000 {
+    display: none;
+  }
+  .links__section {
+    padding-left: 15%;
+    padding-right: 15%;
   }
 }
 @media screen and (max-width: 720px) {
-  header {
-    display: flex;
-    z-index: 1;
-    align-items: center;
-    justify-content: left;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    background: white;
+  .hideable720 {
+    display: none;
   }
-  header .main__section {
-    padding-left: 5%;
-    padding-right: 5%;
+  .burger__btn {
+    display: block;
   }
   header .links {
     margin-left: auto;
@@ -105,13 +90,6 @@ header .links__section {
   }
   header .links h3 {
     display: none;
-  }
-  header svg {
-    float: right;
-    justify-content: center;
-    padding: 4px;
-    transition-duration: 0.3s;
-    cursor: pointer;
   }
   header .search-button {
     display: none;

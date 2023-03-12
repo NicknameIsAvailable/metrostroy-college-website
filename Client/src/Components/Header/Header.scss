@@ -12,7 +12,7 @@ header {
 
   .main {
     width: 100vw;
-    display: flex;
+    display: flex;  
   }
 
   .main__section {
@@ -20,6 +20,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .burger__btn {
+    display: none;
   }
 
   .links {
@@ -55,8 +59,8 @@ header {
   .links__section {
     color: white;
     font-size: 18px;
-    padding-left: 32px;
-    padding-right: 32px;
+    margin-left: 3%;
+    margin-right: 3%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -66,55 +70,37 @@ header {
 }
 
 @media screen and (max-width: 1600px) {
-  header {
-    padding-top: 24px;
-    display: flex;
-    z-index: 1;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    background: white;
+  .hideable1600 {
+    display: none;
+  }
 
-    .main__section {
-      padding-left: 10%;
-      padding-right: 10%;
-    }
+  .burger__btn {
+    display: block;
+  }
+}
 
-    .links {
+@media screen and (max-width: 1000px) {
+  .hideable1000 {
+    display: none;
+  }
 
-      h3 {
-        display: none;
-      }
-    }
-
-    svg {
-      padding: 4px;
-      transition-duration: 0.3s;
-      cursor: pointer;
-    }
+  .links__section {
+    padding-left: 15%;
+    padding-right: 15%;
   }
 }
 
 @media screen and (max-width: 720px) {
+
+  .hideable720 {
+    display: none;
+  }
+
+  .burger__btn {
+    display: block;
+  }
+
   header {
-    display: flex;
-    z-index: 1;
-    align-items: center;
-    justify-content: left;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    background: white;
-
-    .main__section {
-      padding-left: 5%;
-      padding-right: 5%;
-    }
-
     .links {
       margin-left: auto;
       gap: 12px;
@@ -122,14 +108,6 @@ header {
       h3 {
         display: none;
       }
-    }
-
-    svg {
-      float: right;
-      justify-content: center;
-      padding: 4px;
-      transition-duration: 0.3s;
-      cursor: pointer;
     }
 
     .search-button {

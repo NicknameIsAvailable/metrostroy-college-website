@@ -2,13 +2,21 @@ import React, {useState} from 'react';
 import "./DropDownList.css";
 
 const DropDownList = (props) => {
-    const addresses = props.addresses;
+
     const search = props.search;
     const inputs = props.inputs;
     const radioInputs = props.radioInputs;
     const locationInputs = props.locationInputs;
+    const modalOpen = props.modalOpen;
+    const setModalOpen = props.setModalOpen;
 
-    const [modalOpen, setModalOpen] = useState(false);
+    const addresses = [
+        "УЛ. ДЕМЬЯНА БЕДНОГО Д. 21",
+        "ПРИДОРОЖНАЯ АЛЛЕЯ, Д. 7",
+        "ИРИНОВСКИЙ ПР. Д. 29",
+        "УЛ. УЧИТЕЛЬСКАЯ, Д. 3"
+    ];
+
     const [chosenVariant, setChosenVariant] = useState();
 
     return (
@@ -21,9 +29,7 @@ const DropDownList = (props) => {
 
             <ul className="variants-list" style={
                 modalOpen ? {
-                    position: "absolute",
-                    top: "56px",
-                    left: "-3px",
+                    display: "block",
                 } : {
                     display: "none",
                 }}>

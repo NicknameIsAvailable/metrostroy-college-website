@@ -1,13 +1,14 @@
 .AdminMenu {
   display: flex;
+  justify-content: center;
   gap: 24px;
   flex-direction: column;
   padding: 1em 1em 1em 0;
   width: 30em;
-  height: 40em;
+  height: 100vh;
   z-index: 0;
   position: sticky;
-  top: 100px;
+  top: 0;
   left: 0;
   background: white;
 

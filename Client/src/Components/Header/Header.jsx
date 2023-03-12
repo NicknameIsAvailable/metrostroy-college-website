@@ -2,12 +2,9 @@ import React, {useState} from 'react';
 import "./Header.css";
 import {ReactComponent as Logo} from "../../Icons/Logo.svg";
 import {ReactComponent as Person} from "../../Icons/Person.svg";
-import {ReactComponent as Search} from "../../Icons/Search.svg";
 import LeftBuilding from "../../Images/LeftBuilding.png";
 import RightBuilding from "../../Images/RightBuilding.png";
 import {ReactComponent as Burger} from "../../Icons/Burger.svg";
-import {Link} from "react-router-dom";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 const Header = () => {
 
@@ -23,11 +20,12 @@ const Header = () => {
                 />
                 <div className="main__section">
                     <a href="https://www.colm.spb.ru/">
-                        <Logo/>
+                        <Logo className="Logo"/>
                     </a>
                     <div className="buttons">
+
                         <Person/>
-                        <Search/>
+                        <Burger className="burger__btn"/>
                     </div>
                 </div>
                 <img
@@ -39,14 +37,14 @@ const Header = () => {
 
             <div className="links">
                 <div className="links__section">
-                    <a href="https://colm.spb.ru/information-about-">сведения об образовательной организации</a>
+                    <a className="hideable1000" href="https://colm.spb.ru/information-about-">сведения об образовательной организации</a>
                     <a href="https://colm.spb.ru/applicants">абитуриентам</a>
                     <a href="https://colm.spb.ru/students">обучающимся</a>
-                    <a href="https://colm.spb.ru/methodical-work">методическая работа</a>
-                    <a href="https://colm.spb.ru/driving-school">автошкола</a>
-                    <a href="https://colm.spb.ru/educational-work">воспитательная работа</a>
-                    <a href="https://colm.spb.ru/workshops">мастерские / федеральный грант</a>
-                    <a href="https://colm.spb.ru/news">наши новости</a>
+                    <a className="hideable1600" href="https://colm.spb.ru/methodical-work">методическая работа</a>
+                    <a className="hideable720" href="https://colm.spb.ru/driving-school">автошкола</a>
+                    <a className="hideable1600" href="https://colm.spb.ru/educational-work">воспитательная работа</a>
+                    <a className="hideable1600" href="https://colm.spb.ru/workshops">мастерские / федеральный грант</a>
+                    <a className="hideable1600" href="https://colm.spb.ru/news">наши новости</a>
                 </div>
             </div>
         </header>
