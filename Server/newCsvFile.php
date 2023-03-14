@@ -1,11 +1,15 @@
 <?php
 header('Content-Type: text/html; utf-8');
+
+if($_SERVER['REQUEST_METHOD'] != 'POST'){
+    exit;
+}
 //require_once(index_base);
 //Разобраться с внутренним подключением
 
 //передать из json react file csv
 
-$file_csv = @fopen('C:\Users\artem\Downloads\Telegram Desktop\ind1.csv', 'r') or exit('Dont open');
+$file_csv = @fopen('/Users/artemdavydov/PHPStormProject/ind1.csv', 'r') or exit('Dont open');
 
 $mainArrayMonday = array();
 $mainArrayTuesday = array();
@@ -13,10 +17,11 @@ $mainArrayWednesday = array();
 $mainArrayThursday = array();
 $mainArrayFriday = array();
 $itLocalWhile = 0;
+$groupNumber = "";
 while($row = fgetcsv($file_csv, separator: ';')){
     if($itLocalWhile < 12) {
         ++$itLocalWhile;
-        continue; //Добавить continue
+        continue;
     }
     if($itLocalWhile % 2 == 0) {
         $arrayMonday = ['groupNumber' => '', 'time' => '', 'weekDay' => 'Понедельник', 'subjectFirst' => '', 'teacherFirst' => '', 'auditoryFirst' => '', 'subjectSecond' => '', 'teacherSecond' => '', 'auditorySecond' => '', 'locationName' => 'ул. Демьяна Бедного, д.21'];
@@ -25,8 +30,10 @@ while($row = fgetcsv($file_csv, separator: ';')){
         $arrayThursday = ['groupNumber' => '', 'time' => '', 'weekDay' => 'Четверг', 'subjectFirst' => '', 'teacherFirst' => '', 'auditoryFirst' => '', 'subjectSecond' => '', 'teacherSecond' => '', 'auditorySecond' => '', 'locationName' => 'ул. Демьяна Бедного, д.21'];
         $arrayFriday = ['groupNumber' => '', 'time' => '', 'weekDay' => 'Пятница', 'subjectFirst' => '', 'teacherFirst' => '', 'auditoryFirst' => '', 'subjectSecond' => '', 'teacherSecond' => '', 'auditorySecond' => '', 'locationName' => 'ул. Демьяна Бедного, д.21'];
     }
-    if(!empty($row[0]))
+
+    if(!empty($row[0])) {
         $groupNumber = $row[0];
+    }
 
     if (!empty($row[5]) && empty($row[7]) && ($itLocalWhile % 2 == 0)){ //Понедельник одна группа
         $arrayMonday['groupNumber'] = $groupNumber;
@@ -144,8 +151,31 @@ while($row = fgetcsv($file_csv, separator: ';')){
 
     ++$itLocalWhile;
 }
+unset($mainArrayMonday[count($mainArrayMonday) - 1]);
+$mainArrayCsvFormat = [$mainArrayMonday, $mainArrayTuesday, $mainArrayWednesday, $mainArrayThursday,$mainArrayFriday];
+for($iterator = 0; $iterator < count($mainArrayCsvFormat); ++$iterator){
+    unset($mainArrayCsvFormat[$iterator][count($mainArrayMonday)]);
+}
 
-//$mainArrayCsvFormat = [$mainArrayMonday, $mainArrayTuesday, $mainArrayWednesday, $mainArrayThursday,$mainArrayFriday];
-$mainArrayCsvFormat = [$mainArrayMonday];
-echo "<pre>";
-print_r($mainArrayCsvFormat);
+$arrayListTime = [
+    '09:00 - 09:45',
+    '10:00 - 10:45',
+    '11:00 - 11:45',
+    '12:00 - 12:45',
+    '13:05 - 13:50',
+    '14:10 - 14:55',
+    '15:05 - 15:50',
+    '15:55 - 16:40'];
+
+for($iterator = 0; $iterator < count($mainArrayCsvFormat); ++$iterator){
+    for($iteratorTwo = 0, $it_time = 0; $iteratorTwo < count($mainArrayCsvFormat[$iterator]); ++$iteratorTwo, ++$it_time){
+        if($it_time == 8) $it_time = 0;
+        if(empty($mainArrayCsvFormat[$iterator][$iteratorTwo]['groupNumber']))
+            continue;
+
+        $mainArrayCsvFormat[$iterator][$iteratorTwo]['time'] = $arrayListTime[$it_time];
+    }
+}
+
+$mainArrayJSON = json_encode($mainArrayCsvFormat);
+print_r($mainArrayJSON);
