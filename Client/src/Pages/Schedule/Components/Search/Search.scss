@@ -1,0 +1,174 @@
+.Search {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  gap: 24px;
+  align-items: center;
+
+  .search {
+    width: 20em;
+    border-radius: 16px 0 0 16px;
+    font-weight: 300;
+    font-size: 24px;
+    display: flex;
+    height: 48px;
+    padding: 0 24px;
+    color: #1f1f1f;
+    border: 3px #1f1f1f solid;
+  }
+
+  .search-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .search-button {
+    border-radius: 0 1em 1em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54px;
+    height: 54px;
+    background: #3D99A8;
+    border-right: 3px #1f1f1f solid;
+    border-top: 3px #1f1f1f solid;
+    border-bottom: 3px #1f1f1f solid;
+    border-left: none;
+    color: white;
+    transition-duration: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background: #4E9DA9;
+    }
+
+    &:active {
+      background: #75B2BC;
+      transition-duration: 0.2s;
+    }
+  }
+}
+
+.search__buttons {
+  display: flex;
+  gap: 24px;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  animation: 0.3s searchButtonsShow ease;
+}
+
+@keyframes searchButtonsShow {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.search-burger {
+  margin-left: 24px;
+  background: none;
+  padding: 8px;
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  border: #1f1f1f 3px solid;
+  display: block;
+  cursor: pointer;
+  transition-duration: 0.3s;
+
+  &:hover {
+    background: rgba(31, 31, 31, 0.1);
+  }
+
+  &:active {
+    background: rgba(31, 31, 31, 0.2);
+  }
+}
+
+.radio-button {
+  height: 48px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  border: #1f1f1f 3px solid;
+  border-radius: 1em;
+  transition-duration: 0.3s;
+
+  p {
+    pointer-events: none;
+  }
+}
+
+.radio-button .active {
+  color: white;
+  border: #46aebe 3px solid;
+  background: #46aebe;
+}
+
+@media screen and (max-width: 1600px) {
+  .Search {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .Search {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+
+    .search {
+      flex: 7;
+      font-weight: 300;
+      font-size: 24px;
+      display: flex;
+      height: 48px;
+      border-radius: 1em;
+      padding: 0 24px;
+      color: #1f1f1f;
+      border: 3px #1f1f1f solid;
+    }
+
+    .search-block {
+      gap: 24px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .search-button {
+      border-radius: 100%;
+      border: #1f1f1f 3px solid;
+    }
+  }
+
+  .search-burger {
+    margin-left: 0;
+  }
+
+  .search__buttons {
+    margin-top: 64px;
+    border-radius: 1em;
+    background: white;
+    width: 90vw;
+    display: flex;
+    position: absolute;
+    flex-wrap: wrap;
+    gap: 24px;
+    flex-direction: row;
+    animation: 0.3s searchButtonsShow ease;
+  }
+
+  .radio-button {
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+  }
+}

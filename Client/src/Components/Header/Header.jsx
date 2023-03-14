@@ -5,6 +5,7 @@ import {ReactComponent as Person} from "../../Icons/Person.svg";
 import LeftBuilding from "../../Images/LeftBuilding.png";
 import RightBuilding from "../../Images/RightBuilding.png";
 import {ReactComponent as Burger} from "../../Icons/Burger.svg";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 const Header = () => {
 
@@ -12,6 +13,7 @@ const Header = () => {
 
     return (
         <header>
+            <BurgerMenu open={open} setOpen={setOpen}/>
             <div className="main">
                 <img
                     src={LeftBuilding}
@@ -22,10 +24,14 @@ const Header = () => {
                     <a href="https://www.colm.spb.ru/">
                         <Logo className="Logo"/>
                     </a>
-                    <div className="buttons">
+                    <div className="header-buttons">
+                        <button>
+                            <Person className="icon"/>
+                        </button>
 
-                        <Person/>
-                        <Burger className="burger__btn"/>
+                        <button className="burger-btn" onClick={() => setOpen(true)}>
+                            <Burger className="icon"/>
+                        </button>
                     </div>
                 </div>
                 <img
@@ -44,7 +50,7 @@ const Header = () => {
                     <a className="hideable720" href="https://colm.spb.ru/driving-school">автошкола</a>
                     <a className="hideable1600" href="https://colm.spb.ru/educational-work">воспитательная работа</a>
                     <a className="hideable1600" href="https://colm.spb.ru/workshops">мастерские / федеральный грант</a>
-                    <a className="hideable1600" href="https://colm.spb.ru/news">наши новости</a>
+                    <a href="https://colm.spb.ru/news">наши новости</a>
                 </div>
             </div>
         </header>

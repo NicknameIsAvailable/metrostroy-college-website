@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import "./Schedule.css";
-import {ReactComponent as SearchIcon} from "../../Icons/SearchIconWhite.svg";
-import {ReactComponent as Burger} from "../../Icons/Burger.svg";
 import axios from "../../axios";
 import GroupsList from "./Components/GroupsList/GroupsList";
-import DropDownList from "./Components/DropDownList/DropDownList";
 import Loader from "../../Components/Loader/Loader";
+import Search from "./Components/Search/Search";
 
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
@@ -70,8 +68,6 @@ const Schedule = (props) => {
         setRadioInputs(event.target.value);
     }
 
-    const [modalOpen, setModalOpen] = useState(false);
-
     const lesson = props.lesson;
 
     useEffect(() => {
@@ -80,59 +76,17 @@ const Schedule = (props) => {
 
     return (
         <div className="Schedule">
-            <div className="Search">
-                <div className="search-block">
-                    <input placeholder="поиск" className="search no-outline" type="text" onChange={e => {
-                        setInputs(e.target.value);
-                        if (radioInputs === '') {
-                            setRadioInputs("Group")
-                        }
-                    }}/>
-                    <button className="search-button" onClick={async () => {
-                        await search(inputs, radioInputs, locationInputs)
-                    }}>
-                        <SearchIcon/>
-                    </button>
-                    <button className="search-burger">
-                        <Burger/>
-                    </button>
-                </div>
-
-                <div className="buttons">
-                    <DropDownList
-                        search={search}
-                        inputs={inputs}
-                        radioInputs={radioInputs}
-                        modalOpen={modalOpen}
-                        setModalOpen={setModalOpen}
-                        locationInputs={locationInputs}
-                    />
-
-                    <label className="radio-button">
-                        <input
-                            type="radio"
-                            name="radio"
-                            checked
-                            value="Group"
-                            onChange={changeRadioInputs}
-                        />
-                        По группе
-                    </label>
-
-                    <label className="radio-button">
-                        <input
-                            type="radio"
-                            name="radio"
-                            value="Teacher"
-                            onChange={changeRadioInputs}
-                        />
-                        По преподавателю
-                    </label>
-                </div>
-            </div>
-
+            <Search
+                setInputs={setInputs}
+                inputs={inputs}
+                radioInputs={radioInputs}
+                setRadioInputs={setRadioInputs}
+                setLocationInputs={setLocationInputs}
+                locationInputs={locationInputs}
+                search={search}
+                changeRadioInputs={changeRadioInputs}
+            />
             <Loader loading={isLoading}/>
-
             {isLoading ?
                 ""
                 :

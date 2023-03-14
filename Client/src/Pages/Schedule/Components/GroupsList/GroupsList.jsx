@@ -1,5 +1,6 @@
 import React from 'react';
 import Cell from "../Cell/Cell";
+import "./GroupsList.css";
 
 const GroupsList = (props) => {
     const groups = props.groups;

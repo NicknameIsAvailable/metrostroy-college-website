@@ -16,13 +16,35 @@ header {
   }
 
   .main__section {
-    width: 100%;
+    width: 100vw;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+
+    .header-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 24px;
+
+      button {
+        border-radius: 100%;
+        padding: 8px;
+        border: none;
+        background: none;
+        transition-duration: 0.3s;
+
+        &:hover {
+          background: rgba(31, 31, 31, 0.2);
+        }
+
+        &:active {
+          background: rgba(31, 31, 31, 0.1);
+        }
+      }
+    }
   }
 
-  .burger__btn {
+  .burger-btn {
     display: none;
   }
 
@@ -69,13 +91,26 @@ header {
   }
 }
 
+@media screen and (min-width: 1600px) {
+  .burger-btn {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 1600px) {
   .hideable1600 {
     display: none;
   }
 
-  .burger__btn {
-    display: block;
+  .main {
+    img {
+      width: 180px;
+    }
+
+    .header-buttons {
+      justify-content: flex-end;
+
+    }
   }
 }
 
@@ -96,28 +131,18 @@ header {
     display: none;
   }
 
-  .burger__btn {
-    display: block;
+  .main__section {
+    border: red 1px solid;
+    width: 100vw;
+    justify-content: space-between;
+  }
+
+  .links__section {
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
   header {
-    .links {
-      margin-left: auto;
-      gap: 12px;
-
-      h3 {
-        display: none;
-      }
-    }
-
-    .search-button {
-      display: none;
-    }
-
-    .profile-button {
-      display: none;
-    }
-
     .Logo {
       width: 200px;
     }

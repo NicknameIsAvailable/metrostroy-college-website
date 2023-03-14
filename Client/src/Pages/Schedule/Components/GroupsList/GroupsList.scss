@@ -1,0 +1,37 @@
+.groups-list {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.group-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0 8px;
+  gap: 16px;
+  border-radius: 1em;
+}
+
+table {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  width: 70vw;
+  table-layout: fixed;
+  overflow-x: scroll;
+}
+
+.day-cell {
+  padding: 8px;
+  border: #1f1f1f 3px solid;
+}
+
+@media screen and (max-width: 1400px) {
+  table {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

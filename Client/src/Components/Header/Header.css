@@ -15,12 +15,30 @@ header .main {
   display: flex;
 }
 header .main__section {
-  width: 100%;
+  width: 100vw;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
 }
-header .burger__btn {
+header .main__section .header-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 24px;
+}
+header .main__section .header-buttons button {
+  border-radius: 100%;
+  padding: 8px;
+  border: none;
+  background: none;
+  transition-duration: 0.3s;
+}
+header .main__section .header-buttons button:hover {
+  background: rgba(31, 31, 31, 0.2);
+}
+header .main__section .header-buttons button:active {
+  background: rgba(31, 31, 31, 0.1);
+}
+header .burger-btn {
   display: none;
 }
 header .links {
@@ -60,12 +78,20 @@ header .links__section {
   align-items: center;
 }
 
+@media screen and (min-width: 1600px) {
+  .burger-btn {
+    display: none;
+  }
+}
 @media screen and (max-width: 1600px) {
   .hideable1600 {
     display: none;
   }
-  .burger__btn {
-    display: block;
+  .main img {
+    width: 180px;
+  }
+  .main .header-buttons {
+    justify-content: flex-end;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -81,21 +107,14 @@ header .links__section {
   .hideable720 {
     display: none;
   }
-  .burger__btn {
-    display: block;
+  .main__section {
+    border: red 1px solid;
+    width: 100vw;
+    justify-content: space-between;
   }
-  header .links {
-    margin-left: auto;
-    gap: 12px;
-  }
-  header .links h3 {
-    display: none;
-  }
-  header .search-button {
-    display: none;
-  }
-  header .profile-button {
-    display: none;
+  .links__section {
+    padding-left: 5%;
+    padding-right: 5%;
   }
   header .Logo {
     width: 200px;
