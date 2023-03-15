@@ -8,20 +8,22 @@ const ScheduleEdit = () => {
 
     const [lesson, setLesson] = useState();
     const [isAdmin, setIsAdmin] = useState(true)
+    const [updatedSchedule, setUpdatedSchedule] = useState();
 
     const updateLesson = (value) => {
         setLesson(value)
-        console.log(lesson, value);
     }
 
     if (isAdmin) {
         return (
             <div className="ScheduleEdit">
                 <AdminMenu
+                    setUpdatedSchedule={setUpdatedSchedule}
                     updateLesson={updateLesson}
                     isAdmin={isAdmin}
                 />
                 <Schedule
+                    upsatedSchedule={updatedSchedule}
                     isAdmin={isAdmin}
                     lesson={lesson}
                 />

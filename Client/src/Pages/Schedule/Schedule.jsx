@@ -9,6 +9,7 @@ import Loader from "../../Components/Loader/Loader";
 
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
+    const updatedSchedule = props.upsatedSchedule;
 
     const [schedule, setSchedule] = useState([])
     const [isLoading, setIsLoading] = useState(true);
@@ -46,11 +47,15 @@ const Schedule = (props) => {
 
     const arraySchedule = schedule.map(obj => ({
         groupNumber: obj.groupnumber,
+        time: obj.time,
         weekDay: obj.weekday,
-        subject: obj.subject,
-        auditory: obj.auditory,
-        teacher: obj.secondname,
-        address: obj.locationname
+        subjectFirst: obj.subjectFirst,
+        teacherFirst: obj.teacherFirst,
+        auditoryFirst: obj.auditoryFirst,
+        subjectSecond: obj.subjectSecond,
+        teacherSecond: obj.teacherSecond,
+        auditorySecond: obj.auditorySecond,
+        locationName: obj.locationName
     }));
 
     const groups = arraySchedule.map(obj => obj.groupNumber).reduce((a,b) => {
@@ -77,6 +82,15 @@ const Schedule = (props) => {
     useEffect(() => {
         search("", "", 1)
     }, [])
+
+    if (updatedSchedule) {
+        try {
+            search("", "", 1)
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
 
     return (
         <div className="Schedule">

@@ -12,6 +12,8 @@ const AdminMenu = (props) => {
     const [uploaderShow, setUploaderShow] = useState(false);
     const [lessonAdding, setLessonAdding] = useState(false);
 
+    const setUpdatedSchedule = props.setUpdatedSchedule;
+
     const dragStartHandler = (e) => {
         e.preventDefault();
         setDrag(true);
@@ -22,17 +24,24 @@ const AdminMenu = (props) => {
         setDrag(false);
     };
 
-    const [subject, setSubject] = useState();
-    const [teacher, setTeacher] = useState();
-    const [auditory, setAuditory] = useState();
+    const [subjectFirst, setSubjectFirst] = useState();
+    const [subjectSecond, setSubjectSecond] = useState();
+    const [teacherFirst, setTeacherFirst] = useState();
+    const [teacherSecond, setTeacherSecond] = useState();
+    const [auditoryFirst, setAuditoryFirst] = useState();
+    const [auditorySecond, setAuditorySecond] = useState();
 
     const lesson = {
         groupNumber: "",
+        time: "",
         weekDay: "",
-        subject: subject,
-        auditory: auditory,
-        teacher: teacher,
-        address: ""
+        subjectFirst: subjectFirst,
+        teacherFirst: teacherFirst,
+        auditoryFirst: auditoryFirst,
+        subjectSecond: subjectSecond,
+        teacherSecond: teacherSecond,
+        auditorySecond: auditorySecond,
+        locationName: ""
     };
 
     const setLesson = () => {
@@ -45,8 +54,7 @@ const AdminMenu = (props) => {
         let files = [...e.dataTransfer.files];
         const formData = new FormData();
         formData.append('file', files[0]);
-        axios.post('url', formData).then(response => console.log(response))
-        console.log(files);
+        axios.post('/newCsvFile.php', files[0]).then(response => setUpdatedSchedule(response.data))
     }
 
     const [saveNotation, setSaveNotation] = useState(false);
@@ -87,19 +95,42 @@ const AdminMenu = (props) => {
                     type="text"
                     placeholder="Название дисциплины"
                     className="no-outline"
-                    onChange={e => setSubject(e.target.value)}
+                    onChange={e => setSubjectFirst(e.target.value)}
                 />
+
+                <input
+                    type="text"
+                    placeholder="Название дисциплины для второй подгруппы"
+                    className="no-outline"
+                    onChange={e => setSubjectSecond(e.target.value)}
+                />
+
                 <input
                     type="text"
                     placeholder="ФИО преподавателя (инициалы)"
                     className="no-outline"
-                    onChange={e => setTeacher(e.target.value)}
+                    onChange={e => setTeacherFirst(e.target.value)}
                 />
+
+                <input
+                    type="text"
+                    placeholder="ФИО преподавателя (инициалы) для второй подгруппы"
+                    className="no-outline"
+                    onChange={e => setTeacherSecond(e.target.value)}
+                />
+
                 <input
                     type="text"
                     placeholder="Номер аудитории"
                     className="no-outline"
-                    onChange={e => setAuditory(e.target.value)}
+                    onChange={e => setAuditoryFirst(e.target.value)}
+                />
+
+                <input
+                    type="text"
+                    placeholder="Номер аудитории для второй подгруппы"
+                    className="no-outline"
+                    onChange={e => setAuditorySecond(e.target.value)}
                 />
 
                 <button
