@@ -1,0 +1,62 @@
+.cell {
+  min-height: 5em;
+  flex-direction: column;
+  padding: 8px;
+  display: flex;
+  border: #1f1f1f 3px solid;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.cell:hover {
+  background: rgba(31, 31, 31, 0.1);
+}
+
+.main-info {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.main-info input {
+  width: 100%;
+}
+
+.main-info {
+  margin-top: auto;
+  align-items: center;
+}
+.main-info input {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: #1f1f1f 3px solid;
+  width: 100%;
+  padding: 8px 0;
+  font-weight: 600;
+}
+
+.extra-info {
+  margin-top: auto;
+  gap: 12px;
+  display: flex;
+}
+.extra-info input {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: #1f1f1f 3px solid;
+  width: 100%;
+  padding: 8px 0;
+  font-weight: 600;
+}
+.extra-info .teacher {
+  flex: 3;
+  margin-right: auto;
+}
+.extra-info .auditory {
+  flex: 1;
+  text-align: right;
+  margin-left: auto;
+}
+
+/*# sourceMappingURL=Cell.css.map */
