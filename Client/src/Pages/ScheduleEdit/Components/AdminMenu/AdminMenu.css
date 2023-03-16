@@ -1,0 +1,76 @@
+.AdminMenu {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-direction: column;
+  padding: 1em 1em 1em 0;
+  width: 30em;
+  height: 100vh;
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 16px;
+  background: white;
+}
+.AdminMenu button {
+  font-size: 24px;
+  padding: 1em 2em;
+}
+.AdminMenu .icon {
+  margin-left: auto;
+  padding: 8px;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+.AdminMenu .icon:hover {
+  background: rgba(31, 31, 31, 0.1);
+}
+.AdminMenu .icon:active {
+  background: rgba(31, 31, 31, 0.3);
+  transition-duration: 0.2s;
+}
+.AdminMenu .add-lesson__button {
+  background: none;
+  width: 100%;
+  border: #3D99A8 3px solid;
+  border-radius: 1em;
+  color: #1f1f1f;
+  font-weight: 600;
+  font-family: "Akrobat", sans-serif;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px;
+}
+.AdminMenu .lesson {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border: #1f1f1f 3px solid;
+  border-radius: 1em;
+  padding: 16px;
+}
+.AdminMenu .lesson input {
+  padding: 8px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: #1f1f1f 3px solid;
+  font-size: 16px;
+  font-family: Montserrat, sans-serif;
+  color: #1f1f1f;
+}
+.AdminMenu .lesson button {
+  padding: 16px 24px;
+  margin-right: auto;
+}
+
+/*# sourceMappingURL=AdminMenu.css.map */

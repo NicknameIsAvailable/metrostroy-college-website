@@ -16,8 +16,7 @@ const Cell = (props) => {
                         setObj(lesson)
                         lesson.groupNumber = obj.groupNumber;
                         lesson.weekDay = obj.weekDay;
-                        lesson.address = obj.address;
-                        console.log(obj, lesson)
+                        lesson.locationName = obj.locationName;
                     }
                 }}
             >
@@ -33,45 +32,124 @@ const Cell = (props) => {
                             <input
                                 className="subject no-outline"
                                 type="text"
-                                value={obj.subject}
+                                value={obj.subjectFirst}
                             />
                             :
                             <h2
                                 className="subject"
                             >
-                                {obj.subject}
+                                {obj.subjectFirst}
                             </h2>
                         }
                     </abbr>
                 </div>
-                <div className="extra-info">
 
-                    {isAdmin ?
+                {isAdmin ?
+                <div className="extra-info">
                         <input
                             className="teacher no-outline"
                             type="text"
-                            value={obj.teacher}
+                            value={obj.teacherFirst}
                         />
-                        :
-                        <p
-                            className="teacher"
-                        >
-                            {obj.teacher}
-                        </p>
-                    }
-                    {isAdmin ?
+
                         <input
                             className="auditory no-outline"
                             type="text"
-                            value={obj.auditory}
+                            value={obj.auditoryFirst}
                         />
-                        :
-                        <p className="auditory">
-                            {obj.auditory}
-                        </p>
-                    }
 
+                        <input
+                            className="teacher no-outline"
+                            type="text"
+                            value={obj.teacherSecond}
+                        />
+                        <input
+                            className="auditory no-outline"
+                            type="text"
+                            value={obj.auditorySecond}
+                        />
                 </div>
+                    :
+                    obj.subjectSecond ?
+                        <div className="extra-info">
+                            {isAdmin ?
+                                <input
+                                    className="teacher no-outline"
+                                    type="text"
+                                    value={obj.teacherFirst}
+                                />
+                                :
+                                <p
+                                    className="teacher"
+                                >
+                                    {obj.teacherFirst}
+                                </p>
+                            }
+                            {isAdmin ?
+                                <input
+                                    className="auditory no-outline"
+                                    type="text"
+                                    value={obj.auditoryFirst}
+                                />
+                                :
+                                <p className="auditory">
+                                    {obj.auditoryFirst}
+                                </p>
+                            }
+
+                            {isAdmin ?
+                                <input
+                                    className="teacher no-outline"
+                                    type="text"
+                                    value={obj.teacherSecond}
+                                />
+                                :
+                                <p
+                                    className="teacher"
+                                >
+                                    {obj.teacherSecond}
+                                </p>
+                            }
+                            {isAdmin ?
+                                <input
+                                    className="auditory no-outline"
+                                    type="text"
+                                    value={obj.auditorySecond}
+                                />
+                                :
+                                <p className="auditory">
+                                    {obj.auditorySecond}
+                                </p>
+                            }
+                        </div>
+                        :
+                        <div className="extra-info">
+                            {isAdmin ?
+                                <input
+                                    className="teacher no-outline"
+                                    type="text"
+                                    value={obj.teacherFirst}
+                                />
+                                :
+                                <p
+                                    className="teacher"
+                                >
+                                    {obj.teacherFirst}
+                                </p>
+                            }
+                            {isAdmin ?
+                                <input
+                                    className="auditory no-outline"
+                                    type="text"
+                                    value={obj.auditoryFirst}
+                                />
+                                :
+                                <p className="auditory">
+                                    {obj.auditoryFirst}
+                                </p>
+                            }
+                        </div>
+                }
             </div>
         </tr>
     );
