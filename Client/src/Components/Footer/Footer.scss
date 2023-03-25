@@ -1,11 +1,10 @@
 footer {
   flex: 0 0 auto;
-  top: 100%;
   display: flex;
+  z-index: 9999;
   background: #1f1f1f;
   margin-top: 8em;
-  padding-top: 8em;
-  padding-bottom: 8em;
+  padding: 8em 15%;
   font-family: Montserrat, sans-serif;
   color: white;
 

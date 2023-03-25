@@ -1,5 +1,17 @@
 .ScheduleEdit {
   margin: 0;
   padding: 0;
+  top: 0;
+  left: 0;
+}
+
+.admin-menu {
   display: flex;
+  justify-content: center;
+  position: fixed;
+  height: 100%;
+}
+
+.schedule {
+  margin-left: 30%;
 }

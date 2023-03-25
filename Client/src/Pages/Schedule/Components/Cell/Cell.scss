@@ -1,6 +1,7 @@
 .cell {
   min-height: 5em;
   flex-direction: column;
+  min-width: 12vw;
   padding: 8px;
   display: flex;
   border: #1f1f1f 3px solid;
@@ -47,10 +48,14 @@
     border-left: none;
     border-right: none;
     border-top: none;
-    border-bottom: #1f1f1f 3px solid;
     width: 100%;
+    border-bottom: #1f1f1f 3px solid;
     padding: 8px 0;
     font-weight: 600;
+  }
+
+  .subject {
+    flex: 4;
   }
 
   .teacher {

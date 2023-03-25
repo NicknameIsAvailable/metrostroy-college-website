@@ -1,21 +1,57 @@
 .AdminMenu {
   display: flex;
-  justify-content: center;
   gap: 24px;
+  overflow-x: scroll;
   flex-direction: column;
-  padding: 1em 1em 1em 0;
   width: 30em;
-  height: 100vh;
   z-index: 0;
-  position: fixed;
   top: 0;
-  right: 0;
-  margin: 16px;
-  background: white;
+  left: 0;
+  padding: 12em 1em 1em 1em;
+  margin: 1em;
 }
-.AdminMenu button {
-  font-size: 24px;
-  padding: 1em 2em;
+.AdminMenu .admin-menu__buttons {
+  display: flex;
+  gap: 12px;
+}
+.AdminMenu .admin-menu__buttons button {
+  flex: 1;
+}
+.AdminMenu .equal-is {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+.AdminMenu .equal-is input {
+  flex: 1;
+}
+.AdminMenu .admin-menu__header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.AdminMenu .schedule-edit-tutorial__link {
+  font-size: 20px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  color: white;
+  background: #1f1f1f;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+.AdminMenu .schedule-edit-tutorial__link:hover {
+  background: rgba(31, 31, 31, 0.7);
+}
+.AdminMenu .schedule-edit-tutorial__link:active {
+  background: rgba(31, 31, 31, 0.3);
+}
+.AdminMenu .only-for-this-group__checkbox {
+  display: flex;
+  gap: 12px;
 }
 .AdminMenu .icon {
   margin-left: auto;
@@ -57,16 +93,6 @@
   border: #1f1f1f 3px solid;
   border-radius: 1em;
   padding: 16px;
-}
-.AdminMenu .lesson input {
-  padding: 8px;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: #1f1f1f 3px solid;
-  font-size: 16px;
-  font-family: Montserrat, sans-serif;
-  color: #1f1f1f;
 }
 .AdminMenu .lesson button {
   padding: 16px 24px;

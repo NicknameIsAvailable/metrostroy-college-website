@@ -4,6 +4,7 @@ import {ReactComponent as SaveIcon} from "../../../../Icons/SaveIcon.svg";
 import axios from "../../../../axios";
 import Alert from "../../../../Components/Alert/Alert";
 import UploaderModal from "../UploaderModal/UploaderModal";
+import {Link} from "react-router-dom";
 
 
 const AdminMenu = (props) => {
@@ -25,7 +26,6 @@ const AdminMenu = (props) => {
     };
 
     const [subjectFirst, setSubjectFirst] = useState();
-    const [subjectSecond, setSubjectSecond] = useState();
     const [teacherFirst, setTeacherFirst] = useState();
     const [teacherSecond, setTeacherSecond] = useState();
     const [auditoryFirst, setAuditoryFirst] = useState();
@@ -38,11 +38,24 @@ const AdminMenu = (props) => {
         subjectFirst: subjectFirst,
         teacherFirst: teacherFirst,
         auditoryFirst: auditoryFirst,
-        subjectSecond: subjectSecond,
+        subjectSecond: subjectFirst,
         teacherSecond: teacherSecond,
         auditorySecond: auditorySecond,
         locationName: ""
     };
+
+    const [searchingSubjectFirst, setSearchingSubjectFirst] = useState();
+    const [searchingTeacherFirst, setSearchingTeacherFirst] = useState();
+    const [searchingTeacherSecond, setSearchingTeacherSecond] = useState();
+    const [searchingAuditoryFirst, setSearchingAuditoryFirst] = useState();
+    const [searchingAuditorySecond, setSearchingAuditorySecond] = useState();
+
+    const updatedLesson = [
+        {
+            prevLesson: {},
+            newLesson: {}
+        }
+    ]
 
     const setLesson = () => {
         setLessonAdding(!lessonAdding);
@@ -54,7 +67,10 @@ const AdminMenu = (props) => {
         let files = [...e.dataTransfer.files];
         const formData = new FormData();
         formData.append('file', files[0]);
-        axios.post('/newCsvFile.php', files[0]).then(response => setUpdatedSchedule(response.data))
+        axios.post('/newCsvFile.php', files[0]).then(response => {
+            setUpdatedSchedule(response.data)
+            console.log(response.data)
+        })
     }
 
     const [saveNotation, setSaveNotation] = useState(false);
@@ -87,49 +103,48 @@ const AdminMenu = (props) => {
                 setUploaderShow(true)
             }}
         >
-            <h2>Админ-панель</h2>
-
+            <div className="admin-menu__header">
+                <h2>Редактор расписания</h2>
+                <Link to="/schedule-edit/tutorial">
+                    <div className="schedule-edit-tutorial__link">
+                            ?
+                    </div>
+                </Link>
+            </div>
             <h3>Урок</h3>
             <div className="lesson">
                 <input
                     type="text"
                     placeholder="Название дисциплины"
-                    className="no-outline"
+                    className="no-outline underlined-input"
                     onChange={e => setSubjectFirst(e.target.value)}
                 />
 
                 <input
                     type="text"
-                    placeholder="Название дисциплины для второй подгруппы"
-                    className="no-outline"
-                    onChange={e => setSubjectSecond(e.target.value)}
-                />
-
-                <input
-                    type="text"
                     placeholder="ФИО преподавателя (инициалы)"
-                    className="no-outline"
+                    className="no-outline underlined-input"
                     onChange={e => setTeacherFirst(e.target.value)}
                 />
 
                 <input
                     type="text"
                     placeholder="ФИО преподавателя (инициалы) для второй подгруппы"
-                    className="no-outline"
+                    className="no-outline underlined-input"
                     onChange={e => setTeacherSecond(e.target.value)}
                 />
 
                 <input
                     type="text"
                     placeholder="Номер аудитории"
-                    className="no-outline"
+                    className="no-outline underlined-input"
                     onChange={e => setAuditoryFirst(e.target.value)}
                 />
 
                 <input
                     type="text"
                     placeholder="Номер аудитории для второй подгруппы"
-                    className="no-outline"
+                    className="no-outline underlined-input"
                     onChange={e => setAuditorySecond(e.target.value)}
                 />
 
@@ -143,6 +158,64 @@ const AdminMenu = (props) => {
                 </button>
             </div>
 
+            <h3>
+                Заменить информацию в ячейках в которых
+            </h3>
+
+            <div className="equal-is">
+                Урок =
+                <input
+                    type="text"
+                    className="underlined-input no-outline"
+                    placeholder="Название дисциплины"
+                />
+            </div>
+
+            <div className="equal-is">
+                Первый преподавтель =
+                <input
+                    type="text"
+                    className="underlined-input no-outline"
+                    placeholder="ФИО преподавателя (инициалы)"
+                />
+            </div>
+
+            <div className="equal-is">
+                Второй преподаватель =
+                <input
+                    type="text"
+                    className="underlined-input no-outline"
+                    placeholder="ФИО преподавателя (инициалы)"
+                />
+            </div>
+
+            <div className="equal-is">
+                Первая аудитория =
+                <input
+                    type="text"
+                    className="underlined-input no-outline"
+                    placeholder="Номер аудитории"
+                />
+            </div>
+
+            <div className="equal-is">
+                Вторая аудитория =
+                <input
+                    type="text"
+                    className="underlined-input no-outline"
+                    placeholder="Номер аудитории"
+                />
+            </div>
+
+            <label className="only-for-this-group__checkbox">
+                <input type="checkbox"/>
+                Только для этой группы
+            </label>
+
+            <button className="outlined-button">
+                Заменить
+            </button>
+
             <UploaderModal
                 dragStartHandler={dragStartHandler}
                 dragLeaveHandler={dragLeaveHandler}
@@ -152,20 +225,27 @@ const AdminMenu = (props) => {
                 uploaderShow={uploaderShow}
             />
 
-            {!uploaderShow ?
-                <button className="outlined-button" onClick={() => setUploaderShow(true)}>
-                    Загрузить файл Excel
-                </button>
-                :
-                ""
-            }
 
-            <button
-                className="outlined-button"
-                onClick={saveSchedule}
-            >
-                Сохранить
-            </button>
+            <div className="admin-menu__buttons">
+                {!uploaderShow ?
+                    <button className="outlined-button" onClick={() => setUploaderShow(true)}>
+                        Загрузить файл Excel
+                    </button>
+                    :
+                    ""
+                }
+
+                <button className="outlined-button">
+                    Сохранить
+                </button>
+            </div>
+
+            {/*<button*/}
+            {/*    className="outlined-button"*/}
+            {/*    onClick={saveSchedule}*/}
+            {/*>*/}
+            {/*    Сохранить*/}
+            {/*</button>*/}
         </div>
     );
 };

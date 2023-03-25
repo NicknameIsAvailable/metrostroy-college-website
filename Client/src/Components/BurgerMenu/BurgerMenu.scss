@@ -3,41 +3,42 @@
   top: 0;
   right: 0;
   width: 50em;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   background: #1f1f1f;
   transition-duration: 0.3s;
 
-  .header {
-    margin: 32px;
-    align-items: center;
-    height: 64px;
+  .visible1600 .visible1000 .visible720 {
+    display: none;
+  }
+
+  .back-button {
+    position: absolute;
+    margin-left: 16px;
+    margin-top: 16px;
+    border-radius: 16px;
+    padding: 8px;
+    border: none;
     display: flex;
+    align-items: center;
+    background: none;
+    height: 64px;
+    width: 64px;
+    cursor: pointer;
+    transition-duration: 0.3s;
 
-    .back-button {
-      border-radius: 100%;
-      border: none;
-      display: flex;
-      align-items: center;
-      background: none;
-      height: 64px;
-      width: 64px;
-      cursor: pointer;
-      transition-duration: 0.3s;
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
 
-      &:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
+    &:active {
+      transition-duration: 0.2s;
+      background: rgba(255, 255, 255, 0.3);
+    }
 
-      &:active {
-        transition-duration: 0.2s;
-        background: rgba(255, 255, 255, 0.3);
-      }
-
-      .back-button__icon {
-        margin-left: auto;
-        margin-right: auto;
-      }
+    .back-button__icon {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 
@@ -47,14 +48,28 @@
 
   .links {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     width: 100%;
     font-size: 32px;
     gap: 64px;
     flex-direction: column;
     color: white;
 
-      .Link {
+    .Link {
       color: white;
+      padding: 4px;
+      transition-duration: 0.3s;
+      border-radius: 8px;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      &:active {
+        background: rgba(255, 255, 255, 0.3);
+      }
     }
   }
 
@@ -72,10 +87,6 @@
       display: block;
     }
   }
-}
-
-.visible1600 .visible1000 .visible720 {
-  display: none;
 }
 
 @media screen and (max-width: 1600px) {

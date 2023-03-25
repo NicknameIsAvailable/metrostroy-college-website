@@ -16,14 +16,25 @@
 
 .uploader {
   display: flex;
+  width: 30vw;
+  height: 30vh;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 16px;
   z-index: 9999;
   padding: 1em;
-  background: white;
-  border: #1f1f1f 3px dashed;
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 2em;
   transition-duration: 0.3s;
+}
+
+.upload-info__block {
+  height: 100%;
+  width: 100%;
+  color: white;
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

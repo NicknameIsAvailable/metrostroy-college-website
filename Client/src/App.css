@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   overflow-x: hidden;
@@ -6,10 +10,23 @@ body {
   font-family: "Montserrat", "Akrobat", sans-serif;
 }
 
+.underlined-input {
+  padding: 8px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  background: none;
+  border-bottom: #1f1f1f 3px solid;
+  font-size: 16px;
+  font-family: Montserrat, sans-serif;
+  color: #1f1f1f;
+}
+
 .container {
   margin-left: 15%;
   margin-right: 15%;
-  height: 100%;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 ::-webkit-scrollbar {
@@ -42,10 +59,7 @@ body {
 h1 {
   font-family: "Akrobat", sans-serif;
   font-weight: 900;
-  font-size: 96px;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke-color: #3D99A8;
-  -webkit-text-stroke-width: 3px;
+  font-size: 48px;
 }
 
 a {
@@ -56,12 +70,21 @@ a:visited {
   color: #3D99A8;
 }
 
+button {
+  cursor: pointer;
+}
+
+.anchor-link {
+  color: #1f1f1f;
+  text-decoration: underline;
+}
+
 .outlined-button {
   font-family: "Akrobat", sans-serif;
   font-weight: 700;
   background: transparent;
-  font-size: 32px;
-  padding: 32px;
+  font-size: 20px;
+  padding: 20px 32px;
   color: #3D99A8;
   border: #3D99A8 3px solid;
   border-radius: 16px;

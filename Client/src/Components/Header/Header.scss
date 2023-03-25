@@ -8,6 +8,7 @@ header {
   top: 0;
   right: 0;
   left: 0;
+  transition-duration: 0.3s;
   background: white;
 
   .main {
@@ -27,7 +28,7 @@ header {
       gap: 24px;
 
       button {
-        border-radius: 100%;
+        border-radius: 16px;
         padding: 8px;
         border: none;
         background: none;
@@ -42,10 +43,6 @@ header {
         }
       }
     }
-  }
-
-  .burger-btn {
-    display: none;
   }
 
   .links {
@@ -92,9 +89,7 @@ header {
 }
 
 @media screen and (min-width: 1600px) {
-  .burger-btn {
-    display: none;
-  }
+
 }
 
 @media screen and (max-width: 1600px) {
@@ -132,7 +127,6 @@ header {
   }
 
   .main__section {
-    border: red 1px solid;
     width: 100vw;
     justify-content: space-between;
   }

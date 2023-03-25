@@ -8,6 +8,7 @@ import Search from "./Components/Search/Search";
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
     const updatedSchedule = props.upsatedSchedule;
+    const setScheduleForAdmin = props.setScheduleForAdmin;
 
     const [schedule, setSchedule] = useState([])
     const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +31,7 @@ const Schedule = (props) => {
                 .then(response => {
                     if(response.data !== "Запрос не получил ни одного результата!") {
                         setSchedule(response.data);
+                        setScheduleForAdmin(response.data);
                         setIsLoading(false);
                         setInputs(inputs);
                         setRadioInputs(radio);
@@ -89,29 +91,31 @@ const Schedule = (props) => {
     }
 
     return (
-        <div className="Schedule">
-            <Search
-                setInputs={setInputs}
-                inputs={inputs}
-                radioInputs={radioInputs}
-                setRadioInputs={setRadioInputs}
-                setLocationInputs={setLocationInputs}
-                locationInputs={locationInputs}
-                search={search}
-                changeRadioInputs={changeRadioInputs}
-            />
-            <Loader loading={isLoading}/>
-            {isLoading ?
-                ""
-                :
-                <GroupsList
-                    groups={groups}
-                    weekdays={weekdays}
-                    arraySchedule={arraySchedule}
-                    isAdmin={isAdmin}
-                    lesson={lesson}
+        <div className="container">
+            <div className="Schedule">
+                <Search
+                    setInputs={setInputs}
+                    inputs={inputs}
+                    radioInputs={radioInputs}
+                    setRadioInputs={setRadioInputs}
+                    setLocationInputs={setLocationInputs}
+                    locationInputs={locationInputs}
+                    search={search}
+                    changeRadioInputs={changeRadioInputs}
                 />
-            }
+                <Loader loading={isLoading}/>
+                {isLoading ?
+                    ""
+                    :
+                    <GroupsList
+                        groups={groups}
+                        weekdays={weekdays}
+                        arraySchedule={arraySchedule}
+                        isAdmin={isAdmin}
+                        lesson={lesson}
+                    />
+                }
+            </div>
         </div>
     );
 };

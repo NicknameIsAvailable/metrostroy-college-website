@@ -3,19 +3,20 @@
   top: 0;
   right: 0;
   width: 50em;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   background: #1f1f1f;
   transition-duration: 0.3s;
 }
-.BurgerMenu .header {
-  margin: 32px;
-  align-items: center;
-  height: 64px;
-  display: flex;
+.BurgerMenu .visible1600 .visible1000 .visible720 {
+  display: none;
 }
-.BurgerMenu .header .back-button {
-  border-radius: 100%;
+.BurgerMenu .back-button {
+  position: absolute;
+  margin-left: 16px;
+  margin-top: 16px;
+  border-radius: 16px;
+  padding: 8px;
   border: none;
   display: flex;
   align-items: center;
@@ -25,14 +26,14 @@
   cursor: pointer;
   transition-duration: 0.3s;
 }
-.BurgerMenu .header .back-button:hover {
+.BurgerMenu .back-button:hover {
   background: rgba(255, 255, 255, 0.1);
 }
-.BurgerMenu .header .back-button:active {
+.BurgerMenu .back-button:active {
   transition-duration: 0.2s;
   background: rgba(255, 255, 255, 0.3);
 }
-.BurgerMenu .header .back-button .back-button__icon {
+.BurgerMenu .back-button .back-button__icon {
   margin-left: auto;
   margin-right: auto;
 }
@@ -41,6 +42,9 @@
 }
 .BurgerMenu .links {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   width: 100%;
   font-size: 32px;
   gap: 64px;
@@ -49,6 +53,15 @@
 }
 .BurgerMenu .links .Link {
   color: white;
+  padding: 4px;
+  transition-duration: 0.3s;
+  border-radius: 8px;
+}
+.BurgerMenu .links .Link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.BurgerMenu .links .Link:active {
+  background: rgba(255, 255, 255, 0.3);
 }
 .BurgerMenu .hideable {
   display: none;
@@ -63,10 +76,6 @@
     display: block;
   }
 }
-.visible1600 .visible1000 .visible720 {
-  display: none;
-}
-
 @media screen and (max-width: 1600px) {
   .visible1600 {
     display: block;

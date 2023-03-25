@@ -8,7 +8,6 @@ const Footer = () => {
 
     return (
         <footer>
-            <div className="container">
                 <div>
                     <FullLogoWhite/>
                     <h3>
@@ -41,7 +40,6 @@ const Footer = () => {
                     </p>
                 </div>
                 <div>
-                    <h3>Ссылки</h3>
                     <p>
                         <a href="http://school-collection.edu.ru/" target="_blank">
                             Единая коллекция цифровых образовательных ресурсов
@@ -78,7 +76,6 @@ const Footer = () => {
                         </a>
                     </p>
                 </div>
-            </div>
         </footer>
     );
 };
