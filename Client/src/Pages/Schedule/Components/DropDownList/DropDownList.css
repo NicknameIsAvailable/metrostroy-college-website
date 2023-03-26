@@ -4,7 +4,6 @@
   flex-direction: column;
   border: 3px #1f1f1f solid;
   background: white;
-  width: 100%;
   border-radius: 1em;
   transition-duration: 0.3s;
 }
@@ -16,14 +15,24 @@
   text-overflow: ellipsis;
 }
 .DropDownList .variants-list {
+  margin-top: 64px;
+  position: absolute;
   border-radius: 1em;
   background: white;
-  width: 100%;
   transition-duration: 0.3s;
+  animation: 0.3s variantsShow ease;
+}
+@keyframes variantsShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .DropDownList .variant {
   border-radius: 1em;
-  padding: 16px;
+  padding: 12px 24px;
   background: white;
   transition-duration: 0.3s;
   text-overflow: fade;

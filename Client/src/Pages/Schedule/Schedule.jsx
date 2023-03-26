@@ -1,21 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useTransition} from 'react';
 import "./Schedule.css";
 import axios from "../../axios";
 import GroupsList from "./Components/GroupsList/GroupsList";
 import Loader from "../../Components/Loader/Loader";
 import Search from "./Components/Search/Search";
+import login from "../Login/Login";
 
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
     const updatedSchedule = props.upsatedSchedule;
     const setScheduleForAdmin = props.setScheduleForAdmin;
 
-    const [schedule, setSchedule] = useState([])
+    const [schedule, setSchedule] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const [inputs, setInputs] = useState("");
     const [radioInputs, setRadioInputs] = useState("Group");
     const [locationInputs, setLocationInputs] = useState(1);
+
+    const [teacherSearching, setTeacherSearching] = useState(false);
 
     const search = async (inputs, radio, location) => {
         const requestOptions = {
@@ -24,6 +27,7 @@ const Schedule = (props) => {
             valueLocation: location
         };
 
+        setIsLoading(true);
         try {
             await axios.post('/schedule.php',
                 requestOptions
@@ -31,12 +35,9 @@ const Schedule = (props) => {
                 .then(response => {
                     if(response.data !== "Запрос не получил ни одного результата!") {
                         setSchedule(response.data);
-                        setScheduleForAdmin(response.data);
                         setIsLoading(false);
-                        setInputs(inputs);
-                        setRadioInputs(radio);
-                        setLocationInputs(location);
-                        setIsLoading(false);
+                    } else {
+                        search("", "", 1);
                     }
                 })
         }
@@ -49,13 +50,14 @@ const Schedule = (props) => {
         groupNumber: obj.groupnumber,
         time: obj.time,
         weekDay: obj.weekday,
-        subjectFirst: obj.subjectFirst,
-        teacherFirst: obj.teacherFirst,
-        auditoryFirst: obj.auditoryFirst,
-        subjectSecond: obj.subjectSecond,
-        teacherSecond: obj.teacherSecond,
-        auditorySecond: obj.auditorySecond,
-        locationName: obj.locationName
+        subjectFirst: obj.subjectfirst,
+        teacherFirst: obj.teacherfirst,
+        auditoryFirst: obj.auditoryfirst,
+        subjectSecond: obj.subjectsecond,
+        teacherSecond: obj.teachersecond,
+        auditorySecond: obj.auditorysecond,
+        locationName: obj.locationname,
+        searchingTeacher: false
     }));
 
     const groups = arraySchedule.map(obj => obj.groupNumber).reduce((a,b) => {
@@ -70,10 +72,6 @@ const Schedule = (props) => {
         "Четверг",
         "Пятница"
     ]
-
-    const changeRadioInputs = (event) => {
-        setRadioInputs(event.target.value);
-    }
 
     const lesson = props.lesson;
 
@@ -100,8 +98,9 @@ const Schedule = (props) => {
                     setRadioInputs={setRadioInputs}
                     setLocationInputs={setLocationInputs}
                     locationInputs={locationInputs}
+                    arraySchedule={arraySchedule}
+                    setTeacherSearching={setTeacherSearching}
                     search={search}
-                    changeRadioInputs={changeRadioInputs}
                 />
                 <Loader loading={isLoading}/>
                 {isLoading ?
@@ -110,7 +109,9 @@ const Schedule = (props) => {
                     <GroupsList
                         groups={groups}
                         weekdays={weekdays}
+                        inputs={inputs}
                         arraySchedule={arraySchedule}
+                        teacherSearching={teacherSearching}
                         isAdmin={isAdmin}
                         lesson={lesson}
                     />

@@ -1,15 +1,19 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header('Content-Type: application/json');
 header('Content-Type: text/html; utf-8');
+
+//TODO: Добавить заголовки
+//TODO: Указать точный путь к файлам
 
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
     exit;
 }
-//require_once(index_base);
-//Разобраться с внутренним подключением
 
-//передать из json react file csv
+file_put_contents(__DIR__."interval.txt", file_get_contents("php://input"));
 
-$file_csv = @fopen('/Users/artemdavydov/PHPStormProject/ind1.csv', 'r') or exit('Dont open');
+$file_csv = @fopen(__DIR__."interval.txt", 'r') or exit('Dont open');
 
 $mainArrayMonday = array();
 $mainArrayTuesday = array();

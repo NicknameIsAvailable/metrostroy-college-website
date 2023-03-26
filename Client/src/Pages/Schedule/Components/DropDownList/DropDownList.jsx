@@ -17,6 +17,11 @@ const DropDownList = (props) => {
         "УЛ. УЧИТЕЛЬСКАЯ, Д. 3"
     ];
 
+    const variantsStyles = {
+        opacity: 0,
+        marginTop: "32px"
+    }
+
     const [chosenVariant, setChosenVariant] = useState();
 
     return (
@@ -30,8 +35,10 @@ const DropDownList = (props) => {
             <ul className="variants-list" style={
                 modalOpen ? {
                     display: "block",
+                    variantsStyles
                 } : {
                     display: "none",
+                    variantsStyles
                 }}>
                 {addresses.map((variant, index) =>
                     <ol className="variant" onClick={async () => {

@@ -5,7 +5,9 @@ import "./GroupsList.css";
 const GroupsList = (props) => {
     const groups = props.groups;
     const weekdays = props.weekdays;
+    const teacherSearching = props.teacherSearching;
     const arraySchedule = props.arraySchedule;
+    const inputs = props.inputs;
     const isAdmin = props.isAdmin;
     const lesson = props.lesson;
 
@@ -25,7 +27,14 @@ const GroupsList = (props) => {
                                     </tr>
                                     {arraySchedule.filter(item => item.weekDay === weekdays[wIndex]
                                         && item.groupNumber === groups[gIndex]).map((obj, index) =>
-                                        <Cell obj={obj} index={index} isAdmin={isAdmin} lesson={lesson}/>
+                                        <Cell
+                                            obj={obj}
+                                            inputs={inputs}
+                                            teacherSearching={teacherSearching}
+                                            index={index}
+                                            isAdmin={isAdmin}
+                                            lesson={lesson}
+                                        />
                                     )}
                                 </td>
                             )}

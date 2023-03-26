@@ -26,15 +26,18 @@ if (isset($rest_json['valueSearch'], $rest_json['valueRadioButton'])) {
 
 }
 
-$sqlSchedule = "SELECT p.PlaceName as auditory, w.WeekDayName as weekDay, g.GroupName as groupNumber, sub.SubjectName as subject, t.second_name as secondname, l.LessonTime as time, la.locationname as locationName
+$sqlSchedule = "SELECT g.GroupName as groupNumber, p1.PlaceName as auditoryFirst, p2.PlaceName as auditorySecond, w.WeekDayName as weekDay, sub1.SubjectName as subjectFirst, sub2.SubjectName as subjectSecond, t1.second_name as teacherFirst, t2.second_name as teacherSecond, l.LessonTime as time, la.locationname as locationName
 FROM schedule s
-    INNER JOIN place p ON s.PlaceID = p.ID
     INNER JOIN groups g ON s.GroupID = g.ID
-    INNER JOIN subjects sub ON s.SubjectID = sub.ID
-    INNER JOIN teachers t ON s.TeacherID = t.ID
+    INNER JOIN lesson l ON s.TimeID = l.ID
     INNER JOIN weekday w ON s.WeekdayID = w.ID
-    INNER JOIN lesson l ON s.LessonID = l.ID
-    INNER JOIN locationadress la ON s.locationadressid = la.ID
+    INNER JOIN subjects sub1 ON s.SubjectFirstID = sub1.ID
+    INNER JOIN subjects sub2 ON s.SubjectSecondID = sub2.ID
+    INNER JOIN teachers t1 ON s.TeacherFirstID = t1.ID
+    INNER JOIN place p1 ON s.auditoryFirstID = p1.ID
+    INNER JOIN teachers t2 ON s.TeacherSecondID = t2.ID
+    INNER JOIN place p2 ON s.auditorySecondID = p2.ID
+    INNER JOIN locationadress la ON s.locationNameId = la.ID
     ";
 
 //TODO: добавить where
@@ -50,7 +53,7 @@ switch($varValueRadioButton){
     }
     case 'Teacher' :
     {
-        $sqlSchedule .= "WHERE t.second_name = '$varValueSearch'";
+        $sqlSchedule .= "WHERE t1.second_name = '$varValueSearch' OR t2.second_name = '$varValueSearch'";
         break;
     }
 }

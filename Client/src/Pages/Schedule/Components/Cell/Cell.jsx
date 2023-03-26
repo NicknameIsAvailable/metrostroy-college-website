@@ -4,6 +4,8 @@ import "./Cell.css"
 const Cell = (props) => {
     const [obj, setObj] = useState(props.obj);
     const index = props.index;
+    const teacherSearching = props.teacherSearching;
+    const inputs = props.inputs;
     const isAdmin = props.isAdmin;
     const lesson = props.lesson
 
@@ -19,6 +21,10 @@ const Cell = (props) => {
                         lesson.locationName = obj.locationName;
                     }
                 }}
+                style={obj.teacherFirst === inputs && teacherSearching ?
+                    {background: "#3D99A8", color: "white"}
+                    :
+                    {background: "white", color: "#1f1f1f"}}
             >
                 <div className="main-info">
                     <abbr title="Номер урока">
@@ -46,6 +52,7 @@ const Cell = (props) => {
 
                 {isAdmin ?
                 <div className="extra-info">
+                    <p>{obj.searchingTeacher}</p>
                         <input
                             className="teacher no-outline"
                             type="text"
