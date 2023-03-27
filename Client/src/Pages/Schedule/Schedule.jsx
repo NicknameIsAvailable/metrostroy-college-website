@@ -1,15 +1,13 @@
-import React, {useEffect, useState, useTransition} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Schedule.css";
 import axios from "../../axios";
 import GroupsList from "./Components/GroupsList/GroupsList";
 import Loader from "../../Components/Loader/Loader";
 import Search from "./Components/Search/Search";
-import login from "../Login/Login";
 
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
-    const updatedSchedule = props.upsatedSchedule;
-    const setScheduleForAdmin = props.setScheduleForAdmin;
+    const updatedSchedule = props.updatedSchedule;
 
     const [schedule, setSchedule] = useState([]);
     const [isLoading, setIsLoading] = useState(true);

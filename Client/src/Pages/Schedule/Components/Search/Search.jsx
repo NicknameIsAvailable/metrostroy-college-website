@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import "./Search.css"
 import DropDownList from "../DropDownList/DropDownList";
 import {ReactComponent as SearchIcon} from "../../../../Icons/SearchIconWhite.svg";
-import {ReactComponent as Burger} from "../../../../Icons/Burger.svg";
-import {ReactComponent as CloseIcon} from "../../../../Icons/CloseIconBlack.svg";
 import AutoComplete from "../../../../Components/AutoComplete/AutoComplete";
 
 const Search = (props) => {
@@ -22,10 +20,16 @@ const Search = (props) => {
     const filteredSchedule = [
         ...arraySchedule.map(item => item.groupNumber),
         ...arraySchedule.map(item => item.teacherFirst),
-        ...arraySchedule.map(item => item.teacherSecond)
+        ...arraySchedule.map(item => item.teacherSecond),
+        ...arraySchedule.map(item => item.subjectFirst),
+        ...arraySchedule.map(item => item.subjectSecond),
     ].filter(item => {
         return item.toLowerCase().includes(inputs.toLowerCase());
-    })
+    });
+
+    console.log(
+        arraySchedule
+    )
 
     if (Number(inputs)) {
         setRadioInputs("Group");
@@ -45,7 +49,6 @@ const Search = (props) => {
             }}>
                     <input placeholder="поиск" className="search no-outline" type="text" value={inputs} onChange={e => {
                         setInputs(e.target.value);
-                        console.log(Number(inputs))
                         if (radioInputs === '') {
                             setRadioInputs("Group")
                         }
@@ -64,6 +67,7 @@ const Search = (props) => {
                     search={search}
                     inputs={inputs}
                     radioInputs={radioInputs}
+                    arraySchedule={arraySchedule}
                     modalOpen={modalOpen}
                     setModalOpen={setModalOpen}
                     locationInputs={locationInputs}

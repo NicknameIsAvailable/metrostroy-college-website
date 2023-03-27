@@ -36,7 +36,7 @@ const ScheduleEdit = () => {
                 </div>
                 <div className="schedule">
                     <Schedule
-                        upsatedSchedule={updatedSchedule}
+                        updatedSchedule={updatedSchedule}
                         setScheduleForAdmin={setScheduleForAdmin}
                         setChangedValues={setChangedValues}
                         isAdmin={isAdmin}
