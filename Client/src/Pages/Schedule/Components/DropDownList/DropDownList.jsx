@@ -7,15 +7,14 @@ const DropDownList = (props) => {
     const inputs = props.inputs;
     const radioInputs = props.radioInputs;
     const locationInputs = props.locationInputs;
+    const arraySchedule = props.arraySchedule;
     const modalOpen = props.modalOpen;
     const setModalOpen = props.setModalOpen;
 
-    const addresses = [
-        "УЛ. ДЕМЬЯНА БЕДНОГО Д. 21",
-        "ПРИДОРОЖНАЯ АЛЛЕЯ, Д. 7",
-        "ИРИНОВСКИЙ ПР. Д. 29",
-        "УЛ. УЧИТЕЛЬСКАЯ, Д. 3"
-    ];
+    const addresses = arraySchedule.map(obj => obj.locationName).reduce((a,b) => {
+        if (a.indexOf(b) < 0 ) a.push(b);
+        return a;
+    }, []);
 
     const variantsStyles = {
         opacity: 0,
