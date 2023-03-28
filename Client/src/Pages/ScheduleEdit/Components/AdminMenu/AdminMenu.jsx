@@ -9,6 +9,18 @@ import {Link} from "react-router-dom";
 
 const AdminMenu = (props) => {
 
+    const searchingSubjectFirst = props.searchingSubjectFirst;
+    const setSearchingSubjectFirst = props.setSearchingSubjectFirst;
+    const searchingTeacherFirst = props.searchingTeacherFirst;
+    const setSearchingTeacherFirst = props.setSearchingTeacherFirst;
+    const searchingTeacherSecond = props.searchingTeacherSecond;
+    const setSearchingTeacherSecond = props.setSearchingTeacherSecond;
+    const searchingAuditoryFirst = props.searchingAuditoryFirst;
+    const setSearchingAuditoryFirst = props.setSearchingAuditoryFirst;
+    const searchingAuditorySecond = props.searchingAuditorySecond;
+    const setSearchingAuditorySecond = props.setSearchingAuditorySecond;
+    const arraySchedule = props.arraySchedule;
+
     const [drag, setDrag] = useState(false);
     const [uploaderShow, setUploaderShow] = useState(false);
     const [lessonAdding, setLessonAdding] = useState(false);
@@ -25,11 +37,11 @@ const AdminMenu = (props) => {
         setDrag(false);
     };
 
-    const [subjectFirst, setSubjectFirst] = useState();
-    const [teacherFirst, setTeacherFirst] = useState();
-    const [teacherSecond, setTeacherSecond] = useState();
-    const [auditoryFirst, setAuditoryFirst] = useState();
-    const [auditorySecond, setAuditorySecond] = useState();
+    const [subjectFirst, setSubjectFirst] = useState("");
+    const [teacherFirst, setTeacherFirst] = useState("");
+    const [teacherSecond, setTeacherSecond] = useState("");
+    const [auditoryFirst, setAuditoryFirst] = useState("");
+    const [auditorySecond, setAuditorySecond] = useState("");
 
     const lesson = {
         groupNumber: "",
@@ -43,12 +55,6 @@ const AdminMenu = (props) => {
         auditorySecond: auditorySecond,
         locationName: ""
     };
-
-    const [searchingSubjectFirst, setSearchingSubjectFirst] = useState();
-    const [searchingTeacherFirst, setSearchingTeacherFirst] = useState();
-    const [searchingTeacherSecond, setSearchingTeacherSecond] = useState();
-    const [searchingAuditoryFirst, setSearchingAuditoryFirst] = useState();
-    const [searchingAuditorySecond, setSearchingAuditorySecond] = useState();
 
     const updatedLesson = [
         {
@@ -85,6 +91,17 @@ const AdminMenu = (props) => {
                 saveNotation={saveNotation}
                 content="Расписание сохранено"/>
         )
+    }
+
+    const changeWhere = () => {
+        console.log(arraySchedule.filter(
+            item =>
+                item.subjectfirst === searchingSubjectFirst
+            || item.auditoryfirst === searchingAuditoryFirst
+            || item.auditorysecond === searchingAuditorySecond
+            || item.teacherfirst === searchingTeacherFirst
+            || item.teachersecond === searchingTeacherSecond
+        ));
     }
 
     return (
@@ -168,6 +185,7 @@ const AdminMenu = (props) => {
                     type="text"
                     className="underlined-input no-outline"
                     placeholder="Название дисциплины"
+                    onChange={e => setSearchingSubjectFirst(e.target.value)}
                 />
             </div>
 
@@ -177,6 +195,7 @@ const AdminMenu = (props) => {
                     type="text"
                     className="underlined-input no-outline"
                     placeholder="ФИО преподавателя (инициалы)"
+                    onChange={e => setSearchingTeacherFirst(e.target.value)}
                 />
             </div>
 
@@ -186,6 +205,7 @@ const AdminMenu = (props) => {
                     type="text"
                     className="underlined-input no-outline"
                     placeholder="ФИО преподавателя (инициалы)"
+                    onChange={e => setSearchingTeacherSecond(e.target.value)}
                 />
             </div>
 
@@ -195,6 +215,7 @@ const AdminMenu = (props) => {
                     type="text"
                     className="underlined-input no-outline"
                     placeholder="Номер аудитории"
+                    onChange={e => setSearchingAuditoryFirst(e.target.value)}
                 />
             </div>
 
@@ -204,6 +225,7 @@ const AdminMenu = (props) => {
                     type="text"
                     className="underlined-input no-outline"
                     placeholder="Номер аудитории"
+                    onChange={e => setSearchingAuditorySecond(e.target.value)}
                 />
             </div>
 
@@ -212,7 +234,7 @@ const AdminMenu = (props) => {
                 Только для этой группы
             </label>
 
-            <button className="outlined-button">
+            <button className="outlined-button" onClick={changeWhere}>
                 Заменить
             </button>
 
@@ -235,7 +257,9 @@ const AdminMenu = (props) => {
                     ""
                 }
 
-                <button className="outlined-button">
+                <button
+                    className="outlined-button"
+                    onClick={saveSchedule}>
                     Сохранить
                 </button>
             </div>

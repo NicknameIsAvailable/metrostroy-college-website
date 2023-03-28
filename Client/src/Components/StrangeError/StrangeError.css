@@ -1,0 +1,10 @@
+.strange-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 0.3s;
+  gap: 12px;
+}
+
+/*# sourceMappingURL=StrangeError.css.map */

@@ -9,6 +9,7 @@ import ScheduleEdit from "./Pages/ScheduleEdit/ScheduleEdit";
 import AdminPanel from "./Pages/AdminPanel/AdminPanel";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import ScheduleEditTutorial from "./Pages/ScheduleEditTutorial/ScheduleEditTutorial";
+import StrangeError from "./Components/StrangeError/StrangeError";
 
 function ScoreSheet() {
     return null;
@@ -23,6 +24,7 @@ function App() {
             <Route path="/score-sheet" element={<ScoreSheet/>}/>
             <Route path="/admin" element={<AdminPanel/>}/>
             <Route path="*" element={<ErrorPage/>}/>
+            <Route path="/strange-error" element={<StrangeError/>}/>
             <Route path="/schedule-edit/tutorial" element={<ScheduleEditTutorial/>}/>
             <Route path="/schedule-edit" element={<ScheduleEdit/>}/>
             <Route path="/profile" element={<Profile/>}/>

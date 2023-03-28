@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import "./Search.css"
 import DropDownList from "../DropDownList/DropDownList";
 import {ReactComponent as SearchIcon} from "../../../../Icons/SearchIconWhite.svg";
-import {ReactComponent as Burger} from "../../../../Icons/Burger.svg";
-import {ReactComponent as CloseIcon} from "../../../../Icons/CloseIconBlack.svg";
 import AutoComplete from "../../../../Components/AutoComplete/AutoComplete";
 
 const Search = (props) => {
@@ -25,7 +23,7 @@ const Search = (props) => {
         ...arraySchedule.map(item => item.teacherSecond)
     ].filter(item => {
         return item.toLowerCase().includes(inputs.toLowerCase());
-    })
+    });
 
     if (Number(inputs)) {
         setRadioInputs("Group");

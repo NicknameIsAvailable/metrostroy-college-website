@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "./AutoComplete.css";
-import login from "../../Pages/Login/Login";
 
 const AutoComplete = (props) => {
 
-    const input = props.input;
     const setInput = props.setInput;
     const array = props.array;
     const value = props.value;
@@ -22,7 +20,6 @@ const AutoComplete = (props) => {
                     className="auto-complete__item"
                     onClick={() => {
                         setInput(item)
-                        console.log(input)
                     }}
                 >
                     {item}
