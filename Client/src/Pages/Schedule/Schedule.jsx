@@ -7,7 +7,7 @@ import Search from "./Components/Search/Search";
 
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
-    const updatedSchedule = props.upsatedSchedule;
+    const updatedSchedule = props.updatedSchedule;
 
     const [schedule, setSchedule] = useState([]);
     const [isLoading, setIsLoading] = useState(true);

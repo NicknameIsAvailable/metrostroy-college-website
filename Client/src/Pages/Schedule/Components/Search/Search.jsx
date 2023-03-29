@@ -61,6 +61,7 @@ const Search = (props) => {
                     className="button"
                     search={search}
                     inputs={inputs}
+                    arraySchedule={arraySchedule}
                     radioInputs={radioInputs}
                     modalOpen={modalOpen}
                     setModalOpen={setModalOpen}

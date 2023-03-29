@@ -1,9 +1,10 @@
 import "./ScheduleEdit.css";
 import AdminMenu from "./Components/AdminMenu/AdminMenu";
-import React, {useState} from "react";
-import Schedule from "../Schedule/Schedule";
+import React, {useEffect, useState} from "react";
 import {Navigate} from "react-router-dom";
 import axios from "../../axios";
+import AdminSchedule from "./Components/AdminSchedule";
+import Loader from "../../Components/Loader/Loader";
 
 const ScheduleEdit = () => {
 
@@ -39,20 +40,11 @@ const ScheduleEdit = () => {
         }
     };
 
-    const arraySchedule = schedule.map(obj => ({
-        groupNumber: obj.groupnumber,
-        time: obj.time,
-        weekDay: obj.weekday,
-        subjectFirst: obj.subjectfirst,
-        teacherFirst: obj.teacherfirst,
-        auditoryFirst: obj.auditoryfirst,
-        subjectSecond: obj.subjectsecond,
-        teacherSecond: obj.teachersecond,
-        auditorySecond: obj.auditorysecond,
-        locationName: obj.locationname,
-        searchingTeacher: false
-    }));
+    const [arraySchedule, setArraySchedule] = useState();
 
+    const updateSchedule = (obj) => {
+
+    }
 
     const updateLesson = (value) => {
         setLesson(value)
@@ -72,12 +64,37 @@ const ScheduleEdit = () => {
 
     }
 
+    useEffect(() => {
+        search("", "", 1);
+    }, []);
+
+    useEffect(() => {
+        setArraySchedule(schedule.map(obj => ({
+            groupNumber: obj.groupnumber,
+            time: obj.time,
+            weekDay: obj.weekday,
+            subjectFirst: obj.subjectfirst,
+            teacherFirst: obj.teacherfirst,
+            auditoryFirst: obj.auditoryfirst,
+            subjectSecond: obj.subjectsecond,
+            teacherSecond: obj.teachersecond,
+            auditorySecond: obj.auditorysecond,
+            locationName: obj.locationname,
+            searchingTeacher: false
+        })));
+
+        console.log(12324, arraySchedule)
+    }, [])
+
     if (isAdmin) {
         return (
             <div className="ScheduleEdit">
                 <div className="admin-menu">
                     <AdminMenu
                         setUpdatedSchedule={setUpdatedSchedule}
+                        updatedSchedule={updatedSchedule}
+                        updateSchedule={updateSchedule}
+                        setArraySchedule={setArraySchedule}
                         searchingSubjectFirst={searchingSubjectFirst}
                         setSearchingSubjectFirst={setSearchingSubjectFirst}
                         searchingTeacherFirst={searchingTeacherFirst}
@@ -94,13 +111,14 @@ const ScheduleEdit = () => {
                     />
                 </div>
                 <div className="schedule">
-                    <Schedule
-                        upsatedSchedule={updatedSchedule}
-                        arraySchedule={arraySchedule}
-                        setChangedValues={setChangedValues}
-                        isAdmin={isAdmin}
-                        lesson={lesson}
-                    />
+                {/*<AdminSchedule*/}
+                {/*    updatedSchedule={updatedSchedule}*/}
+                {/*    arraySchedule={arraySchedule}*/}
+                {/*    setChangedValues={setChangedValues}*/}
+                {/*    isLoading={isLoading}*/}
+                {/*    isAdmin={isAdmin}*/}
+                {/*    lesson={lesson}*/}
+                {/*/>*/}
                 </div>
             </div>
         );

@@ -10,6 +10,7 @@ import {Link} from "react-router-dom";
 const AdminMenu = (props) => {
 
     const searchingSubjectFirst = props.searchingSubjectFirst;
+    const updatedSchedule = props.updatedSchedule;
     const setSearchingSubjectFirst = props.setSearchingSubjectFirst;
     const searchingTeacherFirst = props.searchingTeacherFirst;
     const setSearchingTeacherFirst = props.setSearchingTeacherFirst;
@@ -19,6 +20,7 @@ const AdminMenu = (props) => {
     const setSearchingAuditoryFirst = props.setSearchingAuditoryFirst;
     const searchingAuditorySecond = props.searchingAuditorySecond;
     const setSearchingAuditorySecond = props.setSearchingAuditorySecond;
+    const setArraySchedule = props.setArraySchedule;
     const arraySchedule = props.arraySchedule;
 
     const [drag, setDrag] = useState(false);
@@ -74,8 +76,23 @@ const AdminMenu = (props) => {
         const formData = new FormData();
         formData.append('file', files[0]);
         axios.post('/newCsvFile.php', files[0]).then(response => {
-            setUpdatedSchedule(response.data)
-            console.log(response.data)
+            let data = response.data;
+            setArraySchedule(
+                [...data[0], ...data[1], ...data[3], ...data[4]].map(
+                    obj => ({
+                        groupNumber: obj.groupNumber,
+                        time: obj.time,
+                        weekDay: obj.weekday,
+                        subjectFirst: obj.subjectFirst,
+                        teacherFirst: obj.teacherFirst,
+                        auditoryFirst: obj.auditoryFirst,
+                        subjectSecond: obj.subjectSecond,
+                        teacherSecond: obj.teacherSecond,
+                        auditorySecond: obj.auditorySecond,
+                        locationName: obj.locationName,
+                        searchingTeacher: false
+                    })));
+            console.log(arraySchedule)
         })
     }
 
@@ -263,13 +280,6 @@ const AdminMenu = (props) => {
                     Сохранить
                 </button>
             </div>
-
-            {/*<button*/}
-            {/*    className="outlined-button"*/}
-            {/*    onClick={saveSchedule}*/}
-            {/*>*/}
-            {/*    Сохранить*/}
-            {/*</button>*/}
         </div>
     );
 };
