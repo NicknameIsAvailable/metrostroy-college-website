@@ -9,8 +9,10 @@ import {Link} from "react-router-dom";
 
 const AdminMenu = (props) => {
 
+    const uploaderShow = props.uploaderShow;
+    const setUploaderShow = props.setUploaderShow;
     const searchingSubjectFirst = props.searchingSubjectFirst;
-    const updatedSchedule = props.updatedSchedule;
+    const updateSchedule = props.updateSchedule;
     const setSearchingSubjectFirst = props.setSearchingSubjectFirst;
     const searchingTeacherFirst = props.searchingTeacherFirst;
     const setSearchingTeacherFirst = props.setSearchingTeacherFirst;
@@ -23,21 +25,9 @@ const AdminMenu = (props) => {
     const setArraySchedule = props.setArraySchedule;
     const arraySchedule = props.arraySchedule;
 
-    const [drag, setDrag] = useState(false);
-    const [uploaderShow, setUploaderShow] = useState(false);
     const [lessonAdding, setLessonAdding] = useState(false);
 
     const setUpdatedSchedule = props.setUpdatedSchedule;
-
-    const dragStartHandler = (e) => {
-        e.preventDefault();
-        setDrag(true);
-    };
-
-    const dragLeaveHandler = (e) => {
-        e.preventDefault();
-        setDrag(false);
-    };
 
     const [subjectFirst, setSubjectFirst] = useState("");
     const [teacherFirst, setTeacherFirst] = useState("");
@@ -70,32 +60,6 @@ const AdminMenu = (props) => {
         props.updateLesson(lesson);
     }
 
-    const onDropHandler = (e) => {
-        e.preventDefault();
-        let files = [...e.dataTransfer.files];
-        const formData = new FormData();
-        formData.append('file', files[0]);
-        axios.post('/newCsvFile.php', files[0]).then(response => {
-            let data = response.data;
-            setArraySchedule(
-                [...data[0], ...data[1], ...data[3], ...data[4]].map(
-                    obj => ({
-                        groupNumber: obj.groupNumber,
-                        time: obj.time,
-                        weekDay: obj.weekday,
-                        subjectFirst: obj.subjectFirst,
-                        teacherFirst: obj.teacherFirst,
-                        auditoryFirst: obj.auditoryFirst,
-                        subjectSecond: obj.subjectSecond,
-                        teacherSecond: obj.teacherSecond,
-                        auditorySecond: obj.auditorySecond,
-                        locationName: obj.locationName,
-                        searchingTeacher: false
-                    })));
-            console.log(arraySchedule)
-        })
-    }
-
     const [saveNotation, setSaveNotation] = useState(false);
 
     const saveSchedule = () => {
@@ -124,18 +88,6 @@ const AdminMenu = (props) => {
     return (
         <div
             className="AdminMenu"
-            onDragStart = {() => {
-                setDrag(true);
-                setUploaderShow(true)
-            }}
-            onDragLeave = {() => {
-                setDrag(false);
-                setUploaderShow(false);
-            }}
-            onDragOver =  {() => {
-                setDrag(true);
-                setUploaderShow(true)
-            }}
         >
             <div className="admin-menu__header">
                 <h2>Редактор расписания</h2>
@@ -254,16 +206,6 @@ const AdminMenu = (props) => {
             <button className="outlined-button" onClick={changeWhere}>
                 Заменить
             </button>
-
-            <UploaderModal
-                dragStartHandler={dragStartHandler}
-                dragLeaveHandler={dragLeaveHandler}
-                onDropHandler={onDropHandler}
-                setUploaderShow={setUploaderShow}
-                drag={drag}
-                uploaderShow={uploaderShow}
-            />
-
 
             <div className="admin-menu__buttons">
                 {!uploaderShow ?

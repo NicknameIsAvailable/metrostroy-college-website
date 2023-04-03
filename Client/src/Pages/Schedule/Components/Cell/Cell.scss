@@ -1,6 +1,6 @@
 .cell {
-  min-height: 5em;
   flex-direction: column;
+  min-height: 5em;
   min-width: 12vw;
   padding: 8px;
   display: flex;
@@ -55,7 +55,9 @@
   }
 
   .subject {
-    flex: 4;
+    display: flex;
+    height: 5em;
+    overflow-x: scroll;
   }
 
   .teacher {

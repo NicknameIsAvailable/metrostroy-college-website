@@ -6,6 +6,24 @@
   left: 0;
 }
 
+.schedule-block {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+
+  h3 {
+    text-align: center;
+    width: 360px;
+  }
+
+  button {
+    width: 360px;
+  }
+}
+
 .admin-menu {
   background: white;
   display: flex;

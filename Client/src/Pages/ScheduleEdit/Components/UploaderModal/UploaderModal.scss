@@ -16,6 +16,7 @@
 
 .uploader {
   display: flex;
+  min-width: 360px;
   width: 30vw;
   height: 30vh;
   flex-direction: column;
@@ -26,6 +27,23 @@
   background: rgba(255, 255, 255, 0.3);
   border-radius: 2em;
   transition-duration: 0.3s;
+
+  .icon {
+    padding: 8px;
+    background: none;
+    border: none;
+    margin-left: auto;
+    border-radius: 1em;
+    transition-duration: 0.3s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    &:active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
 }
 
 .upload-info__block {

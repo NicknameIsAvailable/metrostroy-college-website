@@ -7,7 +7,9 @@ const Cell = (props) => {
     const teacherSearching = props.teacherSearching;
     const inputs = props.inputs;
     const isAdmin = props.isAdmin;
-    const lesson = props.lesson
+    const lesson = props.lesson;
+
+    const [subjectShow, setSubjectShow] = useState(false);
 
     return (
         <tr>
@@ -29,132 +31,87 @@ const Cell = (props) => {
                 <div className="main-info">
                     <abbr title="Номер урока">
                         <h4>
-                            {index + 1}
+                            {
+                                obj.time.includes("9") ? 1
+                                : obj.time.includes("10") ? 2
+                                : obj.time.includes("11") ? 3
+                                : obj.time.includes("12") ? 4
+                                : obj.time.includes("13") ? 5
+                                : obj.time.includes("14") ? 6
+                                : obj.time.includes("15", "05", "50") ? 7
+                                : obj.time.includes("15", "55", "16", "40") ? 8
+                                : ""
+                            }
                         </h4>
                     </abbr>
 
                     <abbr title="Урок">
-                        {isAdmin ?
-                            <input
-                                className="subject no-outline"
-                                type="text"
-                                value={obj.subjectFirst}
-                            />
-                            :
-                            <h2
-                                className="subject"
-                            >
-                                {obj.subjectFirst}
-                            </h2>
-                        }
+                        <h2
+                            className="subject"
+                            onClick={() => setSubjectShow(!subjectShow)}
+                        >
+                            {
+                                subjectShow ? 
+                                obj.subjectFirst 
+                                : 
+                                <>
+                                    {obj.subjectFirst.includes("МДК") ? 
+                                        obj.subjectFirst.substr(0, 10)
+                                        : 
+                                        obj.subjectFirst.includes("Иностранный язык")
+                                        ?
+                                        "Ин. Яз."
+                                        :
+                                        obj.subjectFirst.includes("Физическая культура")
+                                        ?
+                                        "Физра"
+                                        :
+                                        obj.subjectFirst.includes("Основы безопасности жизнедеятельности")
+                                        ?
+                                        "ОБЖ"
+                                        :
+                                        obj.subjectFirst.length > 12
+                                        ?
+                                        obj.subjectFirst.substr(0, 12) + "..."
+                                        :
+                                        obj.subjectFirst
+                                    }
+                                </>
+                            }
+                        </h2>
                     </abbr>
                 </div>
 
-                {isAdmin ?
-                <div className="extra-info">
-                    <p>{obj.searchingTeacher}</p>
-                        <input
-                            className="teacher no-outline"
-                            type="text"
-                            value={obj.teacherFirst}
-                        />
-
-                        <input
-                            className="auditory no-outline"
-                            type="text"
-                            value={obj.auditoryFirst}
-                        />
-
-                        <input
-                            className="teacher no-outline"
-                            type="text"
-                            value={obj.teacherSecond}
-                        />
-                        <input
-                            className="auditory no-outline"
-                            type="text"
-                            value={obj.auditorySecond}
-                        />
-                </div>
-                    :
-                    obj.subjectSecond ?
+                {obj.subjectSecond ?
                         <div className="extra-info">
-                            {isAdmin ?
-                                <input
-                                    className="teacher no-outline"
-                                    type="text"
-                                    value={obj.teacherFirst}
-                                />
-                                :
-                                <p
-                                    className="teacher"
-                                >
-                                    {obj.teacherFirst}
-                                </p>
-                            }
-                            {isAdmin ?
-                                <input
-                                    className="auditory no-outline"
-                                    type="text"
-                                    value={obj.auditoryFirst}
-                                />
-                                :
-                                <p className="auditory">
-                                    {obj.auditoryFirst}
-                                </p>
-                            }
-
-                            {isAdmin ?
-                                <input
-                                    className="teacher no-outline"
-                                    type="text"
-                                    value={obj.teacherSecond}
-                                />
-                                :
-                                <p
-                                    className="teacher"
-                                >
-                                    {obj.teacherSecond}
-                                </p>
-                            }
-                            {isAdmin ?
-                                <input
-                                    className="auditory no-outline"
-                                    type="text"
-                                    value={obj.auditorySecond}
-                                />
-                                :
-                                <p className="auditory">
-                                    {obj.auditorySecond}
-                                </p>
-                            }
+                            <p
+                                className="teacher"
+                            >
+                                {obj.teacherFirst}
+                            </p>
+                            <p className="auditory">
+                                {obj.auditoryFirst}
+                            </p>
+                            <p
+                                className="teacher"
+                            >
+                                {obj.teacherSecond}
+                            </p>
+                            <p className="auditory">
+                                {obj.auditorySecond}
+                            </p>
                         </div>
                         :
                         <div className="extra-info">
-                            {isAdmin ?
-                                <input
-                                    className="teacher no-outline"
-                                    type="text"
-                                    value={obj.teacherFirst}
-                                />
-                                :
-                                <p
-                                    className="teacher"
-                                >
-                                    {obj.teacherFirst}
-                                </p>
-                            }
-                            {isAdmin ?
-                                <input
-                                    className="auditory no-outline"
-                                    type="text"
-                                    value={obj.auditoryFirst}
-                                />
-                                :
-                                <p className="auditory">
-                                    {obj.auditoryFirst}
-                                </p>
-                            }
+                            <p
+                                className="teacher"
+                            >
+                                {obj.teacherFirst}
+                            </p>
+                        
+                            <p className="auditory">
+                                {obj.auditoryFirst}
+                            </p>
                         </div>
                 }
             </div>

@@ -3,7 +3,8 @@ import AdminMenu from "./Components/AdminMenu/AdminMenu";
 import React, {useEffect, useState} from "react";
 import {Navigate} from "react-router-dom";
 import axios from "../../axios";
-import AdminSchedule from "./Components/AdminSchedule";
+import Schedule from "../Schedule/Schedule";
+import UploaderModal from "./Components/UploaderModal/UploaderModal";
 import Loader from "../../Components/Loader/Loader";
 
 const ScheduleEdit = () => {
@@ -14,6 +15,8 @@ const ScheduleEdit = () => {
 
     const [schedule, setSchedule] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const [arraySchedule, setArraySchedule] = useState();
 
     const search = async (inputs, radio, location) => {
         const requestOptions = {
@@ -28,7 +31,8 @@ const ScheduleEdit = () => {
             )
                 .then(response => {
                     if(response.data !== "Запрос не получил ни одного результата!") {
-                        setSchedule(response.data);
+                        const data = response.data;
+                        setSchedule(data);
                         setIsLoading(false);
                     } else {
                         search("", "", 1);
@@ -40,14 +44,27 @@ const ScheduleEdit = () => {
         }
     };
 
-    const [arraySchedule, setArraySchedule] = useState();
+    const updateSchedule = (e) => {
+        e.preventDefault();
+        let files = [...e.dataTransfer.files];
+        const formData = new FormData();
+        formData.append('file', files[0]);
 
-    const updateSchedule = (obj) => {
-
+        if (files[0].type !== "text/csv") 
+            alert("Неверный формат файла!")
+        else        
+        axios.post('/newCsvFile.php', files[0]).then(response => {
+            let data = response.data;        
+            console.log(32, data)
+            console.log(files[0])
+            setSchedule([...data[0], ...data[1], ...data[2], ...data[3], ...data[4]]);      
+            console.log(123, schedule) 
+            console.log(22, arraySchedule)             
+        })
     }
 
-    const updateLesson = (value) => {
-        setLesson(value)
+    const updateLesson = (e) => {
+
     }
 
     const changedValuesList = [];
@@ -64,33 +81,53 @@ const ScheduleEdit = () => {
 
     }
 
-    useEffect(() => {
-        search("", "", 1);
-    }, []);
+    const dragStartHandler = (e) => {
+        e.preventDefault();
+        setDrag(true);
+    };
 
-    useEffect(() => {
-        setArraySchedule(schedule.map(obj => ({
-            groupNumber: obj.groupnumber,
-            time: obj.time,
-            weekDay: obj.weekday,
-            subjectFirst: obj.subjectfirst,
-            teacherFirst: obj.teacherfirst,
-            auditoryFirst: obj.auditoryfirst,
-            subjectSecond: obj.subjectsecond,
-            teacherSecond: obj.teachersecond,
-            auditorySecond: obj.auditorysecond,
-            locationName: obj.locationname,
-            searchingTeacher: false
-        })));
+    const dragLeaveHandler = (e) => {
+        e.preventDefault();
+        setDrag(false);
+    };
 
-        console.log(12324, arraySchedule)
-    }, [])
+    const onDropHandler = (e) => {
+        updateSchedule(e);
+        console.log(e)
+    }
+
+    const [drag, setDrag] = useState(false);
+    const [uploaderShow, setUploaderShow] = useState(false);
 
     if (isAdmin) {
         return (
-            <div className="ScheduleEdit">
+            <div className="ScheduleEdit"
+                onDragStart = {() => {
+                    setDrag(true);
+                    setUploaderShow(true)
+                }}
+                onDragLeave = {() => {
+                    setDrag(false);
+                    setUploaderShow(false);
+                }}
+                onDragOver =  {() => {
+                    setDrag(true);
+                    setUploaderShow(true)
+                }}
+            >
+            <UploaderModal
+                dragStartHandler={dragStartHandler}
+                dragLeaveHandler={dragLeaveHandler}
+                onDropHandler={onDropHandler}
+                setUploaderShow={setUploaderShow}
+                drag={drag}
+                uploaderShow={uploaderShow}
+                update={updateSchedule}
+            />
                 <div className="admin-menu">
                     <AdminMenu
+                        uploaderShow={uploaderShow}
+                        setUploaderShow={setUploaderShow}
                         setUpdatedSchedule={setUpdatedSchedule}
                         updatedSchedule={updatedSchedule}
                         updateSchedule={updateSchedule}
@@ -111,14 +148,31 @@ const ScheduleEdit = () => {
                     />
                 </div>
                 <div className="schedule">
-                {/*<AdminSchedule*/}
-                {/*    updatedSchedule={updatedSchedule}*/}
-                {/*    arraySchedule={arraySchedule}*/}
-                {/*    setChangedValues={setChangedValues}*/}
-                {/*    isLoading={isLoading}*/}
-                {/*    isAdmin={isAdmin}*/}
-                {/*    lesson={lesson}*/}
-                {/*/>*/}
+
+                {
+                    schedule.length === 0 ?
+                    <div className="schedule-block">
+                    <h3>Загрузить .csv файл с новым расписанием или вывести старое расписание из базы данных</h3>
+                        <button 
+                            className="outlined-button"
+                            onClick={() => search("", "", 1)}
+                        >
+                            Вывести из базы данных
+                        </button>
+                        <button 
+                            className="outlined-button"
+                            onClick={() => setUploaderShow(true)}
+                        >
+                            Загрузить новое расписание
+                        </button>
+                    </div>
+                    :
+                    <Schedule
+                        schedule={schedule}
+                        search={search}
+                    />
+                 }
+                
                 </div>
             </div>
         );

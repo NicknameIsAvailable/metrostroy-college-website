@@ -7,10 +7,10 @@ import Search from "./Components/Search/Search";
 
 const Schedule = (props) => {
     const isAdmin = props.isAdmin;
+    const search = props.search;
+    const schedule = props.schedule;
+    const isLoading = props.isLoading;
     const updatedSchedule = props.updatedSchedule;
-
-    const [schedule, setSchedule] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
 
     const [inputs, setInputs] = useState("");
     const [radioInputs, setRadioInputs] = useState("Group");
@@ -18,44 +18,19 @@ const Schedule = (props) => {
 
     const [teacherSearching, setTeacherSearching] = useState(false);
 
-    const search = async (inputs, radio, location) => {
-        const requestOptions = {
-            valueSearch: inputs,
-            valueRadioButton: radio,
-            valueLocation: location
-        };
-
-        try {
-            await axios.post('/schedule.php',
-                requestOptions
-            )
-                .then(response => {
-                    if(response.data !== "Запрос не получил ни одного результата!") {
-                        setSchedule(response.data);
-                        setIsLoading(false);
-                    } else {
-                        search("", "", 1);
-                    }
-                })
-        }
-        catch (err) {
-            console.log(err);
-        }
-    };
-
     const arraySchedule = schedule.map(obj => ({
-        groupNumber: obj.groupnumber,
+        groupNumber: obj.groupnumber || obj.groupNumber,
         time: obj.time,
-        weekDay: obj.weekday,
-        subjectFirst: obj.subjectfirst,
-        teacherFirst: obj.teacherfirst,
-        auditoryFirst: obj.auditoryfirst,
-        subjectSecond: obj.subjectsecond,
-        teacherSecond: obj.teachersecond,
-        auditorySecond: obj.auditorysecond,
-        locationName: obj.locationname,
+        weekDay: obj.weekday || obj.weekDay,
+        subjectFirst: obj.subjectfirst || obj.subjectFirst,
+        teacherFirst: obj.teacherfirst || obj.teacherFirst,
+        auditoryFirst: obj.auditoryfirst || obj.auditoryFirst,
+        subjectSecond: obj.subjectsecond || obj.subjectSecond,
+        teacherSecond: obj.teachersecond || obj.teacherSecond,
+        auditorySecond: obj.auditorysecond || obj.auditorySecond,
+        locationName: obj.locationname || obj.locationName,
         searchingTeacher: false
-    }));
+    }))
 
     const groups = arraySchedule.map(obj => obj.groupNumber).reduce((a,b) => {
         if (a.indexOf(b) < 0 ) a.push(b);
@@ -72,19 +47,6 @@ const Schedule = (props) => {
 
     const lesson = props.lesson;
 
-    useEffect(() => {
-        search("", "", 1);
-    }, [])
-
-    if (updatedSchedule) {
-        try {
-            search("", "", 1)
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-
     return (
         <div className="container">
             <div className="Schedule">
@@ -96,6 +58,7 @@ const Schedule = (props) => {
                     setLocationInputs={setLocationInputs}
                     locationInputs={locationInputs}
                     arraySchedule={arraySchedule}
+                    schedule={schedule}
                     setTeacherSearching={setTeacherSearching}
                     search={search}
                 />

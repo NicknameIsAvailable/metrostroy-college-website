@@ -14,6 +14,7 @@ const GroupsList = (props) => {
     return (
         <div className="groups-list">
             {groups?.map((gObj, gIndex) =>
+            gObj ?
                 <div className="group-block">
                     <h2>
                         Группа {gObj}
@@ -41,6 +42,8 @@ const GroupsList = (props) => {
                         </td>
                     </table>
                 </div>
+                : 
+                ""
             )}
         </div>
     );

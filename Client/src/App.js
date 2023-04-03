@@ -1,6 +1,5 @@
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
-import Schedule from "./Pages/Schedule/Schedule";
 import {Route, Routes} from "react-router-dom";
 import React from "react";
 import Profile from "./Pages/Profile/Profile";
@@ -10,18 +9,15 @@ import AdminPanel from "./Pages/AdminPanel/AdminPanel";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import ScheduleEditTutorial from "./Pages/ScheduleEditTutorial/ScheduleEditTutorial";
 import StrangeError from "./Components/StrangeError/StrangeError";
-
-function ScoreSheet() {
-    return null;
-}
+import SchedulePage from "./Pages/Schedule/SchedulePage";
 
 function App() {
   return (
     <body>
         <Header/>
+
         <Routes>
-            <Route path="/" element={<Schedule/>}/>
-            <Route path="/score-sheet" element={<ScoreSheet/>}/>
+            <Route path="/" element={<SchedulePage/>}/>
             <Route path="/admin" element={<AdminPanel/>}/>
             <Route path="*" element={<ErrorPage/>}/>
             <Route path="/strange-error" element={<StrangeError/>}/>

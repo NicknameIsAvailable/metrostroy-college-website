@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {ReactComponent as UploadIcon} from "../../../../Icons/UploadIcon.svg";
 import {ReactComponent as CloseIconWhite} from "../../../../Icons/CloseIconWhite.svg";
 import "./UploaderModal.css";
@@ -10,6 +10,7 @@ const UploaderModal = (props) => {
     const setUploaderShow = props.setUploaderShow;
     const drag = props.drag;
     const uploaderShow = props.uploaderShow;
+    const update = props.update;
 
     return (
         <div
@@ -33,9 +34,9 @@ const UploaderModal = (props) => {
                 <div className="upload-info__block">
                     <UploadIcon className="upload-icon"/>
                     {!drag ?
-                        <h2>Перетащите файл Excel сюда</h2>
+                        <h2>Перетащите .csv файл сюда</h2>
                         :
-                        <h2>Отпустите файл Excel тут</h2>
+                        <h2>Отпустите .csv файл тут</h2>
                     }
                 </div>
             </div>

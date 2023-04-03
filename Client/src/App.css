@@ -118,6 +118,10 @@ Link {
   outline-offset: 0;
 }
 
+::-moz-selection {
+  background: #46aebe; /* Safari */
+}
+
 ::selection {
   background: #46aebe; /* Safari */
 }
@@ -143,6 +147,4 @@ abbr {
     margin-right: 5%;
     height: 100%;
   }
-}
-
-/*# sourceMappingURL=App.css.map */
+}/*# sourceMappingURL=App.css.map */
