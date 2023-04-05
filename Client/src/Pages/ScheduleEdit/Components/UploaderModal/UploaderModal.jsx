@@ -10,7 +10,6 @@ const UploaderModal = (props) => {
     const setUploaderShow = props.setUploaderShow;
     const drag = props.drag;
     const uploaderShow = props.uploaderShow;
-    const update = props.update;
 
     return (
         <div

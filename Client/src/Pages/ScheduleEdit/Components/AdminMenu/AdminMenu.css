@@ -9,6 +9,8 @@
   left: 0;
   padding: 12em 1em 1em 1em;
   margin: 1em;
+  border-radius: 1em;
+  border: #1f1f1f 3px solid;
 }
 .AdminMenu .admin-menu__buttons {
   display: flex;
@@ -97,4 +99,22 @@
 .AdminMenu .lesson button {
   padding: 16px 24px;
   margin-right: auto;
+}
+
+.close-button {
+  padding: 8px;
+  border-radius: 16px;
+  border: none;
+  display: flex;
+  align-items: center;
+  background: none;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.close-button:hover {
+  background: rgba(31, 31, 31, 0.1882352941);
+}
+.close-button:active {
+  transition-duration: 0.2s;
+  background: rgba(31, 31, 31, 0.062745098);
 }/*# sourceMappingURL=AdminMenu.css.map */

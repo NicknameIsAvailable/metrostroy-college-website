@@ -32,14 +32,14 @@ const Cell = (props) => {
                     <abbr title="Номер урока">
                         <h4>
                             {
-                                obj.time.includes("9") ? 1
-                                : obj.time.includes("10") ? 2
-                                : obj.time.includes("11") ? 3
-                                : obj.time.includes("12") ? 4
-                                : obj.time.includes("13") ? 5
-                                : obj.time.includes("14") ? 6
-                                : obj.time.includes("15", "05", "50") ? 7
-                                : obj.time.includes("15", "55", "16", "40") ? 8
+                                obj.time.includes("9:00") ? 1
+                                : obj.time.includes("10:00") ? 2
+                                : obj.time.includes("11:00") ? 3
+                                : obj.time.includes("12:00") ? 4
+                                : obj.time.includes("13:05") ? 5
+                                : obj.time.includes("14:10") ? 6
+                                : obj.time.includes("15:05") ? 7
+                                : obj.time.includes("15:55") ? 8
                                 : ""
                             }
                         </h4>

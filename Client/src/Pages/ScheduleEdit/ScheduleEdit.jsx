@@ -92,8 +92,9 @@ const ScheduleEdit = () => {
     };
 
     const onDropHandler = (e) => {
+        setSchedule([]);
         updateSchedule(e);
-        console.log(e)
+        setUploaderShow(false);
     }
 
     const [drag, setDrag] = useState(false);
@@ -145,6 +146,8 @@ const ScheduleEdit = () => {
                         arraySchedule={arraySchedule}
                         updateLesson={updateLesson}
                         isAdmin={isAdmin}
+                        setSchedule={setSchedule}
+                        search={search}
                     />
                 </div>
                 <div className="schedule">
@@ -157,7 +160,7 @@ const ScheduleEdit = () => {
                             className="outlined-button"
                             onClick={() => search("", "", 1)}
                         >
-                            Вывести из базы данных
+                            Вывести старое расписание из базы данных
                         </button>
                         <button 
                             className="outlined-button"
@@ -167,10 +170,18 @@ const ScheduleEdit = () => {
                         </button>
                     </div>
                     :
-                    <Schedule
-                        schedule={schedule}
-                        search={search}
-                    />
+                    <>
+                        <button 
+                            className="outlined-button"
+                            onClick={() => search("", "", 1)}
+                        >
+                            Вывести старое расписание из базы данных
+                        </button>
+                        <Schedule
+                            schedule={schedule}
+                            search={search}
+                        />
+                    </>
                  }
                 
                 </div>

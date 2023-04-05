@@ -18,6 +18,8 @@ const Schedule = (props) => {
 
     const [teacherSearching, setTeacherSearching] = useState(false);
 
+    console.log("schedule", schedule)
+
     const arraySchedule = schedule.map(obj => ({
         groupNumber: obj.groupnumber || obj.groupNumber,
         time: obj.time,

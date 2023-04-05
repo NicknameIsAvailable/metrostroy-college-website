@@ -40,7 +40,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
     }
 
     if (!empty($row[5]) && empty($row[7]) && ($itLocalWhile % 2 == 0)){ //Понедельник одна группа
-        $arrayMonday['groupNumber'] = $groupNumber;
+        //$arrayMonday['groupNumber'] = $groupNumber;
         $arrayMonday['subjectFirst'] = $row[5];
         if(!empty($row[8]))
             $arrayMonday['auditoryFirst'] = $row[8];
@@ -50,7 +50,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
         $arrayMonday['teacherFirst'] = $row[5];
 
     if(!empty($row[5]) && !empty($row[7]) && ($itLocalWhile % 2 == 0)) { //Понедельник 2 группы
-        $arrayMonday['groupNumber'] = $groupNumber;
+        //$arrayMonday['groupNumber'] = $groupNumber;
         $arrayMonday['subjectFirst'] = $row[5];
         $arrayMonday['subjectSecond'] = $row[7];
         $arrayMonday['auditoryFirst'] = $row[6];
@@ -62,7 +62,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
     }
 
     if (!empty($row[10]) && empty($row[12]) && ($itLocalWhile % 2 == 0)){ //Вторник одна группа
-        $arrayTuesday['groupNumber'] = $groupNumber;
+        //$arrayTuesday['groupNumber'] = $groupNumber;
         $arrayTuesday['subjectFirst'] = $row[10];
         if(!empty($row[13]))
             $arrayTuesday['auditoryFirst'] = $row[13];
@@ -71,7 +71,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
         $arrayTuesday['teacherFirst'] = $row[10];
 
     if(!empty($row[10]) && !empty($row[12]) && ($itLocalWhile % 2 == 0)) { //Вторник 2 группы
-        $arrayTuesday['groupNumber'] = $groupNumber;
+        //$arrayTuesday['groupNumber'] = $groupNumber;
         $arrayTuesday['subjectFirst'] = $row[10];
         $arrayTuesday['subjectSecond'] = $row[12];
         $arrayTuesday['auditoryFirst'] = $row[11];
@@ -83,7 +83,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
     }
 
     if (!empty($row[15]) && empty($row[17]) && ($itLocalWhile % 2 == 0)){ //Среда одна группа
-        $arrayWednesday['groupNumber'] = $groupNumber;
+        //$arrayWednesday['groupNumber'] = $groupNumber;
         $arrayWednesday['subjectFirst'] = $row[15];
         if(!empty($row[18]))
             $arrayWednesday['auditoryFirst'] = $row[18];
@@ -91,7 +91,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
     if(!empty($row[15]) && empty($row[17]) && ($itLocalWhile % 2 == 1))
         $arrayWednesday['teacherFirst'] = $row[15];
     if(!empty($row[15]) && !empty($row[17]) && ($itLocalWhile % 2 == 0)) { //Среда 2 группы
-        $arrayWednesday['groupNumber'] = $groupNumber;
+        //$arrayWednesday['groupNumber'] = $groupNumber;
         $arrayWednesday['subjectFirst'] = $row[15];
         $arrayWednesday['subjectSecond'] = $row[17];
         $arrayWednesday['auditoryFirst'] = $row[16];
@@ -103,7 +103,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
     }
 
     if (!empty($row[20]) && empty($row[22]) && ($itLocalWhile % 2 == 0)){ //Четверг одна группа
-        $arrayThursday['groupNumber'] = $groupNumber;
+        //$arrayThursday['groupNumber'] = $groupNumber;
         $arrayThursday['subjectFirst'] = $row[20];
         if(!empty($row[23]))
             $arrayThursday['auditoryFirst'] = $row[23];
@@ -112,7 +112,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
         $arrayThursday['teacherFirst'] = $row[20];
 
     if(!empty($row[20]) && !empty($row[22]) && ($itLocalWhile % 2 == 0)) { //Четверг 2 группы
-        $arrayThursday['groupNumber'] = $groupNumber;
+        //$arrayThursday['groupNumber'] = $groupNumber;
         $arrayThursday['subjectFirst'] = $row[20];
         $arrayThursday['subjectSecond'] = $row[22];
         $arrayThursday['auditoryFirst'] = $row[21];
@@ -124,7 +124,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
     }
 
     if (!empty($row[25]) && empty($row[27]) && ($itLocalWhile % 2 == 0)){ //Пятница одна группа
-        $arrayFriday['groupNumber'] = $groupNumber;
+        //$arrayFriday['groupNumber'] = $groupNumber;
         $arrayFriday['subjectFirst'] = $row[25];
         if(!empty($row[28]))
             $arrayFriday['auditoryFirst'] = $row[28];
@@ -133,7 +133,7 @@ while($row = fgetcsv($file_csv, separator: ';')){
         $arrayFriday['teacherFirst'] = $row[25];
 
     if(!empty($row[25]) && !empty($row[27]) && ($itLocalWhile % 2 == 0)) { //Пятница 2 группы
-        $arrayFriday['groupNumber'] = $groupNumber;
+        //$arrayFriday['groupNumber'] = $groupNumber;
         $arrayFriday['subjectFirst'] = $row[25];
         $arrayFriday['subjectSecond'] = $row[27];
         $arrayFriday['auditoryFirst'] = $row[26];
@@ -152,6 +152,11 @@ while($row = fgetcsv($file_csv, separator: ';')){
         $mainArrayThursday[] = $arrayThursday;
         $mainArrayFriday[] = $arrayFriday;
     }
+    $arrayMonday['groupNumber'] =  $groupNumber;
+    $arrayTuesday['groupNumber'] = $groupNumber;
+    $arrayWednesday['groupNumber'] = $groupNumber;
+    $arrayThursday['groupNumber'] = $groupNumber;
+    $arrayFriday['groupNumber'] = $groupNumber;
 
     ++$itLocalWhile;
 }
@@ -173,9 +178,8 @@ $arrayListTime = [
 
 for($iterator = 0; $iterator < count($mainArrayCsvFormat); ++$iterator){
     for($iteratorTwo = 0, $it_time = 0; $iteratorTwo < count($mainArrayCsvFormat[$iterator]); ++$iteratorTwo, ++$it_time){
-        if($it_time == 8) $it_time = 0;
-        if(empty($mainArrayCsvFormat[$iterator][$iteratorTwo]['groupNumber']))
-            continue;
+        if($it_time == 8)
+            $it_time = 0;
 
         $mainArrayCsvFormat[$iterator][$iteratorTwo]['time'] = $arrayListTime[$it_time];
     }

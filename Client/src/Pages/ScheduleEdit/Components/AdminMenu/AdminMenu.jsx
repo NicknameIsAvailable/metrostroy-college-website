@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import "./AdminMenu.css";
 import {ReactComponent as SaveIcon} from "../../../../Icons/SaveIcon.svg";
-import axios from "../../../../axios";
+import {ReactComponent as CloseIcon} from "../../../../Icons/CloseIconBlack.svg";
 import Alert from "../../../../Components/Alert/Alert";
-import UploaderModal from "../UploaderModal/UploaderModal";
 import {Link} from "react-router-dom";
 
 
@@ -12,7 +11,6 @@ const AdminMenu = (props) => {
     const uploaderShow = props.uploaderShow;
     const setUploaderShow = props.setUploaderShow;
     const searchingSubjectFirst = props.searchingSubjectFirst;
-    const updateSchedule = props.updateSchedule;
     const setSearchingSubjectFirst = props.setSearchingSubjectFirst;
     const searchingTeacherFirst = props.searchingTeacherFirst;
     const setSearchingTeacherFirst = props.setSearchingTeacherFirst;
@@ -22,13 +20,11 @@ const AdminMenu = (props) => {
     const setSearchingAuditoryFirst = props.setSearchingAuditoryFirst;
     const searchingAuditorySecond = props.searchingAuditorySecond;
     const setSearchingAuditorySecond = props.setSearchingAuditorySecond;
-    const setArraySchedule = props.setArraySchedule;
     const arraySchedule = props.arraySchedule;
+    const setSchedule = props.setSchedule;
+    const search = props.search;
 
     const [lessonAdding, setLessonAdding] = useState(false);
-
-    const setUpdatedSchedule = props.setUpdatedSchedule;
-
     const [subjectFirst, setSubjectFirst] = useState("");
     const [teacherFirst, setTeacherFirst] = useState("");
     const [teacherSecond, setTeacherSecond] = useState("");
@@ -85,9 +81,12 @@ const AdminMenu = (props) => {
         ));
     }
 
+    const [adminMenuShow, setAdminMenuShow] = useState(true);
+
     return (
         <div
             className="AdminMenu"
+            style={adminMenuShow ? {left: 0} : {left: "-400px"}}
         >
             <div className="admin-menu__header">
                 <h2>Редактор расписания</h2>
@@ -96,6 +95,17 @@ const AdminMenu = (props) => {
                             ?
                     </div>
                 </Link>
+                <button 
+                className="close-button" 
+                style={{marginLeft: "auto"}}
+                onClick={
+                    () => {
+                        setAdminMenuShow(!adminMenuShow);
+                        console.log(adminMenuShow);
+                    }}
+                >
+                    <CloseIcon/>
+                </button>
             </div>
             <h3>Урок</h3>
             <div className="lesson">
@@ -222,6 +232,16 @@ const AdminMenu = (props) => {
                     Сохранить
                 </button>
             </div>
+
+            <button 
+                className="outlined-button"
+                onClick={() => {
+                    setSchedule([]);
+                    search("", "", 1)
+                }}
+            >
+                    Загрузить старое расписание
+            </button>
         </div>
     );
 };
