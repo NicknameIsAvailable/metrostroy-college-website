@@ -1,0 +1,28 @@
+.user {
+    border: #1f1f1f 3px solid;
+    border-radius: 8px;
+    padding: 8px;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+
+    .buttons {
+        margin-left: auto;
+        display: flex;
+        gap: 8px;
+        transition-duration: 0.3s;
+    }
+}
+
+.delete-button {
+    &:hover {
+        color: white;
+        background: rgb(200, 0, 0);
+        border: rgb(200, 0, 0) 3px solid;
+        filter: brightness(1)
+    }
+
+    &:active {
+        filter: brightness(3)
+    }
+}

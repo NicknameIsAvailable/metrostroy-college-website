@@ -1,0 +1,27 @@
+.users-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    transition-duration: 0.3s;
+}
+
+.user-type__btn {
+    flex: 0 0 auto;
+    border: none;
+    padding: 16px;
+    border-radius: 0 0 8px 8px;
+    background: transparent;
+}
+
+.users-page {
+    margin-top: 200px;
+}
+
+.users-list {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
