@@ -22,7 +22,6 @@ const SchedulePage = () => {
                 .then(response => {
                     if(response.data !== "Запрос не получил ни одного результата!") {
                         setSchedule(response.data);
-                        console.log(schedule)
                         setIsLoading(false);
                     } else {
                         search("", "", 1);

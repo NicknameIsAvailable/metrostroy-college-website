@@ -10,6 +10,7 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import ScheduleEditTutorial from "./Pages/ScheduleEditTutorial/ScheduleEditTutorial";
 import StrangeError from "./Components/StrangeError/StrangeError";
 import SchedulePage from "./Pages/Schedule/SchedulePage";
+import Users from "./Pages/Users/Users";
 
 function App() {
   return (
@@ -17,13 +18,14 @@ function App() {
         <Header/>
 
         <Routes>
-            <Route path="/" element={<SchedulePage/>}/>
+            <Route path="/schedule" element={<SchedulePage/>}/>
             <Route path="/admin" element={<AdminPanel/>}/>
+            <Route path="/users/:type" element={<Users/>}/>
             <Route path="*" element={<ErrorPage/>}/>
             <Route path="/strange-error" element={<StrangeError/>}/>
             <Route path="/schedule-edit/tutorial" element={<ScheduleEditTutorial/>}/>
             <Route path="/schedule-edit" element={<ScheduleEdit/>}/>
-            <Route path="/profile" element={<Profile/>}/>
+            <Route path="/" element={<Profile/>}/>
         </Routes>
         <Footer/>
     </body>

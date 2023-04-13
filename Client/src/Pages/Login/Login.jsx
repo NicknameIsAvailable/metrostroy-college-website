@@ -8,21 +8,6 @@ const Login = () => {
     const [isNewAccount, setIsNewAccount] = useState(true);
     let [regStage, setRegStage] = useState(1);
 
-    const [userData, setUserData] = useState({
-        email: "",
-        phoneNumber: "",
-        password: "",
-        secondname: "",
-        name: "",
-        surname: "",
-        role: "",
-        passport: "",
-        educationDocument: "",
-        photo: "",
-        snils: "",
-        registrationCertificate: ""
-    });
-
     if (isNewAccount && regStage === 1)
     {
         return (
@@ -54,14 +39,12 @@ const Login = () => {
                         <button className="back-button"
                                 onClick={() => {
                                     setRegStage(regStage - 1)
-                                    console.log(regStage)
                                 }}
                         >
                             <BackIconBlack/>
                         </button>
                         <button className="next-button outlined-button" onClick={() => {
                             setRegStage(regStage + 1)
-                            console.log(regStage)
                         }}>
                             Далее
                         </button>
@@ -123,14 +106,12 @@ const Login = () => {
                         <button className="back-button"
                                 onClick={() => {
                                     setRegStage(regStage - 1)
-                                    console.log(regStage)
                                 }}
                         >
                             <BackIconBlack/>
                         </button>
                         <button className="next-button outlined-button" onClick={() => {
                             setRegStage(regStage + 1)
-                            console.log(regStage)
                         }}>
                             Далее
                         </button>
@@ -158,14 +139,12 @@ const Login = () => {
                         <button className="back-button"
                                 onClick={() => {
                                     setRegStage(regStage - 1)
-                                    console.log(regStage)
                                 }}
                         >
                             <BackIconBlack/>
                         </button>
                         <button className="next-button outlined-button" onClick={() => {
                             setRegStage(regStage + 1)
-                            console.log(regStage)
                         }}>
                             Далее
                         </button>

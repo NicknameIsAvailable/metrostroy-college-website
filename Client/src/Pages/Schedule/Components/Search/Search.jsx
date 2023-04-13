@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "./Search.css"
-import DropDownList from "../DropDownList/DropDownList";
 import {ReactComponent as SearchIcon} from "../../../../Icons/SearchIconWhite.svg";
 import AutoComplete from "../../../../Components/AutoComplete/AutoComplete";
 
@@ -12,9 +11,6 @@ const Search = (props) => {
     const locationInputs = props.locationInputs;
     const search = props.search;
     const arraySchedule = props.arraySchedule;
-
-    const [modalOpen, setModalOpen] = useState(false);
-
     const setTeacherSearching = props.setTeacherSearching;
 
     const filteredSchedule = [
@@ -43,7 +39,6 @@ const Search = (props) => {
             }}>
                     <input placeholder="поиск" className="search no-outline" type="text" value={inputs} onChange={e => {
                         setInputs(e.target.value);
-                        console.log(Number(inputs))
                         if (radioInputs === '') {
                             setRadioInputs("Group")
                         }
@@ -57,16 +52,6 @@ const Search = (props) => {
                     <button type="submit" className="search-button">
                         <SearchIcon/>
                     </button>
-                <DropDownList
-                    className="button"
-                    search={search}
-                    inputs={inputs}
-                    arraySchedule={arraySchedule}
-                    radioInputs={radioInputs}
-                    modalOpen={modalOpen}
-                    setModalOpen={setModalOpen}
-                    locationInputs={locationInputs}
-                />
                 </form>
         </div>
     );

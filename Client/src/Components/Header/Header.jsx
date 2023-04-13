@@ -49,7 +49,7 @@ const Header = () => {
                         <Logo className="Logo"/>
                     </a>
                     <div className="header-buttons">
-                        <Link to="/profile/">
+                        <Link to="/">
                         <button>
                             <Person className="icon"/>
                         </button>

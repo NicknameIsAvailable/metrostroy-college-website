@@ -1,15 +1,13 @@
 import "./ScheduleEdit.css";
 import AdminMenu from "./Components/AdminMenu/AdminMenu";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Navigate} from "react-router-dom";
 import axios from "../../axios";
 import Schedule from "../Schedule/Schedule";
 import UploaderModal from "./Components/UploaderModal/UploaderModal";
-import Loader from "../../Components/Loader/Loader";
 
 const ScheduleEdit = () => {
 
-    const [lesson, setLesson] = useState();
     const [isAdmin, setIsAdmin] = useState(true)
     const [updatedSchedule, setUpdatedSchedule] = useState();
 
@@ -40,6 +38,7 @@ const ScheduleEdit = () => {
                 })
         }
         catch (err) {
+            alert("Произошла странная ошибка");
             console.log(err);
         }
     };
@@ -55,31 +54,15 @@ const ScheduleEdit = () => {
         else        
         axios.post('/newCsvFile.php', files[0]).then(response => {
             let data = response.data;        
-            console.log(32, data)
-            console.log(files[0])
-            setSchedule([...data[0], ...data[1], ...data[2], ...data[3], ...data[4]]);      
-            console.log(123, schedule) 
-            console.log(22, arraySchedule)             
+            setSchedule([...data[0], ...data[1], ...data[2], ...data[3], ...data[4]]);
         })
     }
-
-    const updateLesson = (e) => {
-
-    }
-
-    const changedValuesList = [];
-
-    const [changedValues, setChangedValues] = useState();
 
     const [searchingSubjectFirst, setSearchingSubjectFirst] = useState();
     const [searchingTeacherFirst, setSearchingTeacherFirst] = useState();
     const [searchingTeacherSecond, setSearchingTeacherSecond] = useState();
     const [searchingAuditoryFirst, setSearchingAuditoryFirst] = useState();
     const [searchingAuditorySecond, setSearchingAuditorySecond] = useState();
-
-    const fastUpdateSchedule = (values, newValues) => {
-
-    }
 
     const dragStartHandler = (e) => {
         e.preventDefault();

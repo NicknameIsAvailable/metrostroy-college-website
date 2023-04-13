@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import "./Schedule.css";
-import axios from "../../axios";
 import GroupsList from "./Components/GroupsList/GroupsList";
 import Loader from "../../Components/Loader/Loader";
 import Search from "./Components/Search/Search";
@@ -10,15 +9,12 @@ const Schedule = (props) => {
     const search = props.search;
     const schedule = props.schedule;
     const isLoading = props.isLoading;
-    const updatedSchedule = props.updatedSchedule;
 
     const [inputs, setInputs] = useState("");
     const [radioInputs, setRadioInputs] = useState("Group");
     const [locationInputs, setLocationInputs] = useState(1);
 
     const [teacherSearching, setTeacherSearching] = useState(false);
-
-    console.log("schedule", schedule)
 
     const arraySchedule = schedule.map(obj => ({
         groupNumber: obj.groupnumber || obj.groupNumber,
