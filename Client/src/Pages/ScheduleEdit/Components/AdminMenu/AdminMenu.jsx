@@ -44,13 +44,6 @@ const AdminMenu = (props) => {
         locationName: ""
     };
 
-    const updatedLesson = [
-        {
-            prevLesson: {},
-            newLesson: {}
-        }
-    ]
-
     const setLesson = () => {
         setLessonAdding(!lessonAdding);
         props.updateLesson(lesson);
@@ -60,7 +53,6 @@ const AdminMenu = (props) => {
 
     const saveSchedule = () => {
         setSaveNotation(!saveNotation)
-        console.log(saveNotation)
 
         return (
             <Alert
@@ -101,7 +93,6 @@ const AdminMenu = (props) => {
                 onClick={
                     () => {
                         setAdminMenuShow(!adminMenuShow);
-                        console.log(adminMenuShow);
                     }}
                 >
                     <CloseIcon/>

@@ -2,6 +2,25 @@ html {
   scroll-behavior: smooth;
 }
 
+.little-button {
+  padding: 8px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1f1f1f;
+  border: none;
+  transition-duration: 0.3s;
+
+  &:hover {
+    filter: brightness(2);
+  }
+
+  &:active {
+    filter: brightness(3);
+  }
+}
+
 body {
   display: flex;
   overflow-x: hidden;
@@ -27,6 +46,41 @@ body {
   margin-right: 15%;
   justify-content: center;
   min-height: 100vh;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 16px;
+  padding: 16px;
+  width: 30vw;
+  height: 30vh;
+  min-width: 360px;
+  min-height: 360px;
+  background: white;
+}
+
+.modal-buttons {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.modal-button {
+  background: none;
+  padding: 8px 16px;
+  border: #1f1f1f 3px solid;
+  border-radius: 8px;
+  transition-duration: 0.3s;
+
+  &:hover {
+    filter: brightness(0.7);
+  }
+
+  &:active {
+    filter: brightness(0.9);
+  }
 }
 
 ::-webkit-scrollbar {

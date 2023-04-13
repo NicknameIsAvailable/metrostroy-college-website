@@ -1,9 +1,8 @@
 .ProfilePage {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  padding-top: 300px;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .ProfilePage .profile-block {
   margin-left: auto;

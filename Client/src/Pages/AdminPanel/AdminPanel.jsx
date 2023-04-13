@@ -32,7 +32,7 @@ const AdminPanel = () => {
                         changeDate={"12.12.12"}
                         changeTime={"12:12"}
                         changedUser={"И.И.Бебрик"}
-                        link="/schedule/edit"
+                        link="/schedule-edit"
                         buttonContent={"Изменить"}
                     />
 
@@ -42,6 +42,7 @@ const AdminPanel = () => {
                         changeDate={"12.12.12"}
                         changeTime={"12:12"}
                         changedUser={"И.И.Бебрик"}
+                        link="/users/teachers"
                         buttonContent={"Изменить"}
                     />
 
@@ -51,6 +52,7 @@ const AdminPanel = () => {
                         changeDate={"12.12.12"}
                         changeTime={"12:12"}
                         changedUser={"И.И.Бебрик"}
+                        link="/users/students"
                         buttonContent={"Изменить"}
                     />
 
@@ -59,6 +61,7 @@ const AdminPanel = () => {
                         isInteractive={true}
                         changeDate={"12.12.12"}
                         changeTime={"12:12"}
+                        link="/users/applicants"
                         buttonContent={"Изменить"}
                     />
                 </div>

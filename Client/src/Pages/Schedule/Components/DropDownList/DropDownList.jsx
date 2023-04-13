@@ -6,7 +6,6 @@ const DropDownList = (props) => {
     const search = props.search;
     const inputs = props.inputs;
     const radioInputs = props.radioInputs;
-    const locationInputs = props.locationInputs;
     const arraySchedule = props.arraySchedule;
     const modalOpen = props.modalOpen;
     const setModalOpen = props.setModalOpen;
@@ -42,7 +41,6 @@ const DropDownList = (props) => {
                 {addresses.map((variant, index) =>
                     <ol className="variant" onClick={async () => {
                         setChosenVariant(variant);
-                        console.log(locationInputs);
                         await search(inputs, radioInputs, index + 1);
                         setModalOpen(!modalOpen);
                     }}>

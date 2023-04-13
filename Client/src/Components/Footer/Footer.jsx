@@ -1,6 +1,5 @@
 import React from 'react';
 import "./Footer.css";
-import {ReactComponent as FullLogoWhite} from "../../Icons/FullLogoWhite.svg";
 
 const Footer = () => {
     const today = new Date();
@@ -9,7 +8,6 @@ const Footer = () => {
     return (
         <footer>
                 <div>
-                    <FullLogoWhite/>
                     <h3>
                         Санкт-Петербургское государственное бюджетное профессиональное образовательное учреждение «Колледж метростроя»
                     </h3>
@@ -35,9 +33,6 @@ const Footer = () => {
                         Напишите нам
                     </button>
 
-                    <p>
-                        @ колледж метростроя {year}
-                    </p>
                 </div>
                 <div>
                     <p>
@@ -75,6 +70,10 @@ const Footer = () => {
                             Телефоны горячей линии СПО
                         </a>
                     </p>
+
+                    <h2>
+                        @ колледж метростроя {year}
+                    </h2>
                 </div>
         </footer>
     );

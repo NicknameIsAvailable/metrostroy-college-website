@@ -1,15 +1,81 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./Profile.css";
-import Notification from "./Components/Notification/Notification";
-import userImg from "../../Images/user-img.png";
+import Loader from '../../Components/Loader/Loader';
+import axios from '../../axios';
 import easterEgg from "../../Images/картинка без которой ничего не будет работать.jpg";
+import Lesson from './Components/Lesson/Lesson';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
 
-    const [avatar, setAvatar] = useState(userImg);
+    const [isAdmin, setIsAdmin] = useState(true);
+
+    // получение расписания с бэкенда
+
+    const [schedule, setSchedule] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const search = async (inputs, radio, location) => {
+        const requestOptions = {
+            valueSearch: inputs,
+            valueRadioButton: radio,
+            valueLocation: location
+        };
+
+        try {
+            await axios.post('/schedule.php',
+                requestOptions
+            )
+                .then(response => {
+                    if(response.data !== "Запрос не получил ни одного результата!") {
+                        setSchedule(response.data);
+                        setIsLoading(false);
+                    } else {
+                        search("", "", 1);
+                    }
+                })
+        }
+        catch (err) {
+            alert('Произошла странная ошибка')
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        search(12, "Group", "");
+    }, []);
+
+    const arraySchedule = schedule.map(obj => ({
+        time: obj.time,
+        weekDay: obj.weekday || obj.weekDay,
+        subjectFirst: obj.subjectfirst || obj.subjectFirst,
+        teacherFirst: obj.teacherfirst || obj.teacherFirst,
+        auditoryFirst: obj.auditoryfirst || obj.auditoryFirst,
+        subjectSecond: obj.subjectsecond || obj.subjectSecond,
+        teacherSecond: obj.teachersecond || obj.teacherSecond,
+        auditorySecond: obj.auditorysecond || obj.auditorySecond
+    }));
+
+    // дата и время
+
+    const date = new Date();
+
+    const dayNumber = date.getDay();
+
+    const days = [
+        "Воскресенье",
+        "Понедельник",
+        "Вторник",
+        "Среда",
+        "Четверг",
+        "Пятница",
+        "Суббота"
+    ];
+
+    // пасхалка
 
     const [avaClicks, setAvaClicks] = useState(0);
-    if (avaClicks === 1000) {
+        if (avaClicks === 1000) {
         console.log("ААААААААААААААААААААА ЧТООООООООООООООООООООООООООООО")
         return(
             <img src={easterEgg} alt="ААААААААААААА ЧТОООООООООО"/>
@@ -18,42 +84,62 @@ const Profile = () => {
 
     return (
         <div className="container">
+            <Loader loading={isLoading}/>
             <div className="ProfilePage">
                 <div className="profile-block">
                     <div className="info-block">
                         <div className="user-info">
                             <div className="user-info__text">
+
+                                {
+                                    isAdmin ? 
+                                    <h3>
+                                        <Link 
+                                            to="/admin"
+                                            style={{color: "#1f1f1f"}}
+                                        >
+                                            Войти в админ-панель
+                                        </Link>
+                                    </h3>
+                                    :
+                                    ""
+                                }
                                 <h2 onClick={() => {
                                     setAvaClicks(avaClicks + 1);
                                     console.log("Нажми еще ", 1000 - avaClicks, " раз")
-                                }}>Иванов Иван Иванович</h2>
-                                <h3>29 группа информационные системы и программирование</h3>
+                                }}>
+                                Иванов Иван Иванович
+                                </h2>
+                                <h3>
+                                    {isAdmin ? 
+                                    "Админ" 
+                                    : 
+                                    "29 группа информационные системы и программирование"}
+                                </h3>
                             </div>
                         </div>
 
-                        <h2>
-                            Личные данные
-                        </h2>
-                        <h3>
-                            Email: <span className="hidden-info">pochta@pochta.ru</span>
-                            <br/>
-                            Номер телефона: <span className="hidden-info">+7 (999) 999 99-99</span>
-                            <br/>
-                            Адрес: <span className="hidden-info">ул. Пушкина д 1 к 1 кв 119</span>
-                        </h3>
+                        {      
+                            dayNumber === 0 || dayNumber === 6 ?      
+                            ""
+                            :
+                            <>                        
+                            <h2>
+                                Твое расписание на сегодня 
+                            </h2>
+                                {
+                                    arraySchedule
+                                    .filter(item => item.weekDay === days[dayNumber])
+                                    .map(lesson => <Lesson obj={lesson}/>)
+                                } 
+                            </>
+                        }
 
-                        <h2>
-                            Документы
-                        </h2>
-                        <h3>
-                            Паспорт: <span className="hidden-info">123-456</span> от <span className="hidden-info">01.01.01</span>
-                            <br/>
-                            Аттестат о среднем общем образовании: <span className="hidden-info">454545</span> от <span className="hidden-info">01.01.01</span>
-                            <br/>
-                            <a href="">
-                                Заявление
-                            </a>
-                        </h3>
+                        <Link to="/schedule">
+                            <h4>
+                                Посмотреть полное расписание
+                            </h4>
+                        </Link>      
                     </div>
                 </div>
             </div>
