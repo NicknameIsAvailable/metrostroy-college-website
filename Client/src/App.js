@@ -11,6 +11,7 @@ import ScheduleEditTutorial from "./Pages/ScheduleEditTutorial/ScheduleEditTutor
 import StrangeError from "./Components/StrangeError/StrangeError";
 import SchedulePage from "./Pages/Schedule/SchedulePage";
 import Users from "./Pages/Users/Users";
+import Login from "./Pages/Login/Login";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Routes>
             <Route path="/schedule" element={<SchedulePage/>}/>
             <Route path="/admin" element={<AdminPanel/>}/>
+            <Route path="/login" element={<Login/>}/>
             <Route path="/users/:type" element={<Users/>}/>
             <Route path="*" element={<ErrorPage/>}/>
             <Route path="/strange-error" element={<StrangeError/>}/>

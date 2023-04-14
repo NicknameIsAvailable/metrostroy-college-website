@@ -1,4 +1,4 @@
-import React, from "react";
+import React from "react";
 import {ReactComponent as CloseIcon} from "../../../../Icons/CloseIconBlack.svg";
 import "./DeleteModal.css";
 

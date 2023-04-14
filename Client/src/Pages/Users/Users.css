@@ -1,12 +1,40 @@
+.users-page {
+  min-height: 70vh;
+}
+.users-page .container {
+  min-height: 0;
+}
+.users-page .container .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 12px;
+}
+
 .users-header {
+  width: 100vw;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   transition-duration: 0.3s;
 }
+.users-header .container {
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.search-block {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+}
+
+.search {
+  width: 100%;
+}
 
 .user-type__btn {
-  flex: 0 0 auto;
+  flex: 1;
   border: none;
   padding: 16px;
   border-radius: 0 0 8px 8px;
@@ -22,4 +50,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-}/*# sourceMappingURL=Users.css.map */
+}
+
+/*# sourceMappingURL=Users.css.map */

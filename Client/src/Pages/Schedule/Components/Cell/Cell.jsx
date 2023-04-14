@@ -3,24 +3,64 @@ import "./Cell.css"
 
 const Cell = (props) => {
     const [obj, setObj] = useState(props.obj);
-    const index = props.index;
     const teacherSearching = props.teacherSearching;
     const inputs = props.inputs;
+    const lessonAdding = props.lessonAdding;
+    const updatedLessons = props.updatedLessons
     const isAdmin = props.isAdmin;
     const lesson = props.lesson;
 
     const [subjectShow, setSubjectShow] = useState(false);
+
+    // сокращение имен предметов
+
+    const shortSubject = subjectShow ?
+        obj.subjectFirst
+        :
+        <>
+            {
+                obj.subjectFirst.includes("МДК") ?
+                obj.subjectFirst.substr(0, 10)
+                :
+                obj.subjectFirst.includes("Иностранный язык")
+                    ?
+                    "Ин. Яз."
+                    :
+                    obj.subjectFirst.includes("Физическая культура")
+                        ?
+                        "Физра"
+                        :
+                        obj.subjectFirst.includes("Основы безопасности жизнедеятельности")
+                            ?
+                            "ОБЖ"
+                            :
+                            obj.subjectFirst.length > 12
+                                ?
+                                obj.subjectFirst.substr(0, 12) + "..."
+                                :
+                                obj.subjectFirst
+            }
+        </>
+
 
     return (
         <tr>
             <div
                 className="cell"
                 onClick={() => {
-                    if (lesson) {
-                        setObj(lesson)
+                    if (lessonAdding) {
                         lesson.groupNumber = obj.groupNumber;
                         lesson.weekDay = obj.weekDay;
                         lesson.locationName = obj.locationName;
+                        lesson.time = obj.time;
+                        updatedLessons.push({
+                            prev: obj,
+                            new: lesson
+                        })
+                        setObj(lesson)
+                        console.log("obj", obj)
+                        console.log("lesson", lesson)
+                        console.log("updatedLessons", updatedLessons)
                     }
                 }}
                 style={obj.teacherFirst === inputs && teacherSearching ?
@@ -45,44 +85,29 @@ const Cell = (props) => {
                         </h4>
                     </abbr>
 
-                    <abbr title="Урок">
-                        <h2
-                            className="subject"
-                            onClick={() => setSubjectShow(!subjectShow)}
-                        >
-                            {
-                                subjectShow ? 
-                                obj.subjectFirst 
-                                : 
-                                <>
-                                    {obj.subjectFirst.includes("МДК") ? 
-                                        obj.subjectFirst.substr(0, 10)
-                                        : 
-                                        obj.subjectFirst.includes("Иностранный язык")
-                                        ?
-                                        "Ин. Яз."
-                                        :
-                                        obj.subjectFirst.includes("Физическая культура")
-                                        ?
-                                        "Физра"
-                                        :
-                                        obj.subjectFirst.includes("Основы безопасности жизнедеятельности")
-                                        ?
-                                        "ОБЖ"
-                                        :
-                                        obj.subjectFirst.length > 12
-                                        ?
-                                        obj.subjectFirst.substr(0, 12) + "..."
-                                        :
-                                        obj.subjectFirst
-                                    }
-                                </>
-                            }
-                        </h2>
-                    </abbr>
+                    {
+                        !isAdmin ?
+                            <abbr title="Урок">
+                                <h2
+                                    className="subject"
+                                    onClick={() => setSubjectShow(!subjectShow)}
+                                >
+                                    {shortSubject}
+                                </h2>
+                            </abbr>
+                            :
+                            <abbr title="Урок">
+                                <input
+                                    className="subject"
+                                    onClick={() => setSubjectShow(!subjectShow)}
+                                    value={obj.subjectFirst}
+                                />
+                            </abbr>
+                    }
+
                 </div>
 
-                {obj.subjectSecond ?
+                {!isAdmin ? obj.subjectSecond ?
                         <div className="extra-info">
                             <p
                                 className="teacher"
@@ -108,10 +133,31 @@ const Cell = (props) => {
                             >
                                 {obj.teacherFirst}
                             </p>
-                        
+
                             <p className="auditory">
                                 {obj.auditoryFirst}
                             </p>
+                        </div>
+                    :
+                        <div className="extra-info">
+                            <input
+                                className="teacher"
+                                value={obj.teacherFirst}
+                            />
+                            <input
+                                className="auditory"
+                                value={obj.auditoryFirst}
+                            />
+
+                            <input
+                                className="teacher"
+                                value={obj.teacherSecond}
+                            />
+
+                            <input
+                                className="auditory"
+                                value={obj.auditorySecond}
+                            />
                         </div>
                 }
             </div>

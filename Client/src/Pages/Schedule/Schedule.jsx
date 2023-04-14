@@ -9,12 +9,17 @@ const Schedule = (props) => {
     const search = props.search;
     const schedule = props.schedule;
     const isLoading = props.isLoading;
+    const updatedLessons = props.updatedLessons;
+    const lesson = props.lesson;
+    const lessonAdding = props.lessonAdding;
 
     const [inputs, setInputs] = useState("");
     const [radioInputs, setRadioInputs] = useState("Group");
     const [locationInputs, setLocationInputs] = useState(1);
 
     const [teacherSearching, setTeacherSearching] = useState(false);
+
+    // Преобразование schedule в удобный вид
 
     const arraySchedule = schedule.map(obj => ({
         groupNumber: obj.groupnumber || obj.groupNumber,
@@ -41,9 +46,17 @@ const Schedule = (props) => {
         "Среда",
         "Четверг",
         "Пятница"
-    ]
+    ];
 
-    const lesson = props.lesson;
+    const filteredGroups = groups.filter(item => {
+        if (Number(inputs[0])) {
+            return item.toLowerCase().includes(inputs.toLowerCase());
+        } else {
+            return item;
+        }
+    });
+
+    console.log(filteredGroups)
 
     return (
         <div className="container">
@@ -65,7 +78,9 @@ const Schedule = (props) => {
                     ""
                     :
                     <GroupsList
-                        groups={groups}
+                        lessonAdding={lessonAdding}
+                        groups={filteredGroups}
+                        updatedLessons={updatedLessons}
                         weekdays={weekdays}
                         inputs={inputs}
                         arraySchedule={arraySchedule}

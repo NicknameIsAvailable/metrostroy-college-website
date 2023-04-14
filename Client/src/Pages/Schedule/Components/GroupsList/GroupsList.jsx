@@ -1,6 +1,5 @@
 import React from 'react';
 import Cell from "../Cell/Cell";
-import { useState } from 'react';
 import "./GroupsList.css";
 
 const GroupsList = (props) => {
@@ -11,23 +10,8 @@ const GroupsList = (props) => {
     const inputs = props.inputs;
     const isAdmin = props.isAdmin;
     const lesson = props.lesson;
-
-    const time = arraySchedule.map(item => item.time).reduce((a,b) => {
-        if (a.indexOf(b) < 0 ) a.push(b);
-        return a;
-    }, []);
-
-    const timeArray = [
-        time.find(item => item.includes("9:00")),
-        time.find(item => item.includes("10:00")),
-        time.find(item => item.includes("11:00")),
-        time.find(item => item.includes("12:00")),
-        time.find(item => item.includes("13:05")),
-        time.find(item => item.includes("14:10")),
-        time.find(item => item.includes("15:05")),
-        time.find(item => item.includes("15:50")),
-        time.find(item => item.includes("15:55")),
-    ]
+    const lessonAdding = props.lessonAdding;
+    const updatedLessons = props.updatedLessons;
 
     return (
         <div className="groups-list">
@@ -52,6 +36,8 @@ const GroupsList = (props) => {
                                     </tr>
                                     {group.map((obj, index) =>
                                         <Cell
+                                            lessonAdding={lessonAdding}
+                                            updatedLessons={updatedLessons}
                                             obj={obj}
                                             inputs={inputs}
                                             teacherSearching={teacherSearching}

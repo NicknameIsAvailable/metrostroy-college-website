@@ -19,6 +19,20 @@ html {
   filter: brightness(3);
 }
 
+.button__no-outline {
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  transition-duration: 0.3s;
+}
+.button__no-outline:hover {
+  background: rgba(31, 31, 31, 0.3);
+}
+.button__no-outline:active {
+  background: rgba(31, 31, 31, 0.1);
+}
+
 body {
   display: flex;
   overflow-x: hidden;
@@ -53,7 +67,6 @@ body {
   border-radius: 16px;
   padding: 16px;
   width: 30vw;
-  height: 30vh;
   min-width: 360px;
   min-height: 360px;
   background: white;
@@ -73,10 +86,10 @@ body {
   transition-duration: 0.3s;
 }
 .modal-button:hover {
-  filter: brightness(0.7);
+  background: rgba(31, 31, 31, 0.2);
 }
 .modal-button:active {
-  filter: brightness(0.9);
+  background: rgba(31, 31, 31, 0.1);
 }
 
 ::-webkit-scrollbar {
@@ -168,10 +181,6 @@ Link {
   outline-offset: 0;
 }
 
-::-moz-selection {
-  background: #46aebe; /* Safari */
-}
-
 ::selection {
   background: #46aebe; /* Safari */
 }
@@ -197,4 +206,6 @@ abbr {
     margin-right: 5%;
     height: 100%;
   }
-}/*# sourceMappingURL=App.css.map */
+}
+
+/*# sourceMappingURL=App.css.map */

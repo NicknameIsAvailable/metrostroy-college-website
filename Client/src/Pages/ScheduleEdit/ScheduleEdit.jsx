@@ -8,6 +8,12 @@ import UploaderModal from "./Components/UploaderModal/UploaderModal";
 
 const ScheduleEdit = () => {
 
+    const [subjectFirst, setSubjectFirst] = useState("");
+    const [teacherFirst, setTeacherFirst] = useState("");
+    const [teacherSecond, setTeacherSecond] = useState("");
+    const [auditoryFirst, setAuditoryFirst] = useState("");
+    const [auditorySecond, setAuditorySecond] = useState("");
+
     const [isAdmin, setIsAdmin] = useState(true)
     const [updatedSchedule, setUpdatedSchedule] = useState();
 
@@ -15,6 +21,8 @@ const ScheduleEdit = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const [arraySchedule, setArraySchedule] = useState();
+
+    // поиск и получение расписания с бд
 
     const search = async (inputs, radio, location) => {
         const requestOptions = {
@@ -43,6 +51,8 @@ const ScheduleEdit = () => {
         }
     };
 
+    // обновление расписание с помощью csv файла
+
     const updateSchedule = (e) => {
         e.preventDefault();
         let files = [...e.dataTransfer.files];
@@ -58,11 +68,7 @@ const ScheduleEdit = () => {
         })
     }
 
-    const [searchingSubjectFirst, setSearchingSubjectFirst] = useState();
-    const [searchingTeacherFirst, setSearchingTeacherFirst] = useState();
-    const [searchingTeacherSecond, setSearchingTeacherSecond] = useState();
-    const [searchingAuditoryFirst, setSearchingAuditoryFirst] = useState();
-    const [searchingAuditorySecond, setSearchingAuditorySecond] = useState();
+    // Drag&Drop csv файла
 
     const dragStartHandler = (e) => {
         e.preventDefault();
@@ -80,8 +86,26 @@ const ScheduleEdit = () => {
         setUploaderShow(false);
     }
 
+
     const [drag, setDrag] = useState(false);
     const [uploaderShow, setUploaderShow] = useState(false);
+
+    const lesson = {
+        groupNumber: "",
+        time: "",
+        weekDay: "",
+        subjectFirst: subjectFirst,
+        teacherFirst: teacherFirst,
+        auditoryFirst: auditoryFirst,
+        subjectSecond: subjectFirst,
+        teacherSecond: teacherSecond,
+        auditorySecond: auditorySecond,
+        locationName: ""
+    };
+
+    const [lessonAdding, setLessonAdding] = useState(false);
+
+    const updatedLessons = [];
 
     if (isAdmin) {
         return (
@@ -115,19 +139,14 @@ const ScheduleEdit = () => {
                         setUpdatedSchedule={setUpdatedSchedule}
                         updatedSchedule={updatedSchedule}
                         updateSchedule={updateSchedule}
-                        setArraySchedule={setArraySchedule}
-                        searchingSubjectFirst={searchingSubjectFirst}
-                        setSearchingSubjectFirst={setSearchingSubjectFirst}
-                        searchingTeacherFirst={searchingTeacherFirst}
-                        setSearchingTeacherFirst={setSearchingTeacherFirst}
-                        searchingTeacherSecond={searchingTeacherSecond}
-                        setSearchingTeacherSecond={setSearchingTeacherSecond}
-                        searchingAuditoryFirst={searchingAuditoryFirst}
-                        setSearchingAuditoryFirst={setSearchingAuditoryFirst}
-                        searchingAuditorySecond={searchingAuditorySecond}
-                        setSearchingAuditorySecond={setSearchingAuditorySecond}
                         arraySchedule={arraySchedule}
-                        updateLesson={updateLesson}
+                        setSubjectFirst={setSubjectFirst}
+                        setTeacherFirst={setTeacherFirst}
+                        setTeacherSecond={setTeacherSecond}
+                        setAuditoryFirst={setAuditoryFirst}
+                        setAuditorySecond={setAuditorySecond}
+                        lessonAdding={lessonAdding}
+                        setLessonAdding={setLessonAdding}
                         isAdmin={isAdmin}
                         setSchedule={setSchedule}
                         search={search}
@@ -161,6 +180,10 @@ const ScheduleEdit = () => {
                             Вывести старое расписание из базы данных
                         </button>
                         <Schedule
+                            updatedLessons={updatedLessons}
+                            lessonAdding={lessonAdding}
+                            lesson={lesson}
+                            isAdmin={isAdmin}
                             schedule={schedule}
                             search={search}
                         />

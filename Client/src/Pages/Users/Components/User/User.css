@@ -16,9 +16,11 @@
 .delete-button:hover {
   color: white;
   background: rgb(200, 0, 0);
-  border: rgb(200, 0, 0), 3px solid;
+  border: rgb(200, 0, 0) 3px solid;
   filter: brightness(1);
 }
 .delete-button:active {
   filter: brightness(3);
-}/*# sourceMappingURL=User.css.map */
+}
+
+/*# sourceMappingURL=User.css.map */

@@ -16,7 +16,6 @@ const AdminPanel = () => {
                     count={324}
                 />
 
-
                 <Tab
                     title="Онлайн за 24 часа"
                     isInteractive={false}
@@ -62,6 +61,15 @@ const AdminPanel = () => {
                         changeDate={"12.12.12"}
                         changeTime={"12:12"}
                         link="/users/applicants"
+                        buttonContent={"Изменить"}
+                    />
+
+                    <Tab
+                        title="Админы"
+                        isInteractive={true}
+                        changeDate={"12.12.12"}
+                        changeTime={"12:12"}
+                        link="/users/admins"
                         buttonContent={"Изменить"}
                     />
                 </div>
