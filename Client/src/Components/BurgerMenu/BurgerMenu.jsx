@@ -27,7 +27,8 @@ const BurgerMenu = (props) => {
             </button>
 
             <div className="links">
-                <h3 onClick={() => setOpen(false)}><Link to="/score-sheet" className="Link">Ведомость</Link></h3>
+                <h3 onClick={() => setOpen(false)}><Link to="/teachers" className="Link">Список преподавателей</Link></h3>
+                <h3 onClick={() => setOpen(false)}><Link to="/schedule" className="Link">Расписание</Link></h3>
                 <h3 onClick={() => setOpen(false)}><a className="visible1000 Link" onClick={() => setOpen(!open)} href="https://colm.spb.ru/information-about-">сведения об образовательной организации</a></h3>
                 <h3 onClick={() => setOpen(false)}><a className="visible1600 Link" href="https://colm.spb.ru/methodical-work">методическая работа</a></h3>
                 <h3 onClick={() => setOpen(false)}><a className="visible720 Link" href="https://colm.spb.ru/driving-school">автошкола</a></h3>

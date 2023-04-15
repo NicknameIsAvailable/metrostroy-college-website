@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import "./Search.css"
 import AutoComplete from "../../../../Components/AutoComplete/AutoComplete";
+import DropDownList from "../DropDownList/DropDownList";
 
 const Search = (props) => {
     const setInputs = props.setInputs;
@@ -9,6 +10,8 @@ const Search = (props) => {
     const setRadioInputs = props.setRadioInputs;
     const arraySchedule = props.arraySchedule;
     const setTeacherSearching = props.setTeacherSearching;
+    const search = props.search;
+    const locationInputs = props.locationInputs;
 
     const filteredSchedule = [
         ...arraySchedule.map(item => item.groupNumber),
@@ -23,6 +26,8 @@ const Search = (props) => {
     } else {
         setRadioInputs("Teacher");
     }
+
+    const [modalOpen, setModalOpen] = useState(false);
 
     const [isAutoCompleteVisible, setIsAutoCompleteVisible] = useState(false);
 
@@ -55,6 +60,16 @@ const Search = (props) => {
                         input={inputs}
                         setInput={setInputs}
                     />
+                <DropDownList
+                    className="button"
+                    search={search}
+                    inputs={inputs}
+                    arraySchedule={arraySchedule}
+                    radioInputs={radioInputs}
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                    locationInputs={locationInputs}
+                />
             </div>
         </div>
     );

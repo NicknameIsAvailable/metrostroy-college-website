@@ -15,6 +15,7 @@ const Profile = () => {
 
     const [schedule, setSchedule] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isTeacher, setIsTeacher] = useState(true);
 
     const search = async (inputs, radio, location) => {
         const requestOptions = {
