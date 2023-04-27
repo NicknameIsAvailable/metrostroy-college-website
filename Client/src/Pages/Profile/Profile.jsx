@@ -39,7 +39,6 @@ const Profile = () => {
         }
         catch (err) {
             alert('Произошла странная ошибка')
-            console.log(err);
         }
     }
 

@@ -7,7 +7,6 @@ const Cell = (props) => {
     const inputs = props.inputs;
     const lessonAdding = props.lessonAdding;
     const updatedLessons = props.updatedLessons
-    const isAdmin = props.isAdmin;
     const lesson = props.lesson;
 
     const [subjectShow, setSubjectShow] = useState(false);
@@ -58,9 +57,6 @@ const Cell = (props) => {
                             new: lesson
                         })
                         setObj(lesson)
-                        console.log("obj", obj)
-                        console.log("lesson", lesson)
-                        console.log("updatedLessons", updatedLessons)
                     }
                 }}
                 style={obj.teacherFirst === inputs && teacherSearching ?
@@ -85,29 +81,19 @@ const Cell = (props) => {
                         </h4>
                     </abbr>
 
-                    {
-                        !isAdmin ?
-                            <abbr title="Урок">
-                                <h2
-                                    className="subject"
-                                    onClick={() => setSubjectShow(!subjectShow)}
-                                >
-                                    {shortSubject}
-                                </h2>
-                            </abbr>
-                            :
-                            <abbr title="Урок">
-                                <input
-                                    className="subject"
-                                    onClick={() => setSubjectShow(!subjectShow)}
-                                    value={obj.subjectFirst}
-                                />
-                            </abbr>
-                    }
+
+                    <abbr title="Урок">
+                        <h2
+                        className="subject"
+                        onClick={() => setSubjectShow(!subjectShow)}
+                        >
+                            {shortSubject}
+                        </h2>
+                    </abbr>
 
                 </div>
 
-                {!isAdmin ? obj.subjectSecond ?
+                {obj.subjectSecond ?
                         <div className="extra-info">
                             <p
                                 className="teacher"
@@ -137,27 +123,6 @@ const Cell = (props) => {
                             <p className="auditory">
                                 {obj.auditoryFirst}
                             </p>
-                        </div>
-                    :
-                        <div className="extra-info">
-                            <input
-                                className="teacher"
-                                value={obj.teacherFirst}
-                            />
-                            <input
-                                className="auditory"
-                                value={obj.auditoryFirst}
-                            />
-
-                            <input
-                                className="teacher"
-                                value={obj.teacherSecond}
-                            />
-
-                            <input
-                                className="auditory"
-                                value={obj.auditorySecond}
-                            />
                         </div>
                 }
             </div>

@@ -20,8 +20,6 @@ const ScheduleEdit = () => {
     const [schedule, setSchedule] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const [arraySchedule, setArraySchedule] = useState();
-
     // поиск и получение расписания с бд
 
     const search = async (inputs, radio, location) => {
@@ -47,7 +45,6 @@ const ScheduleEdit = () => {
         }
         catch (err) {
             alert("Произошла странная ошибка");
-            console.log(err);
         }
     };
 
@@ -132,28 +129,28 @@ const ScheduleEdit = () => {
                 uploaderShow={uploaderShow}
                 update={updateSchedule}
             />
-                <div className="admin-menu">
-                    <AdminMenu
-                        uploaderShow={uploaderShow}
-                        setUploaderShow={setUploaderShow}
-                        setUpdatedSchedule={setUpdatedSchedule}
-                        updatedSchedule={updatedSchedule}
-                        updateSchedule={updateSchedule}
-                        arraySchedule={arraySchedule}
-                        setSubjectFirst={setSubjectFirst}
-                        setTeacherFirst={setTeacherFirst}
-                        setTeacherSecond={setTeacherSecond}
-                        setAuditoryFirst={setAuditoryFirst}
-                        setAuditorySecond={setAuditorySecond}
-                        lessonAdding={lessonAdding}
-                        setLessonAdding={setLessonAdding}
-                        isAdmin={isAdmin}
-                        setSchedule={setSchedule}
-                        search={search}
-                    />
-                </div>
+            <div className="admin-menu">
+            <AdminMenu
+                uploaderShow={uploaderShow}
+                setUploaderShow={setUploaderShow}
+                setUpdatedSchedule={setUpdatedSchedule}
+                updatedSchedule={updatedSchedule}
+                updateSchedule={updateSchedule}
+                schedule={schedule}
+                subjectFirst={subjectFirst}
+                setSubjectFirst={setSubjectFirst}
+                setTeacherFirst={setTeacherFirst}
+                setTeacherSecond={setTeacherSecond}
+                setAuditoryFirst={setAuditoryFirst}
+                setAuditorySecond={setAuditorySecond}
+                lessonAdding={lessonAdding}
+                setLessonAdding={setLessonAdding}
+                isAdmin={isAdmin}
+                setSchedule={setSchedule}
+                search={search}
+            />
+            </div>
                 <div className="schedule">
-
                 {
                     schedule.length === 0 ?
                     <div className="schedule-block">
@@ -173,12 +170,6 @@ const ScheduleEdit = () => {
                     </div>
                     :
                     <>
-                        <button 
-                            className="outlined-button"
-                            onClick={() => search("", "", 1)}
-                        >
-                            Вывести старое расписание из базы данных
-                        </button>
                         <Schedule
                             updatedLessons={updatedLessons}
                             lessonAdding={lessonAdding}
@@ -189,7 +180,7 @@ const ScheduleEdit = () => {
                         />
                     </>
                  }
-                
+
                 </div>
             </div>
         );

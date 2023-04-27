@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import "./AdminMenu.css";
-import {ReactComponent as SaveIcon} from "../../../../Icons/SaveIcon.svg";
-import {ReactComponent as CloseIcon} from "../../../../Icons/CloseIconBlack.svg";
 import Alert from "../../../../Components/Alert/Alert";
 import {Link} from "react-router-dom";
+import DropDownList from "../../../../Components/DropDownList/DropDownList";
 
 
 const AdminMenu = (props) => {
@@ -11,15 +10,26 @@ const AdminMenu = (props) => {
     const uploaderShow = props.uploaderShow;
     const setUploaderShow = props.setUploaderShow;
     const setSchedule = props.setSchedule;
+    const schedule = props.schedule;
     const search = props.search;
     const lessonAdding = props.lessonAdding;
     const setLessonAdding = props.setLessonAdding;
     const setSubjectFirst = props.setSubjectFirst;
+    const subjectFirst = props.subjectFirst;
     const setTeacherFirst = props.setTeacherFirst;
+    const teacherFirst = props.teacherFirst;
     const setTeacherSecond = props.setTeacherSecond;
+    const teacherSecond = props.teacherSecond;
     const setAuditoryFirst = props.setAuditoryFirst;
+    const auditoryFirst = props.auditoryFirst;
     const setAuditorySecond = props.setAuditorySecond;
+    const auditorySecond = props.auditorySecond;
 
+    const [isSubjectFocus, setIsSubjectFocus] = useState(false);
+    const [isTeacherFirstFocus, setIsTeacherFirstFocus] = useState(false);
+    const [isTeacherSecondFocus, setIsTeacherSecondFocus] = useState(false);
+    const [isAuditoryFirstFocus, setAuditoryFirstFocus] = useState(false);
+    const [isAuditorySecondFocus, setAuditorySecondFocus] = useState(false);
     const [saveNotation, setSaveNotation] = useState(false);
 
     const saveSchedule = () => {
@@ -47,63 +57,52 @@ const AdminMenu = (props) => {
                             ?
                     </div>
                 </Link>
-                <button 
-                className="close-button" 
-                style={{marginLeft: "auto"}}
-                onClick={
-                    () => {
-                        setAdminMenuShow(!adminMenuShow);
-                    }}
-                >
-                    <CloseIcon/>
-                </button>
             </div>
-            <h3>Урок</h3>
-            <div className="lesson">
-                <input
-                    type="text"
-                    placeholder="Название дисциплины"
-                    className="no-outline underlined-input"
-                    onChange={e => setSubjectFirst(e.target.value)}
-                />
 
-                <input
-                    type="text"
-                    placeholder="ФИО преподавателя (инициалы)"
-                    className="no-outline underlined-input"
-                    onChange={e => setTeacherFirst(e.target.value)}
-                />
+            {schedule.length > 0 ?
+                <div className="lesson">
+                    <h3>Урок</h3>
+                    <DropDownList
+                        value="Дисциплина: "
+                        array={schedule.map(item => item.subjectfirst)}
+                        setValue={setSubjectFirst}
+                        />
+                    <DropDownList
+                        value="Преподаватель первой подгруппы: "
+                        array={schedule.map(item => item.teacherfirst)}
+                        setValue={setTeacherFirst}
+                    />
+                    <DropDownList
+                        value="Преподаватель второй подгруппы: "
+                        array={schedule.map(item => item.teachersecond)}
+                        setValue={setTeacherSecond}
+                    />
+                    <DropDownList
+                        value="Аудитория первой подгруппы: "
+                        array={schedule.map(item => item.auditoryfirst)}
+                        setValue={setAuditoryFirst}
+                    />
+                    <DropDownList
+                        value="Аудитория второй подгруппы: "
+                        array={schedule.map(item => item.auditorysecond)}
+                        setValue={setAuditorySecond}
+                    />
 
-                <input
-                    type="text"
-                    placeholder="ФИО преподавателя (инициалы) для второй подгруппы"
-                    className="no-outline underlined-input"
-                    onChange={e => setTeacherSecond(e.target.value)}
-                />
-
-                <input
-                    type="text"
-                    placeholder="Номер аудитории"
-                    className="no-outline underlined-input"
-                    onChange={e => setAuditoryFirst(e.target.value)}
-                />
-
-                <input
-                    type="text"
-                    placeholder="Номер аудитории для второй подгруппы"
-                    className="no-outline underlined-input"
-                    onChange={e => setAuditorySecond(e.target.value)}
-                />
-
-                <button
-                    className="add-lesson__button"
-                    onClick={() => setLessonAdding(!lessonAdding)}
-                >
-                    {lessonAdding ? "Чтобы добавить урок, нажмите на нужную ячейку в таблице"
-                        : "Добавить в расписание"
-                    }
-                </button>
-            </div>
+                    <button
+                        style={{
+                            width: "100%"
+                        }}
+                        className="outlined-button"
+                        onClick={() => setLessonAdding(!lessonAdding)}
+                    >
+                        {lessonAdding ? "Чтобы добавить урок, нажмите на нужную ячейку в таблице"
+                            : "Добавить в расписание"
+                        }
+                    </button>
+                </div>
+                :
+                ""
+            }
 
             <div className="admin-menu__buttons">
                 {!uploaderShow ?

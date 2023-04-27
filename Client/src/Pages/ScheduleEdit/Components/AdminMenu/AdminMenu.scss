@@ -1,15 +1,19 @@
 .AdminMenu {
   display: flex;
-  gap: 24px;
-  overflow-x: scroll;
-  flex-direction: column;
-  width: 30em;
-  z-index: 0;
+  position: sticky;
   top: 0;
   left: 0;
-  padding: 12em 1em 1em 1em;
-  margin: 1em;
-  border-radius: 1em;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 2em;
+  gap: 24px;
+  overflow-x: scroll;
+  margin: 10em 1em;
+  width: 30em;
+  z-index: 0;
+  padding: 1em;
+  border-radius: 8px;
+  background: white;
   border: #1f1f1f 3px solid;
 
   .admin-menu__buttons {

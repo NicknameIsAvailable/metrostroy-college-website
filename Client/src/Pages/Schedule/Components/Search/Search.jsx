@@ -57,7 +57,6 @@ const Search = (props) => {
                         isVisible={isAutoCompleteVisible}
                         array={filteredSchedule}
                         value={inputs}
-                        input={inputs}
                         setInput={setInputs}
                     />
                 <DropDownList

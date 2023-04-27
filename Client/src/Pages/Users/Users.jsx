@@ -148,7 +148,6 @@ const Users = () => {
                                     return item.toLowerCase().includes(input.toLowerCase());
                                 })}
                                 value={input}
-                                input={input}
                                 setInput={setInput}
                             />
 

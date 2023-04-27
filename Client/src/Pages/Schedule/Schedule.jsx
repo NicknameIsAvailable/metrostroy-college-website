@@ -56,8 +56,6 @@ const Schedule = (props) => {
         }
     });
 
-    console.log(filteredGroups)
-
     return (
         <div className="container">
             <div className="Schedule">
