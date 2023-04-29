@@ -1,43 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./AutoComplete.css";
 
-const AutoComplete = (props) => {
+const AutoComplete = ({ setInput, array, value, isVisible }) => {
+    const [isSelectVisible, setIsSelectVisible] = useState(isVisible);
 
-    const setInput = props.setInput;
-    const value = props.value;
-    const isVisible = props.isVisible;
-    const array = props.array;
+    const uniqArray = [...new Set(array)];
 
-    const filteredArray = array.filter(item => {
-        return item.toLowerCase().includes(value?.toLowerCase());
-    });
+    const handleClick = (item) => {
+        setIsSelectVisible(false);
+        setInput(item);
+    }
 
-    console.log("filter", filteredArray)
-
-    const uniqArray = filteredArray?.reduce((a,b) => {
-        if (a.indexOf(b) < 0 ) a.push(b);
-        return a;
-    }, []);
-
-    if (isVisible) {
+    if (value && isSelectVisible) {
         return (
-            value ?
-                <ul className="auto-complete">
-                    {uniqArray.map(item =>
-                        <li
-                            className="auto-complete__item"
-                            onClick={() => {
-                                setInput(item)
-                            }}
-                        >
-                            {item}
-                        </li>
-                    )}
-                </ul>
-                :
-                ""
+            <select className="auto-complete" size="3">
+                {uniqArray.map((item) => (
+                    <option
+                        key={item}
+                        className="auto-complete__item"
+                        onClick={() => handleClick(item)}
+                    >
+                        {item}
+                    </option>
+                ))}
+            </select>
         );
     }
+
+    return null;
 };
 
 export default AutoComplete;

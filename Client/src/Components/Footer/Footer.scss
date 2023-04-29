@@ -1,9 +1,10 @@
 footer {
   flex: 0 0 auto;
   display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 9999;
-  background: #1f1f1f;
-  margin-top: 8em;
+  background-color: #1f1f1f;
   padding: 8em 15%;
   font-family: Montserrat, sans-serif;
   color: white;
@@ -29,12 +30,21 @@ footer {
 
   .container {
     display: flex;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 }
 
-@media screen and (max-width: 960px) {
+@media (max-width: 960px) {
   footer {
     flex-direction: column;
+    padding: 4em 15%;
+  }
+
+  h3,
+  p,
+  button {
+    text-align: center;
   }
 }

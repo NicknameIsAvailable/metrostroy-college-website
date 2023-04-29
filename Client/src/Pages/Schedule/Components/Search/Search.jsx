@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import "./Search.css"
 import AutoComplete from "../../../../Components/AutoComplete/AutoComplete";
-import DropDownList from "../DropDownList/DropDownList";
 
 const Search = (props) => {
     const setInputs = props.setInputs;
@@ -11,7 +10,6 @@ const Search = (props) => {
     const arraySchedule = props.arraySchedule;
     const setTeacherSearching = props.setTeacherSearching;
     const search = props.search;
-    const locationInputs = props.locationInputs;
 
     const filteredSchedule = [
         ...arraySchedule.map(item => item.groupNumber),
@@ -27,13 +25,11 @@ const Search = (props) => {
         setRadioInputs("Teacher");
     }
 
-    const [modalOpen, setModalOpen] = useState(false);
-
     const [isAutoCompleteVisible, setIsAutoCompleteVisible] = useState(false);
 
     return (
         <div className="Search">
-            <div className="search-block" onSubmit={async (e) => {
+            <form className="search-block" onSubmit={async (e) => {
                 e.preventDefault();
                 if (radioInputs === "Teacher") {
                     setTeacherSearching(true);
@@ -59,17 +55,21 @@ const Search = (props) => {
                         value={inputs}
                         setInput={setInputs}
                     />
-                <DropDownList
-                    className="button"
-                    search={search}
-                    inputs={inputs}
-                    arraySchedule={arraySchedule}
-                    radioInputs={radioInputs}
-                    modalOpen={modalOpen}
-                    setModalOpen={setModalOpen}
-                    locationInputs={locationInputs}
-                />
-            </div>
+
+                <div>
+                    <select className="search" name="Площадка" id="Площадка">
+                        <option>Площадка</option>
+                        {arraySchedule.map(obj => obj.locationName).reduce((a,b) => {
+                            if (a.indexOf(b) < 0 ) a.push(b);
+                            return a;
+                        }, []).map((item, index) =>
+                            <option onClick={async () => {
+                                await search(inputs, radioInputs, index + 1);
+                            }} value={item}>{item}</option>
+                        )}
+                    </select>
+                </div>
+            </form>
         </div>
     );
 };

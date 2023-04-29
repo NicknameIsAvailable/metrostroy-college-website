@@ -39,6 +39,7 @@ const Profile = () => {
         }
         catch (err) {
             alert('Произошла странная ошибка')
+            console.log(err);
         }
     }
 
@@ -76,7 +77,7 @@ const Profile = () => {
     // пасхалка
 
     const [avaClicks, setAvaClicks] = useState(0);
-        if (avaClicks === 1000) {
+    if (avaClicks === 1000) {
         console.log("ААААААААААААААААААААА ЧТООООООООООООООООООООООООООООО")
         return(
             <img src={easterEgg} alt="ААААААААААААА ЧТОООООООООО"/>
@@ -125,19 +126,39 @@ const Profile = () => {
                                 dayNumber === 0 || dayNumber === 6 ?
                                     ""
                                     :
-                                    <>
-                                        <h2>
-                                            Твое расписание на сегодня
-                                        </h2>
-                                        {
-                                            arraySchedule
-                                                .filter(item => item.weekDay === days[dayNumber])
-                                                .map(lesson => <Lesson obj={lesson}/>)
-                                        }
-                                    </>
-                            }
+                                    <div className="mini-schedule">
+                                        <div className="mini-schedule__block">
+                                            <h2>
+                                                Твое расписание на сегодня
+                                            </h2>
 
-                            <Link to="/schedule">
+                                            {
+                                                arraySchedule
+                                                    .filter(item => item.weekDay === days[dayNumber])
+                                                    .map(lesson => <Lesson obj={lesson}/>)
+                                            }
+                                        </div>
+
+                                        <div className="mini-schedule__block">
+                                            {
+                                                arraySchedule
+                                                    .filter(item => item.weekDay === days[dayNumber + 1]).length > 0 ?
+                                                    <>
+                                                        <h2>
+                                                            На завтра
+                                                        </h2>
+                                                        {
+                                                            arraySchedule
+                                                                .filter(item => item.weekDay === days[dayNumber + 1])
+                                                                .map((lesson, index) => <Lesson style={{zIndex: index + 1}} obj={lesson}/>)
+                                                        }
+                                                    </>
+                                                    : ""
+                                            }
+                                        </div>
+                                    </div>
+                            }
+                            <Link style={{color: "#46aebe"}} to="/schedule">
                                 <h4>
                                     Посмотреть полное расписание
                                 </h4>

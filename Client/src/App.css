@@ -10,7 +10,7 @@ html {
   align-items: center;
   background: #1f1f1f;
   border: none;
-  transition-duration: 0.3s;
+  transition: filter 0.3s;
 }
 .little-button:hover {
   filter: brightness(2);
@@ -43,9 +43,7 @@ body {
 
 .underlined-input {
   padding: 8px;
-  border-left: none;
-  border-right: none;
-  border-top: none;
+  border: none;
   background: none;
   border-bottom: #1f1f1f 3px solid;
   font-size: 16px;
@@ -54,8 +52,8 @@ body {
 }
 
 .container {
-  margin-left: 15%;
-  margin-right: 15%;
+  margin: 0 15%;
+  display: flex;
   justify-content: center;
   min-height: 100vh;
 }
@@ -66,9 +64,9 @@ body {
   gap: 12px;
   border-radius: 16px;
   padding: 16px;
-  width: 30vw;
   min-width: 360px;
   min-height: 360px;
+  width: 30vw;
   background: white;
 }
 
@@ -83,7 +81,7 @@ body {
   padding: 8px 16px;
   border: #1f1f1f 3px solid;
   border-radius: 8px;
-  transition-duration: 0.3s;
+  transition: background 0.3s;
 }
 .modal-button:hover {
   background: rgba(31, 31, 31, 0.2);
@@ -94,17 +92,17 @@ body {
 
 ::-webkit-scrollbar {
   background: transparent;
-  display: flex;
-  justify-content: center;
   width: 8px;
   padding: 2px;
+  display: flex;
+  justify-content: center;
 }
 
 ::-webkit-scrollbar-thumb {
   background: white;
   border-radius: 4px;
   width: 1px;
-  border: #1f1f1f 1px solid;
+  box-shadow: 0 100px 80px rgba(0, 0, 0, 0.07), 0 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 0 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 0 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
 }
 
 .Link {
@@ -151,32 +149,23 @@ button {
   color: #3D99A8;
   border: #3D99A8 3px solid;
   border-radius: 16px;
-  transition-duration: 0.3s;
-  cursor: pointer;
+  transition: border 0.3s, background 0.3s, color 0.3s;
 }
 .outlined-button:hover {
-  border: 3px solid #87C2D0;
+  border-color: #87C2D0;
 }
 .outlined-button:active {
-  transition-duration: 0.2s;
+  transition: background 0.2s, color 0.2s;
   background: #3D99A8;
   color: white;
-  border: #3D99A8 3px solid;
+  border-color: #3D99A8;
 }
 
 Link {
   text-decoration: none;
 }
 
-.no-outline:hover {
-  outline: 0;
-  outline-offset: 0;
-}
-.no-outline:active {
-  outline: 0;
-  outline-offset: 0;
-}
-.no-outline:focus {
+.no-outline:hover, .no-outline:active, .no-outline:focus {
   outline: 0;
   outline-offset: 0;
 }
@@ -195,15 +184,13 @@ abbr {
 
 @media screen and (max-width: 1600px) {
   .container {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 0 10%;
     height: 100%;
   }
 }
 @media screen and (max-width: 720px) {
   .container {
-    margin-left: 5%;
-    margin-right: 5%;
+    margin: 0 5%;
     height: 100%;
   }
 }

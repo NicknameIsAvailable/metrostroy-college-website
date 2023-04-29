@@ -3,7 +3,6 @@ import "./Cell.css"
 
 const Cell = (props) => {
     const [obj, setObj] = useState(props.obj);
-    const teacherSearching = props.teacherSearching;
     const inputs = props.inputs;
     const lessonAdding = props.lessonAdding;
     const updatedLessons = props.updatedLessons
@@ -59,10 +58,19 @@ const Cell = (props) => {
                         setObj(lesson)
                     }
                 }}
-                style={obj.teacherFirst === inputs && teacherSearching ?
-                    {background: "#3D99A8", color: "white"}
+                style={obj.teacherFirst.toLowerCase().includes(inputs.toLowerCase())
+                && inputs.length >= 3
+                || obj.subjectFirst.toLowerCase().includes(inputs.toLowerCase())
+                && inputs.length >= 3 ?
+                    {
+
+                } : inputs.length < 3 ? {
+
+                }
                     :
-                    {background: "white", color: "#1f1f1f"}}
+                {
+                    filter: "opacity(0.5)"
+                }}
             >
                 <div className="main-info">
                     <abbr title="Номер урока">
@@ -80,7 +88,6 @@ const Cell = (props) => {
                             }
                         </h4>
                     </abbr>
-
 
                     <abbr title="Урок">
                         <h2

@@ -1,23 +1,22 @@
 header {
   display: flex;
   flex-direction: column;
-  z-index: 1;
   align-items: center;
   width: 100vw;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  transition-duration: 0.3s;
+  z-index: 1;
   background: white;
+  transition-duration: 0.3s;
 }
-header .main {
+header .main,
+header .main__section {
   width: 100vw;
   display: flex;
 }
 header .main__section {
-  width: 100vw;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -33,19 +32,17 @@ header .main__section .header-buttons button {
   background: none;
   transition-duration: 0.3s;
 }
-header .main__section .header-buttons button:hover {
+header .main__section .header-buttons button:hover, header .main__section .header-buttons button:active {
   background: rgba(31, 31, 31, 0.2);
-}
-header .main__section .header-buttons button:active {
-  background: rgba(31, 31, 31, 0.1);
 }
 header .links {
   font-family: Montserrat, sans-serif;
   font-weight: 300;
   width: 100vw;
   height: 48px;
-  align-items: center;
   background: #1f1f1f;
+  display: flex;
+  align-items: center;
   margin-left: auto;
   gap: 32px;
 }
@@ -67,48 +64,49 @@ header .rightBuilding {
 header .links__section {
   color: white;
   font-size: 18px;
-  margin-left: 3%;
-  margin-right: 3%;
+  margin: 0 3%;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-
-@media screen and (max-width: 1600px) {
-  .hideable1600 {
-    display: none;
-  }
-  .main img {
-    width: 180px;
-  }
-  .main .header-buttons {
-    justify-content: flex-end;
-  }
-}
 @media screen and (max-width: 1000px) {
-  .hideable1000 {
-    display: none;
-  }
-  .links__section {
-    padding-left: 15%;
-    padding-right: 15%;
+  header .links__section {
+    padding: 0 15%;
   }
 }
 @media screen and (max-width: 720px) {
-  .hideable720 {
+  header .links__section {
+    padding: 0 5%;
+  }
+}
+@media screen and (max-width: 1600px) {
+  header .hideable1600 {
     display: none;
   }
-  .main__section {
-    width: 100vw;
-    justify-content: space-between;
+  header .main .header-buttons {
+    justify-content: flex-end;
   }
-  .links__section {
-    padding-left: 5%;
-    padding-right: 5%;
+  header .main img {
+    width: 180px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  header .hideable1000 {
+    display: none;
+  }
+}
+@media screen and (max-width: 720px) {
+  header .hideable720 {
+    display: none;
+  }
+  header .main__section {
+    justify-content: space-between;
   }
   header .Logo {
     width: 200px;
   }
-}/*# sourceMappingURL=Header.css.map */
+}
+
+/*# sourceMappingURL=Header.css.map */

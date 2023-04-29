@@ -1,42 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./Header.css";
 import {ReactComponent as Logo} from "../../Icons/Logo.svg";
-import {ReactComponent as Person} from "../../Icons/Person.svg";
+import {ReactComponent as PersonIcon} from "../../Icons/Person.svg";
+import {ReactComponent as BurgerIcon} from "../../Icons/Burger.svg";
 import LeftBuilding from "../../Images/LeftBuilding.png";
 import RightBuilding from "../../Images/RightBuilding.png";
-import {ReactComponent as Burger} from "../../Icons/Burger.svg";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import {Link} from "react-router-dom";
 
 const Header = () => {
 
     const [open, setOpen] = useState(false);
-
     const [headerHidden, setHeaderHidden] = useState(false);
 
-    const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
-    const [scrollPos, setScrollPos] = useState();
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPos = window.pageYOffset;
+            setHeaderHidden(prevScrollPos => prevScrollPos > scrollPos);
+        };
 
-    window.onscroll = () => {
-        setScrollPos(window.pageYOffset);
+        window.addEventListener("scroll", handleScroll);
 
-        if (prevScrollPos > scrollPos) {
-            setHeaderHidden(false)
-        } else  {
-            setHeaderHidden(true)
-        }
-
-        setPrevScrollPos(scrollPos);
-    }
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
-        <header
-            style={
-            headerHidden ? {
-                transform: "translateY(-100%)"
-            } : {}
-        }
-        >
+        <header className={headerHidden ? "header-hidden" : ""}>
             <BurgerMenu open={open} setOpen={setOpen}/>
             <div className="main">
                 <img
@@ -50,13 +41,12 @@ const Header = () => {
                     </a>
                     <div className="header-buttons">
                         <Link to="/">
-                        <button>
-                            <Person className="icon"/>
-                        </button>
+                            <button>
+                                <PersonIcon className="icon"/>
+                            </button>
                         </Link>
-
                         <button className="burger-btn" onClick={() => setOpen(true)}>
-                            <Burger className="icon"/>
+                            <BurgerIcon className="icon"/>
                         </button>
                     </div>
                 </div>

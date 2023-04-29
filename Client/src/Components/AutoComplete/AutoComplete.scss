@@ -1,33 +1,39 @@
 .auto-complete {
   position: absolute;
   background: white;
+  border-radius: 1em;
   margin-top: 56px;
   max-height: 15vh;
   min-width: 24vw;
-  overflow: scroll;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
   list-style: none;
 
-  .auto-complete__item {
+  &__item {
     border-radius: 16px;
     cursor: pointer;
     padding: 8px;
-    transition-duration: 0.3s;
-    animation: 0.3s itemsShow ease;
+    transition: background-color 0.3s ease;
+    animation: items-show 0.3s ease;
 
     &:hover {
-      background: rgba(31, 31, 31, 0.3);
+      background-color: rgba(31, 31, 31, 0.3);
     }
 
     &:active {
-      background: rgba(31, 31, 31, 0.1);
+      background-color: rgba(31, 31, 31, 0.1);
     }
   }
 
-  @keyframes itemsShow {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  @keyframes items-show {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 }

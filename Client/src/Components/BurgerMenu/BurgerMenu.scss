@@ -6,16 +6,21 @@
   height: 100vh;
   position: fixed;
   background: #1f1f1f;
+  box-shadow:0 100px 80px rgba(0, 0, 0, 0.07),
+ 0 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
+ 0 22.3363px 17.869px rgba(0, 0, 0, 0.0417275),
+ 0 12.5216px 10.0172px rgba(0, 0, 0, 0.035),
+ 0 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725),
+ 0 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
   transition-duration: 0.3s;
 
-  .visible1600 .visible1000 .visible720 {
+  .hideable {
     display: none;
   }
 
   .back-button {
     position: absolute;
-    margin-left: 16px;
-    margin-top: 16px;
+    margin: 16px;
     border-radius: 16px;
     padding: 8px;
     border: none;
@@ -27,18 +32,14 @@
     cursor: pointer;
     transition-duration: 0.3s;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
+    &:hover,
     &:active {
+      background: rgba(255, 255, 255, 0.1);
       transition-duration: 0.2s;
-      background: rgba(255, 255, 255, 0.3);
     }
 
     .back-button__icon {
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
     }
   }
 
@@ -63,28 +64,38 @@
       transition-duration: 0.3s;
       border-radius: 8px;
 
-      &:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
-
+      &:hover,
       &:active {
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        transition-duration: 0.2s;
       }
     }
   }
 
-  .hideable {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 1600px) {
-  .BurgerMenu {
+  @media screen and (max-width: 1600px) {
     width: 100%;
     height: 100%;
 
     .hideable {
       display: block;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .hideable {
+      display: none;
+    }
+    .visible1000 {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 720px) {
+    .visible720 {
+      display: block;
+    }
+    .visible1000 {
+      display: none;
     }
   }
 }
@@ -93,16 +104,8 @@
   .visible1600 {
     display: block;
   }
-}
-
-@media screen and (max-width: 1000px) {
+  .visible720,
   .visible1000 {
-    display: block;
+    display: none;
   }
-}
-
-@media screen and (max-width: 720px) {
-  .visible720 {
-    display: block;
-  }
-}
+} 
