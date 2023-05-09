@@ -1,8 +1,18 @@
 import React from 'react';
 import "./AdminPanel.css";
 import Tab from "./Components/Tab/Tab";
+import {useSelector} from "react-redux";
+import {selectIsAuth} from "../../Redux/Slices/auth";
+import {Navigate} from "react-router-dom";
 
 const AdminPanel = () => {
+    const isAuth = useSelector(selectIsAuth);
+    const user = useSelector(state => state.auth);
+    const isAdmin = Boolean(isAuth && user.data.data.AccessUser === "0")
+
+    if (!isAdmin) return <Navigate to="/something-wrong"/>
+    if (!isAuth) return <Navigate to="/login"/>
+
     return (
         <div className="container">
             <div className="AdminPanel">

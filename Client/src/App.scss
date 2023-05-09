@@ -151,6 +151,10 @@ button {
   text-decoration: underline;
 }
 
+.error-text {
+  color: #FE6060
+}
+
 .outlined-button {
   font-family: "Akrobat", sans-serif;
   font-weight: 700;
@@ -171,6 +175,12 @@ button {
     background: $secondary-color;
     color: white;
     border-color: $secondary-color;
+  }
+
+  &:disabled {
+    color: white;
+    border-color: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3);
   }
 }
 

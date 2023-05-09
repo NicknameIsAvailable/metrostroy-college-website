@@ -1,51 +1,38 @@
 import React, {useState, useEffect} from 'react';
 import "./Profile.css";
 import Loader from '../../Components/Loader/Loader';
-import axios from '../../axios';
 import easterEgg from "../../Images/картинка без которой ничего не будет работать.jpg";
 import Lesson from './Components/Lesson/Lesson';
 import {Link, Navigate} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import {fetchSchedule, selectSchedule} from "../../Redux/Slices/schedule";
+import {logout, selectIsAuth} from "../../Redux/Slices/auth";
 
 const Profile = () => {
 
-    const [isAdmin, setIsAdmin] = useState(true);
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const isAuth = useSelector(selectIsAuth);
+
+    const user = useSelector(state => state.auth);
+
+    const isAdmin = Boolean(isAuth && user.data.data.AccessUser === "0")
+
+    console.log(isAdmin)
+
+    console.log(localStorage.getItem("userData"));
 
     // получение расписания с бэкенда
 
-    const [schedule, setSchedule] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isTeacher, setIsTeacher] = useState(true);
 
-    const search = async (inputs, radio, location) => {
-        const requestOptions = {
-            valueSearch: inputs,
-            valueRadioButton: radio,
-            valueLocation: location
-        };
+    // Объявление переменных состояния и функций
+    const dispatch = useDispatch();
+    const schedule = useSelector(selectSchedule);
 
-        try {
-            await axios.post('/schedule.php',
-                requestOptions
-            )
-                .then(response => {
-                    if(response.data !== "Запрос не получил ни одного результата!") {
-                        setSchedule(response.data);
-                        setIsLoading(false);
-                    } else {
-                        search("", "", 1);
-                    }
-                })
-        }
-        catch (err) {
-            alert('Произошла странная ошибка')
-            console.log(err);
-        }
-    }
+    const isLoading = schedule.status === 'loading'
 
+    // Запускать функцию fetchSchedule при загрузке страницы
     useEffect(() => {
-        search(12, "Group", "");
-    }, []);
+        dispatch(fetchSchedule());
+    }, [dispatch]);
 
     const arraySchedule = schedule.map(obj => ({
         time: obj.time,
@@ -77,100 +64,92 @@ const Profile = () => {
     // пасхалка
 
     const [avaClicks, setAvaClicks] = useState(0);
-    if (avaClicks === 1000) {
+        if (avaClicks === 100) {
         console.log("ААААААААААААААААААААА ЧТООООООООООООООООООООООООООООО")
         return(
             <img src={easterEgg} alt="ААААААААААААА ЧТОООООООООО"/>
         );
     }
 
-    if (isLoggedIn) {
-        return (
-            <div className="container">
-                <Loader loading={isLoading}/>
-                <div className="ProfilePage">
-                    <div className="profile-block">
-                        <div className="info-block">
-                            <div className="user-info">
-                                <div className="user-info__text">
+    if (user.data === null) return <Navigate to="/login"/>
 
-                                    {
-                                        isAdmin ?
-                                            <h3>
-                                                <Link
-                                                    to="/admin"
-                                                    style={{color: "#1f1f1f"}}
-                                                >
-                                                    Войти в админ-панель
-                                                </Link>
-                                            </h3>
-                                            :
-                                            ""
-                                    }
-                                    <h2 onClick={() => {
-                                        setAvaClicks(avaClicks + 1);
-                                        console.log("Нажми еще ", 1000 - avaClicks, " раз")
-                                    }}>
-                                        Иванов Иван Иванович
-                                    </h2>
-                                    <h3>
-                                        {isAdmin ?
-                                            "Админ"
-                                            :
-                                            "29 группа информационные системы и программирование"}
-                                    </h3>
-                                </div>
-                            </div>
+    if (isAuth)
+    return (
+        <div className="container">
+            <Loader loading={isLoading}/>
+            <div className="ProfilePage">
+                <div className="profile-block">
+                    <div className="info-block">
+                        <div className="user-info">
+                            <div className="user-info__text">
 
-                            {
-                                dayNumber === 0 || dayNumber === 6 ?
-                                    ""
-                                    :
-                                    <div className="mini-schedule">
-                                        <div className="mini-schedule__block">
-                                            <h2>
-                                                Твое расписание на сегодня
-                                            </h2>
-
-                                            {
-                                                arraySchedule
-                                                    .filter(item => item.weekDay === days[dayNumber])
-                                                    .map(lesson => <Lesson obj={lesson}/>)
-                                            }
-                                        </div>
-
-                                        <div className="mini-schedule__block">
-                                            {
-                                                arraySchedule
-                                                    .filter(item => item.weekDay === days[dayNumber + 1]).length > 0 ?
-                                                    <>
-                                                        <h2>
-                                                            На завтра
-                                                        </h2>
-                                                        {
-                                                            arraySchedule
-                                                                .filter(item => item.weekDay === days[dayNumber + 1])
-                                                                .map((lesson, index) => <Lesson style={{zIndex: index + 1}} obj={lesson}/>)
-                                                        }
-                                                    </>
-                                                    : ""
-                                            }
-                                        </div>
-                                    </div>
-                            }
-                            <Link style={{color: "#46aebe"}} to="/schedule">
+                                {
+                                    user.data.data.AccessUser === "0" ?
+                                        <h3>
+                                            <Link
+                                                to="/admin"
+                                                style={{color: "#1f1f1f"}}
+                                            >
+                                                Войти в админ-панель
+                                            </Link>
+                                        </h3>
+                                        :
+                                        ""
+                                }
+                                <h2 onClick={() => {
+                                    setAvaClicks(avaClicks + 1);
+                                    console.log("Нажми еще ", 1000 - avaClicks, " раз")
+                                }}>
+                                    {user.data.data.NameUser} {user.data.data.LastName}
+                                </h2>
+                                <h3>
+                                    {user.data.data.AccessUser === "0" ?
+                                        "Админ"
+                                        :
+                                        `студент ${user.data.data.GroupUser} группы`}
+                                </h3>
                                 <h4>
-                                    Посмотреть полное расписание
+                                    {user.data.data.MailUser}
                                 </h4>
-                            </Link>
+
+                                <h5 onClick={() => {
+                                    logout()
+                                    localStorage.removeItem("userData")
+                                    console.log(localStorage)
+                                    return <Navigate to="/login"/>
+                                }}>
+                                    Выйти
+                                </h5>
+                            </div>
                         </div>
+
+                        {
+                            dayNumber === 0 || dayNumber === 6 ?
+                                ""
+                                :
+                                <>
+                                    <h2>
+                                        Твое расписание на сегодня
+                                    </h2>
+                                    {
+                                        arraySchedule
+                                            .filter(item => item.weekDay === days[dayNumber]
+                                                && item.groupNumber === user.data.data.GroupUser)
+                                            .map(lesson => <Lesson obj={lesson}/>)
+                                    }
+                                </>
+                        }
+
+                        <Link to="/schedule">
+                            <h4>
+                                Посмотреть полное расписание
+                            </h4>
+                        </Link>
                     </div>
                 </div>
             </div>
-        );
-    } else {
-        return <Navigate to={"/login"}/>
-    }
+        </div>
+    );
 };
 
 export default Profile;

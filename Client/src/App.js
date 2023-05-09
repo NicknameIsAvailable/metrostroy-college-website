@@ -17,6 +17,8 @@ import Users from "./Pages/Users/Users";
 import Login from "./Pages/Login/Login";
 
 function App() {
+    // const [cookies, setCookie] = useCookies([""])
+
     return (
         <div className="App">
             <Header />

@@ -23,6 +23,19 @@
 .AdminMenu .admin-menu__buttons button {
   flex: 1;
 }
+.AdminMenu input {
+  width: 100%;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid #1f1f1f;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
 .AdminMenu .equal-is {
   align-items: center;
   display: flex;

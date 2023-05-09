@@ -36,13 +36,11 @@ header .main__section .header-buttons button:hover, header .main__section .heade
   background: rgba(31, 31, 31, 0.2);
 }
 header .links {
-  font-family: Montserrat, sans-serif;
   font-weight: 300;
   width: 100vw;
   height: 48px;
-  background: #1f1f1f;
-  display: flex;
   align-items: center;
+  background: #1f1f1f;
   margin-left: auto;
   gap: 32px;
 }

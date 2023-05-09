@@ -2,8 +2,13 @@ import React, {useEffect, useState} from 'react';
 import "./TeachersList.css";
 import Teacher from "./Components/Teacher/Teacher";
 import axios from "../../axios";
+import {useSelector} from "react-redux";
+import {selectIsAuth} from "../../Redux/Slices/auth";
+import {Navigate} from "react-router-dom";
 
 const TeachersList = () => {
+
+    const isAuth = useSelector(selectIsAuth);
 
     const [lessons, setLessons] = useState([]);
 
@@ -63,6 +68,8 @@ const TeachersList = () => {
             speciality: "Химия"
         }
     ];
+
+    if (!isAuth) return <Navigate to="/login"/>
 
     return (
         <div className="container">

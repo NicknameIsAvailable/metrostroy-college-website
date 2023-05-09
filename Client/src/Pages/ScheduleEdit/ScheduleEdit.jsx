@@ -5,8 +5,14 @@ import {Navigate} from "react-router-dom";
 import axios from "../../axios";
 import Schedule from "../Schedule/Schedule";
 import UploaderModal from "./Components/UploaderModal/UploaderModal";
+import {useSelector} from "react-redux";
+import {selectIsAuth} from "../../Redux/Slices/auth";
 
 const ScheduleEdit = () => {
+
+    const isAuth = useSelector(selectIsAuth);
+    const user = useSelector(state => state.auth);
+    const isAdmin = Boolean(isAuth && user.data.data.AccessUser === "0")
 
     const [subjectFirst, setSubjectFirst] = useState("");
     const [teacherFirst, setTeacherFirst] = useState("");
@@ -14,11 +20,12 @@ const ScheduleEdit = () => {
     const [auditoryFirst, setAuditoryFirst] = useState("");
     const [auditorySecond, setAuditorySecond] = useState("");
 
-    const [isAdmin, setIsAdmin] = useState(true)
     const [updatedSchedule, setUpdatedSchedule] = useState();
 
     const [schedule, setSchedule] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const [arraySchedule, setArraySchedule] = useState();
 
     // поиск и получение расписания с бд
 
@@ -45,6 +52,7 @@ const ScheduleEdit = () => {
         }
         catch (err) {
             alert("Произошла странная ошибка");
+            console.log(err);
         }
     };
 
@@ -104,6 +112,9 @@ const ScheduleEdit = () => {
 
     const updatedLessons = [];
 
+    if (!isAdmin) return <Navigate to="/something-wrong"/>
+    if (!isAuth) return <Navigate to="/login"/>
+
     if (isAdmin) {
         return (
             <div className="ScheduleEdit"
@@ -129,28 +140,29 @@ const ScheduleEdit = () => {
                 uploaderShow={uploaderShow}
                 update={updateSchedule}
             />
-            <div className="admin-menu">
-            <AdminMenu
-                uploaderShow={uploaderShow}
-                setUploaderShow={setUploaderShow}
-                setUpdatedSchedule={setUpdatedSchedule}
-                updatedSchedule={updatedSchedule}
-                updateSchedule={updateSchedule}
-                schedule={schedule}
-                subjectFirst={subjectFirst}
-                setSubjectFirst={setSubjectFirst}
-                setTeacherFirst={setTeacherFirst}
-                setTeacherSecond={setTeacherSecond}
-                setAuditoryFirst={setAuditoryFirst}
-                setAuditorySecond={setAuditorySecond}
-                lessonAdding={lessonAdding}
-                setLessonAdding={setLessonAdding}
-                isAdmin={isAdmin}
-                setSchedule={setSchedule}
-                search={search}
-            />
-            </div>
+                <div className="admin-menu">
+                    <AdminMenu
+                        uploaderShow={uploaderShow}
+                        setUploaderShow={setUploaderShow}
+                        setUpdatedSchedule={setUpdatedSchedule}
+                        updatedSchedule={updatedSchedule}
+                        updateSchedule={updateSchedule}
+                        arraySchedule={arraySchedule}
+                        setSubjectFirst={setSubjectFirst}
+                        setTeacherFirst={setTeacherFirst}
+                        setTeacherSecond={setTeacherSecond}
+                        setAuditoryFirst={setAuditoryFirst}
+                        setAuditorySecond={setAuditorySecond}
+                        lessonAdding={lessonAdding}
+                        setLessonAdding={setLessonAdding}
+                        isAdmin={isAdmin}
+                        schedule={schedule}
+                        setSchedule={setSchedule}
+                        search={search}
+                    />
+                </div>
                 <div className="schedule">
+
                 {
                     schedule.length === 0 ?
                     <div className="schedule-block">
@@ -170,6 +182,12 @@ const ScheduleEdit = () => {
                     </div>
                     :
                     <>
+                        <button 
+                            className="outlined-button"
+                            onClick={() => search("", "", 1)}
+                        >
+                            Вывести старое расписание из базы данных
+                        </button>
                         <Schedule
                             updatedLessons={updatedLessons}
                             lessonAdding={lessonAdding}
@@ -180,7 +198,7 @@ const ScheduleEdit = () => {
                         />
                     </>
                  }
-
+                
                 </div>
             </div>
         );

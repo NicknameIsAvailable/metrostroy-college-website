@@ -59,13 +59,9 @@ const Header = () => {
 
             <div className="links">
                 <div className="links__section">
-                    <a className="hideable1000" href="https://colm.spb.ru/information-about-">сведения об образовательной организации</a>
                     <a href="https://colm.spb.ru/applicants">абитуриентам</a>
+                    <Link to="/schedule">расписание</Link>
                     <a href="https://colm.spb.ru/students">обучающимся</a>
-                    <a className="hideable1600" href="https://colm.spb.ru/methodical-work">методическая работа</a>
-                    <a className="hideable720" href="https://colm.spb.ru/driving-school">автошкола</a>
-                    <a className="hideable1600" href="https://colm.spb.ru/educational-work">воспитательная работа</a>
-                    <a className="hideable1600" href="https://colm.spb.ru/workshops">мастерские / федеральный грант</a>
                     <a href="https://colm.spb.ru/news">наши новости</a>
                 </div>
             </div>

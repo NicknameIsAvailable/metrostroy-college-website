@@ -9,6 +9,7 @@ const DropDownList = (props) => {
                 <label htmlFor={props.value}>
                     {props.value}
                 </label>
+                <br/>
                 <select name={props.value} id={props.value} onChange={(event) => props.setValue(event.target.value)}>
                     <option value="">Пустое поле</option>
                     {props.array.reduce((a,b) => {
