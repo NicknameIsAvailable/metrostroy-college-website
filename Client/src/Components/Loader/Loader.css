@@ -1,7 +1,6 @@
 .loader__background {
   background: rgba(31, 31, 31, 0.7);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   transition-duration: 0.3s;
   z-index: 1;
   position: fixed;
@@ -48,4 +47,6 @@
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -124;
   }
-}/*# sourceMappingURL=Loader.css.map */
+}
+
+/*# sourceMappingURL=Loader.css.map */

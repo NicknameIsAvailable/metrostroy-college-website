@@ -52,7 +52,6 @@ const ScheduleEdit = () => {
         }
         catch (err) {
             alert("Произошла странная ошибка");
-            console.log(err);
         }
     };
 

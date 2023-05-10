@@ -14,12 +14,6 @@ const Profile = () => {
 
     const user = useSelector(state => state.auth);
 
-    const isAdmin = Boolean(isAuth && user.data.data.AccessUser === "0")
-
-    console.log(isAdmin)
-
-    console.log(localStorage.getItem("userData"));
-
     // получение расписания с бэкенда
 
 
@@ -84,7 +78,7 @@ const Profile = () => {
                             <div className="user-info__text">
 
                                 {
-                                    user.data.data.AccessUser === "0" ?
+                                    user.data.data.access === "0" ?
                                         <h3>
                                             <Link
                                                 to="/admin"
@@ -100,22 +94,21 @@ const Profile = () => {
                                     setAvaClicks(avaClicks + 1);
                                     console.log("Нажми еще ", 1000 - avaClicks, " раз")
                                 }}>
-                                    {user.data.data.NameUser} {user.data.data.LastName}
+                                    {user.data.data.name} {user.data.data.lastname}
                                 </h2>
                                 <h3>
-                                    {user.data.data.AccessUser === "0" ?
+                                    {user.data.data.access === "0" ?
                                         "Админ"
                                         :
-                                        `студент ${user.data.data.GroupUser} группы`}
+                                        `студент ${user.data.data.group} группы`}
                                 </h3>
                                 <h4>
-                                    {user.data.data.MailUser}
+                                    {user.data.data.mail}
                                 </h4>
 
                                 <h5 onClick={() => {
                                     logout()
                                     localStorage.removeItem("userData")
-                                    console.log(localStorage)
                                     return <Navigate to="/login"/>
                                 }}>
                                     Выйти
@@ -134,7 +127,7 @@ const Profile = () => {
                                     {
                                         arraySchedule
                                             .filter(item => item.weekDay === days[dayNumber]
-                                                && item.groupNumber === user.data.data.GroupUser)
+                                                && item.groupNumber === user.data.data.group)
                                             .map(lesson => <Lesson obj={lesson}/>)
                                     }
                                 </>
