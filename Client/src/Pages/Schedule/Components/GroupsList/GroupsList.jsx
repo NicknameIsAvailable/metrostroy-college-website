@@ -18,9 +18,9 @@ const GroupsList = (props) => {
             {groups?.map((gObj, gIndex) =>
             gObj ?
                 <div className="group-block">
-                    <h2>
-                        Группа {gObj}
-                    </h2>
+                    <h1>
+                        ГРУППА {gObj}
+                    </h1>
                     <table>
                         <td>
                             {weekdays.map((wObj, wIndex) =>
@@ -32,7 +32,7 @@ const GroupsList = (props) => {
                                 return (          
                                 <td>
                                     <tr>
-                                        <h3 className="day-cell">{wObj}</h3>
+                                        <h2 className="day-cell">{wObj}</h2>
                                     </tr>
                                     {group.map((obj, index) =>
                                         <Cell

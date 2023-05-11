@@ -1,7 +1,9 @@
 .users-page {
+    background: radial-gradient(100% 100% at 100% 100%, rgba(92, 183, 201, 0.1) 0%, rgba(92, 183, 201, 0) 100%), radial-gradient(100% 316.05% at 0% 0%, rgba(61, 153, 168, 0.3) 0%, rgba(0, 0, 0, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, #FFFFFF;
     min-height: 70vh;
 
     .container {
+        flex-direction: column;
         min-height: 0;
 
         .buttons {
@@ -45,6 +47,7 @@
 }
 
 .users-page {
+    width: 100vw;
     margin-top: 200px;
 }
 

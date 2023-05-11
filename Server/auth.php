@@ -44,9 +44,7 @@ if(pg_num_rows($response_block_ip) != 0){
         $time_now_set = mktime($time_now['hour'], $time_now['min'], $time_now['second'], $time_now['month'], $time_now['day'], $time_now['year']);
 
         if($time_now_set < $check_line_time){
-            $min_sleep = (int)(date('i', $check_line_time) - date('i', $time_now_set)) + 1;
             http_response_code(423);
-            print json_encode(['access'=> false, 'time_out'=> $min_sleep]);
             exit;
         }
     }
@@ -122,6 +120,7 @@ if(pg_num_rows($response) == 0){ // Проверка на логин
             }
 
             http_response_code(429);
+
             print(json_encode([
                 'access' => 'false',
                 'message' => "Неверный логин или пароль"
@@ -135,7 +134,7 @@ if(pg_num_rows($response) == 0){ // Проверка на логин
 
             $time_out = $countOpenSite - 5;
             $time_now_set_sleep = mktime($time_now['hour'], $time_now['min'] + $time_out, $time_now['second'], $time_now['month'], $time_now['day'], $time_now['year']);
-            $time_sleep_after_block = mktime($time_now['hour'], $time_now['min'] + $time_out + 3, $time_now['second'], $time_now['month'], $time_now['day'], $time_now['year']);
+            $time_sleep_after_block = mktime($time_now['hour'], $time_now['min'] + $time_out + 2, $time_now['second'], $time_now['month'], $time_now['day'], $time_now['year']);
 
             $response = @pg_query_params($connectDB, "UPDATE blockIpUser
                                                             SET timesleep = $1, countopensite = $2, last_message_time = $3

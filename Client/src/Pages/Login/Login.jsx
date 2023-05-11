@@ -15,26 +15,33 @@ const Login = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const auth = async (values) => {
-        try {
-            const response = await dispatch(fetchAuth(values));
-            setData(response);
-            saveUserData(response);
-            setIsSubmitting(false);
 
-            if (response.error && response.error.message.includes('423')) {
-                setError('Слишком много попыток, подождите');
-            }
+        if (login && password) {
+            try {
+                const response = await dispatch(fetchAuth(values));
+                setData(response);
+                saveUserData(response);
+                setIsSubmitting(false);
 
-            if (response.error && response.error.message.includes('429')) {
-                setError('Слишком много попыток, подождите');
-            }
+                if (response.error && response.error.message.includes('423')) {
+                    setError('Слишком много попыток, подождите');
+                }
 
-            if (!response || (response.error && response.error.message.includes('403'))) {
-                setError('Неверный логин или пароль');
+                if (response.error && response.error.message.includes('429')) {
+                    setError('Слишком много попыток, подождите');
+                }
+
+                if (!response || (response.error && response.error.message.includes('403'))) {
+                    setError('Неверный логин или пароль');
+                }
+
+                console.log(response)
+            } catch (e) {
+                setIsSubmitting(false);
             }
-        } catch (e) {
-            setIsSubmitting(false);
         }
+
+        setError('Неверный логин или пароль');
     };
 
     const handleSubmit = async (e) => {
@@ -74,13 +81,14 @@ const Login = () => {
 
                 <input
                     type="submit"
+                    onClick={() => setError(!data ? 'Неверный логин или пароль' : "")}
                     className="outlined-button login-button"
                     value={isSubmitting ? 'Загрузка...' : 'Войти'}
                     disabled={isSubmitting}
                 />
-
-                <p className="error-text">{error}</p>
             </form>
+
+            <p className="error-text">{error}</p>
         </div>
     );
 };

@@ -37,24 +37,24 @@ const Search = (props) => {
 
                 setInputs('');
             }}>
-                    <input placeholder="поиск" className="search no-outline" type="text" value={inputs} onChange={e => {
-                        setInputs(e.target.value);
-                        if (inputs !== '') {
-                            setIsAutoCompleteVisible(true)
-                        } else {
-                            setIsAutoCompleteVisible(false)
-                        }
+                <input placeholder="поиск" className="search no-outline" type="text" value={inputs} onChange={e => {
+                    setInputs(e.target.value);
+                    if (inputs !== '') {
+                        setIsAutoCompleteVisible(true)
+                    } else {
+                        setIsAutoCompleteVisible(false)
+                    }
 
-                        if (radioInputs === '') {
-                            setRadioInputs("Group")
-                        }
-                    }}/>
-                    <AutoComplete
-                        isVisible={isAutoCompleteVisible}
-                        array={filteredSchedule}
-                        value={inputs}
-                        setInput={setInputs}
-                    />
+                    if (radioInputs === '') {
+                        setRadioInputs("Group")
+                    }
+                }}/>
+                <AutoComplete
+                    isVisible={inputs.length >= 3}
+                    array={filteredSchedule}
+                    value={inputs}
+                    setInput={setInputs}
+                />
 
                 <div>
                     <select className="search" name="Площадка" id="Площадка">

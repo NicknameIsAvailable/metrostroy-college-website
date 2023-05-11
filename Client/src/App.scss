@@ -41,20 +41,22 @@ html {
 }
 
 body {
+  background: radial-gradient(100% 100% at 100% 100%, rgba(92, 183, 201, 0.1) 0%, rgba(92, 183, 201, 0) 100%), radial-gradient(100% 316.05% at 0% 0%, rgba(61, 153, 168, 0.3) 0%, rgba(0, 0, 0, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, #FFFFFF;
   display: flex;
   overflow-x: hidden;
   flex-direction: column;
   color: $primary-color;
-  font-family: "Montserrat", "Akrobat", sans-serif;
+  font-family: "Akrobat", sans-serif;
 }
 
 .underlined-input {
   padding: 8px;
-  border: none;
   background: none;
-  border-bottom: $primary-color 3px solid;
+  border: none;
+  border-bottom: rgba(31, 31, 31, 0.3) 1px solid;
+  width: 98%;
   font-size: 16px;
-  font-family: Montserrat, sans-serif;
+  font-family: Akrobat, sans-serif;
   color: $primary-color;
 }
 
@@ -152,6 +154,8 @@ button {
 }
 
 .error-text {
+  font-weight: 700;
+  margin-top: 16px;
   color: #FE6060
 }
 

@@ -1,7 +1,6 @@
 import "./ScheduleEdit.css";
 import AdminMenu from "./Components/AdminMenu/AdminMenu";
 import React, {useState} from "react";
-import {Navigate} from "react-router-dom";
 import axios from "../../axios";
 import Schedule from "../Schedule/Schedule";
 import UploaderModal from "./Components/UploaderModal/UploaderModal";
@@ -111,10 +110,9 @@ const ScheduleEdit = () => {
 
     const updatedLessons = [];
 
-    if (!isAdmin) return <Navigate to="/something-wrong"/>
-    if (!isAuth) return <Navigate to="/login"/>
+    // if (!isAdmin) return <Navigate to="/something-wrong"/>
+    // if (!isAuth) return <Navigate to="/login"/>
 
-    if (isAdmin) {
         return (
             <div className="ScheduleEdit"
                 onDragStart = {() => {
@@ -201,9 +199,6 @@ const ScheduleEdit = () => {
                 </div>
             </div>
         );
-    } else {
-        return <Navigate to={"/error"}/>;
-    }
 };
 
 export default ScheduleEdit;

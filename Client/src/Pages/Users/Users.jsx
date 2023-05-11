@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, {useState} from "react";
+import {Link, useParams} from "react-router-dom";
 import "./Users.css";
 import User from "./Components/User/User";
 import AutoComplete from "../../Components/AutoComplete/AutoComplete";
@@ -69,64 +69,64 @@ const Users = () => {
 
     return (
         <div className="users-page">
+            <div className="container">
+                <CreateUserModal
+                    isVisible={isCreateModalOpen}
+                    setIsVisible={setIsCreateModalOpen}
+                />
 
-        <CreateUserModal
-            isVisible={isCreateModalOpen}
-            setIsVisible={setIsCreateModalOpen}
-        />
+                <DeleteModal
+                    isVisible={isDeleteModalOpen}
+                    setIsVisible={setIsDeleteModalOpen}
+                    obj={deleteModalInfo}
+                />
 
-        <DeleteModal 
-            isVisible={isDeleteModalOpen}
-            setIsVisible={setIsDeleteModalOpen}   
-            obj={deleteModalInfo}
-            />
+                <div className="users-header">
+                    <div className="container">
+                        <div className="buttons">
+                            <Link to="/users/teachers">
+                                <button
+                                    className="user-type__btn"
+                                    style={params.type === "teachers" ? {
+                                        borderBottom: "#3D99A8 3px solid"
+                                    } : {}}
+                                >
+                                    Преподаватели
+                                </button>
+                            </Link>
+                            <Link to="/users/students">
+                                <button
+                                    className="user-type__btn"
+                                    style={params.type === "students" ? {
+                                        borderBottom: "#3D99A8 3px solid"
+                                    } : {}}
+                                >
+                                    Студенты
+                                </button>
+                            </Link>
+                            <Link to="/users/applicants">
+                                <button
+                                    className="user-type__btn"
+                                    style={params.type === "applicants" ? {
+                                        borderBottom: "#3D99A8 3px solid"
+                                    } : {}}
+                                >
+                                    Абитуриенты
+                                </button>
+                            </Link>
+                            <Link to="/users/admins">
+                                <button
+                                    className="user-type__btn"
+                                    style={params.type === "admins" ? {
+                                        borderBottom: "#3D99A8 3px solid"
+                                    } : {}}
+                                >
+                                    Админы
+                                </button>
+                            </Link>
+                        </div>
 
-            <div className="users-header">
-                <div className="container">
-                     <div className="buttons">
-                         <Link to="/users/teachers">
-                             <button
-                                 className="user-type__btn"
-                                 style={params.type === "teachers" ? {
-                                     borderBottom: "#3D99A8 3px solid"
-                                 } : {}}
-                             >
-                                 Преподаватели
-                             </button>
-                         </Link>
-                        <Link to="/users/students">
-                             <button
-                                 className="user-type__btn"
-                                 style={params.type === "students" ? {
-                                     borderBottom: "#3D99A8 3px solid"
-                                 } : {}}
-                             >
-                                 Студенты
-                             </button>
-                         </Link>
-                         <Link to="/users/applicants">
-                             <button
-                                 className="user-type__btn"
-                                 style={params.type === "applicants" ? {
-                                     borderBottom: "#3D99A8 3px solid"
-                                 } : {}}
-                             >
-                                 Абитуриенты
-                             </button>
-                         </Link>
-                         <Link to="/users/admins">
-                             <button
-                                 className="user-type__btn"
-                                 style={params.type === "admins" ? {
-                                     borderBottom: "#3D99A8 3px solid"
-                                 } : {}}
-                             >
-                                 Админы
-                             </button>
-                         </Link>
-                     </div>
-
-                     <form
+                        <form
                             className="search-block"
                             onSubmit={e => {
                                 e.preventDefault();
@@ -138,7 +138,7 @@ const Users = () => {
                                 }))
                             }}
                         >
-                         <AutoComplete
+                            <AutoComplete
                                 isVisible={isAutoCompleteVisible}
                                 array={[
                                     ...users.map(item => item.id.toString()),
@@ -151,42 +151,44 @@ const Users = () => {
                                 setInput={setInput}
                             />
 
-                         <input
-                             placeholder="поиск"
-                             className="search underlined-input no-outline" type="text" value={input} onChange={e => {
-                             setInput(e.target.value);
-                             if (input !== "") {
-                                 setIsAutoCompleteVisible(true)
-                             } else {
-                                 setIsAutoCompleteVisible(false)
-                             }
-                            }}/>
+                            <input
+                                placeholder="поиск"
+                                className="search underlined-input no-outline" type="text" value={input}
+                                onChange={e => {
+                                    setInput(e.target.value);
+                                    if (input !== "") {
+                                        setIsAutoCompleteVisible(true)
+                                    } else {
+                                        setIsAutoCompleteVisible(false)
+                                    }
+                                }}/>
 
-                         <button type="submit" className="button__no-outline">
+                            <button type="submit" className="button__no-outline">
                                 <SearchIcon/>
-                         </button>
+                            </button>
 
-                         <button
-                             className="modal-button"
-                             onClick={() => setIsCreateModalOpen(true)}
-                         >
-                             <h3>
-                                 Создать нового пользователя
-                             </h3>
-                         </button>
-                     </form>
+                            <button
+                                className="modal-button"
+                                onClick={() => setIsCreateModalOpen(true)}
+                            >
+                                <h3>
+                                    Создать нового пользователя
+                                </h3>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <div className="container">
-                <div className="users-list">
-                    {filteredUsers.filter(item => item.role === params.type.substr(0, params.type.length -1)).map(obj =>
-                    <User
-                        setIsDeleteModalOpen={setIsDeleteModalOpen}
-                        obj={obj}
-                        setDeleteModalInfo={setDeleteModalInfo}
-                        isDeleteModalOpen={isDeleteModalOpen}
-                        />)}
+                <div className="container">
+                    <div className="users-list">
+                        {filteredUsers.filter(item => item.role === params.type.substr(0, params.type.length - 1)).map(obj =>
+                            <User
+                                setIsDeleteModalOpen={setIsDeleteModalOpen}
+                                obj={obj}
+                                setDeleteModalInfo={setDeleteModalInfo}
+                                isDeleteModalOpen={isDeleteModalOpen}
+                            />)}
+                    </div>
                 </div>
             </div>
         </div>

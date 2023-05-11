@@ -3,7 +3,7 @@
   flex-direction: column;
   top: 32px;
   flex-wrap: wrap;
-  margin: 32px auto;
+  margin: 32px auto 64px auto;
   gap: 24px;
   align-items: center;
 
@@ -22,7 +22,7 @@
   }
 
   .search-block {
-    gap: 24px;
+    gap: 32px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
