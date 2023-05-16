@@ -28,10 +28,14 @@
     }
 }
 
-.search-block {
+.searching-block {
     width: 100%;
     display: flex;
     gap: 12px;
+}
+
+#new-user__btn {
+    margin-top: 12px;
 }
 
 .search {

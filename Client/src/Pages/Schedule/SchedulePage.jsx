@@ -7,11 +7,11 @@ import { fetchSchedule, selectSchedule } from "../../Redux/Slices/schedule";
 import "./SchedulePage.css";
 import axios from "../../axios";
 import StrangeError from "../../Components/StrangeError/StrangeError";
-import {selectIsAuth} from "../../Redux/Slices/auth";
 import {Navigate} from "react-router-dom";
+import {selectIsAuth} from "../../Redux/Slices/auth";
+import {useCookies} from "react-cookie";
 
 const SchedulePage = () => {
-    const isAuth = useSelector(selectIsAuth);
 
     // Объявление переменных состояния и функций
     const dispatch = useDispatch();
@@ -20,8 +20,9 @@ const SchedulePage = () => {
     const isLoading = schedule.status === "loading";
 
     // Запускать функцию fetchSchedule при загрузке страницы
-    useEffect(() => {
+    useEffect(async () => {
         dispatch(fetchSchedule());
+        await axios.post("/schedule.php", {withCredentials: true}).then(r => console.log(r));
     }, [dispatch]);
 
     // Функция поиска
@@ -46,6 +47,8 @@ const SchedulePage = () => {
             return <StrangeError/>
         }
     };
+
+    const isAuth = useSelector(selectIsAuth);
 
     if (isAuth)
     return (

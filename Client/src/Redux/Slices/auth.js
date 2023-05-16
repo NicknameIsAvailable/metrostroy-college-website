@@ -4,8 +4,10 @@ import axios from "../../axios";
 // 0 - админ 1 - студент 2 - препод 3
 
 export const fetchAuth = createAsyncThunk("auth/fetchAuth", async (values) => {
-    const {data} = await axios.post("/auth.php", values);
+    const {data} = await axios.post("/auth.php", {login: values.login, password: values.password, withCredentials: true});
+    console.log(data)
     localStorage.setItem("userData", data);
+    console.log(document.cookie)
     return data;
 });
 
@@ -45,7 +47,7 @@ const authSlice = createSlice({
     }
 });
 
-export const selectIsAuth = (state) => Boolean(state.auth.data);
+export const selectIsAuth = () => Boolean(window.localStorage.getItem('userData'));
 
 export const authReducer = authSlice.reducer;
 

@@ -4,7 +4,6 @@ import "./Users.css";
 import User from "./Components/User/User";
 import AutoComplete from "../../Components/AutoComplete/AutoComplete";
 import DeleteModal from "./Components/DeleteModal/DeleteModal";
-import {ReactComponent as SearchIcon} from "../../Icons/SearchIconBlack.svg";
 import CreateUserModal from "./Components/CreateUserModal/CreateUserModal";
 
 const Users = () => {
@@ -163,16 +162,13 @@ const Users = () => {
                                     }
                                 }}/>
 
-                            <button type="submit" className="button__no-outline">
-                                <SearchIcon/>
-                            </button>
-
                             <button
-                                className="modal-button"
+                                className="outlined-button"
+                                id="new-user__btn"
                                 onClick={() => setIsCreateModalOpen(true)}
                             >
                                 <h3>
-                                    Создать нового пользователя
+                                    Новый пользователь
                                 </h3>
                             </button>
                         </form>

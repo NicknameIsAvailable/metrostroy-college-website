@@ -151,22 +151,22 @@ button {
 .outlined-button {
   font-family: "Akrobat", sans-serif;
   font-weight: 700;
-  background: transparent;
   font-size: 20px;
   padding: 20px 32px;
-  color: #3D99A8;
-  border: #3D99A8 3px solid;
+  transition-duration: 0.3s;
+  background: #3D99A8;
+  color: white;
+  border: none;
   border-radius: 16px;
   transition: border 0.3s, background 0.3s, color 0.3s;
 }
 .outlined-button:hover {
-  border-color: #87C2D0;
+  transition-duration: 0.7s;
+  background: radial-gradient(100% 1169.64% at 0% 0%, rgba(135, 194, 208, 0.2) 0%, rgba(135, 194, 208, 0.2) 100%), #3D99A8;
 }
 .outlined-button:active {
-  transition: background 0.2s, color 0.2s;
-  background: #3D99A8;
-  color: white;
-  border-color: #3D99A8;
+  transition-duration: 0.3s;
+  background: radial-gradient(100% 1169.64% at 0% 0%, #87C2D0 0%, #87C2D0 100%), #3D99A8;
 }
 .outlined-button:disabled {
   color: white;

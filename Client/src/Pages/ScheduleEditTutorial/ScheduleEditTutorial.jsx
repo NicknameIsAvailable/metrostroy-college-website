@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./ScheduleEditTutorial.css";
 import {useSelector} from "react-redux";
-import {selectIsAuth} from "../../Redux/Slices/auth";
 import {Navigate} from "react-router-dom";
+import {selectIsAuth} from "../../Redux/Slices/auth";
 
 const ScheduleEditTutorial = () => {
+    const [userData, setUserData] = useState({})
+
+    useEffect(() => {
+        setUserData(JSON.parse(window.localStorage.getItem('userData')));
+    }, []);
 
     const isAuth = useSelector(selectIsAuth);
-    const user = useSelector(state => state.auth);
-    const isAdmin = Boolean(isAuth && user.data.data.AccessUser === "0")
+    const isAdmin = Boolean(isAuth && userData.access === "0")
 
     if (!isAdmin) return <Navigate to="/something-wrong"/>
     if (!isAuth) return <Navigate to="/login"/>

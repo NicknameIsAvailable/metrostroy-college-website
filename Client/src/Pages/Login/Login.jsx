@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAuth, saveUserData, selectIsAuth } from '../../Redux/Slices/auth';
+import {fetchAuth, selectIsAuth} from '../../Redux/Slices/auth';
 import { Navigate } from 'react-router-dom';
 
 const Login = () => {
@@ -15,12 +15,11 @@ const Login = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const auth = async (values) => {
-
         if (login && password) {
             try {
                 const response = await dispatch(fetchAuth(values));
                 setData(response);
-                saveUserData(response);
+                localStorage.setItem('userData', JSON.stringify(response.payload.data))
                 setIsSubmitting(false);
 
                 if (response.error && response.error.message.includes('423')) {

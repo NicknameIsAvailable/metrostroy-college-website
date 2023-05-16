@@ -6,15 +6,16 @@ import Lesson from './Components/Lesson/Lesson';
 import {Link, Navigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSchedule, selectSchedule} from "../../Redux/Slices/schedule";
-import {logout, selectIsAuth} from "../../Redux/Slices/auth";
+import {selectIsAuth} from "../../Redux/Slices/auth";
 
 const Profile = () => {
 
     const isAuth = useSelector(selectIsAuth);
+    const [userData, setUserData] = useState({})
 
-    const user = useSelector(state => state.auth);
-
-    console.log(user)
+    useEffect(() => {
+        setUserData(JSON.parse(window.localStorage.getItem('userData')));
+    }, []);
 
     // получение расписания с бэкенда
 
@@ -68,123 +69,120 @@ const Profile = () => {
         );
     }
 
-    console.log(arraySchedule)
+    if (!isAuth) return <Navigate to="/login"/>
 
-    if (user.data === null) return <Navigate to="/login"/>
-
-    if (isAuth)
-        return (
-            <>
-                <Loader loading={isLoading}/>
-                <div className="ProfilePage">
-                    <div className="container">
-                        <div className="profile-block">
-                            <div className="info-block">
-                                <div className="cool-block">
-                                    <div className="user-info">
-                                        <div className="user-info__text">
-                                            <h3>
-                                                {user.data.data.access === "0" ?
-                                                    "Админ"
-                                                    :
-                                                    `студент ${user.data.data.group} группы`}
-                                            </h3>
-
-                                            <h2 onClick={() => {
+    return (
+        <>
+            <Loader loading={isLoading} />
+            <div className="ProfilePage">
+                <div className="container">
+                    <div className="profile-block">
+                        <div className="info-block">
+                            <div className="cool-block">
+                                <div className="user-info">
+                                    <div className="user-info__text">
+                                        <h3>
+                                            {userData.access === '0'
+                                                ? 'Админ'
+                                                : `студент ${userData.group} группы`}
+                                        </h3>
+                                        {userData.access === '0' && (
+                                            <Link to="/admin">
+                                                <h3>Войти в админ панель</h3>
+                                            </Link>
+                                        )}
+                                        <h2
+                                            onClick={() => {
                                                 setAvaClicks(avaClicks + 1);
-                                                console.log("Нажми еще ", 1000 - avaClicks, " раз")
-                                            }}>
-                                                {user.data.data.name} {user.data.data.lastname}
-                                            </h2>
-                                            <h4>
-                                                {user.data.data.mail}
-                                            </h4>
-
-                                            <h5 onClick={() => {
-                                                logout()
-                                                localStorage.removeItem("userData")
-                                                return <Navigate to="/login"/>
-                                            }}>
+                                                console.log('Нажми еще ', 1000 - avaClicks, ' раз');
+                                            }}
+                                        >
+                                            {userData.name} {userData.lastname}
+                                        </h2>
+                                        <h4>{userData.mail}</h4>
+                                        <Link to="/login">
+                                            <h4
+                                                onClick={() => {
+                                                    localStorage.removeItem('userData');
+                                                    console.log('bdklfj');
+                                                }}
+                                                style={{ color: '#FE6060' }}
+                                            >
                                                 Выйти
-                                            </h5>
-                                        </div>
+                                            </h4>
+                                        </Link>
                                     </div>
                                 </div>
-
-                                {
-                                    user.data.data.access === "0" ?
-                                        <h3>
-                                            <Link
-                                                to="/admin"
-                                                style={{color: "#1f1f1f"}}
-                                            >
-                                                Войти в админ-панель
-                                            </Link>
-                                        </h3>
-                                        :
-                                        <>
-                                            <h1>
-                                                Твое расписание
-                                            </h1>
-                                            <div className="cool-block">
-
-                                                <div className="your-schedule">
-                                                    {
-                                                        dayNumber === 0 || dayNumber === 6 ?
-                                                            ""
-                                                            :
-                                                            <>
-
-                                                                <div
-                                                                    style={{
-                                                                        display: "flex",
-                                                                        flexDirection: "column",
-                                                                        gap: "12px"
-                                                                    }}>
-                                                                    <h2>
-                                                                        Сегодня
-                                                                    </h2>
-                                                                    {
-                                                                        arraySchedule
-                                                                            .filter(item => item.weekDay === days[dayNumber]
-                                                                                && item.groupNumber === user.data.data.group)
-                                                                            .map(lesson => <Lesson obj={lesson}/>)
-                                                                    }
-                                                                </div>
-
-                                                                <div
-                                                                    style={{
-                                                                        display: "flex",
-                                                                        flexDirection: "column",
-                                                                        gap: "12px"
-                                                                    }}>
-                                                                    <h2>
-                                                                        Завтра
-                                                                    </h2>
-                                                                    {
-                                                                        arraySchedule
-                                                                            .filter(item => item.weekDay === days[dayNumber + 1]
-                                                                                && item.groupNumber === user.data.data.group)
-                                                                            .map(lesson => <Lesson obj={lesson}/>)
-                                                                    }
-                                                                </div>
-                                                            </>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <Link to="/schedule">
-                                                <h4 style={{color: "#1f1f1f"}}>
-                                                    Посмотреть полное расписание
-                                                </h4>
-                                            </Link>
-                                        </>
-                                }
                             </div>
+
+                            {userData.access === '0' ? (
+                                <h3>
+                                    <Link to="/admin" style={{ color: '#1f1f1f' }}>
+                                        Войти в админ-панель
+                                    </Link>
+                                </h3>
+                            ) : (
+                                <>
+                                    <h1>Твое расписание</h1>
+                                    <div className="cool-block">
+                                        <div className="your-schedule">
+                                            {dayNumber !== 0 && dayNumber !== 6 && (
+                                                <>
+                                                    <div
+                                                        style={{
+                                                            display: 'flex',
+                                                            flexDirection: 'column',
+                                                            gap: '12px'
+                                                        }}
+                                                    >
+                                                        <h2>Сегодня</h2>
+                                                        {arraySchedule
+                                                            .filter(
+                                                                item =>
+                                                                    item.weekDay === days[dayNumber] &&
+                                                                    item.groupNumber === userData.group
+                                                            )
+                                                            .map(lesson => (
+                                                                <Lesson key={lesson.time} obj={lesson} />
+                                                            ))}
+                                                    </div>
+
+                                                    <div
+                                                        style={{
+                                                            display: 'flex',
+                                                            flexDirection: 'column',
+                                                            gap: '12px'
+                                                        }}
+                                                    >
+                                                        <h2>Завтра</h2>
+                                                        {arraySchedule
+                                                            .filter(
+                                                                item =>
+                                                                    item.weekDay === days[dayNumber + 1] &&
+                                                                    item.groupNumber === userData.group
+                                                            )
+                                                            .map(lesson => (
+                                                                <Lesson key={lesson.time} obj={lesson} />
+                                                            ))}
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <Link to="/schedule">
+                                        <h4 style={{ color: '#1f1f1f' }}>
+                                            Посмотреть полное расписание
+                                        </h4>
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
-            </>
-        );
+            </div>
+        </>
+
+    );
 };
 
 export default Profile;

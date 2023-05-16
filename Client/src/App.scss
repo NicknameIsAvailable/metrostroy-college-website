@@ -162,23 +162,23 @@ button {
 .outlined-button {
   font-family: "Akrobat", sans-serif;
   font-weight: 700;
-  background: transparent;
   font-size: 20px;
   padding: 20px 32px;
-  color: $secondary-color;
-  border: $secondary-color 3px solid;
+  transition-duration: 0.3s;
+  background: $secondary-color;
+  color: white;
+  border: none;
   border-radius: 16px;
   transition: border 0.3s, background 0.3s, color 0.3s;
 
   &:hover {
-    border-color: #87C2D0;
+    transition-duration: 0.7s;
+    background: radial-gradient(100% 1169.64% at 0% 0%, rgba(135, 194, 208, 0.2) 0%, rgba(135, 194, 208, 0.2) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, #3D99A8;
   }
 
   &:active {
-    transition: background 0.2s, color 0.2s;
-    background: $secondary-color;
-    color: white;
-    border-color: $secondary-color;
+    transition-duration: 0.3s;
+    background: radial-gradient(100% 1169.64% at 0% 0%, #87C2D0 0%, #87C2D0 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, #3D99A8;
   }
 
   &:disabled {

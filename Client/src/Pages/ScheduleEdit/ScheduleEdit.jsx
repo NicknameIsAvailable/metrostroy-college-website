@@ -1,6 +1,6 @@
 import "./ScheduleEdit.css";
 import AdminMenu from "./Components/AdminMenu/AdminMenu";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "../../axios";
 import Schedule from "../Schedule/Schedule";
 import UploaderModal from "./Components/UploaderModal/UploaderModal";
@@ -9,9 +9,14 @@ import {selectIsAuth} from "../../Redux/Slices/auth";
 
 const ScheduleEdit = () => {
 
+    const [userData, setUserData] = useState({})
+
+    useEffect(() => {
+        setUserData(JSON.parse(window.localStorage.getItem('userData')));
+    }, []);
+
     const isAuth = useSelector(selectIsAuth);
-    const user = useSelector(state => state.auth);
-    const isAdmin = Boolean(isAuth && user.data.data.AccessUser === "0")
+    const isAdmin = Boolean(isAuth && userData.access === "0")
 
     const [subjectFirst, setSubjectFirst] = useState("");
     const [teacherFirst, setTeacherFirst] = useState("");

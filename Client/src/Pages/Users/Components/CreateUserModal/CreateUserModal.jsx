@@ -47,28 +47,12 @@ const CreateUserModal = (props) => {
                     />
 
                     <h3>Роли пользователя</h3>
-                    <div className="role-radio-buttons">
-
-                        <label htmlFor="role1">
-                            <input type="radio" id="role1" value="Студент"/>
-                            Студент
-                        </label>
-
-                        <label htmlFor="role2">
-                            <input type="radio" id="role2" value="Абитуриент"/>
-                            Абитуриент
-                        </label>
-
-                        <label htmlFor="role3">
-                            <input type="radio" id="role3" value="Преподаватель"/>
-                            Преподаватель
-                        </label>
-
-                        <label htmlFor="role4">
-                            <input type="radio" id="role4" value="Админ"/>
-                            Админ
-                        </label>
-                    </div>
+                    <select name="уровень доступа" id="">
+                        <option value="0 - админ">0 - админ</option>
+                        <option value="1 - директор">1 - директор</option>
+                        <option value="2 - преподаватель">2 - преподаватель</option>
+                        <option value="3 - студент">3 - студент</option>
+                    </select>
 
                     <input
                         type="text"
@@ -82,7 +66,7 @@ const CreateUserModal = (props) => {
                         placeholder="Номер группы"
                     />
 
-                    <button onClick="submit" className="modal-button">
+                    <button onClick="submit" className="outlined-button">
                         Сохранить
                     </button>
                 </form>
