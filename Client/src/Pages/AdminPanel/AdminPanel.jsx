@@ -1,22 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import "./AdminPanel.css";
 import Tab from "./Components/Tab/Tab";
-import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
-import {selectIsAuth} from "../../Redux/Slices/auth";
 
 const AdminPanel = () => {
-    const [userData, setUserData] = useState({})
 
-    useEffect(() => {
-        setUserData(JSON.parse(window.localStorage.getItem('userData')));
-    }, []);
-
-    const isAuth = useSelector(selectIsAuth);
-    const isAdmin = Boolean(isAuth && userData.access === "0")
-
+    const userData = JSON.parse(window.localStorage.getItem('userData'))
+    const isAdmin = Boolean(userData.access === "0")
     if (!isAdmin) return <Navigate to="/something-wrong"/>
-    if (!isAuth) return <Navigate to="/login"/>
 
     return (
         <div className="admin-panel-page">

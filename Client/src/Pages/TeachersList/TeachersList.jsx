@@ -32,7 +32,6 @@ const TeachersList = () => {
         }
         catch (err) {
             alert('Произошла странная ошибка')
-            console.log(err);
         }
     }
 

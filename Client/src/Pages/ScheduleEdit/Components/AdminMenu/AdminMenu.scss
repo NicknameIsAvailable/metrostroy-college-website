@@ -1,13 +1,13 @@
 .AdminMenu {
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   flex-direction: column;
   justify-content: center;
   min-height: 2em;
   gap: 24px;
-  overflow-x: scroll;
+  overflow-y: scroll;
   margin: 11em 1em;
   width: 30em;
   z-index: 0;

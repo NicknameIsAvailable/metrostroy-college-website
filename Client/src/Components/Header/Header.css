@@ -41,14 +41,13 @@ header .links {
   font-weight: 700;
   text-transform: uppercase;
   width: 100vw;
-  height: 48px;
+  height: 54px;
   align-items: center;
   background: #1f1f1f;
   margin-left: auto;
   gap: 32px;
 }
 header .links h3 {
-  font-size: 32px;
   font-weight: 900;
 }
 header .links svg {
@@ -102,7 +101,15 @@ header .links__section {
   header .hideable720 {
     display: none;
   }
+  header .rightBuilding {
+    display: none;
+  }
+  header .leftBuilding {
+    display: none;
+  }
   header .main__section {
+    padding-left: 10%;
+    padding-right: 10%;
     justify-content: space-between;
   }
   header .Logo {

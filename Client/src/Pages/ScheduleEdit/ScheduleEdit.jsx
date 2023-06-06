@@ -1,22 +1,12 @@
 import "./ScheduleEdit.css";
 import AdminMenu from "./Components/AdminMenu/AdminMenu";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import axios from "../../axios";
 import Schedule from "../Schedule/Schedule";
 import UploaderModal from "./Components/UploaderModal/UploaderModal";
-import {useSelector} from "react-redux";
-import {selectIsAuth} from "../../Redux/Slices/auth";
+import {Navigate} from "react-router-dom";
 
 const ScheduleEdit = () => {
-
-    const [userData, setUserData] = useState({})
-
-    useEffect(() => {
-        setUserData(JSON.parse(window.localStorage.getItem('userData')));
-    }, []);
-
-    const isAuth = useSelector(selectIsAuth);
-    const isAdmin = Boolean(isAuth && userData.access === "0")
 
     const [subjectFirst, setSubjectFirst] = useState("");
     const [teacherFirst, setTeacherFirst] = useState("");
@@ -61,6 +51,8 @@ const ScheduleEdit = () => {
 
     // обновление расписание с помощью csv файла
 
+    const [isFromCsv, setIsFromCsv] = useState(false);
+
     const updateSchedule = (e) => {
         e.preventDefault();
         let files = [...e.dataTransfer.files];
@@ -71,8 +63,9 @@ const ScheduleEdit = () => {
             alert("Неверный формат файла!")
         else        
         axios.post('/newCsvFile.php', files[0]).then(response => {
-            let data = response.data;        
-            setSchedule([...data[0], ...data[1], ...data[2], ...data[3], ...data[4]]);
+            let data = response.data;
+            setIsFromCsv(true);
+            return setSchedule([...data[0], ...data[1], ...data[2], ...data[3], ...data[4]]);
         })
     }
 
@@ -115,8 +108,9 @@ const ScheduleEdit = () => {
 
     const updatedLessons = [];
 
-    // if (!isAdmin) return <Navigate to="/something-wrong"/>
-    // if (!isAuth) return <Navigate to="/login"/>
+    const userData = JSON.parse(window.localStorage.getItem('userData'))
+    const isAdmin = Boolean(userData.access === "0")
+    if (!isAdmin) return <Navigate to="/something-wrong"/>
 
         return (
             <div className="ScheduleEdit"
@@ -144,6 +138,7 @@ const ScheduleEdit = () => {
             />
                 <div className="admin-menu">
                     <AdminMenu
+                        isFromCsv={isFromCsv}
                         uploaderShow={uploaderShow}
                         setUploaderShow={setUploaderShow}
                         setUpdatedSchedule={setUpdatedSchedule}

@@ -44,4 +44,9 @@
   align-items: center;
 }
 
+#password {
+  display: flex;
+  width: 100%;
+}
+
 /*# sourceMappingURL=Login.css.map */

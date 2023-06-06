@@ -6,10 +6,9 @@ import {ReactComponent as BurgerIcon} from "../../Icons/Burger.svg";
 import LeftBuilding from "../../Images/LeftBuilding.png";
 import RightBuilding from "../../Images/RightBuilding.png";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 
 const Header = () => {
-
     const [open, setOpen] = useState(false);
     const [headerHidden, setHeaderHidden] = useState(false);
 
@@ -25,6 +24,10 @@ const Header = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    if (!window.localStorage.getItem("userData") && window.location.pathname !== "/login") {
+        return <Navigate to="/login"/>
+    }
 
     return (
         <header className={headerHidden ? "header-hidden" : ""}>
@@ -59,7 +62,6 @@ const Header = () => {
 
             <div className="links">
                 <div className="links__section">
-                    <a href="https://colm.spb.ru/applicants">абитуриентам</a>
                     <Link to="/schedule">расписание</Link>
                     <a href="https://colm.spb.ru/students">обучающимся</a>
                     <a href="https://colm.spb.ru/news">наши новости</a>

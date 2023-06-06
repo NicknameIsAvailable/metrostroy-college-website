@@ -3,6 +3,7 @@ import "./AdminMenu.css";
 import {Link} from "react-router-dom";
 import DropDownList from "../../../../Components/DropDownList/DropDownList";
 import Switch from "../../../../Components/Switch/Switch";
+import axios from "../../../../axios";
 
 
 const AdminMenu = ({
@@ -23,12 +24,21 @@ const AdminMenu = ({
                        setAuditoryFirst,
                        auditorySecond,
                        setAuditorySecond,
+                        isFromCsv
                    }) => {
 
     const [saveNotation, setSaveNotation] = useState(false);
 
     const saveSchedule = () => {
         setSaveNotation(!saveNotation)
+
+        if (isFromCsv) {
+            axios.post("./saveScheduleCsv.php", {
+                schedule
+            }).then(response => console.log(response));
+        } else {
+            axios.post("./saveChangedOldSchedule").then(response => console.log(response));
+        }
     }
 
     const [adminMenuShow, setAdminMenuShow] = useState(true);
@@ -60,27 +70,27 @@ const AdminMenu = ({
             {!isNewLesson ? <>
                 <DropDownList
                     value="Дисциплина: "
-                    array={schedule.map(item => item.subjectfirst)}
+                    array={schedule.map(item => item.subjectfirst || item.subjectFirst)}
                     setValue={setSubjectFirst}
                 />
                 <DropDownList
                     value="Преподаватель первой подгруппы: "
-                    array={schedule.map(item => item.teacherfirst)}
+                    array={schedule.map(item => item.teacherfirst || item.teacherFirst)}
                     setValue={setTeacherFirst}
                 />
                 <DropDownList
                     value="Преподаватель второй подгруппы: "
-                    array={schedule.map(item => item.teachersecond)}
+                    array={schedule.map(item => item.teachersecond || item.teacherSecond)}
                     setValue={setTeacherSecond}
                 />
                 <DropDownList
                     value="Аудитория первой подгруппы: "
-                    array={schedule.map(item => item.auditoryfirst)}
+                    array={schedule.map(item => item.auditoryfirst || item.auditoryFirst)}
                     setValue={setAuditoryFirst}
                 />
                 <DropDownList
                     value="Аудитория второй подгруппы: "
-                    array={schedule.map(item => item.auditorysecond)}
+                    array={schedule.map(item => item.auditorysecond || item.auditorySecond)}
                     setValue={setAuditorySecond}
                 />
             </> : <>

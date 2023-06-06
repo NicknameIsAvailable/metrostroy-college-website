@@ -6,8 +6,6 @@ const AutoComplete = ({ setInput, array, value, isVisible }) => {
 
     const uniqArray = [...new Set(array)];
 
-    console.log(isSelectVisible, isVisible)
-
     const handleClick = (item) => {
         setIsSelectVisible(false);
         setInput(item);

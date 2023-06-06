@@ -5,6 +5,11 @@
   gap: 24px;
   margin-top: 200px;
 }
+.admin-menu__tutorial .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
 .paragraph {
   display: flex;

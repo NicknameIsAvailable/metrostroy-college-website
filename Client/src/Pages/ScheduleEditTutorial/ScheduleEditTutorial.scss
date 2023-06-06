@@ -4,6 +4,12 @@
     flex-direction: column;
     gap: 24px;
     margin-top: 200px;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 }
 
 .paragraph {

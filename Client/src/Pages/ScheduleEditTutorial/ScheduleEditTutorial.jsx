@@ -1,25 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import "./ScheduleEditTutorial.css";
-import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
-import {selectIsAuth} from "../../Redux/Slices/auth";
 
 const ScheduleEditTutorial = () => {
-    const [userData, setUserData] = useState({})
-
-    useEffect(() => {
-        setUserData(JSON.parse(window.localStorage.getItem('userData')));
-    }, []);
-
-    const isAuth = useSelector(selectIsAuth);
-    const isAdmin = Boolean(isAuth && userData.access === "0")
-
+    const userData = JSON.parse(window.localStorage.getItem('userData'))
+    const isAdmin = Boolean(userData.access === "0")
     if (!isAdmin) return <Navigate to="/something-wrong"/>
-    if (!isAuth) return <Navigate to="/login"/>
+
 
     return (
-        <div className="container">
-            <div className="admin-menu__tutorial">
+        <div className="admin-menu__tutorial">
+            <div className="container">
                 <h1>Инструкция к редактору расписания</h1>
                 <hr/>
 
@@ -31,7 +22,8 @@ const ScheduleEditTutorial = () => {
                     </h2>
                     <p>
                         Чтобы обновить расписание таким образом, нужно нажать кнопку "загрузить файл Excel". Далее в
-                        в открывшееся окно нужно перетащить нужный CSV файл. Далее можно сохранить расписание, либо сделать
+                        в открывшееся окно нужно перетащить нужный CSV файл. Далее можно сохранить расписание, либо
+                        сделать
                         <a href="#fast-changes"><span className="anchor-link"> быстрые изменения </span></a> перед этим.
                     </p>
                 </div>
@@ -44,17 +36,21 @@ const ScheduleEditTutorial = () => {
                     </h2>
                     <p>
                         Иногда в расписании может быть какая-нибудь ошибка, либо может потребоваться срочно выложить
-                        замену в расписании. Для этого есть функция быстрых изменений. Есть несколько способов быстро
-                        изменить расписание:
+                        замену в расписании. В таких случаях можно сделать следующее:
                     </p>
-                        <ol>
-                            <li>Просто написать нужную информацию в ячейку</li>
-                            <li>
-                                Сначала заполнить форму "урок" в админ-меню. Нажать на кнопку "добавить в расписание".
-                                Кликнуть на нужную ячейку и информация в ней замениться (можно кликнуть на несколько
-                                ячеек)
-                            </li>
-                        </ol>
+                    <ul>
+                        <li>
+                            В редакторе расписания в разделе урок, выбрать нужные параметры новой ячейки, используя уже
+                            существующие данные в расписании. Нажать на кнопку "добавить в расписание" Кликнуть на все
+                            ячейки, которые надо заменить
+                        </li>
+                        <li>
+                            Создать полностью новый урок. Для этого нужно нажать на переключатель "новый урок" и
+                            заполнить форму урока нужными данными. Далее нажать на кнопку "добавить в расписание".
+                            Теперь
+                            заменяем содержимое нужных ячеек нажимая на них.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

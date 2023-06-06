@@ -5,9 +5,7 @@ import axios from "../../axios";
 
 export const fetchAuth = createAsyncThunk("auth/fetchAuth", async (values) => {
     const {data} = await axios.post("/auth.php", {login: values.login, password: values.password, withCredentials: true});
-    console.log(data)
     localStorage.setItem("userData", data);
-    console.log(document.cookie)
     return data;
 });
 

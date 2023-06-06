@@ -7,6 +7,7 @@ import {Link, Navigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSchedule, selectSchedule} from "../../Redux/Slices/schedule";
 import {selectIsAuth} from "../../Redux/Slices/auth";
+import axios from "../../axios";
 
 const Profile = () => {
 
@@ -16,9 +17,6 @@ const Profile = () => {
     useEffect(() => {
         setUserData(JSON.parse(window.localStorage.getItem('userData')));
     }, []);
-
-    // получение расписания с бэкенда
-
 
     // Объявление переменных состояния и функций
     const dispatch = useDispatch();
@@ -59,6 +57,11 @@ const Profile = () => {
         "Суббота"
     ];
 
+    const logOut = () => {
+        localStorage.removeItem('userData');
+        axios.post('/logout.php').then(response => console.log(response));
+    }
+
     // пасхалка
 
     const [avaClicks, setAvaClicks] = useState(0);
@@ -73,7 +76,7 @@ const Profile = () => {
 
     return (
         <>
-            <Loader loading={isLoading} />
+            <Loader loading={isLoading}/>
             <div className="ProfilePage">
                 <div className="container">
                     <div className="profile-block">
@@ -102,11 +105,8 @@ const Profile = () => {
                                         <h4>{userData.mail}</h4>
                                         <Link to="/login">
                                             <h4
-                                                onClick={() => {
-                                                    localStorage.removeItem('userData');
-                                                    console.log('bdklfj');
-                                                }}
-                                                style={{ color: '#FE6060' }}
+                                                onClick={() => logOut()}
+                                                style={{color: '#FE6060'}}
                                             >
                                                 Выйти
                                             </h4>
@@ -117,13 +117,18 @@ const Profile = () => {
 
                             {userData.access === '0' ? (
                                 <h3>
-                                    <Link to="/admin" style={{ color: '#1f1f1f' }}>
+                                    <Link to="/admin" style={{color: '#1f1f1f'}}>
                                         Войти в админ-панель
                                     </Link>
                                 </h3>
                             ) : (
                                 <>
                                     <h1>Твое расписание</h1>
+                                    <Link to="/schedule">
+                                        <button className="shadow-button" style={{color: '#1f1f1f'}}>
+                                            Посмотреть полное расписание
+                                        </button>
+                                    </Link>
                                     <div className="cool-block">
                                         <div className="your-schedule">
                                             {dayNumber !== 0 && dayNumber !== 6 && (
@@ -143,7 +148,7 @@ const Profile = () => {
                                                                     item.groupNumber === userData.group
                                                             )
                                                             .map(lesson => (
-                                                                <Lesson key={lesson.time} obj={lesson} />
+                                                                <Lesson key={lesson.time} obj={lesson}/>
                                                             ))}
                                                     </div>
 
@@ -154,26 +159,24 @@ const Profile = () => {
                                                             gap: '12px'
                                                         }}
                                                     >
-                                                        <h2>Завтра</h2>
-                                                        {arraySchedule
-                                                            .filter(
-                                                                item =>
-                                                                    item.weekDay === days[dayNumber + 1] &&
-                                                                    item.groupNumber === userData.group
-                                                            )
-                                                            .map(lesson => (
-                                                                <Lesson key={lesson.time} obj={lesson} />
-                                                            ))}
+                                                        {dayNumber + 1 !== 0 && dayNumber + 1 !== 6 ?
+                                                            <>
+                                                                <h2>Завтра</h2>
+                                                                {arraySchedule.filter(
+                                                                    item =>
+                                                                        item.weekDay === days[dayNumber + 1] &&
+                                                                        item.groupNumber === userData.group
+                                                                )
+                                                                    .map(lesson => (
+                                                                        <Lesson key={lesson.time} obj={lesson}/>
+                                                                    ))}
+                                                            </> : ""
+                                                        }
                                                     </div>
                                                 </>
                                             )}
                                         </div>
                                     </div>
-                                    <Link to="/schedule">
-                                        <h4 style={{ color: '#1f1f1f' }}>
-                                            Посмотреть полное расписание
-                                        </h4>
-                                    </Link>
                                 </>
                             )}
                         </div>

@@ -19,7 +19,7 @@ const GroupsList = (props) => {
             gObj ?
                 <div className="group-block">
                     <h1>
-                        ГРУППА {gObj}
+                        ГРУППА <span id="gObj">{gObj}</span>
                     </h1>
                     <table>
                         <td>

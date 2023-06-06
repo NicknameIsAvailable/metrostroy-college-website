@@ -36,8 +36,6 @@ footer .container {
     flex-direction: column;
     padding: 4em 15%;
   }
-  h3,
-  p,
   button {
     text-align: center;
   }
