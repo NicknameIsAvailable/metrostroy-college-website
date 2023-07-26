@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-    withCredentials: true,
-    baseURL: "http://localhost/MetrostroyCollege/"
+    baseURL: "http://localhost/MetrostroyCollege/",
+    withCredentials: true
 })
 
 export default instance;

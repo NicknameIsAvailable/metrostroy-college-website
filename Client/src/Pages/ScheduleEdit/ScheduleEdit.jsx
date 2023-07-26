@@ -5,6 +5,8 @@ import axios from "../../axios";
 import Schedule from "../Schedule/Schedule";
 import UploaderModal from "./Components/UploaderModal/UploaderModal";
 import {Navigate} from "react-router-dom";
+import NewElementsListModal from "./Components/NewElementsListModal/NewElementsListModal";
+import Loader from "../../Components/Loader/Loader";
 
 const ScheduleEdit = () => {
 
@@ -13,12 +15,19 @@ const ScheduleEdit = () => {
     const [teacherSecond, setTeacherSecond] = useState("");
     const [auditoryFirst, setAuditoryFirst] = useState("");
     const [auditorySecond, setAuditorySecond] = useState("");
-
+    const [isNewElementsOpen, setIsNewElementsOpen] = useState(true);
+    const [prevLessons, setPrevLessons] = useState([]);
+    const [newLessons, setNewLessons] = useState([]);
+    const [newElements, setNewElements] = useState([
+        {
+            name: "sdklfj",
+            value: "aslkjdfasd"
+        }
+    ]);
+    const [fromCsv, setFromCsv] = useState(true);
     const [updatedSchedule, setUpdatedSchedule] = useState();
-
     const [schedule, setSchedule] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-
+    const [isLoading, setIsLoading] = useState(false);
     const [arraySchedule, setArraySchedule] = useState();
 
     // поиск и получение расписания с бд
@@ -35,7 +44,7 @@ const ScheduleEdit = () => {
                 requestOptions
             )
                 .then(response => {
-                    if(response.data !== "Запрос не получил ни одного результата!") {
+                    if (response.data !== "Запрос не получил ни одного результата!") {
                         const data = response.data;
                         setSchedule(data);
                         setIsLoading(false);
@@ -43,8 +52,7 @@ const ScheduleEdit = () => {
                         search("", "", 1);
                     }
                 })
-        }
-        catch (err) {
+        } catch (err) {
             alert("Произошла странная ошибка");
         }
     };
@@ -59,134 +67,180 @@ const ScheduleEdit = () => {
         const formData = new FormData();
         formData.append('file', files[0]);
 
-        if (files[0].type !== "text/csv") 
+        console.log(files[0])
+
+        if (files[0].type !== "text/csv")
             alert("Неверный формат файла!")
-        else        
-        axios.post('/newCsvFile.php', files[0]).then(response => {
+        else
+            console.log("он пытается")
+        axios.post('/newCsvFile.php', formData).then(response => {
             let data = response.data;
+            console.log(response)
             setIsFromCsv(true);
             return setSchedule([...data[0], ...data[1], ...data[2], ...data[3], ...data[4]]);
-        })
-    }
+        }).catch(e => {
+            console.log(e)
 
-    // Drag&Drop csv файла
+            if (!e.response.data.access) {
+                localStorage.removeItem("userData");
+                document.cookie = "PHPSESSID; expires=-1;";
+                return <Navigate to="/strange-error"/>
+            }
+        });
+}
 
-    const dragStartHandler = (e) => {
-        e.preventDefault();
-        setDrag(true);
-    };
+// Drag&Drop csv файла
 
-    const dragLeaveHandler = (e) => {
-        e.preventDefault();
-        setDrag(false);
-    };
+const dragStartHandler = (e) => {
+    e.preventDefault();
+    setFromCsv(true);
+    setDrag(true);
+};
 
-    const onDropHandler = (e) => {
-        setSchedule([]);
-        updateSchedule(e);
-        setUploaderShow(false);
-    }
+const dragLeaveHandler = (e) => {
+    e.preventDefault();
+    setFromCsv(false);
+    setDrag(false);
+};
 
+const onDropHandler = (e) => {
+    setSchedule([]);
+    updateSchedule(e);
+    setFromCsv(false);
+    setUploaderShow(false);
+}
 
-    const [drag, setDrag] = useState(false);
-    const [uploaderShow, setUploaderShow] = useState(false);
+const [drag, setDrag] = useState(false);
+const [uploaderShow, setUploaderShow] = useState(false);
 
-    const lesson = {
-        groupNumber: "",
-        time: "",
-        weekDay: "",
-        subjectFirst: subjectFirst,
-        teacherFirst: teacherFirst,
-        auditoryFirst: auditoryFirst,
-        subjectSecond: subjectFirst,
-        teacherSecond: teacherSecond,
-        auditorySecond: auditorySecond,
-        locationName: ""
-    };
+const lesson = {
+    groupNumber: "",
+    time: "",
+    weekDay: "",
+    subjectFirst: subjectFirst,
+    teacherFirst: teacherFirst,
+    auditoryFirst: auditoryFirst,
+    subjectSecond: subjectFirst,
+    teacherSecond: teacherSecond,
+    auditorySecond: auditorySecond,
+    locationName: ""
+};
 
-    const [lessonAdding, setLessonAdding] = useState(false);
+const [lessonAdding, setLessonAdding] = useState(false);
 
-    const updatedLessons = [];
+const [updatedLessons, setUpdatedLessons] = useState({
+    fromCsv: fromCsv,
+    prev: prevLessons,
+    new: newLessons,
+});
 
-    const userData = JSON.parse(window.localStorage.getItem('userData'))
-    const isAdmin = Boolean(userData.access === "0")
-    if (!isAdmin) return <Navigate to="/something-wrong"/>
+const userData = JSON.parse(window.localStorage.getItem('userData'))
+if (!userData) return <Navigate to="/something-wrong"/>
+const isAdmin = Boolean(userData.access === "0");
+if (!isAdmin) return <Navigate to="/something-wrong"/>
 
-        return (
-            <div className="ScheduleEdit"
-                onDragStart = {() => {
-                    setDrag(true);
-                    setUploaderShow(true)
-                }}
-                onDragLeave = {() => {
-                    setDrag(false);
-                    setUploaderShow(false);
-                }}
-                onDragOver =  {() => {
-                    setDrag(true);
-                    setUploaderShow(true)
-                }}
-            >
-            <UploaderModal
-                dragStartHandler={dragStartHandler}
-                dragLeaveHandler={dragLeaveHandler}
-                onDropHandler={onDropHandler}
-                setUploaderShow={setUploaderShow}
-                drag={drag}
+if (userData) return (
+    <div className="ScheduleEdit"
+         onDragStart={() => {
+             setDrag(true);
+             setUploaderShow(true)
+         }}
+         onDragLeave={() => {
+             setDrag(false);
+             setUploaderShow(false);
+         }}
+         onDragOver={() => {
+             setDrag(true);
+             setUploaderShow(true)
+         }}
+    >
+        <UploaderModal
+            dragStartHandler={dragStartHandler}
+            dragLeaveHandler={dragLeaveHandler}
+            onDropHandler={onDropHandler}
+            setUploaderShow={setUploaderShow}
+            drag={drag}
+            uploaderShow={uploaderShow}
+            update={updateSchedule}
+        />
+
+        {/*<NewElementsListModal*/}
+        {/*    newElements={newElements}*/}
+        {/*    isNewElementsOpen={isNewElementsOpen}*/}
+        {/*    setIsNewElementsOpen={setIsNewElementsOpen}*/}
+        {/*/>*/}
+        <div className="admin-menu">
+            <Loader loading={isLoading}/>
+            <AdminMenu
+                isFromCsv={isFromCsv}
                 uploaderShow={uploaderShow}
-                update={updateSchedule}
+                setUploaderShow={setUploaderShow}
+                setUpdatedSchedule={setUpdatedSchedule}
+                updatedSchedule={updatedSchedule}
+                updatedLessons={updatedLessons}
+                updateSchedule={updateSchedule}
+                arraySchedule={arraySchedule}
+                setSubjectFirst={setSubjectFirst}
+                setTeacherFirst={setTeacherFirst}
+                setTeacherSecond={setTeacherSecond}
+                setAuditoryFirst={setAuditoryFirst}
+                setAuditorySecond={setAuditorySecond}
+                setUpdatedLessons={setUpdatedLessons}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                lessonAdding={lessonAdding}
+                setLessonAdding={setLessonAdding}
+                isAdmin={isAdmin}
+                schedule={schedule}
+                setSchedule={setSchedule}
+                search={search}
             />
-                <div className="admin-menu">
-                    <AdminMenu
-                        isFromCsv={isFromCsv}
-                        uploaderShow={uploaderShow}
-                        setUploaderShow={setUploaderShow}
-                        setUpdatedSchedule={setUpdatedSchedule}
-                        updatedSchedule={updatedSchedule}
-                        updateSchedule={updateSchedule}
-                        arraySchedule={arraySchedule}
-                        setSubjectFirst={setSubjectFirst}
-                        setTeacherFirst={setTeacherFirst}
-                        setTeacherSecond={setTeacherSecond}
-                        setAuditoryFirst={setAuditoryFirst}
-                        setAuditorySecond={setAuditorySecond}
-                        lessonAdding={lessonAdding}
-                        setLessonAdding={setLessonAdding}
-                        isAdmin={isAdmin}
-                        schedule={schedule}
-                        setSchedule={setSchedule}
-                        search={search}
-                    />
-                </div>
-                <div className="schedule">
+        </div>
+        <div className="schedule">
 
-                {
-                    schedule.length === 0 ?
+            {
+                schedule.length === 0 ?
                     <div className="schedule-block">
-                    <h3>Загрузить .csv файл с новым расписанием или вывести старое расписание из базы данных</h3>
-                        <button 
+                        <h3>Загрузить .csv файл с новым расписанием или вывести старое расписание из базы данных</h3>
+                        <button
                             className="outlined-button"
-                            onClick={() => search("", "", 1)}
+                            onClick={() => {
+                                search("", "", 1);
+                                setFromCsv(false);
+                            }}
                         >
                             Вывести старое расписание из базы данных
                         </button>
-                        <button 
+                        <button
                             className="outlined-button"
-                            onClick={() => setUploaderShow(true)}
+                            onClick={() => {
+                                setUploaderShow(true);
+                                setFromCsv(true);
+                                console.log(fromCsv);
+                            }}
                         >
                             Загрузить новое расписание
                         </button>
                     </div>
                     :
                     <>
-                        <button 
+                        <button
                             className="outlined-button"
-                            onClick={() => search("", "", 1)}
+                            onClick={() => {
+                                search("", "", 1)
+                                setFromCsv(false);
+                            }}
                         >
                             Вывести старое расписание из базы данных
                         </button>
                         <Schedule
+                            fromCsv={fromCsv}
+                            setUpdatedLessons={setUpdatedLessons}
                             updatedLessons={updatedLessons}
+                            prevLessons={prevLessons}
+                            newLessons={newLessons}
+                            setPrevLessons={setPrevLessons}
+                            setNewLessons={setNewLessons}
                             lessonAdding={lessonAdding}
                             lesson={lesson}
                             isAdmin={isAdmin}
@@ -194,11 +248,12 @@ const ScheduleEdit = () => {
                             search={search}
                         />
                     </>
-                 }
-                
-                </div>
-            </div>
-        );
-};
+            }
+
+        </div>
+    </div>
+);
+}
+;
 
 export default ScheduleEdit;

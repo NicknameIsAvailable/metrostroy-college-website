@@ -3,6 +3,7 @@ import Cell from "../Cell/Cell";
 import "./GroupsList.css";
 
 const GroupsList = (props) => {
+    const fromCsv = props.fromCsv;
     const groups = props.groups;
     const weekdays = props.weekdays;
     const teacherSearching = props.teacherSearching;
@@ -12,6 +13,7 @@ const GroupsList = (props) => {
     const lesson = props.lesson;
     const lessonAdding = props.lessonAdding;
     const updatedLessons = props.updatedLessons;
+    const setUpdatedLessons = props.setUpdatedLessons;
 
     return (
         <div className="groups-list">
@@ -28,7 +30,11 @@ const GroupsList = (props) => {
                                 {
                                 const group = arraySchedule.filter(item => item.weekDay === weekdays[wIndex]
                                         && item.groupNumber === groups[gIndex]);
-                                                                                
+
+                                    console.log(group.sort((a, b) => {
+                                        return a.time - b.time
+                                    }))
+
                                 return (          
                                 <td>
                                     <tr>
@@ -36,7 +42,13 @@ const GroupsList = (props) => {
                                     </tr>
                                     {group.map((obj, index) =>
                                         <Cell
+                                            fromCsv={fromCsv}
+                                            prevLessons={props.prevLessons}
+                                            newLessons={props.newLessons}
+                                            setPrevLessons={props.setPrevLessons}
+                                            setNewLessons={props.setNewLessons}
                                             lessonAdding={lessonAdding}
+                                            setUpdatedLessons={setUpdatedLessons}
                                             updatedLessons={updatedLessons}
                                             obj={obj}
                                             inputs={inputs}

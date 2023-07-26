@@ -4,15 +4,19 @@ import {Link} from "react-router-dom";
 import DropDownList from "../../../../Components/DropDownList/DropDownList";
 import Switch from "../../../../Components/Switch/Switch";
 import axios from "../../../../axios";
+import {logout} from "../../../../Redux/Slices/auth";
+import Notification from "../../../../Components/Notification/Notification";
 
 
 const AdminMenu = ({
                        uploaderShow,
                        setUploaderShow,
                        setSchedule,
+                       updatedLessons,
                        schedule,
                        search,
                        lessonAdding,
+                       isLoading,
                        setLessonAdding,
                        subjectFirst,
                        setSubjectFirst,
@@ -24,20 +28,48 @@ const AdminMenu = ({
                        setAuditoryFirst,
                        auditorySecond,
                        setAuditorySecond,
-                        isFromCsv
+                       setIsLoading,
+                       isFromCsv
                    }) => {
 
-    const [saveNotation, setSaveNotation] = useState(false);
+    const [notificationContent, setNotificationContent] = useState("");
+    const [isNotificationVisible, setIsNotificationVisible] = useState(false);
 
-    const saveSchedule = () => {
-        setSaveNotation(!saveNotation)
+    const Alert = (content) => {
+        setIsNotificationVisible(true);
+        setNotificationContent(content)
+    }
 
-        if (isFromCsv) {
-            axios.post("./saveScheduleCsv.php", {
-                schedule
-            }).then(response => console.log(response));
-        } else {
-            axios.post("./saveChangedOldSchedule").then(response => console.log(response));
+    const saveSchedule = async () => {
+
+
+        setIsLoading(true)
+        console.log(isLoading)
+
+        try {
+            const data = {fromCsv: updatedLessons.fromCsv, schedule}
+
+            if (updatedLessons.fromCsv)
+                axios.post("/saveSchedule.php", {fromCsv: true, schedule: schedule}).then(response => {
+                    console.log(response)
+                    setIsLoading(false);
+                    Alert("Расписание обновлено");
+                });
+
+            if (!updatedLessons.fromCsv)
+                axios.post("/saveSchedule.php", updatedLessons).then(response => {
+                    console.log(JSON.parse(updatedLessons));
+                    console.log(response);
+                    console.log(444);
+                    setIsLoading(false);
+                    Alert("Расписание обновлено");
+                });
+
+            setIsLoading(false);
+            Alert("Не удалось обновить расписание");
+
+        } catch (e) {
+            console.log(e)
         }
     }
 
@@ -49,6 +81,7 @@ const AdminMenu = ({
         className="AdminMenu"
         style={adminMenuShow ? {left: 0} : {left: "-400px"}}
     >
+        <Notification setIsNotificationVisible={setIsNotificationVisible} isVisible={isNotificationVisible} content={notificationContent}/>
         <div className="admin-menu__header">
             <h2>Редактор расписания</h2>
             <Link to="/schedule-edit/tutorial">
@@ -117,7 +150,8 @@ const AdminMenu = ({
                     <br/>
                     <input
                         value={teacherSecond}
-                        onChange={(e) => setTeacherSecond(e.target.value)} className="no-outline" placeholder="Фамильев И.О."/>
+                        onChange={(e) => setTeacherSecond(e.target.value)} className="no-outline"
+                        placeholder="Фамильев И.О."/>
                 </label>
 
                 <label>
@@ -156,8 +190,10 @@ const AdminMenu = ({
 
             <button
                 className="outlined-button"
-                onClick={saveSchedule}>
-                Сохранить
+                onClick={saveSchedule}
+                disabled={isLoading}
+            >
+                {isLoading ? "Подождите": "Сохранить"}
             </button>
         </div>
 

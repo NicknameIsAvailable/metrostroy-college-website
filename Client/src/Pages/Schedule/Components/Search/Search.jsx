@@ -16,8 +16,10 @@ const Search = (props) => {
         ...arraySchedule.map(item => item.teacherFirst),
         ...arraySchedule.map(item => item.teacherSecond)
     ].filter(item => {
-        return item.toLowerCase().includes(inputs.toLowerCase());
+        return item?.toLowerCase().includes(inputs.toLowerCase());
     });
+
+    console.log(filteredSchedule)
 
     if (Number(inputs)) {
         setRadioInputs("Group");

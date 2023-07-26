@@ -1,28 +1,9 @@
 <?php
-session_start();
-
-if($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    header('Access-Control-Allow-Origin: http://localhost:3000');
-    header("Access-Control-Allow-Headers: *");
-    header('Access-Control-Allow-Methods: POST, OPTIONS');
-    exit;
-}
-header('Access-Control-Allow-Origin: http://localhost:3000');
-header('Access-Control-Allow-Credentials: true');
-
-
-if(!file_exists(__DIR__ . '/const.php')){
+if(!file_exists(__DIR__ . '/checkSessionAndDB.php')){
     http_response_code(404);
     exit;
 }
-
-require_once __DIR__ . '/const.php';
-function checkConnect($answer, $http_response_code) : void {
-    if(!$answer){
-        http_response_code($http_response_code);
-        exit;
-    }
-}
+require_once __DIR__ . '/checkSessionAndDB.php';
 
 if(!isset($_SESSION['mailuser'])){
     http_response_code(300);

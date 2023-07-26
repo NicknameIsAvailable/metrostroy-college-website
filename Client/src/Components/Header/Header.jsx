@@ -25,10 +25,6 @@ const Header = () => {
         };
     }, []);
 
-    if (!window.localStorage.getItem("userData") && window.location.pathname !== "/login") {
-        return <Navigate to="/login"/>
-    }
-
     return (
         <header className={headerHidden ? "header-hidden" : ""}>
             <BurgerMenu open={open} setOpen={setOpen}/>

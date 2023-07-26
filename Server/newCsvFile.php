@@ -1,27 +1,19 @@
 <?php
-if(!file_exists(__DIR__ . 'checkSessionAndDB.php')){
+if(!file_exists(__DIR__ . '/checkSessionAndDB.php')){
     http_response_code(500);
     exit;
 }
-require_once __DIR__ . 'checkSessionAndDB.php';
+require_once __DIR__ . '/checkSessionAndDB.php';
 
-if(!file_exists(__DIR__ . 'const.php')){
-    http_response_code(500);
-    exit;
-}
-require_once __DIR__ . 'const.php';
-
-if($_FILES['filename']['error'] != UPLOAD_ERR_OK){
+if($_FILES['file']['error'] != UPLOAD_ERR_OK){
     http_response_code(500);
     exit;
 }
 
-$file_name = $file_name = $_FILES['filename']['tmp_name'] .'/'. $_FILES['filename']['name'];
+$file_name = $_FILES['file']['tmp_name'];
+
 $file_csv = @fopen($file_name, 'r');
-if(!$file_csv){
-    http_response_code(500);
-    exit;
-}
+checkConnect($file_csv, 500);
 
 $mainArrayMonday = array();
 $mainArrayTuesday = array();
@@ -161,9 +153,8 @@ while($row = fgetcsv($file_csv, separator: ';')){
 }
 unset($mainArrayMonday[count($mainArrayMonday) - 1]);
 $mainArrayCsvFormat = [$mainArrayMonday, $mainArrayTuesday, $mainArrayWednesday, $mainArrayThursday,$mainArrayFriday];
-for($iterator = 0; $iterator < count($mainArrayCsvFormat); ++$iterator){
+for($iterator = 0; $iterator < count($mainArrayCsvFormat); ++$iterator)
     unset($mainArrayCsvFormat[$iterator][count($mainArrayMonday)]);
-}
 
 $arrayListTime = [
     '09:00 - 09:45',

@@ -5,11 +5,15 @@ import Loader from "../../Components/Loader/Loader";
 import Search from "./Components/Search/Search";
 
 const Schedule = (props) => {
+    const fromCsv = props.fromCsv;
     const isAdmin = props.isAdmin;
     const search = props.search;
     const schedule = props.schedule;
     const isLoading = props.isLoading;
     const updatedLessons = props.updatedLessons;
+    const setUpdatedLessons = props.setUpdatedLessons;
+    const setNewLessons = props.setNewLessons;
+    const setPrevLessons = props.setPrevLessons;
     const lesson = props.lesson;
     const lessonAdding = props.lessonAdding;
 
@@ -32,7 +36,6 @@ const Schedule = (props) => {
         teacherSecond: obj.teachersecond || obj.teacherSecond,
         auditorySecond: obj.auditorysecond || obj.auditorySecond,
         locationName: obj.locationname || obj.locationName,
-        searchingTeacher: false
     }))
 
     const groups = arraySchedule.map(obj => obj.groupNumber).reduce((a,b) => {
@@ -76,8 +79,14 @@ const Schedule = (props) => {
                     ""
                     :
                     <GroupsList
+                        fromCsv={fromCsv}
+                        prevLessons={props.prevLessons}
+                        newLessons={props.newLessons}
+                        setPrevLessons={setPrevLessons}
+                        setNewLessons={setNewLessons}
                         lessonAdding={lessonAdding}
                         groups={filteredGroups}
+                        setUpdatedLessons={setUpdatedLessons}
                         updatedLessons={updatedLessons}
                         weekdays={weekdays}
                         inputs={inputs}

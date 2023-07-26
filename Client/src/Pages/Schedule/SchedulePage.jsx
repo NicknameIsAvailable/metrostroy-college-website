@@ -8,6 +8,7 @@ import axios from "../../axios";
 import StrangeError from "../../Components/StrangeError/StrangeError";
 import {Navigate} from "react-router-dom";
 import {selectIsAuth} from "../../Redux/Slices/auth";
+import {useEffect} from "react";
 
 const SchedulePage = () => {
     // Объявление переменных состояния и функций
@@ -29,7 +30,7 @@ const SchedulePage = () => {
 
             // Если результат не пустой - обновить состояние с расписанием, иначе выполнить поиск еще раз
             if (response.data !== "Запрос не получил ни одного результата!") {
-                dispatch(fetchSchedule(response.data));
+                return dispatch(fetchSchedule(response.data));
             } else {
                 search("", "", 1);
             }
@@ -41,9 +42,11 @@ const SchedulePage = () => {
 
     const isAuth = useSelector(selectIsAuth);
 
-    if (!isAuth) return <Navigate to="/login"/>
+    useEffect(() => {
+        search("", "", 1).then(() => console.log("fdsf"))
+    }, [])
 
-    if (schedule.length === 0) dispatch(fetchSchedule());
+    if (!isAuth) return <Navigate to="/login"/>
 
     try {
         return (

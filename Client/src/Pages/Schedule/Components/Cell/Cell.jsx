@@ -2,39 +2,45 @@ import React, {useState} from 'react';
 import "./Cell.css"
 
 const Cell = (props) => {
+    const fromCsv = props.fromCsv;
     const [obj, setObj] = useState(props.obj);
     const inputs = props.inputs;
     const lessonAdding = props.lessonAdding;
     const updatedLessons = props.updatedLessons
+    const setUpdatedLessons = props.setUpdatedLessons;
+    const setNewLessons = props.setNewLessons;
+    const newLessons = props.newLessons;
+    const setPrevLessons = props.setPrevLessons;
+    const prevLessons = props.prevLessons;
     const lesson = props.lesson;
 
     const [subjectShow, setSubjectShow] = useState(false);
 
     // сокращение имен предметов
 
-    const shortSubject = subjectShow ?
+    const shortSubject = subjectShow && obj.subjectFirst ?
         obj.subjectFirst
         :
         <>
             {
-                obj.subjectFirst.includes("МДК") ?
-                obj.subjectFirst.substr(0, 10)
+                obj.subjectFirst?.includes("МДК") ?
+                obj.subjectFirst?.substr(0, 10)
                 :
-                obj.subjectFirst.includes("Иностранный язык")
+                obj.subjectFirst?.includes("Иностранный язык")
                     ?
                     "Ин. Яз."
                     :
-                    obj.subjectFirst.includes("Физическая культура")
+                    obj.subjectFirst?.includes("Физическая культура")
                         ?
                         "Физра"
                         :
-                        obj.subjectFirst.includes("Основы безопасности жизнедеятельности")
+                        obj.subjectFirst?.includes("Основы безопасности жизнедеятельности")
                             ?
                             "ОБЖ"
                             :
-                            obj.subjectFirst.length > 12
+                            obj.subjectFirst?.length > 12
                                 ?
-                                obj.subjectFirst.substr(0, 12) + "..."
+                                obj.subjectFirst?.substr(0, 12) + "..."
                                 :
                                 obj.subjectFirst
             }
@@ -47,20 +53,45 @@ const Cell = (props) => {
                 className="cell"
                 onClick={() => {
                     if (lessonAdding) {
-                        lesson.groupNumber = obj.groupNumber;
-                        lesson.weekDay = obj.weekDay;
-                        lesson.locationName = obj.locationName;
-                        lesson.time = obj.time;
-                        updatedLessons.push({
-                            prev: obj,
-                            new: lesson
+
+                        setPrevLessons(prevLessons => [obj, ...prevLessons]);
+                        setNewLessons(newLessons => [{
+                            groupNumber: obj.groupNumber,
+                            time: obj.time,
+                            weekDay: obj.weekDay,
+                            subjectFirst: lesson.subjectFirst,
+                            teacherFirst: lesson.teacherFirst,
+                            auditoryFirst: lesson.auditoryFirst,
+                            subjectSecond: lesson.subjectSecond,
+                            teacherSecond: lesson.teacherSecond,
+                            auditorySecond: lesson.auditorySecond,
+                            locationName: obj.locationName,
+                        }, ...newLessons]);
+
+                        setUpdatedLessons({
+                            fromCsv: fromCsv,
+                            new: newLessons,
+                            prev: prevLessons
                         })
-                        setObj(lesson)
+
+                        console.log(updatedLessons);
+                        setObj({
+                            groupNumber: obj.groupNumber,
+                            time: obj.time,
+                            weekDay: obj.weekDay,
+                            subjectFirst: lesson.subjectFirst,
+                            teacherFirst: lesson.teacherFirst,
+                            auditoryFirst: lesson.auditoryFirst,
+                            subjectSecond: lesson.subjectSecond,
+                            teacherSecond: lesson.teacherSecond,
+                            auditorySecond: lesson.auditorySecond,
+                            locationName: obj.locationName,
+                        })
                     }
                 }}
-                style={obj.teacherFirst.toLowerCase().includes(inputs.toLowerCase())
+                style={obj.teacherFirst?.toLowerCase().includes(inputs.toLowerCase())
                 && inputs.length >= 3
-                || obj.subjectFirst.toLowerCase().includes(inputs.toLowerCase())
+                || obj.subjectFirst?.toLowerCase().includes(inputs.toLowerCase())
                 && inputs.length >= 3 ?
                     {
 

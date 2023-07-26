@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, {useEffect} from "react";
+import {Navigate, Route, Routes} from "react-router-dom";
 import "./App.css";
 
 import Header from "./Components/Header/Header";
@@ -17,6 +17,15 @@ import Users from "./Pages/Users/Users";
 import Login from "./Pages/Login/Login";
 
 function App() {
+
+    const userData = window.localStorage.getItem("userData");
+
+    useEffect(() => {
+        if (!userData) {
+            return <Navigate to="/login"/>
+        }
+    }, []);
+
     return (
         <div className="App">
             <Header />

@@ -13,6 +13,9 @@ const Profile = () => {
 
     const isAuth = useSelector(selectIsAuth);
     const [userData, setUserData] = useState({})
+    const [scheduleData, setScheduleData] = useState();
+    const [avaClicks, setAvaClicks] = useState(0);
+    const [error, setError] = useState();
 
     useEffect(() => {
         setUserData(JSON.parse(window.localStorage.getItem('userData')));
@@ -25,9 +28,22 @@ const Profile = () => {
     const isLoading = schedule.status === 'loading'
 
     // Запускать функцию fetchSchedule при загрузке страницы
+
+    const getSchedule = async () => {
+        const data = await dispatch(fetchSchedule());
+        setScheduleData(data)
+        console.log(data)
+    }
+
     useEffect(() => {
-        dispatch(fetchSchedule());
-    }, [dispatch]);
+        getSchedule();
+    }, []);
+
+    if (scheduleData?.payload.includes(300)) {
+        localStorage.removeItem("userData");
+        document.cookie = "PHPSESSID; expires=-1;";
+        return <Navigate to="/strange-error"/>
+    }
 
     const arraySchedule = schedule.map(obj => ({
         time: obj.time,
@@ -64,7 +80,6 @@ const Profile = () => {
 
     // пасхалка
 
-    const [avaClicks, setAvaClicks] = useState(0);
     if (avaClicks === 100) {
         console.log("ААААААААААААААААААААА ЧТООООООООООООООООООООООООООООО")
         return (
