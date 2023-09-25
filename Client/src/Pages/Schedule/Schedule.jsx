@@ -59,6 +59,8 @@ const Schedule = (props) => {
         }
     });
 
+    console.log(78, groups)
+
     return (
         <div className="container">
             <div className="Schedule">

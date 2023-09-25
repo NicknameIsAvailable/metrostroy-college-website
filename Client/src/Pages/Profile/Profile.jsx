@@ -96,7 +96,7 @@ const Profile = () => {
                 <div className="container">
                     <div className="profile-block">
                         <div className="info-block">
-                            <div className="cool-block">
+                            <dizzv className="cool-block">
                                 <div className="user-info">
                                     <div className="user-info__text">
                                         <h3>
@@ -128,7 +128,7 @@ const Profile = () => {
                                         </Link>
                                     </div>
                                 </div>
-                            </div>
+                            </dizzv>
 
                             {userData.access === '0' ? (
                                 <h3>

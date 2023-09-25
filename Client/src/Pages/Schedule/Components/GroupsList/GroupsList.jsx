@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Cell from "../Cell/Cell";
 import "./GroupsList.css";
 
@@ -14,10 +14,20 @@ const GroupsList = (props) => {
     const lessonAdding = props.lessonAdding;
     const updatedLessons = props.updatedLessons;
     const setUpdatedLessons = props.setUpdatedLessons;
+    const [group, setGroup] = useState(groups?.map(gObj => weekdays.map(wObj => {arraySchedule.filter(item => item.weekDay === wObj
+        && item.groupNumber === gObj)})));
+
+    useEffect(() => {
+        setGroup([])
+        let array = groups?.map(gObj => weekdays.map(wObj => {arraySchedule.filter(item => item.weekDay === wObj
+                && item.groupNumber === gObj)}))
+        setGroup(array)
+    }, [arraySchedule])
+    console.log(23, group)
 
     return (
         <div className="groups-list">
-            {groups?.map((gObj, gIndex) =>
+            {groups?.map(gObj =>
             gObj ?
                 <div className="group-block">
                     <h1>
@@ -25,17 +35,13 @@ const GroupsList = (props) => {
                     </h1>
                     <table>
                         <td>
-                            {weekdays.map((wObj, wIndex) =>
+                            {weekdays.map(wObj =>
 
                                 {
-                                const group = arraySchedule.filter(item => item.weekDay === weekdays[wIndex]
-                                        && item.groupNumber === groups[gIndex]);
+                                    const group = (arraySchedule.filter(item => item.weekDay === wObj
+                                        && item.groupNumber === gObj))
 
-                                    console.log(group.sort((a, b) => {
-                                        return a.time - b.time
-                                    }))
-
-                                return (          
+                                return (
                                 <td>
                                     <tr>
                                         <h2 className="day-cell">{wObj}</h2>

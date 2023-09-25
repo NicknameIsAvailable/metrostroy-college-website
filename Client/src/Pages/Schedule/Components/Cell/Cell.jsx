@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Cell.css"
 
 const Cell = (props) => {
@@ -16,6 +16,10 @@ const Cell = (props) => {
 
     const [subjectShow, setSubjectShow] = useState(false);
 
+    useEffect(() => {
+        setObj(props.obj)
+    }, [props.obj])
+
     // сокращение имен предметов
 
     const shortSubject = subjectShow && obj.subjectFirst ?
@@ -28,11 +32,11 @@ const Cell = (props) => {
                 :
                 obj.subjectFirst?.includes("Иностранный язык")
                     ?
-                    "Ин. Яз."
+                    "Иностранный язык"
                     :
                     obj.subjectFirst?.includes("Физическая культура")
                         ?
-                        "Физра"
+                        "Физическая культура"
                         :
                         obj.subjectFirst?.includes("Основы безопасности жизнедеятельности")
                             ?
