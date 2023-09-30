@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "./Notification.css";
 
 const Notification = ({isVisible, setIsNotificationVisible, content}) => {
 
 
     if (isVisible) {
-        console.log(1)
         setTimeout(() => {
-            console.log(2)
             setIsNotificationVisible(false);
         }, 3000)
     }

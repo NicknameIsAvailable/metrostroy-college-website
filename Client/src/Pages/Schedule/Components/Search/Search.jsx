@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Search.css"
 import AutoComplete from "../../../../Components/AutoComplete/AutoComplete";
+import axios from "../../../../axios";
 
 const Search = (props) => {
     const setInputs = props.setInputs;
@@ -11,6 +12,24 @@ const Search = (props) => {
     const setTeacherSearching = props.setTeacherSearching;
     const search = props.search;
 
+    const [locations, setLocations] = useState([]);
+
+    const getAllLocations = async () => {
+        try {
+            const data = await axios.post("/selectListLocations.php")
+            setLocations(data.data.locations)
+        } catch (e) {
+            alert('Не удалось получить площадки')
+            console.log(e)
+        }
+    }
+
+
+    useEffect(() => {
+        console.log("Член")
+        getAllLocations()
+    }, []);
+
     const filteredSchedule = [
         ...arraySchedule.map(item => item.groupNumber),
         ...arraySchedule.map(item => item.teacherFirst),
@@ -18,8 +37,6 @@ const Search = (props) => {
     ].filter(item => {
         return item?.toLowerCase().includes(inputs.toLowerCase());
     });
-
-    console.log(filteredSchedule)
 
     if (Number(inputs)) {
         setRadioInputs("Group");
@@ -60,14 +77,10 @@ const Search = (props) => {
 
                 <div>
                     <select className="search" name="Площадка" id="Площадка">
-                        <option>Площадка</option>
-                        {arraySchedule.map(obj => obj.locationName).reduce((a,b) => {
-                            if (a.indexOf(b) < 0 ) a.push(b);
-                            return a;
-                        }, []).map((item, index) =>
+                        {locations.map((location, index) =>
                             <option onClick={async () => {
-                                await search(inputs, radioInputs, index + 1);
-                            }} value={item}>{item}</option>
+                                await search(location.id);
+                            }} value={location.id}>{location.name}</option>
                         )}
                     </select>
                 </div>

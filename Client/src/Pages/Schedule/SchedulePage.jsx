@@ -1,54 +1,60 @@
 // Импорт компонентов и функций из других файлов и библиотек
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Loader from '../../Components/Loader/Loader'
 import StrangeError from '../../Components/StrangeError/StrangeError'
 import {selectIsAuth} from '../../Redux/Slices/auth'
-import {fetchSchedule, selectSchedule} from '../../Redux/Slices/schedule'
 import axios from '../../axios'
 import Schedule from './Schedule'
 import './SchedulePage.css'
 
 const SchedulePage = () => {
     // Объявление переменных состояния и функций
-    const dispatch = useDispatch()
-    const schedule = useSelector(selectSchedule)
+    const [schedule, setSchedule] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
 
-    const isLoading = schedule.status === 'loading'
+    const getLocation = async () => {
+        const data = await axios.post("/selectListLocations.php")
+        return data.data.locations[0].id
+    }
 
     // Функция поиска
-    const search = async (inputs, radio, location) => {
-        const requestOptions = {
-            valueSearch: inputs, valueRadioButton: radio, valueLocation: location,
-        }
-
+    const search = async (location) => {
         try {
-            const response = await axios.post('/schedule.php', requestOptions)
+            setIsLoading(true);
+            const response = await axios.post(`/schedule.php?id=${location}`)
 
             // Если результат не пустой - обновить состояние с расписанием, иначе выполнить поиск еще раз
             if (response.data !== 'Запрос не получил ни одного результата!') {
-                return dispatch(fetchSchedule(response.data))
+                const data = response.data;
+                setSchedule(data);
+                setIsLoading(false);
             } else {
-                search('', '', 1)
+                search(1)
             }
         } catch (err) {
+            setIsLoading(false);
             return <StrangeError/>
-                }
-                }
+        }
+    }
 
-                const isAuth = useSelector(selectIsAuth)
+    const firstSearch = async () => {
+        const id = await getLocation()
+        search(id)
+    }
 
-                useEffect(() => {search('', '', 1).then(() => console.log('fdsf'))}, [])
+    useEffect(() => {
+        firstSearch()
+    }, [])
 
-                try {return ( <div className='schedule-page'> {!isLoading ? ( <Schedule schedule = {schedule}
-                search={search}/>
-        ) :
-            (<Loader/>)
-        } </div>
+    try {
+        return (
+            <div className='schedule-page'>
+                <Schedule schedule={schedule} isLoading={isLoading} search={search}/>
+            </div>
         )
-        } catch (e) {
-            console.log(e)
-        }
-        }
+    } catch (e) {
+        console.log(e)
+    }
+}
 
-        export default SchedulePage
+export default SchedulePage

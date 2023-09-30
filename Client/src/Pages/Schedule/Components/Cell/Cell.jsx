@@ -6,7 +6,6 @@ const Cell = (props) => {
     const [obj, setObj] = useState(props.obj);
     const inputs = props.inputs;
     const lessonAdding = props.lessonAdding;
-    const updatedLessons = props.updatedLessons
     const setUpdatedLessons = props.setUpdatedLessons;
     const setNewLessons = props.setNewLessons;
     const newLessons = props.newLessons;
@@ -36,7 +35,7 @@ const Cell = (props) => {
                     :
                     obj.subjectFirst?.includes("Физическая культура")
                         ?
-                        "Физическая культура"
+                        <>Физическая&nbsp;культура</>
                         :
                         obj.subjectFirst?.includes("Основы безопасности жизнедеятельности")
                             ?
@@ -78,7 +77,6 @@ const Cell = (props) => {
                             prev: prevLessons
                         })
 
-                        console.log(updatedLessons);
                         setObj({
                             groupNumber: obj.groupNumber,
                             time: obj.time,

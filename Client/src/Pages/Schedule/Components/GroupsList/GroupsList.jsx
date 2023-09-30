@@ -23,7 +23,6 @@ const GroupsList = (props) => {
                 && item.groupNumber === gObj)}))
         setGroup(array)
     }, [arraySchedule])
-    console.log(23, group)
 
     return (
         <div className="groups-list">

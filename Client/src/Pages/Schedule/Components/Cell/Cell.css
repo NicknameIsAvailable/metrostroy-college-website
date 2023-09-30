@@ -64,4 +64,28 @@
   flex: 1;
   text-align: right;
   margin-left: auto;
-}/*# sourceMappingURL=Cell.css.map */
+}
+
+@media screen and (max-width: 720px) {
+  .main-info {
+    flex: 1;
+  }
+  .cell {
+    border-radius: 8px;
+  }
+  .subject {
+    font-size: 20px;
+  }
+  .teacher {
+    flex: 3;
+    font-size: 16px;
+  }
+  .extra-info {
+    gap: 12px;
+  }
+  .auditory {
+    font-size: 16px;
+  }
+}
+
+/*# sourceMappingURL=Cell.css.map */

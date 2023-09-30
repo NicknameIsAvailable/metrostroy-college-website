@@ -22,6 +22,15 @@ const AdminPanel = () => {
                              buttonContent={'Изменить'}
                         />
 
+                        <Tab title='Площадки'
+                             isInteractive={true}
+                             changeDate={'12.12.12'}
+                             changeTime={'12:12'}
+                             changedUser={'И.И.Бебрик'}
+                             link='/locations'
+                             buttonContent={'Изменить'}
+                        />
+
                         {/* <Tab
                                                     title="Преподаватели"
                                                     isInteractive={true}

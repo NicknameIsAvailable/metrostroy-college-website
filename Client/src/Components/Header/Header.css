@@ -51,7 +51,6 @@ header .links h3 {
   font-weight: 900;
 }
 header .links svg {
-  padding: 4px;
   transition-duration: 0.3s;
   cursor: pointer;
 }
@@ -79,6 +78,11 @@ header .links__section {
 @media screen and (max-width: 720px) {
   header .links__section {
     padding: 0 5%;
+  }
+}
+@media screen and (max-width: 360px) {
+  header .links__section {
+    font-size: 16px;
   }
 }
 @media screen and (max-width: 1600px) {
@@ -115,4 +119,15 @@ header .links__section {
   header .Logo {
     width: 200px;
   }
-}/*# sourceMappingURL=Header.css.map */
+}
+
+@media screen and (max-width: 360px) {
+  svg {
+    margin-left: -15%;
+  }
+  .header-buttons {
+    font-size: 16px;
+  }
+}
+
+/*# sourceMappingURL=Header.css.map */

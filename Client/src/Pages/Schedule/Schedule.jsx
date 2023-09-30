@@ -59,8 +59,6 @@ const Schedule = (props) => {
         }
     });
 
-    console.log(78, groups)
-
     return (
         <div className="container">
             <div className="Schedule">
@@ -76,27 +74,35 @@ const Schedule = (props) => {
                     setTeacherSearching={setTeacherSearching}
                     search={search}
                 />
-                <Loader loading={isLoading}/>
                 {isLoading ?
-                    ""
-                    :
-                    <GroupsList
-                        fromCsv={fromCsv}
-                        prevLessons={props.prevLessons}
-                        newLessons={props.newLessons}
-                        setPrevLessons={setPrevLessons}
-                        setNewLessons={setNewLessons}
-                        lessonAdding={lessonAdding}
-                        groups={filteredGroups}
-                        setUpdatedLessons={setUpdatedLessons}
-                        updatedLessons={updatedLessons}
-                        weekdays={weekdays}
-                        inputs={inputs}
-                        arraySchedule={arraySchedule}
-                        teacherSearching={teacherSearching}
-                        isAdmin={isAdmin}
-                        lesson={lesson}
-                    />
+                    <Loader loading={isLoading}/>
+                    : !isLoading && arraySchedule.length === 0 ?
+                        <div style={{display: "flex", justifyContent: "center", flexDirection: "column", marginTop: "5em", gap: 24}}>
+                            <h1 style={{textAlign: "center"}}>В расписании пусто</h1>
+                            {/*<h1 style={{textAlign: "center", fontSize: 96, color: '#3D99A8'}}>О_о</h1>*/}
+                            <h3 style={{textAlign: "center"}}>Попробуйте выбрать другую площадку</h3>
+                        </div>
+                        :
+                        <>
+                            <GroupsList
+                                fromCsv={fromCsv}
+                                prevLessons={props.prevLessons}
+                                newLessons={props.newLessons}
+                                setPrevLessons={setPrevLessons}
+                                setNewLessons={setNewLessons}
+                                lessonAdding={lessonAdding}
+                                groups={filteredGroups}
+                                setUpdatedLessons={setUpdatedLessons}
+                                updatedLessons={updatedLessons}
+                                weekdays={weekdays}
+                                inputs={inputs}
+                                arraySchedule={arraySchedule}
+                                teacherSearching={teacherSearching}
+                                isAdmin={isAdmin}
+                                lesson={lesson}
+                            />
+                        </>
+
                 }
             </div>
         </div>

@@ -14,6 +14,7 @@ import SchedulePage from './Pages/Schedule/SchedulePage'
 import ScheduleEdit from './Pages/ScheduleEdit/ScheduleEdit'
 import ScheduleEditTutorial from './Pages/ScheduleEditTutorial/ScheduleEditTutorial'
 import Users from './Pages/Users/Users'
+import Locations from "./Pages/ Locations/Locations";
 
 function App() {
     const userData = window.localStorage.getItem('userData')
@@ -37,6 +38,7 @@ function App() {
                 <Route path='/users/:type' element={<Users/>}/>
                 <Route path='/schedule-edit/tutorial' element={<ScheduleEditTutorial/>}/>
                 <Route path='/schedule-edit' element={<ScheduleEdit/>}/>
+                <Route path='/locations' element={<Locations/>}/>
                 <Route path='/error' element={<StrangeError/>}/>
                 <Route path='/*' element={<ErrorPage/>}/>
             </Routes>

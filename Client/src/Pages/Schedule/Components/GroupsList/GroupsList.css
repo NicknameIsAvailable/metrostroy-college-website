@@ -1,6 +1,5 @@
 .groups-list {
   display: flex;
-  width: 100%;
   flex-direction: column;
   gap: 24px;
   margin-bottom: 128px;
@@ -46,9 +45,34 @@ table {
   margin-bottom: 8px;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1440px) {
   table {
-    width: 100%;
+    width: 75vw;
     justify-content: flex-start;
   }
-}/*# sourceMappingURL=GroupsList.css.map */
+}
+@media screen and (max-width: 1000px) {
+  table {
+    width: 90vw;
+    justify-content: flex-start;
+  }
+}
+@media screen and (max-width: 720px) {
+  .group-block {
+    gap: 12px;
+    padding: 8px;
+  }
+  .group-block h1 {
+    font-size: 32px;
+  }
+  .day-cell {
+    padding: 8px;
+    font-size: 20px;
+  }
+  table {
+    width: 90vw;
+    justify-content: flex-start;
+  }
+}
+
+/*# sourceMappingURL=GroupsList.css.map */

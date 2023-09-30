@@ -34,10 +34,10 @@ const TeachersList = () => {
             alert('Произошла странная ошибка')
         }
     }
-
-    useEffect(() => {
-        search("", "Location", "");
-    }, []);
+    //
+    // useEffect(() => {
+    //     search("", "Location", "");
+    // }, []);
 
 
     const teachers = [

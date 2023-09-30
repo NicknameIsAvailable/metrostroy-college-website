@@ -218,6 +218,13 @@ abbr {
   }
 }
 
+@media screen and (max-width: 1000px) {
+  .container {
+    margin: 0 5%;
+    height: 100%;
+  }
+}
+
 @media screen and (max-width: 720px) {
   .container {
     margin: 0 5%;

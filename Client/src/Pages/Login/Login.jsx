@@ -56,9 +56,7 @@ const Login = () => {
         e.preventDefault();
         if (!login.includes("@")) {
             setError("Введите почту")
-            console.log(login)
         } else if (password === "") {
-            console.log(password)
             setError("Введите пароль")
         }
         setIsSubmitting(true);
