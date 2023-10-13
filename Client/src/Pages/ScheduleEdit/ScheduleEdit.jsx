@@ -120,7 +120,6 @@ const ScheduleEdit = () => {
             subjectSecond: subjectFirst,
             teacherSecond: teacherSecond,
             auditorySecond: auditorySecond,
-            locationName: ""
         };
 
         const [lessonAdding, setLessonAdding] = useState(false);

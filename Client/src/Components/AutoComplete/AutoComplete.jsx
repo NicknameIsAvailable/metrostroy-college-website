@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import "./AutoComplete.css";
 
-const AutoComplete = ({ setInput, array, value, isVisible }) => {
-    const [isSelectVisible, setIsSelectVisible] = useState(Boolean(isVisible));
+const AutoComplete = ({ setInput, array, value }) => {
+    const [isSelectVisible, setIsSelectVisible] = useState(false);
 
     const uniqArray = [...new Set(array)];
+
+    useEffect(() => {
+        if (value !== "") setIsSelectVisible(true)
+        else setIsSelectVisible(false)
+    }, [value]);
 
     const handleClick = (item) => {
         setIsSelectVisible(false);
         setInput(item);
     }
 
-    if (value && isSelectVisible) {
+    if (isSelectVisible) {
         return (
             <select className="auto-complete" size="3">
                 {uniqArray.map((item) => (

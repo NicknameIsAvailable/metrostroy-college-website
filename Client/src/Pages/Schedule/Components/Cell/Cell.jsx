@@ -68,7 +68,6 @@ const Cell = (props) => {
                             subjectSecond: lesson.subjectSecond,
                             teacherSecond: lesson.teacherSecond,
                             auditorySecond: lesson.auditorySecond,
-                            locationName: obj.locationName,
                         }, ...newLessons]);
 
                         setUpdatedLessons({
@@ -87,14 +86,15 @@ const Cell = (props) => {
                             subjectSecond: lesson.subjectSecond,
                             teacherSecond: lesson.teacherSecond,
                             auditorySecond: lesson.auditorySecond,
-                            locationName: obj.locationName,
                         })
                     }
                 }}
                 style={obj.teacherFirst?.toLowerCase().includes(inputs.toLowerCase())
-                && inputs.length >= 3
+                && inputs.length >= 3 && !Number(inputs) ||
+                obj.teacherSecond?.toLowerCase().includes(inputs.toLowerCase())
+                && inputs.length >= 3  && !Number(inputs)
                 || obj.subjectFirst?.toLowerCase().includes(inputs.toLowerCase())
-                && inputs.length >= 3 ?
+                && inputs.length >= 3  && !Number(inputs) ?
                     {
 
                 } : inputs.length < 3 ? {

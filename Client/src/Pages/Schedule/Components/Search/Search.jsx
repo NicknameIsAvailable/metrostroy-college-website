@@ -26,7 +26,6 @@ const Search = (props) => {
 
 
     useEffect(() => {
-        console.log("Член")
         getAllLocations()
     }, []);
 
@@ -56,7 +55,7 @@ const Search = (props) => {
 
                 setInputs('');
             }}>
-                <input placeholder="поиск" className="search no-outline" type="text" value={inputs} onChange={e => {
+                <input placeholder="Поиск по группе или преподавателю" className="search no-outline" type="text" value={inputs} onChange={e => {
                     setInputs(e.target.value);
                     if (inputs !== '') {
                         setIsAutoCompleteVisible(true)
@@ -69,18 +68,17 @@ const Search = (props) => {
                     }
                 }}/>
                 <AutoComplete
-                    isVisible={inputs.length >= 3}
                     array={filteredSchedule}
                     value={inputs}
                     setInput={setInputs}
                 />
 
                 <div>
-                    <select className="search" name="Площадка" id="Площадка">
+                    <select onChange={async (event) => {
+                        await search(Number(event.target.value));
+                    }} className="search" name="Площадка" id="Площадка">
                         {locations.map((location, index) =>
-                            <option onClick={async () => {
-                                await search(location.id);
-                            }} value={location.id}>{location.name}</option>
+                            <option value={location.id}>{location.name}</option>
                         )}
                     </select>
                 </div>

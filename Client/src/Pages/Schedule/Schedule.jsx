@@ -35,7 +35,6 @@ const Schedule = (props) => {
         subjectSecond: obj.subjectsecond || obj.subjectSecond,
         teacherSecond: obj.teachersecond || obj.teacherSecond,
         auditorySecond: obj.auditorysecond || obj.auditorySecond,
-        locationName: obj.locationname || obj.locationName,
     }))
 
     const groups = arraySchedule.map(obj => obj.groupNumber).reduce((a,b) => {

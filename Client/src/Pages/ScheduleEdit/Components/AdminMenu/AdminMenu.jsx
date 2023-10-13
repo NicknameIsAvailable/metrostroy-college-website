@@ -59,13 +59,11 @@ const AdminMenu = ({
     }
 
     const saveSchedule = async () => {
-
-
         setIsLoading(true)
 
         try {
             if (updatedLessons.fromCsv)
-                axios.post("/saveSchedule.php", {fromCsv: true, schedule: schedule, location: Number(location)}).then(response => {
+                axios.post(`/saveSchedule.php`, {fromCsv: true, schedule: schedule, location: Number(location)}).then(response => {
                     setIsLoading(false);
                     Alert("Расписание обновлено");
                 });

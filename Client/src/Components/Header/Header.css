@@ -43,11 +43,12 @@ header .links {
   width: 100vw;
   height: 54px;
   align-items: center;
-  background: #1f1f1f;
+  background: #87C2D0;
   margin-left: auto;
   gap: 32px;
 }
 header .links h3 {
+  color: #1f1f1f;
   font-weight: 900;
 }
 header .links svg {

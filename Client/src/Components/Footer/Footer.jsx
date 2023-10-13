@@ -90,7 +90,7 @@ const Footer = () => {
         <footer>
             <div>
                 {renderContactInfo()}
-                <button className="outlined-button">Напишите нам</button>
+                {/*<button className="outlined-button">Напишите нам</button>*/}
             </div>
             <div>
                 <p>{renderResources()}</p>
