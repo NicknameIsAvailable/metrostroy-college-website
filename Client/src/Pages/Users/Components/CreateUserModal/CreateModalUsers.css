@@ -1,0 +1,9 @@
+.role-radio-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.role-radio-buttons label {
+  display: flex;
+  gap: 6px;
+}/*# sourceMappingURL=CreateModalUsers.css.map */

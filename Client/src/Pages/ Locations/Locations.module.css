@@ -1,0 +1,282 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.little-button {
+  padding: 8px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1f1f1f;
+  border: none;
+  transition: filter 0.3s;
+}
+.little-button:hover {
+  filter: brightness(2);
+}
+.little-button:active {
+  filter: brightness(3);
+}
+
+.button__no-outline {
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  transition-duration: 0.3s;
+}
+.button__no-outline:hover {
+  background: rgba(31, 31, 31, 0.3);
+}
+.button__no-outline:active {
+  background: rgba(31, 31, 31, 0.1);
+}
+
+body {
+  background: radial-gradient(100% 100% at 100% 100%, rgba(92, 183, 201, 0.1) 0%, rgba(92, 183, 201, 0) 100%), radial-gradient(100% 316.05% at 0% 0%, rgba(61, 153, 168, 0.3) 0%, rgba(0, 0, 0, 0) 100%), #FFFFFF;
+  display: flex;
+  overflow-x: hidden;
+  flex-direction: column;
+  color: #1f1f1f;
+  font-family: "Akrobat", sans-serif;
+}
+
+.underlined-input {
+  padding: 8px;
+  background: none;
+  border: none;
+  border-bottom: rgba(31, 31, 31, 0.3) 1px solid;
+  width: 98%;
+  font-size: 16px;
+  font-family: Akrobat, sans-serif;
+  color: #1f1f1f;
+}
+
+.container {
+  margin: 0 15%;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 16px;
+  padding: 16px;
+  min-width: 360px;
+  min-height: 360px;
+  width: 30vw;
+  background: white;
+}
+
+.modal-buttons {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.modal-button {
+  background: none;
+  padding: 8px 16px;
+  border: #1f1f1f 3px solid;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+.modal-button:hover {
+  background: rgba(31, 31, 31, 0.2);
+}
+.modal-button:active {
+  background: rgba(31, 31, 31, 0.1);
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 8px;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 4px;
+  width: 1px;
+  box-shadow: 0 100px 80px rgba(0, 0, 0, 0.07), 0 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 0 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 0 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+}
+
+.Link {
+  text-decoration: none;
+  color: #1f1f1f;
+}
+.Link:visited {
+  color: #1f1f1f;
+}
+
+.App {
+  background: white;
+}
+
+h1 {
+  font-family: "Akrobat", sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
+  color: #ffffff;
+}
+
+button {
+  cursor: pointer;
+}
+
+.anchor-link {
+  color: #1f1f1f;
+  text-decoration: underline;
+}
+
+.error-text {
+  font-weight: 700;
+  margin-top: 16px;
+  color: #FE6060;
+}
+
+.outlined-button {
+  font-family: "Akrobat", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 20px 32px;
+  transition-duration: 0.3s;
+  background: #3D99A8;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  transition: border 0.3s, background 0.3s, color 0.3s;
+}
+.outlined-button:hover {
+  transition-duration: 0.7s;
+  background: radial-gradient(100% 1169.64% at 0% 0%, rgba(135, 194, 208, 0.2) 0%, rgba(135, 194, 208, 0.2) 100%), #3D99A8;
+}
+.outlined-button:active {
+  transition-duration: 0.3s;
+  background: radial-gradient(100% 1169.64% at 0% 0%, #87C2D0 0%, #87C2D0 100%), #3D99A8;
+}
+.outlined-button:disabled {
+  color: white;
+  border-color: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+Link {
+  text-decoration: none;
+}
+
+.no-outline:hover, .no-outline:active, .no-outline:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+::selection {
+  background: #46aebe; /* Safari */
+}
+
+::-moz-selection {
+  background: #46aebe; /* Firefox */
+}
+
+abbr {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1600px) {
+  .container {
+    margin: 0 10%;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .container {
+    margin: 0 5%;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 720px) {
+  .container {
+    margin: 0 5%;
+    height: 100%;
+  }
+}
+.locations {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 200px;
+}
+
+.locationsList {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px #cccccc solid;
+}
+
+.delete:hover {
+  background: #fe6060;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.location {
+  gap: 16px;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  background: #efefef;
+  transition-duration: 0.3s;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.location:hover {
+  background: rgba(31, 31, 31, 0.3);
+}
+.location:hover .buttons {
+  opacity: 1;
+}
+.location .buttons {
+  flex: 1;
+  display: flex;
+  transition-duration: 0.3s;
+  gap: 12px;
+  opacity: 0;
+}
+.location .buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  background: #1f1f1f;
+  border: none;
+  border-radius: 8px;
+  transition-duration: 0.3s;
+}
+
+/*# sourceMappingURL=Locations.module.css.map */
